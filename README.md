@@ -12,8 +12,9 @@
 imageView.moa.url = "http://evgenii.com/bacteria.jpg"
 ```
 
-Setting `moa.url` will trigger the image download.
-The downloaded image will be assigned to the image view upon completion.
+Setting `moa.url` will instantly trigger the image download.
+Download is done using NSURLSession class.
+When download is completed the image is automatically assigned to the image view.
 
 ## Cancelling download
 
