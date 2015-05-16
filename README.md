@@ -23,7 +23,7 @@ Ongoing image download for the UIImageView is automatically cancelled when:
 1. Image view is deallocated.
 2. New image download is started: `imageView.moa.url = ...`.
 
-To manually cancel the download: `imageView.moa.cancel()`
+Call `imageView.moa.cancel()` to manually cancel the download.
 
 ## Using placeholder image
 
