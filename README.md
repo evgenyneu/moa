@@ -1,10 +1,10 @@
 🔨🔨🔨 This is work in progress. 🔨🔨🔨
 
+# Moa, an image downloader for iOS/Swift
+
 <img src='https://raw.githubusercontent.com/evgenyneu/moa/master/Graphics/Hunting_Moa.jpg' alt='Moa hunting' width='400'>
 
 > "Lost, like the Moa is lost" - Maori proverb
-
-# Moa, an image downloader for iOS/Swift
 
 ## Usage
 
