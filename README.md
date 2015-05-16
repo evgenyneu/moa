@@ -4,15 +4,14 @@
 
 > "Lost, like the Moa is lost" - Maori proverb
 
-# Moa, an image downloader for Swift
-
-This is a `UIImageView` extension for downloading images.
+# Moa, an image downloader for iOS/Swift
 
 ## Usage
 
 ```Swift
 imageView.moa.url = "http://evgenii.com/bacteria.jpg"
 ```
+
 Setting `moa.url` will trigger the image download.
 The downloaded image will be assigned to the image view upon completion.
 
