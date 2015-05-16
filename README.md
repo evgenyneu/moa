@@ -51,7 +51,7 @@ imageView.moa.url = "http://evgenii.com/ant.jpg"
 Assign a closure before setting `imageView.moa.url` property.
 
 ```Swift
-imageView.moa.didFinishDownoadAsync = { image, isSuccessful in
+imageView.moa.onSuccessAsync = { image in
   return image
 }
 
@@ -62,13 +62,25 @@ The closure will be called asynchronously after download finishes and before the
 is assigned to the image view. The closure's return value is an image that is used in the
 image view. No image will be shown if the return value is nil.
 
+### Supplying error closure
+
+```Swift
+imageView.moa.onErrorAsync = {
+  return errorImage // or nil
+}
+
+imageView.moa.url = "http://evgenii.com/ant.jpg"
+```
+
+The closure can return an image that will be assigned to the image view.
+
 ### Download image without UIImageView
 
 An instance of `Moa` class can also be used without an image view.
 
 ```Swift
 let moa = Moa()
-moa.didFinishDownoadAsync = { image, isSuccessful in
+moa.didFinishDownoadAsync = { image in
   return image
 }
 moa.url = "http://evgenii.com/moa.jpg"
