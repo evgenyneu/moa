@@ -48,10 +48,7 @@ imageView.moa.url = "http://evgenii.com/ant.jpg"
 
 ### Supplying completion closure
 
-Assign a closure to `willCompleteDownloadAsync` property before setting `imageView.moa.url` property.
-The close will be called asynchronously after download has been complete and before the image
-is assigned to the image view. The clusure's return value is an image that will be assigned to the
-image view. No image will be assigned if the returned value is `nil`.
+Assign a closure to `willCompleteDownloadAsync` property before setting `imageView.moa.url`.
 
 ```Swift
 imageView.moa.didFinishDownoadAsync = { image, isSuccessful in
@@ -60,6 +57,10 @@ imageView.moa.didFinishDownoadAsync = { image, isSuccessful in
 
 imageView.moa.url = "http://evgenii.com/ant.jpg"
 ```
+
+The closure will be called asynchronously after download has been complete and before the image
+is assigned to the image view. The closure's return value is an image that will be assigned to the
+image view. No image will be assigned if the returned value is `nil`.
 
 ### Download image without UIImageView
 
