@@ -13,7 +13,7 @@ imageView.moa.url = "http://evgenii.com/bacteria.jpg"
 ```
 
 Setting `moa.url` will instantly trigger the image download.
-Download is done using NSURLSession class.
+Download is done asynchronously using NSURLSession class.
 When download is completed the image is automatically assigned to the image view.
 
 ## Cancelling download
@@ -74,7 +74,19 @@ moa.didFinishDownoadAsync = { image, isSuccessful in
 moa.url = "http://evgenii.com/moa.jpg"
 ```
 
-# Credits
+## Alternative solutions
+
+Here is the list of other image downloaders.
+
+* [cbot/Vincent](https://github.com/cbot/Vincent)
+* [daltoniam/Skeets](https://github.com/daltoniam/Skeets)
+* [Haneke/HanekeSwift](https://github.com/Haneke/HanekeSwift)
+* [hirohisa/ImageLoaderSwift](https://github.com/hirohisa/ImageLoaderSwift)
+* [natelyman/SwiftImageLoader](https://github.com/natelyman/SwiftImageLoader)
+* [onevcat/Kingfisher](https://github.com/onevcat/Kingfisher)
+* [zalando/MapleBacon](https://github.com/zalando/MapleBacon)
+
+## Credits
 
 * 'Hunting Moa' image: Extinct Monsters by Rev. H. N. Hutchinson, illustrations by Joseph Smit (1836-1929) and others. 4th ed., 1896. Plate XXIII between pages 232 and 233. File source: [Wikimedia Commons](http://commons.wikimedia.org/wiki/File:Hunting_Moa.jpg).
 
