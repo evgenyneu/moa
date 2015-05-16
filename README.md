@@ -15,7 +15,7 @@ imageView.moa.url = "http://evgenii.com/bacteria.jpg"
 Setting `moa.url` starts asynchronous image download using NSURLSession class.
 When download is completed the image is automatically assigned to the image view.
 
-## Cancelling download
+## Canceling download
 
 Ongoing image download for the UIImageView is automatically cancelled when:
 
@@ -65,7 +65,7 @@ imageView.moa.url = "http://evgenii.com/ant.jpg"
 The closure can return an image that will be assigned to the image view.
 The closure is called asynchronously.
 
-### Download image without UIImageView
+### Download an image without UIImageView
 
 An instance of `Moa` class can also be used without an image view.
 
