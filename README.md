@@ -73,6 +73,8 @@ moa.didFinishDownoadAsync = { image, isSuccessful in
 moa.url = "http://evgenii.com/moa.jpg"
 ```
 
+# Credits
 
+* 'Hunting Moa' image source: Extinct Monsters by Rev. H. N. Hutchinson, illustrations by Joseph Smit (1836-1929) and others. 4th ed., 1896. Plate XXIII between pages 232 and 233. [File source: Wikimedia Commons](http://commons.wikimedia.org/wiki/File:Hunting_Moa.jpg#filelinks)
 
 
