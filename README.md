@@ -48,7 +48,7 @@ imageView.moa.url = "http://evgenii.com/ant.jpg"
 
 ### Supplying completion closure
 
-Assign a closure to `willCompleteDownloadAsync` property before setting `imageView.moa.url`.
+Assign a closure before setting `imageView.moa.url` property.
 
 ```Swift
 imageView.moa.didFinishDownoadAsync = { image, isSuccessful in
