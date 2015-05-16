@@ -36,7 +36,7 @@ imageView.moa.url = "http://evgenii.com/octopus.jpg"
 
 ## Using error image
 
-If you supply an error image it will be show if downloads fails.
+If you set an error image to `moa.errorImage` it will be shown if downloads fails.
 
 ```Swift
 imageView.moa.errorImage = UIImage(named: "error.jpg")
