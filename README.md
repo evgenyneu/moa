@@ -25,18 +25,9 @@ Ongoing image download for the UIImageView is automatically cancelled when:
 
 Call `imageView.moa.cancel()` to manually cancel the download.
 
-## Using placeholder image
-
-Placeholder is shown in the beginning and then replaced by the downloaded image.
-
-```Swift
-imageView.image = UIImage(named: "placeholder.jpg")
-imageView.moa.url = "http://evgenii.com/octopus.jpg"
-```
-
 ## Using error image
 
-If you supply an error image it will be shown if downloads fails.
+If you supply an error image it will be shown when downloads fails.
 
 ```Swift
 imageView.moa.errorImage = UIImage(named: "error.jpg")
