@@ -76,7 +76,7 @@ moa.url = "http://evgenii.com/moa.jpg"
 
 ## Alternative solutions
 
-Here is the list of other image downloaders.
+Here is the list of other image download libraries for Swift.
 
 * [cbot/Vincent](https://github.com/cbot/Vincent)
 * [daltoniam/Skeets](https://github.com/daltoniam/Skeets)
