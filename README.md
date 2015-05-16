@@ -73,6 +73,7 @@ imageView.moa.url = "http://evgenii.com/ant.jpg"
 ```
 
 The closure can return an image that will be assigned to the image view.
+The closure is called asynchronously.
 
 ### Download image without UIImageView
 
