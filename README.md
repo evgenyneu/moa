@@ -1,5 +1,7 @@
 🔨🔨🔨 This is work in progress. 🔨🔨🔨
 
+<img src='https://raw.githubusercontent.com/evgenyneu/moa/master/Graphics/Hunting_Moa.jpg' alt='Moa hunting' width='400'>
+
 > "Ka ngaro i te ngaro a te Moa" - Lost, like the Moa is lost.
 >
 > -- Maori proverb
