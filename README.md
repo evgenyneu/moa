@@ -59,7 +59,7 @@ imageView.moa.url = "http://evgenii.com/ant.jpg"
 ```
 
 The closure will be called asynchronously after download has been complete and before the image
-is assigned to the image view. The closure's return value is an image that will be user in the
+is assigned to the image view. The closure's return value is an image that is used in the
 image view. No image will be shown if the return value is nil.
 
 ### Download image without UIImageView
