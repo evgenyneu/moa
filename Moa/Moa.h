@@ -1,11 +1,3 @@
-//
-//  Moa.h
-//  Moa
-//
-//  Created by Evgenii on 16/05/2015.
-//  Copyright (c) 2015 Evgenii Neumerzhitckii. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 
 //! Project version number for Moa.
