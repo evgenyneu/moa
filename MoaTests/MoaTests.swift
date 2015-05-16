@@ -1,5 +1,6 @@
 import UIKit
 import XCTest
+import OHHTTPStubs
 
 class MoaTests: XCTestCase {
   
@@ -24,5 +25,4 @@ class MoaTests: XCTestCase {
       // Put the code you want to measure the time of here.
     }
   }
-  
 }
