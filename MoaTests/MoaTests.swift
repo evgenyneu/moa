@@ -22,7 +22,7 @@ class MoaTests: XCTestCase {
     
     var image: UIImage?
 
-    MoaTimer.runAfter(0.1) { timer in
+    MoaTimer.runAfter(0.01) { timer in
       if moa.image != nil {
         image = moa.image
         responseArrived.fulfill()
