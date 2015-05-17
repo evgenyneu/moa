@@ -13,12 +13,14 @@ class MoaTests: XCTestCase {
     StubHttp.removeAllStubs()
   }
   
+  // MARK: - Download
+  
   func testLoadImage() {
-    StubHttp.withYellowImage("ant.jpg")
+    StubHttp.withYellowImage("yellow.jpg")
     let responseArrived = expectationWithDescription("response arrived")
 
     let moa = Moa()
-    moa.url = "http://evgenii.com/moa/ant.jpg"
+    moa.url = "http://evgenii.com/moa/yellow.jpg"
     
     var image: UIImage?
 
@@ -36,11 +38,11 @@ class MoaTests: XCTestCase {
   }
   
   func testLoadImage_ErrorWhenImageNotFound() {
-    StubHttp.withImage("yellow.png", forUrlPart: "ant.jpg", statusCode: 404)
+    StubHttp.withImage("yellow.png", forUrlPart: "yellow.jpg", statusCode: 404)
     let responseArrived = expectationWithDescription("response arrived")
     
     let moa = Moa()
-    moa.url = "http://evgenii.com/moa/ant.jpg"
+    moa.url = "http://evgenii.com/moa/yellow.jpg"
     
     let timer = MoaTimer.runAfter(0.1) { timer in
       responseArrived.fulfill()
@@ -52,13 +54,13 @@ class MoaTests: XCTestCase {
   
   func testLoadImage_ErrorWhenResponseIsNotAnImageType() {
     StubHttp.withImage("yellow.png",
-      forUrlPart: "ant.jpg",
+      forUrlPart: "yellow.jpg",
       responseHeaders: ["Content-Type": "text/html"])
 
     let responseArrived = expectationWithDescription("response arrived")
     
     let moa = Moa()
-    moa.url = "http://evgenii.com/moa/ant.jpg"
+    moa.url = "http://evgenii.com/moa/yellow.jpg"
     
     let timer = MoaTimer.runAfter(0.1) { timer in
       responseArrived.fulfill()
@@ -69,12 +71,12 @@ class MoaTests: XCTestCase {
   }
   
   func testLoadImage_ErrorWhenResponseDataIsNotImage() {
-    StubHttp.withImage("text.txt", forUrlPart: "ant.jpg")
+    StubHttp.withImage("text.txt", forUrlPart: "yellow.jpg")
     
     let responseArrived = expectationWithDescription("response arrived")
     
     let moa = Moa()
-    moa.url = "http://evgenii.com/moa/ant.jpg"
+    moa.url = "http://evgenii.com/moa/yellow.jpg"
     
     let timer = MoaTimer.runAfter(0.1) { timer in
       responseArrived.fulfill()
@@ -84,8 +86,36 @@ class MoaTests: XCTestCase {
     XCTAssert(moa.image == nil)
   }
   
+  // MARK: - Cancelling download
+  
   func testCancellingDownload() {
-//    let moa = Moa()
-//    moa.url = "http://evgenii.com/moa/ant.jpg"
+    // Make yellow image reponse slow so it received in 0.3 seconds
+    StubHttp.withImage("yellow.png", forUrlPart: "yellow.jpg", statusCode: 200, responseTime: 0.3)
+    
+    StubHttp.withGreenImage("green.jpg")
+
+    let responseArrived = expectationWithDescription("response arrived")
+    
+    let moa = Moa()
+    moa.url = "http://evgenii.com/moa/yellow.jpg"
+    
+    // Request green image image before yellow image download has finished
+    let timerChangeImage = MoaTimer.runAfter(0.01) { timer in
+      moa.url = "http://evgenii.com/moa/green.jpg"
+    }
+    
+    var image: UIImage?
+    
+    let timerWaitingForFish = MoaTimer.runAfter(0.5) { timer in
+      // Wait more than 0.3 seconds (yellow response) to make sure it never comes back
+      // Which proves that yellow image download was cancelled
+      image = moa.image
+      responseArrived.fulfill()
+    }
+    
+    waitForExpectationsWithTimeout(2) { error in }
+    
+    let color = MoaImage.pixelColorAtImageCenter(image!)
+    XCTAssertEqual(UIColor.greenColor(), color)
   }
 }

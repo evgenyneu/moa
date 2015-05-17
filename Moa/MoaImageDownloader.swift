@@ -17,7 +17,7 @@ class MoaImageDownloader {
     task?.resume()
   }
   
-  private func cancel() {
+  func cancel() {
     task?.cancel()
     task = nil
   }

@@ -10,6 +10,10 @@ class StubHttp {
     withImage("yellow.png", forUrlPart: url)
   }
   
+  class func withGreenImage(url: String) {
+    withImage("green.png", forUrlPart: url)
+  }
+  
   private class func requestUrlIncludes(urlPart:String) -> (NSURLRequest->Bool) {
     return { req in
       MoaString.contains(req.URL!.absoluteString!, substring: urlPart)

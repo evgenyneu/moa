@@ -23,6 +23,8 @@ public final class Moa {
   public var image: UIImage?
   
   private func startDownload(url: String) {
+    imageDownloader?.cancel() // cancel previous download
+    
     imageDownloader = MoaImageDownloader()
     imageDownloader?.startDownload(url,
       onSuccess: { [weak self] image in

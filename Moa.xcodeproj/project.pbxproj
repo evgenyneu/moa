@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7E6FDB581B088E600095C29F /* text.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E6FDB571B088E600095C29F /* text.txt */; };
+		7E6FDB5A1B08911D0095C29F /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6FDB591B08911D0095C29F /* green.png */; };
 		7EA8EF751B072B4300C951C4 /* Moa.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EA8EF741B072B4300C951C4 /* Moa.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7EA8EF7B1B072B4300C951C4 /* Moa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA8EF6F1B072B4300C951C4 /* Moa.framework */; };
 		7EA8EF821B072B4300C951C4 /* UIImageView+moaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EF811B072B4300C951C4 /* UIImageView+moaTests.swift */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		7E6FDB571B088E600095C29F /* text.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = text.txt; sourceTree = "<group>"; };
+		7E6FDB591B08911D0095C29F /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
 		7EA8EF6F1B072B4300C951C4 /* Moa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Moa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA8EF731B072B4300C951C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EA8EF741B072B4300C951C4 /* Moa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Moa.h; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 		7EA8EF9C1B08490D00C951C4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7E6FDB591B08911D0095C29F /* green.png */,
 				7EA8EF9D1B0849C000C951C4 /* yellow.png */,
 			);
 			path = Images;
@@ -277,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EA8EF911B07416000C951C4 /* OHHTTPStubs.framework in Resources */,
+				7E6FDB5A1B08911D0095C29F /* green.png in Resources */,
 				7E6FDB581B088E600095C29F /* text.txt in Resources */,
 				7EA8EF9E1B0849C000C951C4 /* yellow.png in Resources */,
 			);
