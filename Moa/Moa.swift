@@ -3,7 +3,9 @@ import UIKit
 
 public final class Moa {
   private var imageDownloader: MoaImageDownloader?
-  
+  public var image: UIImage?
+  public weak var imageView: UIImageView?
+
   public init() { }
   
   public var url: String? {
@@ -15,8 +17,6 @@ public final class Moa {
       }
     }
   }
-  
-  public var image: UIImage?
   
   public func cancel() {
     imageDownloader?.cancel()
@@ -34,5 +34,11 @@ public final class Moa {
   
   private func onHandleSuccess(image: UIImage) {
     self.image = image
+    
+    if let imageView = imageView {
+      dispatch_async(dispatch_get_main_queue()) {
+        imageView.image = image
+      }
+    }
   }
 }

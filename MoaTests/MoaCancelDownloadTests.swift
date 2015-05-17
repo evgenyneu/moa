@@ -2,11 +2,7 @@ import UIKit
 import XCTest
 import Moa
 
-class MoaCancelDownloadTests: XCTestCase {
-  override func setUp() {
-    super.setUp()
-  }
-  
+class MoaCancelDownloadTests: XCTestCase {  
   override func tearDown() {
     super.tearDown()
     

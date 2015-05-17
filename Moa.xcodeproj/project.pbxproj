@@ -26,6 +26,7 @@
 		7EE105611B089D9D005C7030 /* 67px.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE1055E1B089D9D005C7030 /* 67px.png */; };
 		7EE105621B089D9D005C7030 /* 96px.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE1055F1B089D9D005C7030 /* 96px.png */; };
 		7EE105641B08A2B6005C7030 /* MoaCancelDownloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE105631B08A2B6005C7030 /* MoaCancelDownloadTests.swift */; };
+		7EE105661B094B92005C7030 /* MoaWithImageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE105651B094B92005C7030 /* MoaWithImageViewTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		7EE1055E1B089D9D005C7030 /* 67px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 67px.png; sourceTree = "<group>"; };
 		7EE1055F1B089D9D005C7030 /* 96px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 96px.png; sourceTree = "<group>"; };
 		7EE105631B08A2B6005C7030 /* MoaCancelDownloadTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaCancelDownloadTests.swift; sourceTree = "<group>"; };
+		7EE105651B094B92005C7030 /* MoaWithImageViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaWithImageViewTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				7EA8EF971B08480700C951C4 /* Helpers */,
 				7EA8EF951B08473900C951C4 /* MoaDownloadTests.swift */,
 				7EE105631B08A2B6005C7030 /* MoaCancelDownloadTests.swift */,
+				7EE105651B094B92005C7030 /* MoaWithImageViewTests.swift */,
 				7EA8EF811B072B4300C951C4 /* UIImageView+moaTests.swift */,
 				7EA8EF7F1B072B4300C951C4 /* Supporting Files */,
 			);
@@ -327,6 +330,7 @@
 				7EA8EF821B072B4300C951C4 /* UIImageView+moaTests.swift in Sources */,
 				7EA8EF961B08473900C951C4 /* MoaDownloadTests.swift in Sources */,
 				7EE105641B08A2B6005C7030 /* MoaCancelDownloadTests.swift in Sources */,
+				7EE105661B094B92005C7030 /* MoaWithImageViewTests.swift in Sources */,
 				7EA8EF991B08481800C951C4 /* MoaString.swift in Sources */,
 				7EA8EF9B1B08484000C951C4 /* StubHttp.swift in Sources */,
 			);

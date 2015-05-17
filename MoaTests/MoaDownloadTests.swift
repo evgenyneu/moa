@@ -3,10 +3,6 @@ import XCTest
 import Moa
 
 class MoaDownloadTests: XCTestCase {
-  override func setUp() {
-    super.setUp()
-  }
-  
   override func tearDown() {
     super.tearDown()
     
