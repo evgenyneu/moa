@@ -70,7 +70,7 @@ An instance of `Moa` class can also be used without an image view.
 
 ```Swift
 let moa = Moa()
-moa.didFinishDownoadAsync = { image in
+moa.onSuccessAsync = { image in
   return image
 }
 moa.url = "http://evgenii.com/moa.jpg"
