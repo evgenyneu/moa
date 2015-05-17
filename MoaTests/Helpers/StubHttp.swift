@@ -6,12 +6,19 @@ class StubHttp {
     OHHTTPStubs.removeAllStubs()
   }
   
-  class func withYellowImage(url: String) {
-    withImage("yellow.png", forUrlPart: url)
+  class func with96pxPngImage() {
+    let imageName = "96px.png"
+    withImage(imageName, forUrlPart: imageName, responseHeaders: ["Content-Type": "image/png"])
   }
   
-  class func withGreenImage(url: String) {
-    withImage("green.png", forUrlPart: url)
+  class func with67pxPngImage() {
+    let imageName = "67px.png"
+    withImage(imageName, forUrlPart: imageName, responseHeaders: ["Content-Type": "image/png"])
+  }
+  
+  class func with35pxJpgImage() {
+    let imageName = "35px.jpg"
+    withImage(imageName, forUrlPart: imageName, responseHeaders: ["Content-Type": "image/jpeg"])
   }
   
   private class func requestUrlIncludes(urlPart:String) -> (NSURLRequest->Bool) {
