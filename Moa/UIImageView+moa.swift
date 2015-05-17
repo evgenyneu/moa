@@ -6,6 +6,7 @@
 import UIKit
 
 public class Moa {
+  public init() { }
   public var url: String = ""
 }
 

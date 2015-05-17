@@ -15,10 +15,17 @@ class MoaTests: XCTestCase {
     super.tearDown()
   }
   
-  func testExample() {
+  func testExample_getCreatesAndStoresMoaInstance() {
     let imageView = UIImageView()
-    imageView.moa.url = "http://evgenii.com/moa/ant.jpg"
-    XCTAssertEqual("http://evgenii.com/moa/ant.jpg", imageView.moa.url)
+    let moa1 = imageView.moa
+    let moa2 = imageView.moa
+    XCTAssert(moa1 === moa2)
   }
-
+  
+  func testExample_set() {
+    let imageView = UIImageView()
+    let moa = Moa()
+    imageView.moa = moa
+    XCTAssert(imageView.moa === moa)
+  }
 }
