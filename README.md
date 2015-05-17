@@ -12,8 +12,7 @@
 imageView.moa.url = "http://evgenii.com/bacteria.jpg"
 ```
 
-Setting `moa.url` starts asynchronous image download using NSURLSession class.
-When download is completed the image is automatically assigned to the image view.
+Setting `moa.url` property of `UIImageView` instance starts asynchronous image download using NSURLSession class. When download is completed the image is automatically assigned to the image view.
 
 ## Canceling download
 
