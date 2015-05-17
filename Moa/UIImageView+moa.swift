@@ -5,11 +5,6 @@
 
 import UIKit
 
-public class Moa {
-  public init() { }
-  public var url: String = ""
-}
-
 private var xoAssociationKey: UInt8 = 0
 
 public extension UIImageView {
