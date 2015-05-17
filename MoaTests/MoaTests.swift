@@ -42,7 +42,7 @@ class MoaTests: XCTestCase {
     let moa = Moa()
     moa.url = "http://evgenii.com/moa/ant.jpg"
     
-    let timer = MoaTimer.runAfter(0.01) { timer in
+    let timer = MoaTimer.runAfter(0.1) { timer in
       responseArrived.fulfill()
     }
     
@@ -50,7 +50,7 @@ class MoaTests: XCTestCase {
     XCTAssert(moa.image == nil)
   }
   
-  func testLoadImage_ErrorWhenResponseIsNotImage() {
+  func testLoadImage_ErrorWhenResponseIsNotAnImageType() {
     StubHttp.withImage("yellow.png",
       forUrlPart: "ant.jpg",
       responseHeaders: ["Content-Type": "text/html"])
@@ -60,7 +60,23 @@ class MoaTests: XCTestCase {
     let moa = Moa()
     moa.url = "http://evgenii.com/moa/ant.jpg"
     
-    let timer = MoaTimer.runAfter(0.01) { timer in
+    let timer = MoaTimer.runAfter(0.1) { timer in
+      responseArrived.fulfill()
+    }
+    
+    waitForExpectationsWithTimeout(1) { error in }
+    XCTAssert(moa.image == nil)
+  }
+  
+  func testLoadImage_ErrorWhenResponseDataIsNotImage() {
+    StubHttp.withImage("text.txt", forUrlPart: "ant.jpg")
+    
+    let responseArrived = expectationWithDescription("response arrived")
+    
+    let moa = Moa()
+    moa.url = "http://evgenii.com/moa/ant.jpg"
+    
+    let timer = MoaTimer.runAfter(0.1) { timer in
       responseArrived.fulfill()
     }
     
@@ -71,7 +87,5 @@ class MoaTests: XCTestCase {
   func testCancellingDownload() {
 //    let moa = Moa()
 //    moa.url = "http://evgenii.com/moa/ant.jpg"
-    
-    
   }
 }
