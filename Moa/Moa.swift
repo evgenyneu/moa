@@ -3,19 +3,15 @@ import UIKit
 
 public final class Moa {
   private var imageDownloader: MoaImageDownloader?
-  private var _url: String?
   
   public init() { }
   
   public var url: String? {
-    get {
-      return _url
-    }
-    
-    set {
-      if let newValue = newValue {
-        _url = newValue
-        startDownload(newValue)
+    didSet {
+      imageDownloader?.cancel() // cancel previous download
+
+      if let url = url {
+        startDownload(url)
       }
     }
   }
@@ -27,8 +23,6 @@ public final class Moa {
   }
   
   private func startDownload(url: String) {
-    imageDownloader?.cancel() // cancel previous download
-    
     imageDownloader = MoaImageDownloader()
     imageDownloader?.startDownload(url,
       onSuccess: { [weak self] image in
