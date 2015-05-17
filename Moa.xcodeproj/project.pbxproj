@@ -510,6 +510,7 @@
 				7EA8EF871B072B4300C951C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7EA8EF881B072B4300C951C4 /* Build configuration list for PBXNativeTarget "MoaTests" */ = {
 			isa = XCConfigurationList;
@@ -518,6 +519,7 @@
 				7EA8EF8A1B072B4300C951C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
