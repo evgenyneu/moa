@@ -23,6 +23,7 @@
 		7EA8EFA81B0858DD00C951C4 /* Moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFA71B0858DD00C951C4 /* Moa.swift */; };
 		7EA8EFAE1B08791500C951C4 /* MoaHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFAD1B08791500C951C4 /* MoaHttp.swift */; };
 		7EA8EFB01B087A5200C951C4 /* MoaHttpImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFAF1B087A5200C951C4 /* MoaHttpImage.swift */; };
+		7EA8EFB21B087D4A00C951C4 /* MoaImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFB11B087D4A00C951C4 /* MoaImageDownloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		7EA8EFA71B0858DD00C951C4 /* Moa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Moa.swift; sourceTree = "<group>"; };
 		7EA8EFAD1B08791500C951C4 /* MoaHttp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttp.swift; sourceTree = "<group>"; };
 		7EA8EFAF1B087A5200C951C4 /* MoaHttpImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttpImage.swift; sourceTree = "<group>"; };
+		7EA8EFB11B087D4A00C951C4 /* MoaImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaImageDownloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				7EA8EFA71B0858DD00C951C4 /* Moa.swift */,
 				7EA8EFAD1B08791500C951C4 /* MoaHttp.swift */,
 				7EA8EFAF1B087A5200C951C4 /* MoaHttpImage.swift */,
+				7EA8EFB11B087D4A00C951C4 /* MoaImageDownloader.swift */,
 				7EA8EF741B072B4300C951C4 /* Moa.h */,
 				7EA8EF721B072B4300C951C4 /* Supporting Files */,
 			);
@@ -295,6 +298,7 @@
 				7EA8EFB01B087A5200C951C4 /* MoaHttpImage.swift in Sources */,
 				7EA8EFA81B0858DD00C951C4 /* Moa.swift in Sources */,
 				7EA8EFAE1B08791500C951C4 /* MoaHttp.swift in Sources */,
+				7EA8EFB21B087D4A00C951C4 /* MoaImageDownloader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

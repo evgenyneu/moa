@@ -23,4 +23,13 @@ struct MoaImage {
       blue: CGFloat(Double(blue) / 255.0),
       alpha: CGFloat(Double(alpha) / 255.0))
   }
+  
+  static func pixelColorAtImageCenter(image: UIImage) -> UIColor {
+    let centerPoint = CGPoint(
+      x: image.size.width / 2,
+      y: image.size.height / 2
+    )
+    
+    return pixelColorInImage(image, atPoint: centerPoint)
+  }
 }

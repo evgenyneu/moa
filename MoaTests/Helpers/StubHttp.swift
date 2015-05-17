@@ -7,14 +7,16 @@ class StubHttp {
   }
   
   class func withYellowImage(url: String) {
-    withImage("yelow.png", forUrlPart: url)
+    withImage("yellow.png", forUrlPart: url)
   }
   
   private class func withImage(imageName: String, forUrlPart url: String) {
     OHHTTPStubs.stubRequestsPassingTest({
       MoaString.contains($0.URL!.absoluteString!, substring: url)
     }) { _ in
-      let imagePath = OHPathForFile(imageName, self)!
+//      let imagePath = OHPathForFile(imageName, self.dynamicType)!
+      
+      let imagePath = NSBundle(forClass: self).pathForResource(imageName, ofType: nil)!
       
       return OHHTTPStubsResponse(fileAtPath: imagePath,
         statusCode: 200,

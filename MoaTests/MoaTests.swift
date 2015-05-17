@@ -30,7 +30,8 @@ class MoaTests: XCTestCase {
     }
     
     waitForExpectationsWithTimeout(1) { error in }
-//    let color = MoaImage.pixelColorInImage(image!, atPoint: CGPoint(x: 50, y: 50))
-//    XCTAssertEqual(UIColor.redColor(), color)
+    
+    let color = MoaImage.pixelColorAtImageCenter(image!)
+    XCTAssertEqual(UIColor.yellowColor(), color)
   }
 }

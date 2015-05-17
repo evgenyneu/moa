@@ -1,16 +1,38 @@
 
-public class Moa {
+import UIKit
+
+public final class Moa {
+  private var imageDownloader: MoaImageDownloader?
+  private var _url: String?
+  
   public init() { }
   
-  public var url: String {
+  public var url: String? {
     get {
-      return ""
+      return _url
     }
     
     set {
-      
+      if let newValue = newValue {
+        _url = newValue
+        startDownload(newValue)
+      }
     }
   }
   
   public var image: UIImage?
+  
+  private func startDownload(url: String) {
+    imageDownloader = MoaImageDownloader()
+    imageDownloader?.startDownload(url,
+      onSuccess: { [weak self] image in
+        self?.onHandleSuccess(image)
+      },
+      onError: { error, response in }
+    )
+  }
+  
+  private func onHandleSuccess(image: UIImage) {
+    self.image = image
+  }
 }
