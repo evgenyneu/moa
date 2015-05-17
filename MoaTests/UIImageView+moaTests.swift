@@ -1,6 +1,7 @@
 import UIKit
 import XCTest
 import OHHTTPStubs
+import Moa
 
 class MoaTests: XCTestCase {
   
@@ -15,14 +16,9 @@ class MoaTests: XCTestCase {
   }
   
   func testExample() {
-    // This is an example of a functional test case.
-    XCTAssert(true, "Pass")
+    let imageView = UIImageView()
+    imageView.moa.url = "http://evgenii.com/moa/ant.jpg"
+    XCTAssertEqual("http://evgenii.com/moa/ant.jpg", imageView.moa.url)
   }
-  
-  func testPerformanceExample() {
-    // This is an example of a performance test case.
-    self.measureBlock() {
-      // Put the code you want to measure the time of here.
-    }
-  }
+
 }

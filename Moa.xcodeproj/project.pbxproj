@@ -9,9 +9,10 @@
 /* Begin PBXBuildFile section */
 		7EA8EF751B072B4300C951C4 /* Moa.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EA8EF741B072B4300C951C4 /* Moa.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7EA8EF7B1B072B4300C951C4 /* Moa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA8EF6F1B072B4300C951C4 /* Moa.framework */; };
-		7EA8EF821B072B4300C951C4 /* MoaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EF811B072B4300C951C4 /* MoaTests.swift */; };
+		7EA8EF821B072B4300C951C4 /* UIImageView+moaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EF811B072B4300C951C4 /* UIImageView+moaTests.swift */; };
 		7EA8EF901B07415C00C951C4 /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA8EF8E1B07408800C951C4 /* OHHTTPStubs.framework */; };
 		7EA8EF911B07416000C951C4 /* OHHTTPStubs.framework in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8EF8E1B07408800C951C4 /* OHHTTPStubs.framework */; };
+		7EA8EF941B08454B00C951C4 /* UIImageView+moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EF931B08454B00C951C4 /* UIImageView+moa.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,8 +31,9 @@
 		7EA8EF741B072B4300C951C4 /* Moa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Moa.h; sourceTree = "<group>"; };
 		7EA8EF7A1B072B4300C951C4 /* MoaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA8EF801B072B4300C951C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7EA8EF811B072B4300C951C4 /* MoaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoaTests.swift; sourceTree = "<group>"; };
+		7EA8EF811B072B4300C951C4 /* UIImageView+moaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+moaTests.swift"; sourceTree = "<group>"; };
 		7EA8EF8E1B07408800C951C4 /* OHHTTPStubs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OHHTTPStubs.framework; path = Carthage/Build/iOS/OHHTTPStubs.framework; sourceTree = SOURCE_ROOT; };
+		7EA8EF931B08454B00C951C4 /* UIImageView+moa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+moa.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 		7EA8EF711B072B4300C951C4 /* Moa */ = {
 			isa = PBXGroup;
 			children = (
+				7EA8EF931B08454B00C951C4 /* UIImageView+moa.swift */,
 				7EA8EF741B072B4300C951C4 /* Moa.h */,
 				7EA8EF721B072B4300C951C4 /* Supporting Files */,
 			);
@@ -93,7 +96,7 @@
 		7EA8EF7E1B072B4300C951C4 /* MoaTests */ = {
 			isa = PBXGroup;
 			children = (
-				7EA8EF811B072B4300C951C4 /* MoaTests.swift */,
+				7EA8EF811B072B4300C951C4 /* UIImageView+moaTests.swift */,
 				7EA8EF7F1B072B4300C951C4 /* Supporting Files */,
 			);
 			path = MoaTests;
@@ -241,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EA8EF941B08454B00C951C4 /* UIImageView+moa.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,7 +252,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EA8EF821B072B4300C951C4 /* MoaTests.swift in Sources */,
+				7EA8EF821B072B4300C951C4 /* UIImageView+moaTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +359,7 @@
 		7EA8EF861B072B4300C951C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -369,12 +374,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		7EA8EF871B072B4300C951C4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
