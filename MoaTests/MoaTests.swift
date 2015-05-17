@@ -72,41 +72,40 @@ class MoaTests: XCTestCase {
     waitForExpectationsWithTimeout(1) { error in }
     XCTAssert(moa.image == nil)
   }
+
+  func testLoadImage_ErrorWhenResponseIsNotAnImageType() {
+    StubHttp.withImage("96px.png", forUrlPart: "96px.png",
+      responseHeaders: ["Content-Type": "text/html"])
+
+    let responseArrived = expectationWithDescription("response arrived")
+    
+    let moa = Moa()
+    moa.url = "http://evgenii.com/moa/96px.png"
+    
+    let timer = MoaTimer.runAfter(0.1) { timer in
+      responseArrived.fulfill()
+    }
+    
+    waitForExpectationsWithTimeout(1) { error in }
+    XCTAssert(moa.image == nil)
+  }
+
+  func testLoadImage_ErrorWhenResponseDataIsNotImage() {
+    StubHttp.withImage("text.txt", forUrlPart: "96px.png")
+    
+    let responseArrived = expectationWithDescription("response arrived")
+    
+    let moa = Moa()
+    moa.url = "http://evgenii.com/moa/96px.png"
+    
+    let timer = MoaTimer.runAfter(0.1) { timer in
+      responseArrived.fulfill()
+    }
+    
+    waitForExpectationsWithTimeout(1) { error in }
+    XCTAssert(moa.image == nil)
+  }
 //
-//  func testLoadImage_ErrorWhenResponseIsNotAnImageType() {
-//    StubHttp.withImage("yellow.png",
-//      forUrlPart: "yellow.png",
-//      responseHeaders: ["Content-Type": "text/html"])
-//
-//    let responseArrived = expectationWithDescription("response arrived")
-//    
-//    let moa = Moa()
-//    moa.url = "http://evgenii.com/moa/yellow.png"
-//    
-//    let timer = MoaTimer.runAfter(0.1) { timer in
-//      responseArrived.fulfill()
-//    }
-//    
-//    waitForExpectationsWithTimeout(1) { error in }
-//    XCTAssert(moa.image == nil)
-//  }
-//  
-//  func testLoadImage_ErrorWhenResponseDataIsNotImage() {
-//    StubHttp.withImage("text.txt", forUrlPart: "yellow.png")
-//    
-//    let responseArrived = expectationWithDescription("response arrived")
-//    
-//    let moa = Moa()
-//    moa.url = "http://evgenii.com/moa/yellow.png"
-//    
-//    let timer = MoaTimer.runAfter(0.1) { timer in
-//      responseArrived.fulfill()
-//    }
-//    
-//    waitForExpectationsWithTimeout(1) { error in }
-//    XCTAssert(moa.image == nil)
-//  }
-//  
 //  // MARK: - Cancelling download
 //  
 //  func testCancellingDownload() {
