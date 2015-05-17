@@ -22,6 +22,10 @@ public final class Moa {
   
   public var image: UIImage?
   
+  public func cancel() {
+    imageDownloader?.cancel()
+  }
+  
   private func startDownload(url: String) {
     imageDownloader?.cancel() // cancel previous download
     

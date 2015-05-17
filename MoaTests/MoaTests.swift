@@ -105,37 +105,64 @@ class MoaTests: XCTestCase {
     waitForExpectationsWithTimeout(1) { error in }
     XCTAssert(moa.image == nil)
   }
-//
-//  // MARK: - Cancelling download
-//  
-//  func testCancellingDownload() {
-//    // Make yellow image reponse slow so it received in 0.3 seconds
-//    StubHttp.withImage("yellow.png", forUrlPart: "yellow.png", statusCode: 200, responseTime: 0.3)
-//    
-//    StubHttp.withGreenImage("green.png")
-//
-//    let responseArrived = expectationWithDescription("response arrived")
-//    
-//    let moa = Moa()
-//    moa.url = "http://evgenii.com/moa/yellow.png"
-//    
-//    // Request green image image before yellow image download has finished
-//    let timerChangeImage = MoaTimer.runAfter(0.01) { timer in
-//      moa.url = "http://evgenii.com/moa/green.png"
-//    }
-//    
-//    var image: UIImage?
-//    
-//    let timerWaitingForFish = MoaTimer.runAfter(0.5) { timer in
-//      // Wait more than 0.3 seconds (yellow response) to make sure it never comes back
-//      // Which proves that yellow image download was cancelled
-//      image = moa.image
-//      responseArrived.fulfill()
-//    }
-//    
-//    waitForExpectationsWithTimeout(2) { error in }
-//    
-//    let color = MoaImage.pixelColorAtImageCenter(image!)
-//    XCTAssertEqual(UIColor.greenColor(), color)
-//  }
+
+  // MARK: - Cancelling download
+  
+  func testCancelDownload() {
+    // Make 96px.png image reponse is slow so it is received in 0.3 seconds
+    StubHttp.withImage("96px.png", forUrlPart: "96px.png", statusCode: 200, responseTime: 0.3)
+    
+    let responseArrived = expectationWithDescription("response arrived")
+    
+    let moa = Moa()
+    moa.url = "http://evgenii.com/moa/96px.png"
+    
+    // Cancel download before 96px.png image has arrived
+    let timerChangeImage = MoaTimer.runAfter(0.01) { timer in
+      moa.cancel()
+    }
+    
+    var image: UIImage?
+    
+    let timerWaitingForFish = MoaTimer.runAfter(0.5) { timer in
+      // Wait more than 0.3 seconds (96px.png image response) to make sure it never comes back.
+      // It proves that 96px.png image download was cancelled.
+      image = moa.image
+      responseArrived.fulfill()
+    }
+    
+    waitForExpectationsWithTimeout(2) { error in }
+    
+    XCTAssert(image == nil)
+  }
+  
+  func testCancelDownloadAutomaticalyWhenNewImageIsRequested() {
+    // Make 96px.png image reponse is slow so it is received in 0.3 seconds
+    StubHttp.withImage("96px.png", forUrlPart: "96px.png", statusCode: 200, responseTime: 0.3)
+    
+    StubHttp.with35pxJpgImage()
+
+    let responseArrived = expectationWithDescription("response arrived")
+    
+    let moa = Moa()
+    moa.url = "http://evgenii.com/moa/96px.png"
+    
+    // Request 35px.jpg image before 96px.png image has arrived
+    let timerChangeImage = MoaTimer.runAfter(0.01) { timer in
+      moa.url = "http://evgenii.com/moa/35px.jpg"
+    }
+    
+    var image: UIImage?
+    
+    let timerWaitingForFish = MoaTimer.runAfter(0.5) { timer in
+      // Wait more than 0.3 seconds (96px.png image response) to make sure it never comes back.
+      // It proves that 96px.png image download was cancelled.
+      image = moa.image
+      responseArrived.fulfill()
+    }
+    
+    waitForExpectationsWithTimeout(2) { error in }
+    
+    XCTAssertEqual(35, image!.size.width)
+  }
 }
