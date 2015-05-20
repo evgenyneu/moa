@@ -4,7 +4,7 @@ import UIKit
 public final class Moa {
   private var imageDownloader: MoaImageDownloader?
   var image: UIImage?
-  public weak var imageView: UIImageView?
+  weak var imageView: UIImageView?
 
   public init() { }
   
