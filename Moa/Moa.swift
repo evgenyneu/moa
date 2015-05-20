@@ -10,19 +10,21 @@ public final class Moa {
   
   public var url: String? {
     didSet {
-      imageDownloader?.cancel() // cancel previous download
-
       if let url = url {
         startDownload(url)
+      } else {
+        cancel()
       }
     }
   }
   
   public func cancel() {
-    imageDownloader?.cancel()
+    imageDownloader = nil // Download is cancelled on deinit
   }
   
   private func startDownload(url: String) {
+    cancel()
+
     imageDownloader = MoaImageDownloader()
     imageDownloader?.startDownload(url,
       onSuccess: { [weak self] image in
