@@ -2,6 +2,8 @@
 // Shotcut function for creating NSURLSessionDataTask.
 //
 
+import UIKit
+
 struct MoaHttp {
   static func createDataTask(url: String,
     onSuccess: (NSData, NSHTTPURLResponse)->(),

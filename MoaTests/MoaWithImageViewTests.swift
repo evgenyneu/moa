@@ -1,6 +1,5 @@
 import UIKit
 import XCTest
-import Moa
 
 class MoaWithImageViewTests: XCTestCase {
   override func tearDown() {

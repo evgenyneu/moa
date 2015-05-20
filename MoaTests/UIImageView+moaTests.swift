@@ -1,6 +1,5 @@
 import UIKit
 import XCTest
-import Moa
 
 class UIImageViewMoaExtensionTests: XCTestCase {
   func testGetCreatesAndStoresMoaInstance() {

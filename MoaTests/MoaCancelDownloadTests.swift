@@ -1,6 +1,5 @@
 import UIKit
 import XCTest
-import Moa
 
 class MoaCancelDownloadTests: XCTestCase {  
   override func tearDown() {
