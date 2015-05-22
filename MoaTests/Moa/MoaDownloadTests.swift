@@ -2,6 +2,7 @@ import UIKit
 import XCTest
 
 class MoaDownloadTests: XCTestCase {
+  
   override func tearDown() {
     super.tearDown()
     
@@ -10,60 +11,35 @@ class MoaDownloadTests: XCTestCase {
   
   func testLoadPngImage() {
     StubHttp.with96pxPngImage()
-    let responseArrived = expectationWithDescription("response arrived")
 
     let moa = Moa()
     moa.url = "http://evgenii.com/moa/96px.png"
     
-    var image: UIImage?
-
-    let timer = MoaTimer.runAfter(0.01) { timer in
-      if moa.image != nil {
-        image = moa.image
-        responseArrived.fulfill()
-      }
+    moa_eventually(moa.image != nil) {
+      XCTAssertEqual(96, moa.image!.size.width)
     }
-    
-    waitForExpectationsWithTimeout(1) { error in }
-    
-    XCTAssertEqual(96, image!.size.width)
   }
   
   func testLoadJpegImage() {
     StubHttp.with35pxJpgImage()
-    
-    let responseArrived = expectationWithDescription("response arrived")
-    
+        
     let moa = Moa()
     moa.url = "http://evgenii.com/moa/35px.jpg"
     
-    var image: UIImage?
-    
-    let timer = MoaTimer.runAfter(0.01) { timer in
-      if moa.image != nil {
-        image = moa.image
-        responseArrived.fulfill()
-      }
+    moa_eventually(moa.image != nil) {
+      XCTAssertEqual(35, moa.image!.size.width)
     }
-    
-    waitForExpectationsWithTimeout(1) { error in }
-    
-    XCTAssertEqual(35, image!.size.width)
   }
 
   func testLoadImage_ErrorWhenImageNotFound() {
     StubHttp.withImage("96px.png", forUrlPart: "96px.png", statusCode: 404)
-    let responseArrived = expectationWithDescription("response arrived")
     
     let moa = Moa()
     moa.url = "http://evgenii.com/moa/96px.png"
     
-    let timer = MoaTimer.runAfter(0.1) { timer in
-      responseArrived.fulfill()
+    moa_eventually(timeout: 0.1) {
+      XCTAssert(moa.image == nil)
     }
-    
-    waitForExpectationsWithTimeout(1) { error in }
-    XCTAssert(moa.image == nil)
   }
 
   func testLoadImage_ErrorWhenResponseIsNotAnImageType() {

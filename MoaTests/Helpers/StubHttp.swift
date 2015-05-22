@@ -46,8 +46,6 @@ class StubHttp {
     }
   }
   
-  
-  
   class func withImage(imageName: String,
     forUrlPart urlPart: String,
     responseHeaders: [NSObject : AnyObject]? = ["Content-Type": "image/png"],

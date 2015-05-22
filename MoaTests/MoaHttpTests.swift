@@ -11,8 +11,6 @@ class MoaHttpTests: XCTestCase {
   func testLoad() {
     StubHttp.withText("Hello world!", forUrlPart: "path")
     
-    let responseArrived = expectationWithDescription("response arrived")
-    
     var responseString: NSString?
     
     let dataDask = MoaHttp.createDataTask("http://server.net/path",
@@ -23,15 +21,9 @@ class MoaHttpTests: XCTestCase {
     )
     
     dataDask?.resume()
-    
-    let timer = MoaTimer.runAfter(0.01) { timer in
-      if responseString != nil {
-        responseArrived.fulfill()
-      }
-    }
-    
-    waitForExpectationsWithTimeout(1) { error in }
 
-    XCTAssertEqual("Hello world!", responseString!)
+    moa_eventually(responseString != nil) {
+      XCTAssertEqual("Hello world!", responseString!)
+    }
   }
 }

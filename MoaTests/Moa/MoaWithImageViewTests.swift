@@ -10,22 +10,15 @@ class MoaWithImageViewTests: XCTestCase {
   
   func testSetImageToImageView() {
     StubHttp.with96pxPngImage()
-    let responseArrived = expectationWithDescription("response arrived")
     
     let imageView = UIImageView()
     
     let moa = Moa()
     moa.imageView = imageView
     moa.url = "http://evgenii.com/moa/96px.png"
-        
-    let timer = MoaTimer.runAfter(0.01) { timer in
-      if moa.imageView?.image != nil {
-        responseArrived.fulfill()
-      }
+    
+    moa_eventually(moa.imageView?.image != nil) {
+      XCTAssertEqual(96, moa.imageView!.image!.size.width)
     }
-    
-    waitForExpectationsWithTimeout(1) { error in }
-    
-    XCTAssertEqual(96, moa.imageView!.image!.size.width)
   }
 }
