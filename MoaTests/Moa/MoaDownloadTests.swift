@@ -2,7 +2,6 @@ import UIKit
 import XCTest
 
 class MoaDownloadTests: XCTestCase {
-  
   override func tearDown() {
     super.tearDown()
     
@@ -37,7 +36,7 @@ class MoaDownloadTests: XCTestCase {
     let moa = Moa()
     moa.url = "http://evgenii.com/moa/96px.png"
     
-    moa_eventually(timeout: 0.1) {
+    moa_eventually {
       XCTAssert(moa.image == nil)
     }
   }
@@ -45,33 +44,23 @@ class MoaDownloadTests: XCTestCase {
   func testLoadImage_ErrorWhenResponseIsNotAnImageType() {
     StubHttp.withImage("96px.png", forUrlPart: "96px.png",
       responseHeaders: ["Content-Type": "text/html"])
-
-    let responseArrived = expectationWithDescription("response arrived")
     
     let moa = Moa()
     moa.url = "http://evgenii.com/moa/96px.png"
-    
-    let timer = MoaTimer.runAfter(0.1) { timer in
-      responseArrived.fulfill()
+  
+    moa_eventually {
+      XCTAssert(moa.image == nil)
     }
-    
-    waitForExpectationsWithTimeout(1) { error in }
-    XCTAssert(moa.image == nil)
   }
 
   func testLoadImage_ErrorWhenResponseDataIsNotImage() {
     StubHttp.withImage("text.txt", forUrlPart: "96px.png")
     
-    let responseArrived = expectationWithDescription("response arrived")
-    
     let moa = Moa()
     moa.url = "http://evgenii.com/moa/96px.png"
     
-    let timer = MoaTimer.runAfter(0.1) { timer in
-      responseArrived.fulfill()
+    moa_eventually {
+      XCTAssert(moa.image == nil)
     }
-    
-    waitForExpectationsWithTimeout(1) { error in }
-    XCTAssert(moa.image == nil)
   }
 }
