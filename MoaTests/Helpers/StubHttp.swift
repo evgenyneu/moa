@@ -67,18 +67,18 @@ class StubHttp {
     statusCode: Int = 200,
     responseTime: NSTimeInterval = 0) -> (NSURLRequest->OHHTTPStubsResponse) {
       
-      let data = text.dataUsingEncoding(NSUTF8StringEncoding)!
+    let data = text.dataUsingEncoding(NSUTF8StringEncoding)!
+    
+    return { _ in
+      var response = OHHTTPStubsResponse(data: data,
+        statusCode: Int32(statusCode), headers: responseHeaders)
       
-      return { _ in
-        var response = OHHTTPStubsResponse(data: data,
-          statusCode: Int32(statusCode), headers: responseHeaders)
-        
-        if responseTime > 0 {
-          response = response.requestTime(0, responseTime: responseTime)
-        }
-        
-        return response
+      if responseTime > 0 {
+        response = response.requestTime(0, responseTime: responseTime)
       }
+      
+      return response
+    }
   }
   
   class func withText(text: String,
@@ -87,11 +87,23 @@ class StubHttp {
     statusCode: Int = 200,
     responseTime: NSTimeInterval = 0) {
       
-      OHHTTPStubs.stubRequestsPassingTest(requestUrlIncludes(urlPart),
-        withStubResponse: fixture(text: text,
-          responseHeaders: responseHeaders,
-          statusCode: statusCode,
-          responseTime: responseTime)
-      )
+    OHHTTPStubs.stubRequestsPassingTest(requestUrlIncludes(urlPart),
+      withStubResponse: fixture(text: text,
+        responseHeaders: responseHeaders,
+        statusCode: statusCode,
+        responseTime: responseTime)
+    )
+  }
+  
+  // MARK: - with error
+  
+  class func withError(error: NSError,
+    forUrlPart urlPart: String) {
+      
+    let errorResponse = OHHTTPStubsResponse(error: error)
+    
+    OHHTTPStubs.stubRequestsPassingTest(requestUrlIncludes(urlPart),
+      withStubResponse: { _ in errorResponse }
+    )
   }
 }

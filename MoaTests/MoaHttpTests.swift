@@ -52,4 +52,38 @@ class MoaHttpTests: XCTestCase {
       XCTAssertEqual(404, httpUrlResponseFromCallback!.statusCode)
     }
   }
+  
+  func testLoad_errorNotConnectedToInternet() {
+    // Code: -1009
+    let notConnectedErrorCode = Int(CFNetworkErrors.CFURLErrorNotConnectedToInternet.rawValue)
+
+    let notConnectedError = NSError(domain: NSURLErrorDomain,
+      code: notConnectedErrorCode, userInfo: nil)
+
+    StubHttp.withError(notConnectedError, forUrlPart: "server.net")
+    
+    var successCalled = false
+    var errorFromCallback: NSError?
+    var httpUrlResponseFromCallback: NSHTTPURLResponse?
+    
+    let dataDask = MoaHttp.createDataTask("http://server.net/path",
+      onSuccess: { data, response in
+        successCalled = true
+      },
+      onError: { error, response in
+        errorFromCallback = error
+        httpUrlResponseFromCallback = response
+      }
+    )
+    
+    dataDask?.resume()
+    
+    moa_eventually(errorFromCallback != nil) {
+      XCTAssertFalse(successCalled)
+      XCTAssertEqual(-1009, errorFromCallback!.code)
+      XCTAssert(httpUrlResponseFromCallback == nil)
+    }
+  }
+  
+  
 }
