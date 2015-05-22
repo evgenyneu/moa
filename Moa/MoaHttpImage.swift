@@ -21,6 +21,12 @@ struct MoaHttpImage {
     response: NSHTTPURLResponse,
     onSuccess: (UIImage)->(),
     onError: (NSError?, NSHTTPURLResponse?)->()) {
+      
+    // Show error if response code is not 200
+    if response.statusCode != 200 {
+      onError(MoaHttpImageErrors.HttpStatusCodeIsNot200.new, response)
+      return
+    }
     
     // Ensure response has the valid MIME type
     if let mimeType = response.MIMEType {
