@@ -8,8 +8,8 @@ class MoaHttpTests: XCTestCase {
     StubHttp.removeAllStubs()
   }
   
-  func testLoad() {
-    StubHttp.withText("Hello world!", forUrlPart: "path")
+  func testLoad_allGood() {
+    StubHttp.withText("Hello world!", forUrlPart: "server.net")
     
     var responseString: NSString?
     
@@ -24,6 +24,32 @@ class MoaHttpTests: XCTestCase {
 
     moa_eventually(responseString != nil) {
       XCTAssertEqual("Hello world!", responseString!)
+    }
+  }
+  
+  func testLoad_error404NotFound() {
+    StubHttp.withText("Hello world!", forUrlPart: "server.net", statusCode: 404)
+    
+    var successCalled = false
+    var errorFromCallback: NSError?
+    var httpUrlResponseFromCallback: NSHTTPURLResponse?
+    
+    let dataDask = MoaHttp.createDataTask("http://server.net/path",
+      onSuccess: { data, response in
+        successCalled = true
+      },
+      onError: { error, response in
+        errorFromCallback = error
+        httpUrlResponseFromCallback = response
+      }
+    )
+    
+    dataDask?.resume()
+    
+    moa_eventually(httpUrlResponseFromCallback != nil) {
+      XCTAssertFalse(successCalled)
+      XCTAssert(errorFromCallback == nil)
+      XCTAssertEqual(404, httpUrlResponseFromCallback!.statusCode)
     }
   }
 }

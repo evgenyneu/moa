@@ -1,7 +1,10 @@
 import XCTest
 
 extension XCTestCase {
-  func moa_eventually(@autoclosure(escaping) condition: () -> Bool, timeout: NSTimeInterval = 1,
+  func moa_eventually(
+    @autoclosure(escaping) condition: () -> Bool,
+    timeout: NSTimeInterval = 1,
+    
     callback: ()->()) {
     
     let moaExpectation = expectationWithDescription("moa expectation")
