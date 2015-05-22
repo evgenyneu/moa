@@ -1,5 +1,5 @@
 //
-// Shotcut function for creating NSURLSessionDataTask.
+// Shortcut function for creating NSURLSessionDataTask.
 //
 
 import UIKit
@@ -13,6 +13,7 @@ struct MoaHttp {
       return createDataTask(nsUrl, onSuccess: onSuccess, onError: onError)
     }
     
+    onError(MoaHttpErrors.InvalidUrlString.new, nil)
     return nil
   }
   
@@ -23,11 +24,7 @@ struct MoaHttp {
     return NSURLSession.sharedSession().dataTaskWithURL(nsUrl) { (data, response, error) in
       if let httpResponse = response as? NSHTTPURLResponse {
         if error == nil {
-          if httpResponse.statusCode != 200 {
-            onError(nil, httpResponse)
-          } else {
-            onSuccess(data, httpResponse)
-          }
+          onSuccess(data, httpResponse)
         } else {
           onError(error, httpResponse)
         }
