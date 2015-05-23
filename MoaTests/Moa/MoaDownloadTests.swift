@@ -11,12 +11,10 @@ class MoaDownloadTests: XCTestCase {
   func testLoadPngImage() {
     StubHttp.with96pxPngImage()
 
+    let moa = Moa()
     var imageResponse: UIImage?
     var errorResponse: NSError?
     var httpUrlResponse: NSHTTPURLResponse?
-
-    let moa = Moa()
-    moa.url = "http://evgenii.com/moa/96px.png"
 
     moa.onSuccessAsync = { image in
       imageResponse = image
@@ -27,6 +25,8 @@ class MoaDownloadTests: XCTestCase {
       errorResponse = error
       httpUrlResponse = response
     }
+    
+    moa.url = "http://evgenii.com/moa/96px.png"
     
     moa_eventually(imageResponse != nil) {
       XCTAssertEqual(96, imageResponse!.size.width)
@@ -38,14 +38,15 @@ class MoaDownloadTests: XCTestCase {
   func testLoadJpegImage() {
     StubHttp.with35pxJpgImage()
     
-    var imageResponse: UIImage?
     let moa = Moa()
-    moa.url = "http://evgenii.com/moa/35px.jpg"
+    var imageResponse: UIImage?
     
     moa.onSuccessAsync = { image in
       imageResponse = image
       return nil
     }
+    
+    moa.url = "http://evgenii.com/moa/35px.jpg"
     
     moa_eventually(imageResponse != nil) {
       XCTAssertEqual(35, imageResponse!.size.width)
@@ -55,11 +56,10 @@ class MoaDownloadTests: XCTestCase {
   func testLoadImage_errorWhenImageNotFound() {
     StubHttp.withImage("96px.png", forUrlPart: "96px.png", statusCode: 404)
     
+    let moa = Moa()
     var imageResponse: UIImage?
     var errorResponse: NSError?
     var httpUrlResponse: NSHTTPURLResponse?
-    let moa = Moa()
-    moa.url = "http://evgenii.com/moa/96px.png"
     
     moa.onSuccessAsync = { image in
       imageResponse = image
@@ -70,6 +70,8 @@ class MoaDownloadTests: XCTestCase {
       errorResponse = error
       httpUrlResponse = response
     }
+    
+    moa.url = "http://evgenii.com/moa/96px.png"
     
     moa_eventually {
       XCTAssert(imageResponse == nil)
@@ -88,11 +90,10 @@ class MoaDownloadTests: XCTestCase {
     
     StubHttp.withError(notConnectedError, forUrlPart: "96px.png")
     
+    let moa = Moa()
     var imageResponse: UIImage?
     var errorResponse: NSError?
     var httpUrlResponse: NSHTTPURLResponse?
-    let moa = Moa()
-    moa.url = "http://evgenii.com/moa/96px.png"
     
     moa.onSuccessAsync = { image in
       imageResponse = image
@@ -103,6 +104,8 @@ class MoaDownloadTests: XCTestCase {
       errorResponse = error
       httpUrlResponse = response
     }
+    
+    moa.url = "http://evgenii.com/moa/96px.png"
     
     moa_eventually {
       XCTAssert(imageResponse == nil)
@@ -116,11 +119,10 @@ class MoaDownloadTests: XCTestCase {
     StubHttp.withImage("96px.png", forUrlPart: "96px.png",
       responseHeaders: ["Content-Type": "text/html"])
     
+    let moa = Moa()
     var imageResponse: UIImage?
     var errorResponse: NSError?
     var httpUrlResponse: NSHTTPURLResponse?
-    let moa = Moa()
-    moa.url = "http://evgenii.com/moa/96px.png"
     
     moa.onSuccessAsync = { image in
       imageResponse = image
@@ -131,6 +133,8 @@ class MoaDownloadTests: XCTestCase {
       errorResponse = error
       httpUrlResponse = response
     }
+    
+    moa.url = "http://evgenii.com/moa/96px.png"
   
     moa_eventually {
       XCTAssert(imageResponse == nil)
@@ -146,11 +150,10 @@ class MoaDownloadTests: XCTestCase {
   func testLoadImage_errorWhenResponseDataIsNotImage() {
     StubHttp.withImage("text.txt", forUrlPart: "96px.png")
     
+    let moa = Moa()
     var imageResponse: UIImage?
     var errorResponse: NSError?
     var httpUrlResponse: NSHTTPURLResponse?
-    let moa = Moa()
-    moa.url = "http://evgenii.com/moa/96px.png"
     
     moa.onSuccessAsync = { image in
       imageResponse = image
@@ -161,6 +164,8 @@ class MoaDownloadTests: XCTestCase {
       errorResponse = error
       httpUrlResponse = response
     }
+    
+    moa.url = "http://evgenii.com/moa/96px.png"
     
     moa_eventually {
       XCTAssert(imageResponse == nil)
