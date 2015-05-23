@@ -174,20 +174,20 @@ struct MoaHttp {
   static func createDataTask(url: String,
     onSuccess: (NSData, NSHTTPURLResponse)->(),
     onError: (NSError, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
-      
+
     if let nsUrl = NSURL(string: url) {
       return createDataTask(nsUrl, onSuccess: onSuccess, onError: onError)
     }
-    
+
     // Error converting string to NSURL
     onError(MoaHttpErrors.InvalidUrlString.new, nil)
     return nil
   }
-  
+
   private static func createDataTask(nsUrl: NSURL,
     onSuccess: (NSData, NSHTTPURLResponse)->(),
     onError: (NSError, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
-      
+
     return NSURLSession.sharedSession().dataTaskWithURL(nsUrl) { (data, response, error) in
       if let httpResponse = response as? NSHTTPURLResponse {
         if error == nil {
@@ -219,7 +219,7 @@ Http error types.
 public enum MoaHttpErrors: Int {
   /// Incorrect URL is supplied.
   case InvalidUrlString = -1
-  
+
   internal var new: NSError {
     return NSError(domain: "MoaHttpErrorDomain", code: rawValue, userInfo: nil)
   }
@@ -242,7 +242,7 @@ struct MoaHttpImage {
   static func createDataTask(url: String,
     onSuccess: (UIImage)->(),
     onError: (NSError, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
-    
+
     return MoaHttp.createDataTask(url,
       onSuccess: { data, response in
         self.handleSuccess(data, response: response, onSuccess: onSuccess, onError: onError)
@@ -250,18 +250,18 @@ struct MoaHttpImage {
       onError: onError
     )
   }
-  
+
   static func handleSuccess(data: NSData,
     response: NSHTTPURLResponse,
     onSuccess: (UIImage)->(),
     onError: (NSError, NSHTTPURLResponse?)->()) {
-      
+
     // Show error if response code is not 200
     if response.statusCode != 200 {
       onError(MoaHttpImageErrors.HttpStatusCodeIsNot200.new, response)
       return
     }
-    
+
     // Ensure response has the valid MIME type
     if let mimeType = response.MIMEType {
       if !validMimeType(mimeType) {
@@ -276,7 +276,7 @@ struct MoaHttpImage {
       onError(error, response)
       return
     }
-      
+
     if let image = UIImage(data: data) {
       onSuccess(image)
     } else {
@@ -285,7 +285,7 @@ struct MoaHttpImage {
       onError(error, response)
     }
   }
-  
+
   private static func validMimeType(mimeType: String) -> Bool {
     let validMimeTypes = ["image/jpeg", "image/pjpeg", "image/png"]
     return contains(validMimeTypes, mimeType)
@@ -309,13 +309,13 @@ Image download error types.
 public enum MoaHttpImageErrors: Int {
   /// Response HTTP status code is not 200.
   case HttpStatusCodeIsNot200 = -1
-  
+
   /// Response is missing Content-Type http header.
   case MissingResponseContentTypeHttpHeader = -2
-  
+
   /// Response Content-Type http header is not an image type.
   case NotAnImageContentTypeInResponseHttpHeader = -3
-  
+
   /// Failed to convert response data to UIImage.
   case FailedToReadImageData = -4
 
@@ -336,30 +336,30 @@ import UIKit
 final class MoaImageDownloader {
   var task: NSURLSessionDataTask?
   var cancelled = false
-  
+
   deinit {
     cancel()
   }
-  
+
   func startDownload(url: String, onSuccess: (UIImage)->(),
     onError: (NSError, NSHTTPURLResponse?)->()) {
-    
+
     cancelled = false
-  
+
     task = MoaHttpImage.createDataTask(url,
       onSuccess: onSuccess,
       onError: { [weak self] error, response in
         if let currentSelf = self
           where !currentSelf.cancelled { // Do not report error if task was manually cancelled
-    
+
           onError(error, response)
         }
       }
     )
-      
+
     task?.resume()
   }
-  
+
   func cancel() {
     task?.cancel()
     cancelled = true
@@ -387,13 +387,13 @@ UIImageView extension for downloading image.
 */
 public extension UIImageView {
   /**
-  
+
   Image download extension.
   Assign its `url` property to download and show the image in the `UIImageView`.
-  
+
     let imageView = UIImageView()
     imageView.moa.url = "http://site.com/image.jpg"
-  
+
   */
   public var moa: Moa {
     get {
@@ -405,7 +405,7 @@ public extension UIImageView {
         return moa
       }
     }
-    
+
     set {
       objc_setAssociatedObject(self, &xoAssociationKey, newValue, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN))
     }
