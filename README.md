@@ -12,7 +12,7 @@
 imageView.moa.url = "http://evgenii.com/bacteria.jpg"
 ```
 
-Setting `moa.url` property of `UIImageView` instance starts asynchronous image download using NSURLSession class. When download is completed the image is automatically assigned to the image view.
+Setting `moa.url` property of `UIImageView` instance starts asynchronous image download using NSURLSession class. When download is completed the image is automatically shows in the image view.
 
 ## Canceling download
 
@@ -28,7 +28,7 @@ Call `imageView.moa.cancel()` to manually cancel the download.
 
 ### Supplying completion closure
 
-Assign a closure before setting `imageView.moa.url` property.
+Assign a closure that will be called when image is received.
 
 ```Swift
 imageView.moa.onSuccessAsync = { image in
@@ -39,20 +39,20 @@ imageView.moa.url = "http://evgenii.com/ant.jpg"
 ```
 
 The closure will be called asynchronously after download finishes and before the image
-is assigned to the image view. The closure's return value is an image that is used in the
+is assigned to the image view. The closure's return value is an image that will be used in the
 image view. No image will be shown if the return value is nil.
 
 ### Supplying error closure
 
 ```Swift
-imageView.moa.onErrorAsync = {
+imageView.moa.onErrorAsync = { error, response in
   // Handle error
 }
 
 imageView.moa.url = "http://evgenii.com/ant.jpg"
 ```
 
-The closure is called asynchronously.
+The closure is called asynchronously if image download fails.
 
 ### Download an image without UIImageView
 
