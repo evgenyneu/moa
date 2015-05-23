@@ -13,25 +13,23 @@ class MoaWithImageViewTests: XCTestCase {
     
     let imageView = UIImageView()
     
-    let moa = Moa()
     var imageResponse: UIImage?
     var errorResponse: NSError?
     var httpUrlResponse: NSHTTPURLResponse?
     
-    moa.onSuccessAsync = { image in
+    imageView.moa.onSuccessAsync = { image in
       imageResponse = image
       return nil
     }
     
-    moa.onErrorAsync = { error, response in
+    imageView.moa.onErrorAsync = { error, response in
       errorResponse = error
       httpUrlResponse = response
     }
 
-    moa.imageView = imageView
-    moa.url = "http://evgenii.com/moa/96px.png"
+    imageView.moa.url = "http://evgenii.com/moa/96px.png"
     
-    moa_eventually(moa.imageView?.image != nil) {
+    moa_eventually(imageResponse != nil) {
       XCTAssertEqual(96, imageView.image!.size.width)
       XCTAssertEqual(96, imageResponse!.size.width)
       XCTAssert(errorResponse == nil)

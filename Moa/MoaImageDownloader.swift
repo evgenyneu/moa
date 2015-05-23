@@ -1,6 +1,6 @@
 import UIKit
 
-class MoaImageDownloader {
+final class MoaImageDownloader {
   var task: NSURLSessionDataTask?
   var cancelled = false
   

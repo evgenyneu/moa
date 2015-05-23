@@ -145,13 +145,13 @@
 		7EA8EF711B072B4300C951C4 /* Moa */ = {
 			isa = PBXGroup;
 			children = (
-				7EA8EF931B08454B00C951C4 /* UIImageView+moa.swift */,
 				7EA8EFA71B0858DD00C951C4 /* Moa.swift */,
 				7EA8EFAD1B08791500C951C4 /* MoaHttp.swift */,
 				7EA515781B0FF2AB00FEFB07 /* MoaHttpErrors.swift */,
 				7EA8EFAF1B087A5200C951C4 /* MoaHttpImage.swift */,
 				7EA5157D1B0FF6D700FEFB07 /* MoaHttpImageErrors.swift */,
 				7EA8EFB11B087D4A00C951C4 /* MoaImageDownloader.swift */,
+				7EA8EF931B08454B00C951C4 /* UIImageView+moa.swift */,
 				7EA8EF741B072B4300C951C4 /* Moa.h */,
 				7EA8EF721B072B4300C951C4 /* Supporting Files */,
 			);

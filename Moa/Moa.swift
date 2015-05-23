@@ -15,9 +15,13 @@ import UIKit
 
 public final class Moa {
   private var imageDownloader: MoaImageDownloader?
-  weak var imageView: UIImageView?
+  private weak var imageView: UIImageView?
 
   public init() { }
+  
+  init(imageView: UIImageView) {
+    self.imageView = imageView
+  }
   
   public var url: String? {
     didSet {
