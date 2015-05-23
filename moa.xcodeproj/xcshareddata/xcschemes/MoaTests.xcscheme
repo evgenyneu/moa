@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7EA8EF791B072B4300C951C4"
-               BuildableName = "MoaWowTests.xctest"
+               BuildableName = "moaTests.xctest"
                BlueprintName = "moaTests"
                ReferencedContainer = "container:moa.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7EA8EF791B072B4300C951C4"
-               BuildableName = "MoaWowTests.xctest"
+               BuildableName = "moaTests.xctest"
                BlueprintName = "moaTests"
                ReferencedContainer = "container:moa.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7EA8EF791B072B4300C951C4"
-            BuildableName = "MoaWowTests.xctest"
+            BuildableName = "moaTests.xctest"
             BlueprintName = "moaTests"
             ReferencedContainer = "container:moa.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7EA8EF791B072B4300C951C4"
-            BuildableName = "MoaWowTests.xctest"
+            BuildableName = "moaTests.xctest"
             BlueprintName = "moaTests"
             ReferencedContainer = "container:moa.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7EA8EF791B072B4300C951C4"
-            BuildableName = "MoaWowTests.xctest"
+            BuildableName = "moaTests.xctest"
             BlueprintName = "moaTests"
             ReferencedContainer = "container:moa.xcodeproj">
          </BuildableReference>
