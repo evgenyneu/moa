@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = "Moa"
-  s.version     = "1.0.14"
+  s.version     = "1.0.15"
   s.license     = { :type => "MIT" }
   s.homepage    = "https://github.com/evgenyneu/moa"
   s.summary     = "An image download extension for UIImageView written in Swift."
