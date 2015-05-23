@@ -15,7 +15,6 @@ import UIKit
 
 public final class Moa {
   private var imageDownloader: MoaImageDownloader?
-  var image: UIImage?
   weak var imageView: UIImageView?
 
   public init() { }
@@ -53,7 +52,6 @@ public final class Moa {
   }
   
   private func onHandleSuccess(image: UIImage) {
-    self.image = image
     onSuccessAsync?(image)
     
     if let imageView = imageView {
