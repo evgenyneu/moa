@@ -34,7 +34,6 @@ Alternatively, you can setup it up with Carthage by adding the following line to
 
     github "evgenyneu/moa" ~> 1.0
 
-
 **Setup with CocoaPods (iOS 8+)**
 
 If you are using CocoaPods add this text to your Podfile and run `pod install`.
