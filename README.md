@@ -32,18 +32,18 @@ Simply add [MoaDistrib.swift](https://github.com/evgenyneu/moa/blob/master/Distr
 
 Alternatively, you can setup it up with Carthage by adding the following line to your Cartfile and run `carthage update`.
 
-<!-- ```
+```
 github "evgenyneu/moa" ~> 1.0
-``` -->
+```
 
 **Setup with CocoaPods (iOS 8+)**
 
 If you are using CocoaPods add this text to your Podfile and run `pod install`.
 
-<!-- ```
+```
 use_frameworks!
 pod 'moa', '~> 1.0'
-``` -->
+```
 
 ## Usage
 
