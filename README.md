@@ -1,4 +1,6 @@
 # Moa, an image downloader for iOS/Swift
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![MIT License](https://img.shields.io/badge/license-MIT-yellow.svg?style=flat)](https://github.com/evgenyneu/moa/blob/master/LICENSE)
 
 Moa is an image downland library for iOS written in Swift.
 It allows to download and show an image in UIImageView by setting its moa.url property.
@@ -8,9 +10,6 @@ It allows to download and show an image in UIImageView by setting its moa.url pr
 * Images are cached locally according to their HTTP response headers.
 * Can be used without UIImageView.
 * Provides closure properties for image manipulation and error handling.
-
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![MIT License](https://img.shields.io/badge/license-MIT-yellow.svg?style=flat)](https://github.com/evgenyneu/moa/blob/master/LICENSE)
 
 
 <img src='https://raw.githubusercontent.com/evgenyneu/moa/master/Graphics/Hunting_Moa.jpg' alt='Moa hunting' width='400'>
