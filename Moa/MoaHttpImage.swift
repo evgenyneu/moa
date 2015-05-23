@@ -17,7 +17,7 @@ struct MoaHttpImage {
     )
   }
   
-  private static func handleSuccess(data: NSData,
+  static func handleSuccess(data: NSData,
     response: NSHTTPURLResponse,
     onSuccess: (UIImage)->(),
     onError: (NSError?, NSHTTPURLResponse?)->()) {

@@ -8,6 +8,8 @@ class MoaHttpImageTests: XCTestCase {
     StubHttp.removeAllStubs()
   }
   
+  // MARK: - Integration tests
+  
   func testLoad_allGood() {
     StubHttp.with35pxJpgImage()
     
@@ -59,5 +61,64 @@ class MoaHttpImageTests: XCTestCase {
       XCTAssertEqual("MoaHttpImageErrorDomain", errorFromCallback!.domain)
       XCTAssertEqual(404, httpUrlResponseFromCallback!.statusCode)
     }
+  }
+  
+  func testLoad_noInternetConnectionError() {
+    // Code: -1009
+    let notConnectedErrorCode = Int(CFNetworkErrors.CFURLErrorNotConnectedToInternet.rawValue)
+    
+    let notConnectedError = NSError(domain: NSURLErrorDomain,
+      code: notConnectedErrorCode, userInfo: nil)
+    
+    StubHttp.withError(notConnectedError, forUrlPart: "evgenii.com")
+    
+    var imageFromCallback: UIImage?
+    var errorFromCallback: NSError?
+    var httpUrlResponseFromCallback: NSHTTPURLResponse?
+    
+    let task  = MoaHttpImage.createDataTask("http://evgenii.com/moa/35px.jpg",
+      onSuccess: { image in
+        imageFromCallback = image
+      },
+      onError: { error, response in
+        errorFromCallback = error
+        httpUrlResponseFromCallback = response
+      }
+    )
+    
+    task?.resume()
+    
+    moa_eventually(errorFromCallback != nil) {
+      XCTAssert(imageFromCallback == nil)
+      XCTAssertEqual(-1009, errorFromCallback!.code)
+      XCTAssertEqual("NSURLErrorDomain", errorFromCallback!.domain)
+      XCTAssert(httpUrlResponseFromCallback == nil)
+    }
+  }
+  
+  // MARK: - handleSuccess
+  
+  func testHandleSuccess() {
+    let data = MoaTest.nsDataFromFile("35px.jpg")
+    let response = NSHTTPURLResponse(URL: NSURL(string: "")!, statusCode: 200,
+      HTTPVersion: nil, headerFields: ["Content-Type": "image/jpeg"])!
+    
+    var imageFromCallback: UIImage?
+    var errorFromCallback: NSError?
+    var httpUrlResponseFromCallback: NSHTTPURLResponse?
+    
+    MoaHttpImage.handleSuccess(data, response: response,
+      onSuccess: { image in
+        imageFromCallback = image
+      },
+      onError: { error, response in
+        errorFromCallback = error
+        httpUrlResponseFromCallback = response
+      }
+    )
+    
+    XCTAssertEqual(35, imageFromCallback!.size.width)
+    XCTAssert(errorFromCallback == nil)
+    XCTAssert(httpUrlResponseFromCallback == nil)
   }
 }
