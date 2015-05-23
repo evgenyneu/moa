@@ -73,7 +73,7 @@ class MoaDownloadTests: XCTestCase {
     
     moa.url = "http://evgenii.com/moa/96px.png"
     
-    moa_eventually {
+    moa_eventually(errorResponse != nil) {
       XCTAssert(imageResponse == nil)
       XCTAssertEqual(MoaHttpImageErrors.HttpStatusCodeIsNot200.rawValue, errorResponse!.code)
       XCTAssertEqual("MoaHttpImageErrorDomain", errorResponse!.domain)
@@ -107,7 +107,7 @@ class MoaDownloadTests: XCTestCase {
     
     moa.url = "http://evgenii.com/moa/96px.png"
     
-    moa_eventually {
+    moa_eventually(errorResponse != nil) {
       XCTAssert(imageResponse == nil)
       XCTAssertEqual(-1009, errorResponse!.code)
       XCTAssertEqual("NSURLErrorDomain", errorResponse!.domain)
@@ -136,7 +136,7 @@ class MoaDownloadTests: XCTestCase {
     
     moa.url = "http://evgenii.com/moa/96px.png"
   
-    moa_eventually {
+    moa_eventually(errorResponse != nil) {
       XCTAssert(imageResponse == nil)
 
       XCTAssertEqual(MoaHttpImageErrors.NotAnImageContentTypeInResponseHttpHeader.rawValue,

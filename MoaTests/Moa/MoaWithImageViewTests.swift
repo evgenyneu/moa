@@ -36,4 +36,32 @@ class MoaWithImageViewTests: XCTestCase {
       XCTAssert(httpUrlResponse == nil)
     }
   }
+  
+  func testSetImageToImageView_errorWhenImageNotFound() {
+    StubHttp.withImage("96px.png", forUrlPart: "96px.png", statusCode: 404)
+    
+    let imageView = UIImageView()
+    var imageResponse: UIImage?
+    var errorResponse: NSError?
+    var httpUrlResponse: NSHTTPURLResponse?
+    
+    imageView.moa.onSuccessAsync = { image in
+      imageResponse = image
+      return nil
+    }
+    
+    imageView.moa.onErrorAsync = { error, response in
+      errorResponse = error
+      httpUrlResponse = response
+    }
+    
+    imageView.moa.url = "http://evgenii.com/moa/96px.png"
+    
+    moa_eventually(errorResponse != nil) {
+      XCTAssert(imageResponse == nil)
+      XCTAssertEqual(MoaHttpImageErrors.HttpStatusCodeIsNot200.rawValue, errorResponse!.code)
+      XCTAssertEqual("MoaHttpImageErrorDomain", errorResponse!.domain)
+      XCTAssertEqual(404, httpUrlResponse!.statusCode)
+    }
+  }
 }
