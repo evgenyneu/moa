@@ -9,15 +9,15 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7EA8EF791B072B4300C951C4"
-               BuildableName = "MoaTests.xctest"
-               BlueprintName = "MoaTests"
-               ReferencedContainer = "container:Moa.xcodeproj">
+               BlueprintIdentifier = "7EA8EF6E1B072B4300C951C4"
+               BuildableName = "MoaWow.framework"
+               BlueprintName = "moa"
+               ReferencedContainer = "container:moa.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,26 +28,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7EA8EF791B072B4300C951C4"
-               BuildableName = "MoaTests.xctest"
-               BlueprintName = "MoaTests"
-               ReferencedContainer = "container:Moa.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7EA8EF791B072B4300C951C4"
-            BuildableName = "MoaTests.xctest"
-            BlueprintName = "MoaTests"
-            ReferencedContainer = "container:Moa.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -61,10 +42,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7EA8EF791B072B4300C951C4"
-            BuildableName = "MoaTests.xctest"
-            BlueprintName = "MoaTests"
-            ReferencedContainer = "container:Moa.xcodeproj">
+            BlueprintIdentifier = "7EA8EF6E1B072B4300C951C4"
+            BuildableName = "MoaWow.framework"
+            BlueprintName = "moa"
+            ReferencedContainer = "container:moa.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -79,10 +60,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7EA8EF791B072B4300C951C4"
-            BuildableName = "MoaTests.xctest"
-            BlueprintName = "MoaTests"
-            ReferencedContainer = "container:Moa.xcodeproj">
+            BlueprintIdentifier = "7EA8EF6E1B072B4300C951C4"
+            BuildableName = "MoaWow.framework"
+            BlueprintName = "moa"
+            ReferencedContainer = "container:moa.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

@@ -27,7 +27,7 @@
 		7EA515811B0FFBED00FEFB07 /* MoaTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA515801B0FFBED00FEFB07 /* MoaTest.swift */; };
 		7EA515831B1002BE00FEFB07 /* MoaImageDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA515821B1002BE00FEFB07 /* MoaImageDownloaderTests.swift */; };
 		7EA8EF751B072B4300C951C4 /* Moa.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EA8EF741B072B4300C951C4 /* Moa.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7EA8EF7B1B072B4300C951C4 /* Moa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA8EF6F1B072B4300C951C4 /* Moa.framework */; };
+		7EA8EF7B1B072B4300C951C4 /* moa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA8EF6F1B072B4300C951C4 /* moa.framework */; };
 		7EA8EF821B072B4300C951C4 /* UIImageView+moaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EF811B072B4300C951C4 /* UIImageView+moaTests.swift */; };
 		7EA8EF901B07415C00C951C4 /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA8EF8E1B07408800C951C4 /* OHHTTPStubs.framework */; };
 		7EA8EF911B07416000C951C4 /* OHHTTPStubs.framework in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8EF8E1B07408800C951C4 /* OHHTTPStubs.framework */; };
@@ -68,10 +68,10 @@
 		7EA5157D1B0FF6D700FEFB07 /* MoaHttpImageErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttpImageErrors.swift; sourceTree = "<group>"; };
 		7EA515801B0FFBED00FEFB07 /* MoaTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaTest.swift; sourceTree = "<group>"; };
 		7EA515821B1002BE00FEFB07 /* MoaImageDownloaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaImageDownloaderTests.swift; sourceTree = "<group>"; };
-		7EA8EF6F1B072B4300C951C4 /* Moa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Moa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EA8EF6F1B072B4300C951C4 /* moa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = moa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA8EF731B072B4300C951C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EA8EF741B072B4300C951C4 /* Moa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Moa.h; sourceTree = "<group>"; };
-		7EA8EF7A1B072B4300C951C4 /* MoaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EA8EF7A1B072B4300C951C4 /* moaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = moaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA8EF801B072B4300C951C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EA8EF811B072B4300C951C4 /* UIImageView+moaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+moaTests.swift"; sourceTree = "<group>"; };
 		7EA8EF8E1B07408800C951C4 /* OHHTTPStubs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OHHTTPStubs.framework; path = Carthage/Build/iOS/OHHTTPStubs.framework; sourceTree = SOURCE_ROOT; };
@@ -100,7 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EA8EF7B1B072B4300C951C4 /* Moa.framework in Frameworks */,
+				7EA8EF7B1B072B4300C951C4 /* moa.framework in Frameworks */,
 				7EA8EF901B07415C00C951C4 /* OHHTTPStubs.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -157,8 +157,8 @@
 		7EA8EF701B072B4300C951C4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7EA8EF6F1B072B4300C951C4 /* Moa.framework */,
-				7EA8EF7A1B072B4300C951C4 /* MoaTests.xctest */,
+				7EA8EF6F1B072B4300C951C4 /* moa.framework */,
+				7EA8EF7A1B072B4300C951C4 /* moaTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -255,9 +255,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		7EA8EF6E1B072B4300C951C4 /* Moa */ = {
+		7EA8EF6E1B072B4300C951C4 /* moa */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7EA8EF851B072B4300C951C4 /* Build configuration list for PBXNativeTarget "Moa" */;
+			buildConfigurationList = 7EA8EF851B072B4300C951C4 /* Build configuration list for PBXNativeTarget "moa" */;
 			buildPhases = (
 				7EA8EF6A1B072B4300C951C4 /* Sources */,
 				7EA8EF6B1B072B4300C951C4 /* Frameworks */,
@@ -269,14 +269,14 @@
 			);
 			dependencies = (
 			);
-			name = Moa;
+			name = moa;
 			productName = Moa;
-			productReference = 7EA8EF6F1B072B4300C951C4 /* Moa.framework */;
+			productReference = 7EA8EF6F1B072B4300C951C4 /* moa.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		7EA8EF791B072B4300C951C4 /* MoaTests */ = {
+		7EA8EF791B072B4300C951C4 /* moaTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7EA8EF881B072B4300C951C4 /* Build configuration list for PBXNativeTarget "MoaTests" */;
+			buildConfigurationList = 7EA8EF881B072B4300C951C4 /* Build configuration list for PBXNativeTarget "moaTests" */;
 			buildPhases = (
 				7EA8EF761B072B4300C951C4 /* Sources */,
 				7EA8EF771B072B4300C951C4 /* Frameworks */,
@@ -288,9 +288,9 @@
 			dependencies = (
 				7EA8EF7D1B072B4300C951C4 /* PBXTargetDependency */,
 			);
-			name = MoaTests;
+			name = moaTests;
 			productName = MoaTests;
-			productReference = 7EA8EF7A1B072B4300C951C4 /* MoaTests.xctest */;
+			productReference = 7EA8EF7A1B072B4300C951C4 /* moaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -310,7 +310,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7EA8EF691B072B4300C951C4 /* Build configuration list for PBXProject "Moa" */;
+			buildConfigurationList = 7EA8EF691B072B4300C951C4 /* Build configuration list for PBXProject "moa" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -322,8 +322,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7EA8EF6E1B072B4300C951C4 /* Moa */,
-				7EA8EF791B072B4300C951C4 /* MoaTests */,
+				7EA8EF6E1B072B4300C951C4 /* moa */,
+				7EA8EF791B072B4300C951C4 /* moaTests */,
 			);
 		};
 /* End PBXProject section */
@@ -429,7 +429,7 @@
 /* Begin PBXTargetDependency section */
 		7EA8EF7D1B072B4300C951C4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7EA8EF6E1B072B4300C951C4 /* Moa */;
+			target = 7EA8EF6E1B072B4300C951C4 /* moa */;
 			targetProxy = 7EA8EF7C1B072B4300C951C4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -540,7 +540,7 @@
 				INFOPLIST_FILE = Moa/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = moa;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -562,7 +562,7 @@
 				INFOPLIST_FILE = Moa/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = moa;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -581,7 +581,7 @@
 				);
 				INFOPLIST_FILE = MoaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = moaTests;
 			};
 			name = Debug;
 		};
@@ -595,14 +595,14 @@
 				);
 				INFOPLIST_FILE = MoaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = moaTests;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7EA8EF691B072B4300C951C4 /* Build configuration list for PBXProject "Moa" */ = {
+		7EA8EF691B072B4300C951C4 /* Build configuration list for PBXProject "moa" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7EA8EF831B072B4300C951C4 /* Debug */,
@@ -611,7 +611,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7EA8EF851B072B4300C951C4 /* Build configuration list for PBXNativeTarget "Moa" */ = {
+		7EA8EF851B072B4300C951C4 /* Build configuration list for PBXNativeTarget "moa" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7EA8EF861B072B4300C951C4 /* Debug */,
@@ -620,7 +620,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7EA8EF881B072B4300C951C4 /* Build configuration list for PBXNativeTarget "MoaTests" */ = {
+		7EA8EF881B072B4300C951C4 /* Build configuration list for PBXNativeTarget "moaTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7EA8EF891B072B4300C951C4 /* Debug */,
