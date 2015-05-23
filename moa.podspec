@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name        = "Moa"
+  s.name        = "moa"
   s.version     = "1.0.15"
   s.license     = { :type => "MIT" }
   s.homepage    = "https://github.com/evgenyneu/moa"

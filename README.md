@@ -33,7 +33,7 @@ github "evgenyneu/moa" ~> 1.0
 ## Usage
 
 ```Swift
-imageView.moa.url = "http://evgenii.com/bacteria.jpg"
+imageView.moa.url = "http://site.com/image.jpg"
 ```
 
 Setting `moa.url` property of `UIImageView` instance starts asynchronous image download using NSURLSession class. When download is completed the image is automatically shows in the image view.
@@ -61,7 +61,7 @@ imageView.moa.onSuccessAsync = { image in
   return image
 }
 
-imageView.moa.url = "http://evgenii.com/ant.jpg"
+imageView.moa.url = "http://site.com/image.jpg"
 ```
 
 The closure will be called *asynchronously* after download finishes and before the image
@@ -76,7 +76,7 @@ imageView.moa.onErrorAsync = { error, response in
   // Handle error
 }
 
-imageView.moa.url = "http://evgenii.com/ant.jpg"
+imageView.moa.url = "http://site.com/image.jpg"
 ```
 
 The closure is called *asynchronously* if image download fails. [See Wiki](https://github.com/evgenyneu/moa/wiki/Moa-errors) for the list of possible error codes.
@@ -98,7 +98,7 @@ let moa = Moa()
 moa.onSuccessAsync = { image in
   return image
 }
-moa.url = "http://evgenii.com/moa.jpg"
+moa.url = "http://site.com/image.jpg"
 ```
 
 ## Alternative solutions
