@@ -3,7 +3,7 @@
 # Moa, an image downloader for iOS/Swift
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![MIT License](https://img.shields.io/badge/license-MIT-yellow.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![MIT License](https://img.shields.io/badge/license-MIT-yellow.svg?style=flat)](https://github.com/evgenyneu/moa/blob/master/LICENSE)
 
 
 
