@@ -56,11 +56,11 @@ public final class Moa {
   }
   
   private func onHandleSuccess(image: UIImage) {
-    onSuccessAsync?(image)
+    let imageForView = onSuccessAsync?(image)
     
     if let imageView = imageView {
       dispatch_async(dispatch_get_main_queue()) {
-        imageView.image = image
+        imageView.image = imageForView
       }
     }
   }
