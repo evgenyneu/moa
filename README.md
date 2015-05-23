@@ -41,8 +41,7 @@ imageView.moa.url = "http://evgenii.com/ant.jpg"
 ```
 
 The closure will be called *asynchronously* after download finishes and before the image
-is assigned to the image view. This is a good place to manipulate the image before it is shown. The closure's return value is an image that will be used in the
-image view. No image will be shown if the return value is nil.
+is assigned to the image view. This is a good place to manipulate the image before it is shown. The closure returns an image that will be shown in the image view. Return nil if you do not want the image to be shown.
 
 
 
