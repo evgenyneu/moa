@@ -52,7 +52,44 @@ imageView.moa.onErrorAsync = { error, response in
 imageView.moa.url = "http://evgenii.com/ant.jpg"
 ```
 
-The closure is called asynchronously if image download fails.
+The closure is called asynchronously if image download fails for following reasons:
+
+#### Network error
+
+Error reported by NSURLSession like "not connected to Internet".
+
+*error.domain*:  "NSURLErrorDomain".
+
+*error.code*: one of the [NSURLErrorDomain error codes](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_Constants/index.html#//apple_ref/doc/constant_group/URL_Loading_System_Error_Codes).
+
+#### Incorrect URL
+
+*error.domain*:  "MoaHttpErrorDomain"
+
+*error.code*: `MoaHttpErrors.InvalidUrlString`
+
+### HTTP response status code is not 200
+
+*error.domain*:  "MoaHttpImageErrorDomain"
+
+*error.code*: `MoaHttpImageErrors.HttpStatusCodeIsNot200`
+
+### HTTP response content type is not an image.
+
+*error.domain*:  "MoaHttpImageErrorDomain"
+
+*error.code*: `MoaHttpImageErrors.MissingResponseContentTypeHttpHeader`
+
+* Failed to convert response data to UIImage
+
+*error.domain*:  "MoaHttpImageErrorDomain"
+
+*error.code*: `MoaHttpImageErrors.FailedToReadImageData`
+
+Closure arguments:
+
+`error`: NSError instance.
+`response`: NSHTTPURLResponse instance.
 
 ### Download an image without UIImageView
 

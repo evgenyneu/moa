@@ -4,7 +4,7 @@
 
 import Foundation
 
-enum MoaHttpErrors: Int {
+public enum MoaHttpErrors: Int {
   case InvalidUrlString = -1
   
   var new: NSError {

@@ -4,7 +4,7 @@
 
 import Foundation
 
-enum MoaHttpImageErrors: Int {
+public enum MoaHttpImageErrors: Int {
   // Response HTTP status code is not 200
   case HttpStatusCodeIsNot200 = -1
   
