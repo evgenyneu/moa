@@ -12,6 +12,17 @@ class MoaWithImageViewTests: XCTestCase {
     StubHttp.with96pxPngImage()
     
     let imageView = UIImageView()
+    imageView.moa.url = "http://evgenii.com/moa/96px.png"
+    
+    moa_eventually(imageView.image != nil) {
+      XCTAssertEqual(96, imageView.image!.size.width)
+    }
+  }
+  
+  func testSetImageToImageView_withCallbacks() {
+    StubHttp.with96pxPngImage()
+    
+    let imageView = UIImageView()
     
     var imageResponse: UIImage?
     var errorResponse: NSError?
@@ -26,7 +37,7 @@ class MoaWithImageViewTests: XCTestCase {
       errorResponse = error
       httpUrlResponse = response
     }
-
+    
     imageView.moa.url = "http://evgenii.com/moa/96px.png"
     
     moa_eventually(imageResponse != nil) {
@@ -65,7 +76,7 @@ class MoaWithImageViewTests: XCTestCase {
     }
   }
   
-  func testSetImageToImageView_supplyNoImageInSuccessCallback() {
+  func testSetImageToImageView_returnNilFromSuccessCallback() {
     StubHttp.with96pxPngImage()
     
     let imageView = UIImageView()
