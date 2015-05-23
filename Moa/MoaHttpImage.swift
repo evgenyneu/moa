@@ -31,13 +31,15 @@ struct MoaHttpImage {
     // Ensure response has the valid MIME type
     if let mimeType = response.MIMEType {
       if !validMimeType(mimeType) {
-        // Not an image MIME type
-        onError(nil, response)
+        // Not an image Content-Type http header
+        let error = MoaHttpImageErrors.NotAnImageContentTypeInResponseHttpHeader.new
+        onError(error, response)
         return
       }
     } else {
-      // Failed to read MIME type information
-      onError(nil, response)
+      // Missing Content-Type http header
+      let error = MoaHttpImageErrors.MissingResponseContentTypeHttpHeader.new
+      onError(error, response)
       return
     }
       
