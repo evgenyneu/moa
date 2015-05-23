@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version     = "1.0.10"
   s.license     = { :type => "MIT" }
   s.homepage    = "https://github.com/evgenyneu/moa"
-  s.summary     = "Image downloader for iOS/Swift."
+  s.summary     = "An image downloader for iOS/Swift."
   s.authors     = { "Evgenii Neumerzhitckii" => "sausageskin@gmail.com" }
   s.source      = { :git => "https://github.com/evgenyneu/moa.git", :tag => "v1.0.10"}
   s.source_files = "Moa/*.swift"
