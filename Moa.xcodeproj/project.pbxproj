@@ -54,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E38776B1B1032B4001ADD7E /* combine_swift_files.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = combine_swift_files.sh; sourceTree = "<group>"; };
 		7E6FDB571B088E600095C29F /* text.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = text.txt; sourceTree = "<group>"; };
 		7E75410D1B0D3DB700AC0FC7 /* MoaCancelDownloadTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaCancelDownloadTests.swift; sourceTree = "<group>"; };
 		7E75410E1B0D3DB700AC0FC7 /* MoaDownloadTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaDownloadTests.swift; sourceTree = "<group>"; };
@@ -105,6 +106,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E38776A1B1032A4001ADD7E /* scripts */ = {
+			isa = PBXGroup;
+			children = (
+				7E38776B1B1032B4001ADD7E /* combine_swift_files.sh */,
+			);
+			path = scripts;
+			sourceTree = "<group>";
+		};
 		7E6FDB561B088E550095C29F /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +154,7 @@
 		7EA8EF711B072B4300C951C4 /* Moa */ = {
 			isa = PBXGroup;
 			children = (
+				7E38776A1B1032A4001ADD7E /* scripts */,
 				7EA8EFA71B0858DD00C951C4 /* Moa.swift */,
 				7EA8EFAD1B08791500C951C4 /* MoaHttp.swift */,
 				7EA515781B0FF2AB00FEFB07 /* MoaHttpErrors.swift */,
