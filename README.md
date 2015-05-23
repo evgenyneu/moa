@@ -51,7 +51,7 @@ pod 'moa', '~> 1.0'
 
 1. Add `import Moa` to your source code if you used Carthage or CocoaPods setup methods.
 
-1. Set `moa.url` property of `UIImageView` to start asynchronous image download. When download is completed the image is shown in the image view.
+1. Set `moa.url` property of `UIImageView` to start asynchronous image download. The image will be automatically displayed in the image view after download is complete.
 
 ```Swift
 imageView.moa.url = "http://site.com/image.jpg"
