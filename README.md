@@ -10,7 +10,7 @@
 
 There are three ways you can add Moa to your Xcode project.
 
-#### 1. Add source (iOS 7+)
+#### Add source (iOS 7+)
 
 Simply add [MoaDistrib.swift](https://github.com/evgenyneu/moa/blob/master/Distrib/MoaDistrib.swift) file into your Xcode project.
 
