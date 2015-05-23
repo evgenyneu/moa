@@ -31,7 +31,7 @@ Simply add [MoaDistrib.swift](https://github.com/evgenyneu/moa/blob/master/Distr
 
 #### Setup with Carthage (iOS 8+)
 
-Alternatively, you can setup it up with Carthage by adding the following line to your Cartfile:
+Alternatively, you can setup it up with Carthage by adding the following line to your Cartfile and run `carthage update`.
 
 ```
 github "evgenyneu/moa" ~> 1.0
@@ -40,7 +40,7 @@ github "evgenyneu/moa" ~> 1.0
 
 #### Setup with CocoaPods (iOS 8+)
 
-If you are using CocoaPods add this text to your Podfile:
+If you are using CocoaPods add this text to your Podfile and run `pod install`.
 
 ```
 use_frameworks!
@@ -59,7 +59,7 @@ imageView.moa.url = "http://site.com/image.jpg"
 
 ## Canceling download
 
-Ongoing image download for the UIImageView is automatically cancelled when:
+Ongoing image download for the UIImageView is automatically canceled when:
 
 1. Image view is deallocated.
 2. New image download is started: `imageView.moa.url = ...`.
