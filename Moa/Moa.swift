@@ -1,3 +1,15 @@
+//
+// Downloads an image by url.
+//
+// Example
+// -------
+//
+//   let moa = Moa()
+//   moa.onSuccessAsync = { image in
+//     return image
+//   }
+//   moa.url = "http://site.com/moa.jpg"
+//
 
 import UIKit
 
@@ -18,6 +30,8 @@ public final class Moa {
     }
   }
   
+  public var onSuccessAsync: ((UIImage)->(UIImage?))?
+  
   public func cancel() {
     imageDownloader?.cancel()
     imageDownloader = nil
@@ -37,6 +51,7 @@ public final class Moa {
   
   private func onHandleSuccess(image: UIImage) {
     self.image = image
+    onSuccessAsync?(image)
     
     if let imageView = imageView {
       dispatch_async(dispatch_get_main_queue()) {
