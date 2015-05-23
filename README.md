@@ -1,5 +1,3 @@
-🔨🔨🔨 This is work in progress. 🔨🔨🔨
-
 # Moa, an image downloader for iOS/Swift
 
 Moa is an image downland library for iOS written in Swift.
