@@ -13,8 +13,6 @@
 //
 // ----------------------------
 
-
-
 import UIKit
 
 /**
@@ -24,7 +22,7 @@ Setting `moa.url` property of `UIImageView` instance starts asynchronous image d
 When download is completed the image is automatically shows in the image view.
 
   let imageView = UIImageView()
-  imageView.moa.url = "http://site.com/moa.jpg"
+  imageView.moa.url = "http://site.com/image.jpg"
 
 
 The class can be instantiated and used without `UIImageView`:
@@ -33,7 +31,8 @@ The class can be instantiated and used without `UIImageView`:
   moa.onSuccessAsync = { image in
     return image
   }
-  moa.url = "http://site.com/moa.jpg"
+  moa.url = "http://site.com/image.jpg"
+
 */
 public final class Moa {
   private var imageDownloader: MoaImageDownloader?
@@ -66,6 +65,7 @@ public final class Moa {
     moa.onSuccessAsync = { image in
       return image
     }
+
   */
   public var url: String? {
     didSet {
@@ -163,12 +163,13 @@ public final class Moa {
 //
 // ----------------------------
 
-//
-// Shortcut function for creating NSURLSessionDataTask.
-//
-
 import UIKit
 
+/**
+
+Shortcut function for creating NSURLSessionDataTask.
+
+*/
 struct MoaHttp {
   static func createDataTask(url: String,
     onSuccess: (NSData, NSHTTPURLResponse)->(),
@@ -298,26 +299,27 @@ struct MoaHttpImage {
 //
 // ----------------------------
 
-//
-// Codes for image download errors
-//
-
 import Foundation
 
+/**
+
+Image download error types.
+
+*/
 public enum MoaHttpImageErrors: Int {
-  // Response HTTP status code is not 200
+  /// Response HTTP status code is not 200.
   case HttpStatusCodeIsNot200 = -1
   
-  // Response is missing Content-Type http header
+  /// Response is missing Content-Type http header.
   case MissingResponseContentTypeHttpHeader = -2
   
-  // Response Content-Type http header is not an image type
+  /// Response Content-Type http header is not an image type.
   case NotAnImageContentTypeInResponseHttpHeader = -3
   
-  // Failed to convert reponse data to UIImage
+  /// Failed to convert response data to UIImage.
   case FailedToReadImageData = -4
 
-  var new: NSError {
+  internal var new: NSError {
     return NSError(domain: "MoaHttpImageErrorDomain", code: rawValue, userInfo: nil)
   }
 }
@@ -371,21 +373,28 @@ final class MoaImageDownloader {
 //
 // ----------------------------
 
-//
-// UIImageView extension for downloading image.
-//
-// Example
-// -------
-//
-//   let imageView = UIImageView()
-//   imageView.moa.url = "http://site.com/moa.jpg"
-//
-
 import UIKit
 
 private var xoAssociationKey: UInt8 = 0
 
+/**
+
+UIImageView extension for downloading image.
+
+  let imageView = UIImageView()
+  imageView.moa.url = "http://site.com/image.jpg"
+
+*/
 public extension UIImageView {
+  /**
+  
+  Image download extension.
+  Assign its `url` property to download and show the image in the `UIImageView`.
+  
+    let imageView = UIImageView()
+    imageView.moa.url = "http://site.com/image.jpg"
+  
+  */
   public var moa: Moa {
     get {
       if let value = objc_getAssociatedObject(self, &xoAssociationKey) as? Moa {
