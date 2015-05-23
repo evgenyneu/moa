@@ -24,17 +24,14 @@ It allows to download and show an image in `UIImageView` by setting its `moa.url
 
 There are three ways you can add Moa to your Xcode project.
 
-
-
-**Setup with Carthage (iOS 8+)**
+**Setup with Carthage**
 
 Alternatively, you can setup it up with Carthage by adding the following line to your Cartfile and run `carthage update`.
 
 ```
 github "evgenyneu/moa" ~> 1.0
 ```
-
-**Setup with CocoaPods (iOS 8+)**
+**Setup with CocoaPods**
 
 If you are using CocoaPods add this text to your Podfile and run `pod install`.
 
