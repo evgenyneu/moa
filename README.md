@@ -42,7 +42,7 @@ github "evgenyneu/moa" ~> 1.0
 
 If you are using CocoaPods add this text to your Podfile:
 
-```Podfile
+```
 use_frameworks!
 pod 'moa', '~> 1.0'
 ```
