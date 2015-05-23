@@ -21,7 +21,7 @@ Simply add [MoaDistrib.swift](https://github.com/evgenyneu/moa/blob/master/Distr
 #### Setup with Carthage (iOS 8+)
 
 ```
-github "evgenyneu/MoaImageDownloader" ~> 1.0
+github "evgenyneu/moa" ~> 1.0
 ```
 
 ## Usage
