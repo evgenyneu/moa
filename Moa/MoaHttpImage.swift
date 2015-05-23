@@ -46,8 +46,9 @@ struct MoaHttpImage {
     if let image = UIImage(data: data) {
       onSuccess(image)
     } else {
-      // Failed to create image form response data
-      onError(nil, response)
+      // Failed to convert response data to UIImage
+      let error = MoaHttpImageErrors.FailedToReadImageData.new
+      onError(error, response)
     }
   }
   

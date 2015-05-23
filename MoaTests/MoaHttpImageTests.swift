@@ -202,4 +202,32 @@ class MoaHttpImageTests: XCTestCase {
     XCTAssertEqual("MoaHttpImageErrorDomain", errorFromCallback!.domain)
     XCTAssertEqual(200, httpUrlResponseFromCallback!.statusCode)
   }
+  
+  func testHandleError_reponseDataIsNotAnImage() {
+    let data = MoaTest.nsDataFromFile("text.txt")
+    let response = NSHTTPURLResponse(URL: NSURL(string: "")!, statusCode: 200,
+      HTTPVersion: nil, headerFields: ["Content-Type": "image/jpeg"])!
+    
+    var imageFromCallback: UIImage?
+    var errorFromCallback: NSError?
+    var httpUrlResponseFromCallback: NSHTTPURLResponse?
+    
+    MoaHttpImage.handleSuccess(data, response: response,
+      onSuccess: { image in
+        imageFromCallback = image
+      },
+      onError: { error, response in
+        errorFromCallback = error
+        httpUrlResponseFromCallback = response
+      }
+    )
+    
+    XCTAssert(imageFromCallback == nil)
+    
+    XCTAssertEqual(MoaHttpImageErrors.FailedToReadImageData.rawValue,
+      errorFromCallback!.code)
+    
+    XCTAssertEqual("MoaHttpImageErrorDomain", errorFromCallback!.domain)
+    XCTAssertEqual(200, httpUrlResponseFromCallback!.statusCode)
+  }
 }
