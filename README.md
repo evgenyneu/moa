@@ -3,7 +3,7 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-yellow.svg?style=flat)](https://github.com/evgenyneu/moa/blob/master/LICENSE)
 
 Moa is an image downland library for iOS written in Swift.
-It allows to download and show an image in UIImageView by setting its moa.url property.
+It allows to download and show an image in `UIImageView` by setting its `moa.url` property.
 
 * Images are downloaded asynchronously.
 * Uses NSURLSession for networking and caching.
