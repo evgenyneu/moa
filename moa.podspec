@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name        = "moa"
   s.version     = "1.0.20"
   s.license     = { :type => "MIT" }
-  s.homepage    = "https://github.com/evgenyneu/moa"
+  s.homepage    = "https://github.com/evgenyneu/Moa"
   s.summary     = "An image download extension for UIImageView written in Swift."
   s.description  = <<-DESC
                    Moa is an image download library for iOS written in Swift.
@@ -15,8 +15,8 @@ Pod::Spec.new do |s|
                    * Provides closure properties for image manipulation and error handling.
                    DESC
   s.authors     = { "Evgenii Neumerzhitckii" => "sausageskin@gmail.com" }
-  s.source      = { :git => "https://github.com/evgenyneu/moa.git", :tag => s.version }
-  s.screenshots  = "https://raw.githubusercontent.com/evgenyneu/moa/master/Graphics/Hunting_Moa.jpg"
+  s.source      = { :git => "https://github.com/evgenyneu/Moa.git", :tag => s.version }
+  s.screenshots  = "https://raw.githubusercontent.com/evgenyneu/Moa/master/Graphics/Hunting_Moa.jpg"
   s.source_files = "Moa/*.swift"
   s.ios.deployment_target = "8.0"
 end
