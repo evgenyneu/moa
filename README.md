@@ -26,6 +26,8 @@ Call `imageView.moa.cancel()` to manually cancel the download.
 
 ## Advanced features
 
+
+
 ### Supplying completion closure
 
 Assign a closure that will be called when image is received.
@@ -38,9 +40,11 @@ imageView.moa.onSuccessAsync = { image in
 imageView.moa.url = "http://evgenii.com/ant.jpg"
 ```
 
-The closure will be called asynchronously after download finishes and before the image
+The closure will be called *asynchronously* after download finishes and before the image
 is assigned to the image view. This is a good place to manipulate the image before it is shown. The closure's return value is an image that will be used in the
 image view. No image will be shown if the return value is nil.
+
+
 
 ### Supplying error closure
 
@@ -52,7 +56,7 @@ imageView.moa.onErrorAsync = { error, response in
 imageView.moa.url = "http://evgenii.com/ant.jpg"
 ```
 
-The closure is called asynchronously if image download fails.
+The closure is called *asynchronously* if image download fails. [See Wiki](https://github.com/evgenyneu/moa/wiki/Moa-errors) for the list of possible error codes.
 
 **Closure arguments**:
 
@@ -60,7 +64,7 @@ The closure is called asynchronously if image download fails.
 
 *response*: NSHTTPURLResponse instance.
 
-[See Wiki](https://github.com/evgenyneu/moa/wiki/Moa-errors) for the list of possible error codes.
+
 
 ### Download an image without UIImageView
 
