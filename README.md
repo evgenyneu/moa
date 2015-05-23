@@ -16,6 +16,11 @@ There are three ways you can add Moa to your Xcode project.
 
 Simply add [MoaDistrib.swift](https://github.com/evgenyneu/moa/blob/master/Distrib/MoaDistrib.swift) file into your Xcode project.
 
+#### Setup with Carthage (iOS 8+)
+
+```
+github "evgenyneu/moa" ~> 1.0
+```
 
 ## Usage
 
