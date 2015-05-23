@@ -3,10 +3,10 @@
 # Moa, an image downloader for iOS/Swift
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![MIT License](https://img.shields.io/badge/license-MIT-yellow.svg?style=flat)](https://github.com/evgenyneu/Moa/blob/master/LICENSE)
+[![MIT License](https://img.shields.io/badge/license-MIT-yellow.svg?style=flat)](https://github.com/evgenyneu/moa/blob/master/LICENSE)
 
 
-<img src='https://raw.githubusercontent.com/evgenyneu/Moa/master/Graphics/Hunting_Moa.jpg' alt='Moa hunting' width='400'>
+<img src='https://raw.githubusercontent.com/evgenyneu/moa/master/Graphics/Hunting_Moa.jpg' alt='Moa hunting' width='400'>
 
 > "Lost, like the Moa is lost" - Maori proverb
 
@@ -16,12 +16,12 @@ There are three ways you can add Moa to your Xcode project.
 
 #### Add source (iOS 7+)
 
-Simply add [MoaDistrib.swift](https://github.com/evgenyneu/Moa/blob/master/Distrib/MoaDistrib.swift) file into your Xcode project.
+Simply add [MoaDistrib.swift](https://github.com/evgenyneu/moa/blob/master/Distrib/MoaDistrib.swift) file into your Xcode project.
 
 #### Setup with Carthage (iOS 8+)
 
 ```
-github "evgenyneu/Moa" ~> 1.0
+github "evgenyneu/MoaImageDownloader" ~> 1.0
 ```
 
 ## Usage
@@ -73,7 +73,7 @@ imageView.moa.onErrorAsync = { error, response in
 imageView.moa.url = "http://evgenii.com/ant.jpg"
 ```
 
-The closure is called *asynchronously* if image download fails. [See Wiki](https://github.com/evgenyneu/Moa/wiki/Moa-errors) for the list of possible error codes.
+The closure is called *asynchronously* if image download fails. [See Wiki](https://github.com/evgenyneu/moa/wiki/Moa-errors) for the list of possible error codes.
 
 **Closure arguments**:
 
