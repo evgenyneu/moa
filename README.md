@@ -6,7 +6,6 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-yellow.svg?style=flat)](https://github.com/evgenyneu/moa/blob/master/LICENSE)
 
 
-
 <img src='https://raw.githubusercontent.com/evgenyneu/moa/master/Graphics/Hunting_Moa.jpg' alt='Moa hunting' width='400'>
 
 > "Lost, like the Moa is lost" - Maori proverb
