@@ -1,6 +1,11 @@
-
 //
-// UIImageView moa extension.
+// UIImageView extension for downloading image.
+//
+// Example
+// -------
+//
+//   let imageView = UIImageView()
+//   imageView.moa.url = "http://site.com/moa.jpg"
 //
 
 import UIKit
