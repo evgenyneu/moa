@@ -2,6 +2,8 @@
 
 # Moa, an image downloader for iOS/Swift
 
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 <img src='https://raw.githubusercontent.com/evgenyneu/moa/master/Graphics/Hunting_Moa.jpg' alt='Moa hunting' width='400'>
 
 > "Lost, like the Moa is lost" - Maori proverb
