@@ -4,7 +4,7 @@
 [![CocoaPods Version](https://img.shields.io/cocoapods/v/moa.svg?style=flat)][cocoadocs]
 [![License](https://img.shields.io/cocoapods/l/moa.svg?style=flat)][cocoadocs]
 [![Platform](https://img.shields.io/cocoapods/p/moa.svg?style=flat)][cocoadocs]
-[cocoadocs]: http://cocoadocs.org/docsets/Moa
+[cocoadocs]: http://cocoadocs.org/docsets/moa
 [carthage]: https://github.com/Carthage/Carthage
 
 Moa is an image downloand library for iOS written in Swift.
@@ -16,7 +16,7 @@ It allows to download and show an image in `UIImageView` by setting its `moa.url
 * Can be used without UIImageView.
 * Provides closure properties for image manipulation and error handling.
 
-<img src='https://raw.githubusercontent.com/evgenyneu/Moa/master/Graphics/Hunting_Moa.jpg' alt='Moa hunting' width='400'>
+<img src='https://raw.githubusercontent.com/evgenyneu/moa/master/Graphics/Hunting_Moa.jpg' alt='Moa hunting' width='400'>
 
 > "Lost, like the Moa is lost" - Maori proverb
 
@@ -26,7 +26,7 @@ There are three ways you can add Moa to your Xcode project.
 
 #### Add source (iOS 7+)
 
-Simply add [MoaDistrib.swift](https://github.com/evgenyneu/Moa/blob/master/Distrib/MoaDistrib.swift) file into your Xcode project.
+Simply add [MoaDistrib.swift](https://github.com/evgenyneu/moa/blob/master/Distrib/MoaDistrib.swift) file into your Xcode project.
 
 
 #### Setup with Carthage (iOS 8+)
@@ -34,7 +34,7 @@ Simply add [MoaDistrib.swift](https://github.com/evgenyneu/Moa/blob/master/Distr
 Alternatively, you can setup it up with Carthage by adding the following line to your Cartfile and run `carthage update`.
 
 ```
-github "evgenyneu/Moa" ~> 1.0
+github "evgenyneu/moa" ~> 1.0
 ```
 
 
@@ -44,7 +44,7 @@ If you are using CocoaPods add this text to your Podfile and run `pod install`.
 
 ```
 use_frameworks!
-pod 'Moa', '~> 1.0'
+pod 'moa', '~> 1.0'
 ```
 
 ## Usage
@@ -98,7 +98,7 @@ imageView.moa.onErrorAsync = { error, response in
 imageView.moa.url = "http://site.com/image.jpg"
 ```
 
-The closure is called *asynchronously* if image download fails. [See Wiki](https://github.com/evgenyneu/Moa/wiki/Moa-errors) for the list of possible error codes.
+The closure is called *asynchronously* if image download fails. [See Wiki](https://github.com/evgenyneu/moa/wiki/Moa-errors) for the list of possible error codes.
 
 **Closure arguments**:
 
