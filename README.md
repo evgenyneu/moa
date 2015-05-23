@@ -31,6 +31,8 @@ Simply add [MoaDistrib.swift](https://github.com/evgenyneu/moa/blob/master/Distr
 
 #### Setup with Carthage (iOS 8+)
 
+Alternatively, you can setup it up with Carthage by adding the following line to your Cartfile:
+
 ```
 github "evgenyneu/moa" ~> 1.0
 ```
