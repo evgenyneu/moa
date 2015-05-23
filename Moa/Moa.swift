@@ -31,6 +31,7 @@ public final class Moa {
   }
   
   public var onSuccessAsync: ((UIImage)->(UIImage?))?
+  public var onErrorAsync: ((NSError, NSHTTPURLResponse?)->())?
   
   public func cancel() {
     imageDownloader?.cancel()
@@ -45,7 +46,9 @@ public final class Moa {
       onSuccess: { [weak self] image in
         self?.onHandleSuccess(image)
       },
-      onError: { error, response in }
+      onError: { [weak self] error, response in
+        self?.onErrorAsync?(error, response)
+      }
     )
   }
   
