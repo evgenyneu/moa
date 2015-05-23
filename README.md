@@ -6,6 +6,14 @@
 
 > "Lost, like the Moa is lost" - Maori proverb
 
+## Setup
+
+
+### Copy source (iOS 7+)
+
+Simply add [MoaDistrib.swift](https://github.com/evgenyneu/moa/blob/master/Distrib/MoaDistrib.swift) file into your Xcode project.
+
+
 ## Usage
 
 ```Swift
