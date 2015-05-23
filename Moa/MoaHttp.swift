@@ -13,6 +13,7 @@ struct MoaHttp {
       return createDataTask(nsUrl, onSuccess: onSuccess, onError: onError)
     }
     
+    // Error converting string to NSURL
     onError(MoaHttpErrors.InvalidUrlString.new, nil)
     return nil
   }

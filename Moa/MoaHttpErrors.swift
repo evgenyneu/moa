@@ -1,5 +1,5 @@
 //
-// Http error codes
+// Codes for http errors
 //
 
 import Foundation

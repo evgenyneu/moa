@@ -1,5 +1,5 @@
 //
-// Helper function for downloading an image and processing the response.
+// Helper functions for downloading an image and processing the response.
 //
 
 import UIKit
