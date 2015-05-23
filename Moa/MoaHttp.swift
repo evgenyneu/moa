@@ -1,9 +1,10 @@
-//
-// Shortcut function for creating NSURLSessionDataTask.
-//
-
 import UIKit
 
+/**
+
+Shortcut function for creating NSURLSessionDataTask.
+
+*/
 struct MoaHttp {
   static func createDataTask(url: String,
     onSuccess: (NSData, NSHTTPURLResponse)->(),

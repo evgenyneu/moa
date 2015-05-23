@@ -1,13 +1,15 @@
-//
-// Codes for http errors
-//
-
 import Foundation
 
+/**
+
+Http error types.
+
+*/
 public enum MoaHttpErrors: Int {
+  /// Incorrect URL is supplied.
   case InvalidUrlString = -1
   
-  var new: NSError {
+  internal var new: NSError {
     return NSError(domain: "MoaHttpErrorDomain", code: rawValue, userInfo: nil)
   }
 }
