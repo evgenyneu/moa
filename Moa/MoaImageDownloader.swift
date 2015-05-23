@@ -1,7 +1,8 @@
 import UIKit
 
 class MoaImageDownloader {
-  private var task: NSURLSessionDataTask?
+  var task: NSURLSessionDataTask?
+  var cancelled = false
   
   deinit {
     cancel()
@@ -10,15 +11,24 @@ class MoaImageDownloader {
   func startDownload(url: String, onSuccess: (UIImage)->(),
     onError: (NSError, NSHTTPURLResponse?)->()) {
     
+    cancelled = false
+  
     task = MoaHttpImage.createDataTask(url,
       onSuccess: onSuccess,
-      onError: onError)
+      onError: { [weak self] error, response in
+        if let currentSelf = self
+          where !currentSelf.cancelled { // Do not report error if task was manually cancelled
+    
+          onError(error, response)
+        }
+      }
+    )
       
     task?.resume()
   }
   
   func cancel() {
     task?.cancel()
-    task = nil
+    cancelled = true
   }
 }
