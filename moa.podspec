@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name        = "moa"
-  s.version     = "1.0.16"
+  s.version     = "1.0.17"
   s.license     = { :type => "MIT" }
   s.homepage    = "https://github.com/evgenyneu/moa"
   s.summary     = "An image download extension for UIImageView written in Swift."
   s.description  = <<-DESC
-                   Moa is an image downland library for iOS written in Swift.
+                   Moa is an image download library for iOS written in Swift.
                    It allows to download and show an image in UIImageView by setting its moa.url property.
 
                    * Images are downloaded asynchronously.

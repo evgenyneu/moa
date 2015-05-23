@@ -2,7 +2,7 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![MIT License](https://img.shields.io/badge/license-MIT-yellow.svg?style=flat)](https://github.com/evgenyneu/moa/blob/master/LICENSE)
 
-Moa is an image downland library for iOS written in Swift.
+Moa is an image downloand library for iOS written in Swift.
 It allows to download and show an image in `UIImageView` by setting its `moa.url` property.
 
 * Images are downloaded asynchronously.
