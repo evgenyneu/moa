@@ -7,7 +7,7 @@ import UIKit
 struct MoaHttpImage {
   static func createDataTask(url: String,
     onSuccess: (UIImage)->(),
-    onError: (NSError?, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
+    onError: (NSError, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
     
     return MoaHttp.createDataTask(url,
       onSuccess: { data, response in
@@ -20,7 +20,7 @@ struct MoaHttpImage {
   static func handleSuccess(data: NSData,
     response: NSHTTPURLResponse,
     onSuccess: (UIImage)->(),
-    onError: (NSError?, NSHTTPURLResponse?)->()) {
+    onError: (NSError, NSHTTPURLResponse?)->()) {
       
     // Show error if response code is not 200
     if response.statusCode != 200 {

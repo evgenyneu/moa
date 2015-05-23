@@ -8,7 +8,7 @@ class MoaImageDownloader {
   }
   
   func startDownload(url: String, onSuccess: (UIImage)->(),
-    onError: (NSError?, NSHTTPURLResponse?)->()) {
+    onError: (NSError, NSHTTPURLResponse?)->()) {
     
     task = MoaHttpImage.createDataTask(url,
       onSuccess: onSuccess,

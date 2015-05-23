@@ -7,7 +7,7 @@ import UIKit
 struct MoaHttp {
   static func createDataTask(url: String,
     onSuccess: (NSData, NSHTTPURLResponse)->(),
-    onError: (NSError?, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
+    onError: (NSError, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
       
     if let nsUrl = NSURL(string: url) {
       return createDataTask(nsUrl, onSuccess: onSuccess, onError: onError)
@@ -20,7 +20,7 @@ struct MoaHttp {
   
   private static func createDataTask(nsUrl: NSURL,
     onSuccess: (NSData, NSHTTPURLResponse)->(),
-    onError: (NSError?, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
+    onError: (NSError, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
       
     return NSURLSession.sharedSession().dataTaskWithURL(nsUrl) { (data, response, error) in
       if let httpResponse = response as? NSHTTPURLResponse {
