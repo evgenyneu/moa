@@ -4,14 +4,16 @@ class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
   func collectionView(collectionView: UICollectionView,
     numberOfItemsInSection section: Int) -> Int {
   
-    return 10
+    return 100
   }
   
   func collectionView(collectionView: UICollectionView,
     cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
     
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier(AppConstants.collectionViewCellId,
-      forIndexPath: indexPath) as? UICollectionViewCell
+      forIndexPath: indexPath) as? CollectionViewCell
+      
+    cell?.prepareForDisplay()
       
     return cell ?? UICollectionViewCell()
   }

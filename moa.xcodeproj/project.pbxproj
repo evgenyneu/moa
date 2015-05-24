@@ -15,6 +15,8 @@
 		7E193F001B1152D40093CD81 /* DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193EFF1B1152D40093CD81 /* DemoTests.swift */; };
 		7E193F081B1154930093CD81 /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F071B1154930093CD81 /* CollectionViewDataSource.swift */; };
 		7E193F0A1B11559B0093CD81 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F091B11559B0093CD81 /* AppConstants.swift */; };
+		7E193F0C1B11587D0093CD81 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F0B1B11587D0093CD81 /* CollectionViewCell.swift */; };
+		7E193F0F1B11596B0093CD81 /* MoaColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F0E1B11596B0093CD81 /* MoaColor.swift */; };
 		7E3877761B10558E001ADD7E /* concatenate_swift_files.sh in Resources */ = {isa = PBXBuildFile; fileRef = 7E3877751B10558E001ADD7E /* concatenate_swift_files.sh */; };
 		7E6FDB581B088E600095C29F /* text.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E6FDB571B088E600095C29F /* text.txt */; };
 		7E7541071B0D3C5100AC0FC7 /* Moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFA71B0858DD00C951C4 /* Moa.swift */; };
@@ -82,6 +84,8 @@
 		7E193EFF1B1152D40093CD81 /* DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoTests.swift; sourceTree = "<group>"; };
 		7E193F071B1154930093CD81 /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
 		7E193F091B11559B0093CD81 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		7E193F0B1B11587D0093CD81 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		7E193F0E1B11596B0093CD81 /* MoaColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaColor.swift; sourceTree = "<group>"; };
 		7E3877751B10558E001ADD7E /* concatenate_swift_files.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = concatenate_swift_files.sh; sourceTree = "<group>"; };
 		7E3877771B1055CB001ADD7E /* MoaDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaDistrib.swift; sourceTree = "<group>"; };
 		7E6FDB571B088E600095C29F /* text.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = text.txt; sourceTree = "<group>"; };
@@ -152,9 +156,11 @@
 		7E193EE61B1152D40093CD81 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				7E193F0D1B11595E0093CD81 /* Utils */,
 				7E193F091B11559B0093CD81 /* AppConstants.swift */,
 				7E193EE91B1152D40093CD81 /* AppDelegate.swift */,
 				7E193F071B1154930093CD81 /* CollectionViewDataSource.swift */,
+				7E193F0B1B11587D0093CD81 /* CollectionViewCell.swift */,
 				7E193EEB1B1152D40093CD81 /* ViewController.swift */,
 				7E193EED1B1152D40093CD81 /* Main.storyboard */,
 				7E193EF01B1152D40093CD81 /* Images.xcassets */,
@@ -187,6 +193,14 @@
 				7E193EFE1B1152D40093CD81 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7E193F0D1B11595E0093CD81 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7E193F0E1B11596B0093CD81 /* MoaColor.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		7E3877731B105566001ADD7E /* Distrib */ = {
@@ -535,10 +549,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E193F0C1B11587D0093CD81 /* CollectionViewCell.swift in Sources */,
 				7E193EEC1B1152D40093CD81 /* ViewController.swift in Sources */,
 				7E193F081B1154930093CD81 /* CollectionViewDataSource.swift in Sources */,
 				7E193EEA1B1152D40093CD81 /* AppDelegate.swift in Sources */,
 				7E193F0A1B11559B0093CD81 /* AppConstants.swift in Sources */,
+				7E193F0F1B11596B0093CD81 /* MoaColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
