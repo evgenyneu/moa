@@ -17,6 +17,8 @@
 		7E193F0A1B11559B0093CD81 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F091B11559B0093CD81 /* AppConstants.swift */; };
 		7E193F0C1B11587D0093CD81 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F0B1B11587D0093CD81 /* CollectionViewCell.swift */; };
 		7E193F0F1B11596B0093CD81 /* MoaColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F0E1B11596B0093CD81 /* MoaColor.swift */; };
+		7E193F1C1B1160240093CD81 /* RandomImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F1B1B1160240093CD81 /* RandomImage.swift */; };
+		7E193F1E1B1160A30093CD81 /* iiRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F1D1B1160A30093CD81 /* iiRandom.swift */; };
 		7E3877761B10558E001ADD7E /* concatenate_swift_files.sh in Resources */ = {isa = PBXBuildFile; fileRef = 7E3877751B10558E001ADD7E /* concatenate_swift_files.sh */; };
 		7E6FDB581B088E600095C29F /* text.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E6FDB571B088E600095C29F /* text.txt */; };
 		7E7541071B0D3C5100AC0FC7 /* Moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFA71B0858DD00C951C4 /* Moa.swift */; };
@@ -86,6 +88,8 @@
 		7E193F091B11559B0093CD81 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		7E193F0B1B11587D0093CD81 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		7E193F0E1B11596B0093CD81 /* MoaColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaColor.swift; sourceTree = "<group>"; };
+		7E193F1B1B1160240093CD81 /* RandomImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomImage.swift; sourceTree = "<group>"; };
+		7E193F1D1B1160A30093CD81 /* iiRandom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iiRandom.swift; sourceTree = "<group>"; };
 		7E3877751B10558E001ADD7E /* concatenate_swift_files.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = concatenate_swift_files.sh; sourceTree = "<group>"; };
 		7E3877771B1055CB001ADD7E /* MoaDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaDistrib.swift; sourceTree = "<group>"; };
 		7E6FDB571B088E600095C29F /* text.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = text.txt; sourceTree = "<group>"; };
@@ -156,11 +160,13 @@
 		7E193EE61B1152D40093CD81 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				7E193F101B115EB60093CD81 /* Images */,
 				7E193F0D1B11595E0093CD81 /* Utils */,
 				7E193F091B11559B0093CD81 /* AppConstants.swift */,
 				7E193EE91B1152D40093CD81 /* AppDelegate.swift */,
 				7E193F071B1154930093CD81 /* CollectionViewDataSource.swift */,
 				7E193F0B1B11587D0093CD81 /* CollectionViewCell.swift */,
+				7E193F1B1B1160240093CD81 /* RandomImage.swift */,
 				7E193EEB1B1152D40093CD81 /* ViewController.swift */,
 				7E193EED1B1152D40093CD81 /* Main.storyboard */,
 				7E193EF01B1152D40093CD81 /* Images.xcassets */,
@@ -198,9 +204,17 @@
 		7E193F0D1B11595E0093CD81 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				7E193F1D1B1160A30093CD81 /* iiRandom.swift */,
 				7E193F0E1B11596B0093CD81 /* MoaColor.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		7E193F101B115EB60093CD81 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		7E3877731B105566001ADD7E /* Distrib */ = {
@@ -553,7 +567,9 @@
 				7E193EEC1B1152D40093CD81 /* ViewController.swift in Sources */,
 				7E193F081B1154930093CD81 /* CollectionViewDataSource.swift in Sources */,
 				7E193EEA1B1152D40093CD81 /* AppDelegate.swift in Sources */,
+				7E193F1E1B1160A30093CD81 /* iiRandom.swift in Sources */,
 				7E193F0A1B11559B0093CD81 /* AppConstants.swift in Sources */,
+				7E193F1C1B1160240093CD81 /* RandomImage.swift in Sources */,
 				7E193F0F1B11596B0093CD81 /* MoaColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -873,6 +889,7 @@
 				7E193F021B1152D40093CD81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7E193F061B1152D40093CD81 /* Build configuration list for PBXNativeTarget "DemoTests" */ = {
 			isa = XCConfigurationList;
@@ -881,6 +898,7 @@
 				7E193F041B1152D40093CD81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7EA8EF691B072B4300C951C4 /* Build configuration list for PBXProject "moa" */ = {
 			isa = XCConfigurationList;
