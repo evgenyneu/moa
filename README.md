@@ -7,7 +7,7 @@
 [cocoadocs]: http://cocoadocs.org/docsets/moa
 [carthage]: https://github.com/Carthage/Carthage
 
-Moa is an image downloand library for iOS written in Swift.
+Moa is an image download library for iOS written in Swift.
 It allows to download and show an image in `UIImageView` by setting its `moa.url` property.
 
 * Images are downloaded asynchronously.
