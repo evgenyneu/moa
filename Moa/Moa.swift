@@ -1,4 +1,12 @@
-import UIKit
+#if os(iOS)
+    import UIKit
+    public typealias MoaImage = UIImage
+    public typealias MoaImageView = UIImageView
+#elseif os(OSX)
+    import AppKit
+    public typealias MoaImage = NSImage
+    public typealias MoaImageView = NSImageView
+#endif
 
 /**
 Downloads an image by url.
@@ -21,7 +29,7 @@ The class can be instantiated and used without `UIImageView`:
 */
 public final class Moa {
   private var imageDownloader: MoaImageDownloader?
-  private weak var imageView: UIImageView?
+  private weak var imageView: MoaImageView?
 
   /**
   
@@ -34,7 +42,7 @@ public final class Moa {
   */
   public init() { }
   
-  init(imageView: UIImageView) {
+  init(imageView: MoaImageView) {
     self.imageView = imageView
   }
 
@@ -97,7 +105,7 @@ public final class Moa {
     }
 
   */
-  public var onSuccessAsync: ((UIImage)->(UIImage?))?
+  public var onSuccessAsync: ((MoaImage)->(MoaImage?))?
   
   
   /**
@@ -126,8 +134,8 @@ public final class Moa {
     )
   }
   
-  private func onHandleSuccess(image: UIImage) {
-    var imageForView: UIImage? = image
+  private func onHandleSuccess(image: MoaImage) {
+    var imageForView: MoaImage? = image
     
     if let onSuccessAsync = onSuccessAsync {
       imageForView = onSuccessAsync(image)

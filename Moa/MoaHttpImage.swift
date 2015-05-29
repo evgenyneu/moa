@@ -2,11 +2,11 @@
 // Helper functions for downloading an image and processing the response.
 //
 
-import UIKit
+import Foundation
 
 struct MoaHttpImage {
   static func createDataTask(url: String,
-    onSuccess: (UIImage)->(),
+    onSuccess: (MoaImage)->(),
     onError: (NSError, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
     
     return MoaHttp.createDataTask(url,
@@ -19,7 +19,7 @@ struct MoaHttpImage {
   
   static func handleSuccess(data: NSData,
     response: NSHTTPURLResponse,
-    onSuccess: (UIImage)->(),
+    onSuccess: (MoaImage)->(),
     onError: (NSError, NSHTTPURLResponse?)->()) {
       
     // Show error if response code is not 200
@@ -43,7 +43,7 @@ struct MoaHttpImage {
       return
     }
       
-    if let image = UIImage(data: data) {
+    if let image = MoaImage(data: data) {
       onSuccess(image)
     } else {
       // Failed to convert response data to UIImage

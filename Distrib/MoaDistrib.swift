@@ -13,7 +13,15 @@
 //
 // ----------------------------
 
-import UIKit
+#if os(iOS)
+    import UIKit
+    public typealias MoaImage = UIImage
+    public typealias MoaImageView = UIImageView
+#elseif os(OSX)
+    import AppKit
+    public typealias MoaImage = NSImage
+    public typealias MoaImageView = NSImageView
+#endif
 
 /**
 Downloads an image by url.
@@ -36,7 +44,7 @@ The class can be instantiated and used without `UIImageView`:
 */
 public final class Moa {
   private var imageDownloader: MoaImageDownloader?
-  private weak var imageView: UIImageView?
+  private weak var imageView: MoaImageView?
 
   /**
   
@@ -49,7 +57,7 @@ public final class Moa {
   */
   public init() { }
   
-  init(imageView: UIImageView) {
+  init(imageView: MoaImageView) {
     self.imageView = imageView
   }
 
@@ -112,7 +120,7 @@ public final class Moa {
     }
 
   */
-  public var onSuccessAsync: ((UIImage)->(UIImage?))?
+  public var onSuccessAsync: ((MoaImage)->(MoaImage?))?
   
   
   /**
@@ -141,8 +149,8 @@ public final class Moa {
     )
   }
   
-  private func onHandleSuccess(image: UIImage) {
-    var imageForView: UIImage? = image
+  private func onHandleSuccess(image: MoaImage) {
+    var imageForView: MoaImage? = image
     
     if let onSuccessAsync = onSuccessAsync {
       imageForView = onSuccessAsync(image)
@@ -163,7 +171,7 @@ public final class Moa {
 //
 // ----------------------------
 
-import UIKit
+import Foundation
 
 /**
 
@@ -236,11 +244,11 @@ public enum MoaHttpErrors: Int {
 // Helper functions for downloading an image and processing the response.
 //
 
-import UIKit
+import Foundation
 
 struct MoaHttpImage {
   static func createDataTask(url: String,
-    onSuccess: (UIImage)->(),
+    onSuccess: (MoaImage)->(),
     onError: (NSError, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
     
     return MoaHttp.createDataTask(url,
@@ -253,7 +261,7 @@ struct MoaHttpImage {
   
   static func handleSuccess(data: NSData,
     response: NSHTTPURLResponse,
-    onSuccess: (UIImage)->(),
+    onSuccess: (MoaImage)->(),
     onError: (NSError, NSHTTPURLResponse?)->()) {
       
     // Show error if response code is not 200
@@ -277,7 +285,7 @@ struct MoaHttpImage {
       return
     }
       
-    if let image = UIImage(data: data) {
+    if let image = MoaImage(data: data) {
       onSuccess(image)
     } else {
       // Failed to convert response data to UIImage
@@ -331,8 +339,8 @@ public enum MoaHttpImageErrors: Int {
 //
 // ----------------------------
 
-import UIKit
-
+import Foundation
+    
 final class MoaImageDownloader {
   var task: NSURLSessionDataTask?
   var cancelled = false
@@ -341,7 +349,7 @@ final class MoaImageDownloader {
     cancel()
   }
   
-  func startDownload(url: String, onSuccess: (UIImage)->(),
+  func startDownload(url: String, onSuccess: (MoaImage)->(),
     onError: (NSError, NSHTTPURLResponse?)->()) {
     
     cancelled = false
@@ -373,7 +381,7 @@ final class MoaImageDownloader {
 //
 // ----------------------------
 
-import UIKit
+import Foundation
 
 private var xoAssociationKey: UInt8 = 0
 
@@ -385,7 +393,7 @@ UIImageView extension for downloading image.
   imageView.moa.url = "http://site.com/image.jpg"
 
 */
-public extension UIImageView {
+public extension MoaImageView {
   /**
   
   Image download extension.

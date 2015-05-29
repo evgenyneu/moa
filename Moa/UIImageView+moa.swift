@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 private var xoAssociationKey: UInt8 = 0
 
@@ -10,7 +10,7 @@ UIImageView extension for downloading image.
   imageView.moa.url = "http://site.com/image.jpg"
 
 */
-public extension UIImageView {
+public extension MoaImageView {
   /**
   
   Image download extension.
