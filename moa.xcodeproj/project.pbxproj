@@ -290,7 +290,9 @@
 				7EA8EF701B072B4300C951C4 /* Products */,
 				7E3877741B10558E001ADD7E /* scripts */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		7EA8EF701B072B4300C951C4 /* Products */ = {
 			isa = PBXGroup;
