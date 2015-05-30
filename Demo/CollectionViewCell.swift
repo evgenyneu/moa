@@ -1,4 +1,5 @@
 import UIKit
+import moa
 
 class CollectionViewCell: UICollectionViewCell {
   @IBOutlet weak var imageView: UIImageView!
@@ -13,6 +14,8 @@ class CollectionViewCell: UICollectionViewCell {
   
   func prepareForDisplay() {
     backgroundColor = MoaColor.random
-    imageView.image = RandomImage.image
+    let url = RandomImage.url
+    imageView.moa.url = url
+    println("Downloading: \(url)")
   }
 }

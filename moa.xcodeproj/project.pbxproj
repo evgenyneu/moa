@@ -54,6 +54,13 @@
 		7EE105601B089D9D005C7030 /* 35px.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7EE1055D1B089D9D005C7030 /* 35px.jpg */; };
 		7EE105611B089D9D005C7030 /* 67px.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE1055E1B089D9D005C7030 /* 67px.png */; };
 		7EE105621B089D9D005C7030 /* 96px.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE1055F1B089D9D005C7030 /* 96px.png */; };
+		7EEB257A1B116A3700E606C1 /* LaniariusSmit.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7EEB25751B116A3700E606C1 /* LaniariusSmit.jpg */; };
+		7EEB257B1B116A3700E606C1 /* Lonchura_forbesi_-_Joseph_Smit.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7EEB25761B116A3700E606C1 /* Lonchura_forbesi_-_Joseph_Smit.jpg */; };
+		7EEB257C1B116A3700E606C1 /* MidasGeoffroiiSmit.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7EEB25771B116A3700E606C1 /* MidasGeoffroiiSmit.jpg */; };
+		7EEB257D1B116A3700E606C1 /* MusSylvaticusSmit.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7EEB25781B116A3700E606C1 /* MusSylvaticusSmit.jpg */; };
+		7EEB257E1B116A3700E606C1 /* NothocercusNigricapillusSmit-edit.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7EEB25791B116A3700E606C1 /* NothocercusNigricapillusSmit-edit.jpg */; };
+		7EEB25831B116D4D00E606C1 /* moa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA8EF6F1B072B4300C951C4 /* moa.framework */; };
+		7EEB25841B116D4D00E606C1 /* moa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA8EF6F1B072B4300C951C4 /* moa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,7 +78,28 @@
 			remoteGlobalIDString = 7EA8EF6E1B072B4300C951C4;
 			remoteInfo = Moa;
 		};
+		7EEB257F1B116CCC00E606C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7EA8EF661B072B4300C951C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7EA8EF6E1B072B4300C951C4;
+			remoteInfo = moa;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7EEB25851B116D4D00E606C1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7EEB25841B116D4D00E606C1 /* moa.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7E193EE51B1152D40093CD81 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +149,11 @@
 		7EE1055D1B089D9D005C7030 /* 35px.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 35px.jpg; sourceTree = "<group>"; };
 		7EE1055E1B089D9D005C7030 /* 67px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 67px.png; sourceTree = "<group>"; };
 		7EE1055F1B089D9D005C7030 /* 96px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 96px.png; sourceTree = "<group>"; };
+		7EEB25751B116A3700E606C1 /* LaniariusSmit.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LaniariusSmit.jpg; sourceTree = "<group>"; };
+		7EEB25761B116A3700E606C1 /* Lonchura_forbesi_-_Joseph_Smit.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Lonchura_forbesi_-_Joseph_Smit.jpg"; sourceTree = "<group>"; };
+		7EEB25771B116A3700E606C1 /* MidasGeoffroiiSmit.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MidasGeoffroiiSmit.jpg; sourceTree = "<group>"; };
+		7EEB25781B116A3700E606C1 /* MusSylvaticusSmit.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MusSylvaticusSmit.jpg; sourceTree = "<group>"; };
+		7EEB25791B116A3700E606C1 /* NothocercusNigricapillusSmit-edit.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "NothocercusNigricapillusSmit-edit.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EEB25831B116D4D00E606C1 /* moa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,7 +194,7 @@
 		7E193EE61B1152D40093CD81 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				7E193F101B115EB60093CD81 /* Images */,
+				7EEB25741B116A3200E606C1 /* Drawings */,
 				7E193F0D1B11595E0093CD81 /* Utils */,
 				7E193F091B11559B0093CD81 /* AppConstants.swift */,
 				7E193EE91B1152D40093CD81 /* AppDelegate.swift */,
@@ -208,13 +242,6 @@
 				7E193F0E1B11596B0093CD81 /* MoaColor.swift */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		7E193F101B115EB60093CD81 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Images;
 			sourceTree = "<group>";
 		};
 		7E3877731B105566001ADD7E /* Distrib */ = {
@@ -354,6 +381,18 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		7EEB25741B116A3200E606C1 /* Drawings */ = {
+			isa = PBXGroup;
+			children = (
+				7EEB25751B116A3700E606C1 /* LaniariusSmit.jpg */,
+				7EEB25761B116A3700E606C1 /* Lonchura_forbesi_-_Joseph_Smit.jpg */,
+				7EEB25771B116A3700E606C1 /* MidasGeoffroiiSmit.jpg */,
+				7EEB25781B116A3700E606C1 /* MusSylvaticusSmit.jpg */,
+				7EEB25791B116A3700E606C1 /* NothocercusNigricapillusSmit-edit.jpg */,
+			);
+			path = Drawings;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -375,10 +414,12 @@
 				7E193EE11B1152D40093CD81 /* Sources */,
 				7E193EE21B1152D40093CD81 /* Frameworks */,
 				7E193EE31B1152D40093CD81 /* Resources */,
+				7EEB25851B116D4D00E606C1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7EEB25801B116CCC00E606C1 /* PBXTargetDependency */,
 			);
 			name = Demo;
 			productName = Demo;
@@ -492,8 +533,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E193EEF1B1152D40093CD81 /* Main.storyboard in Resources */,
+				7EEB257A1B116A3700E606C1 /* LaniariusSmit.jpg in Resources */,
+				7EEB257D1B116A3700E606C1 /* MusSylvaticusSmit.jpg in Resources */,
+				7EEB257B1B116A3700E606C1 /* Lonchura_forbesi_-_Joseph_Smit.jpg in Resources */,
 				7E193EF41B1152D40093CD81 /* LaunchScreen.xib in Resources */,
+				7EEB257C1B116A3700E606C1 /* MidasGeoffroiiSmit.jpg in Resources */,
 				7E193EF11B1152D40093CD81 /* Images.xcassets in Resources */,
+				7EEB257E1B116A3700E606C1 /* NothocercusNigricapillusSmit-edit.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,6 +680,11 @@
 			isa = PBXTargetDependency;
 			target = 7EA8EF6E1B072B4300C951C4 /* moa */;
 			targetProxy = 7EA8EF7C1B072B4300C951C4 /* PBXContainerItemProxy */;
+		};
+		7EEB25801B116CCC00E606C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7EA8EF6E1B072B4300C951C4 /* moa */;
+			targetProxy = 7EEB257F1B116CCC00E606C1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -19,7 +19,7 @@ import UIKit
 Downloads an image by url.
 
 Setting `moa.url` property of `UIImageView` instance starts asynchronous image download using NSURLSession class.
-When download is completed the image is automatically shows in the image view.
+When download is completed the image is automatically shown in the image view.
 
   let imageView = UIImageView()
   imageView.moa.url = "http://site.com/image.jpg"
@@ -56,7 +56,7 @@ public final class Moa {
   /**
 
   Assign an image URL to start the download.
-  When download is completed the image is automatically shows in the image view.
+  When download is completed the image is automatically shown in the image view.
   
     imageView.moa.url = "http://mysite.com/image.jpg"
   
