@@ -59,49 +59,7 @@ Ongoing image download for the UIImageView is automatically canceled when:
 Call `imageView.moa.cancel()` to manually cancel the download.
 
 
-## How image caching works
 
-Moa uses the built-in NSURLSession caching methods. It creates a dedicated cache storage that is separate from the app's shared url cache.
-
-
-
-## Changing cache settings
-
-You can change the cache settings at any moment by setting the `Moa.settings.cache` property.
-
-
-### Change cache request policy
-
-By default images are cached locally according to their response HTTP headers: Cache-Control, Expires and ETag.
-This is useful when you can change the image caching settings on the server side.
-
-If your images are comming the source that you don't control you can still cache the images by setting the `requestCachePolicy` setting to `.ReturnCacheDataElseLoad`.
-
-```Swift
-Moa.settings.cache.requestCachePolicy = .ReturnCacheDataElseLoad
-```
-
-[Read this](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=en) excellent article by Ilya Grigorik.
-
-
-### Change size of memory cache
-
-
-```Swift
-Moa.settings.cache.memoryCapacityBytes = 20 * 1024 * 1024
-```
-
-Default size of memory cache is 20 MB.
-
-
-### Change size of disk cache
-
-
-```Swift
-Moa.settings.cache.diskCapacityBytes = 100 * 1024 * 1024
-```
-
-Default size of disk cache is 100 MB.
 
 
 ## Advanced features
@@ -156,6 +114,53 @@ moa.onSuccessAsync = { image in
 }
 moa.url = "http://site.com/image.jpg"
 ```
+
+
+
+## Caching
+
+Moa uses the built-in NSURLSession caching methods. It creates a dedicated cache storage that is separate from the app's shared url cache.
+
+
+
+### Changing cache settings
+
+You can change the cache settings at any moment by setting the `Moa.settings.cache` property.
+
+
+### Change cache request policy
+
+By default images are cached locally according to their response HTTP headers: Cache-Control, Expires and ETag.
+This is useful when you can change the image caching settings on the server side.
+
+If your images are comming the source that you don't control you can still cache the images by setting the `requestCachePolicy` setting to `.ReturnCacheDataElseLoad`.
+
+```Swift
+Moa.settings.cache.requestCachePolicy = .ReturnCacheDataElseLoad
+```
+
+[Read this](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=en) excellent article by Ilya Grigorik.
+
+
+### Change size of memory cache
+
+
+```Swift
+Moa.settings.cache.memoryCapacityBytes = 20 * 1024 * 1024
+```
+
+Default size of memory cache is 20 MB.
+
+
+### Change size of disk cache
+
+
+```Swift
+Moa.settings.cache.diskCapacityBytes = 100 * 1024 * 1024
+```
+
+Default size of disk cache is 100 MB.
+
 
 
 ### Demo app
