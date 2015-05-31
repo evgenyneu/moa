@@ -361,6 +361,8 @@ struct MoaHttpSession {
   
     let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
     
+    configuration.requestCachePolicy = Moa.settings.cache.requestCachePolicy
+    
     let cache = NSURLCache(
       memoryCapacity: Moa.settings.cache.memoryCapacityBytes,
       diskCapacity: Moa.settings.cache.diskCapacityBytes,
@@ -449,6 +451,8 @@ public struct MoaSettings {
 //
 // ----------------------------
 
+import Foundation
+
 /**
 
 Specify settings for caching of downloaded images.
@@ -462,6 +466,18 @@ public struct MoaSettingsCache {
   public var diskCapacityBytes: Int = 100 * 1024 * 1024
   
   /**
+
+  The caching policy for the image downloads. The default value is .UseProtocolCachePolicy.
+  
+  * .UseProtocolCachePolicy - Images are cached according to the the response HTTP headers, such as age and expiration date. This is the default cache policy.
+  * .ReloadIgnoringLocalCacheData - Do not cache images locally. Always downloads the image from the source.
+  * .ReturnCacheDataElseLoad - Loads the image from local cache regarless of age and expiration date. If there is no existing image in the cache, the image is loaded from the source.
+  * .ReturnCacheDataDontLoad - Load the image from local cache only and do not attempt to load from the source.
+
+  */
+  public var requestCachePolicy: NSURLRequestCachePolicy = .UseProtocolCachePolicy
+  
+  /**
   
   The name of a subdirectory of the application’s default cache directory
   in which to store the on-disk cache.
@@ -473,6 +489,7 @@ public struct MoaSettingsCache {
 func ==(lhs: MoaSettingsCache, rhs: MoaSettingsCache) -> Bool {
   return lhs.memoryCapacityBytes == rhs.memoryCapacityBytes
     && lhs.diskCapacityBytes == rhs.diskCapacityBytes
+    && lhs.requestCachePolicy == rhs.requestCachePolicy
     && lhs.diskPath == rhs.diskPath
 }
 

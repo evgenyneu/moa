@@ -23,6 +23,8 @@ struct MoaHttpSession {
   
     let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
     
+    configuration.requestCachePolicy = Moa.settings.cache.requestCachePolicy
+    
     let cache = NSURLCache(
       memoryCapacity: Moa.settings.cache.memoryCapacityBytes,
       diskCapacity: Moa.settings.cache.diskCapacityBytes,
