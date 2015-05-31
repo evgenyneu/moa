@@ -127,7 +127,7 @@ Moa uses the built-in NSURLSession caching methods. It creates a dedicated cache
 By default images are cached locally according to their response HTTP headers: Cache-Control, Expires and ETag.
 This is useful when you control the web server and can configure its image caching responses.
 
-If you don't control the server you can set the `requestCachePolicy` setting to `.ReturnCacheDataElseLoad`. It will load the images from local cache regarless of its age and expiration date.
+If you don't control the server you can set the `requestCachePolicy` setting to `.ReturnCacheDataElseLoad`. It will load the images from local cache regardless of its age and expiration date.
 
 ```Swift
 Moa.settings.cache.requestCachePolicy = .ReturnCacheDataElseLoad
