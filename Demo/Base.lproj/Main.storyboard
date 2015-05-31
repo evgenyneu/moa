@@ -80,7 +80,7 @@
                                                         </constraints>
                                                     </view>
                                                     <vibrancyEffect>
-                                                        <blurEffect style="light"/>
+                                                        <blurEffect style="dark"/>
                                                     </vibrancyEffect>
                                                 </visualEffectView>
                                             </subviews>
@@ -91,7 +91,7 @@
                                                 <constraint firstItem="xy1-wj-Xkz" firstAttribute="leading" secondItem="FEb-UP-TAa" secondAttribute="leading" id="mxh-6q-HaD"/>
                                             </constraints>
                                         </view>
-                                        <blurEffect style="light"/>
+                                        <blurEffect style="dark"/>
                                     </visualEffectView>
                                 </subviews>
                                 <constraints>
