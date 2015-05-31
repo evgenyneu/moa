@@ -68,15 +68,15 @@
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joseph Smit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJk-Hn-hzf">
-                                                                <rect key="frame" x="210" y="6" width="180.5" height="39.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                                                <rect key="frame" x="222" y="-6.5" width="157.5" height="54.5"/>
+                                                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="34"/>
                                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstAttribute="centerX" secondItem="WJk-Hn-hzf" secondAttribute="centerX" id="4tm-4p-GIh"/>
-                                                            <constraint firstAttribute="centerY" secondItem="WJk-Hn-hzf" secondAttribute="centerY" constant="-0.5" id="Ixj-J8-nHB"/>
+                                                            <constraint firstAttribute="centerY" secondItem="WJk-Hn-hzf" secondAttribute="centerY" constant="4.5" id="Ixj-J8-nHB"/>
                                                         </constraints>
                                                     </view>
                                                     <vibrancyEffect>
