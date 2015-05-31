@@ -19,6 +19,8 @@
 		7E193F0F1B11596B0093CD81 /* MoaColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F0E1B11596B0093CD81 /* MoaColor.swift */; };
 		7E193F1C1B1160240093CD81 /* RandomImageUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F1B1B1160240093CD81 /* RandomImageUrl.swift */; };
 		7E193F1E1B1160A30093CD81 /* iiRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F1D1B1160A30093CD81 /* iiRandom.swift */; };
+		7E3694B01B1B430300AABE3F /* MoaSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3694AE1B1B430000AABE3F /* MoaSettingsTests.swift */; };
+		7E3694B31B1B436600AABE3F /* MoaHttpSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3694B11B1B433400AABE3F /* MoaHttpSessionTests.swift */; };
 		7E3877761B10558E001ADD7E /* concatenate_swift_files.sh in Resources */ = {isa = PBXBuildFile; fileRef = 7E3877751B10558E001ADD7E /* concatenate_swift_files.sh */; };
 		7E693F341B1B15D4000E7156 /* launch_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E693F331B1B15D4000E7156 /* launch_screen.png */; };
 		7E6FDB581B088E600095C29F /* text.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E6FDB571B088E600095C29F /* text.txt */; };
@@ -124,6 +126,8 @@
 		7E193F0E1B11596B0093CD81 /* MoaColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaColor.swift; sourceTree = "<group>"; };
 		7E193F1B1B1160240093CD81 /* RandomImageUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomImageUrl.swift; sourceTree = "<group>"; };
 		7E193F1D1B1160A30093CD81 /* iiRandom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iiRandom.swift; sourceTree = "<group>"; };
+		7E3694AE1B1B430000AABE3F /* MoaSettingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaSettingsTests.swift; sourceTree = "<group>"; };
+		7E3694B11B1B433400AABE3F /* MoaHttpSessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttpSessionTests.swift; sourceTree = "<group>"; };
 		7E3877751B10558E001ADD7E /* concatenate_swift_files.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = concatenate_swift_files.sh; sourceTree = "<group>"; };
 		7E3877771B1055CB001ADD7E /* MoaDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaDistrib.swift; sourceTree = "<group>"; };
 		7E693F331B1B15D4000E7156 /* launch_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launch_screen.png; path = Graphics/launch_screen.png; sourceTree = SOURCE_ROOT; };
@@ -356,8 +360,10 @@
 				7EA8EF9C1B08490D00C951C4 /* Images */,
 				7EA8EF971B08480700C951C4 /* Helpers */,
 				7EBCC1CE1B1B3EC600BC9569 /* MoaSettingsCacheTests.swift */,
+				7E3694AE1B1B430000AABE3F /* MoaSettingsTests.swift */,
 				7E7541131B0D3DF000AC0FC7 /* MoaHttpTests.swift */,
 				7EA5157B1B0FF46700FEFB07 /* MoaHttpImageTests.swift */,
+				7E3694B11B1B433400AABE3F /* MoaHttpSessionTests.swift */,
 				7EA515821B1002BE00FEFB07 /* MoaImageDownloaderTests.swift */,
 				7EA8EF811B072B4300C951C4 /* UIImageView+moaTests.swift */,
 				7EA8EF7F1B072B4300C951C4 /* Supporting Files */,
@@ -660,6 +666,7 @@
 			files = (
 				7E7541141B0D3DF000AC0FC7 /* MoaHttpTests.swift in Sources */,
 				7EA8EFA01B084D7D00C951C4 /* MoaTimer.swift in Sources */,
+				7E3694B01B1B430300AABE3F /* MoaSettingsTests.swift in Sources */,
 				7EBCC1D31B1B3F9D00BC9569 /* MoaSettingsCache.swift in Sources */,
 				7EA5157F1B0FF80800FEFB07 /* MoaHttpImageErrors.swift in Sources */,
 				7E7541071B0D3C5100AC0FC7 /* Moa.swift in Sources */,
@@ -675,6 +682,7 @@
 				7E7541111B0D3DB700AC0FC7 /* MoaDownloadTests.swift in Sources */,
 				7E7541091B0D3C6200AC0FC7 /* MoaHttpImage.swift in Sources */,
 				7EA8EF991B08481800C951C4 /* MoaString.swift in Sources */,
+				7E3694B31B1B436600AABE3F /* MoaHttpSessionTests.swift in Sources */,
 				7E75410A1B0D3C7700AC0FC7 /* MoaHttp.swift in Sources */,
 				7EBCC1D01B1B3EE200BC9569 /* MoaSettingsCacheTests.swift in Sources */,
 				7EA5157A1B0FF2F600FEFB07 /* MoaHttpErrors.swift in Sources */,

@@ -2,7 +2,7 @@ import UIKit
 import XCTest
 
 class MoaSettingsCacheTests: XCTestCase {
-  // MARK: - Compare
+  // MARK: - Compare cache settings
   
   func testCompareSettings_equal() {
     var one = MoaSettingsCache()
@@ -16,6 +16,7 @@ class MoaSettingsCacheTests: XCTestCase {
     two.diskPath = "test path"
     
     XCTAssert(one == two)
+    XCTAssertFalse(one != two)
   }
   
   func testCompareSettings_differentMemoryCapacity() {
@@ -30,6 +31,7 @@ class MoaSettingsCacheTests: XCTestCase {
     two.diskPath = "test path"
     
     XCTAssertFalse(one == two)
+    XCTAssert(one != two)
   }
   
   func testCompareSettings_differentDiskCapacity() {
@@ -44,6 +46,7 @@ class MoaSettingsCacheTests: XCTestCase {
     two.diskPath = "test path"
     
     XCTAssertFalse(one == two)
+    XCTAssert(one != two)
   }
   
   func testCompareSettings_differentDiskPath() {
@@ -58,5 +61,6 @@ class MoaSettingsCacheTests: XCTestCase {
     two.diskPath = "different path"
     
     XCTAssertFalse(one == two)
+    XCTAssert(one != two)
   }
 }
