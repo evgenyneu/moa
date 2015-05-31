@@ -18,7 +18,7 @@ public struct MoaSettingsCache {
   
   * .UseProtocolCachePolicy - Images are cached according to the the response HTTP headers, such as age and expiration date. This is the default cache policy.
   * .ReloadIgnoringLocalCacheData - Do not cache images locally. Always downloads the image from the source.
-  * .ReturnCacheDataElseLoad - Loads the image from local cache regarless of age and expiration date. If there is no existing image in the cache, the image is loaded from the source.
+  * .ReturnCacheDataElseLoad - Loads the image from local cache regardless of age and expiration date. If there is no existing image in the cache, the image is loaded from the source.
   * .ReturnCacheDataDontLoad - Load the image from local cache only and do not attempt to load from the source.
 
   */
