@@ -40,14 +40,12 @@ class ViewController: UIViewController {
   }
   
   @IBAction func onJosephSmitTapped(sender: AnyObject) {
-    if Moa.settings.cache.diskCapacityBytes != 1000 {
-      Moa.settings.cache.memoryCapacityBytes = 1000
-      Moa.settings.cache.diskCapacityBytes = 1000
-      println("Setting small cache")
+    if Moa.settings.cache.requestCachePolicy == .UseProtocolCachePolicy {
+      Moa.settings.cache.requestCachePolicy = .ReloadIgnoringLocalCacheData
+      println("Do not cache")
     } else {
-      Moa.settings.cache.memoryCapacityBytes = 10 * 1024 * 1024
-      Moa.settings.cache.diskCapacityBytes = 10 * 1024 * 1024
-      println("Setting big cache")
+      Moa.settings.cache.requestCachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
+      println("Always cache")
     }
 //    NSURL(string: "http://en.wikipedia.org/wiki/Joseph_Smit").map { url in
 //      UIApplication.sharedApplication().openURL(url)
