@@ -20,6 +20,7 @@
 		7E193F1C1B1160240093CD81 /* RandomImageUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F1B1B1160240093CD81 /* RandomImageUrl.swift */; };
 		7E193F1E1B1160A30093CD81 /* iiRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F1D1B1160A30093CD81 /* iiRandom.swift */; };
 		7E3877761B10558E001ADD7E /* concatenate_swift_files.sh in Resources */ = {isa = PBXBuildFile; fileRef = 7E3877751B10558E001ADD7E /* concatenate_swift_files.sh */; };
+		7E693F321B1B0452000E7156 /* demo_launch_screen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7E693F311B1B0452000E7156 /* demo_launch_screen.jpg */; };
 		7E6FDB581B088E600095C29F /* text.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E6FDB571B088E600095C29F /* text.txt */; };
 		7E7541071B0D3C5100AC0FC7 /* Moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFA71B0858DD00C951C4 /* Moa.swift */; };
 		7E7541081B0D3C5800AC0FC7 /* MoaImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFB11B087D4A00C951C4 /* MoaImageDownloader.swift */; };
@@ -57,11 +58,6 @@
 		7EE105601B089D9D005C7030 /* 35px.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7EE1055D1B089D9D005C7030 /* 35px.jpg */; };
 		7EE105611B089D9D005C7030 /* 67px.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE1055E1B089D9D005C7030 /* 67px.png */; };
 		7EE105621B089D9D005C7030 /* 96px.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE1055F1B089D9D005C7030 /* 96px.png */; };
-		7EEB257A1B116A3700E606C1 /* LaniariusSmit.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7EEB25751B116A3700E606C1 /* LaniariusSmit.jpg */; };
-		7EEB257B1B116A3700E606C1 /* Lonchura_forbesi_-_Joseph_Smit.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7EEB25761B116A3700E606C1 /* Lonchura_forbesi_-_Joseph_Smit.jpg */; };
-		7EEB257C1B116A3700E606C1 /* MidasGeoffroiiSmit.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7EEB25771B116A3700E606C1 /* MidasGeoffroiiSmit.jpg */; };
-		7EEB257D1B116A3700E606C1 /* MusSylvaticusSmit.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7EEB25781B116A3700E606C1 /* MusSylvaticusSmit.jpg */; };
-		7EEB257E1B116A3700E606C1 /* NothocercusNigricapillusSmit-edit.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7EEB25791B116A3700E606C1 /* NothocercusNigricapillusSmit-edit.jpg */; };
 		7EEB25831B116D4D00E606C1 /* moa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA8EF6F1B072B4300C951C4 /* moa.framework */; };
 		7EEB25841B116D4D00E606C1 /* moa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA8EF6F1B072B4300C951C4 /* moa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -123,6 +119,7 @@
 		7E193F1D1B1160A30093CD81 /* iiRandom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iiRandom.swift; sourceTree = "<group>"; };
 		7E3877751B10558E001ADD7E /* concatenate_swift_files.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = concatenate_swift_files.sh; sourceTree = "<group>"; };
 		7E3877771B1055CB001ADD7E /* MoaDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaDistrib.swift; sourceTree = "<group>"; };
+		7E693F311B1B0452000E7156 /* demo_launch_screen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = demo_launch_screen.jpg; path = Graphics/demo_launch_screen.jpg; sourceTree = SOURCE_ROOT; };
 		7E6FDB571B088E600095C29F /* text.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = text.txt; sourceTree = "<group>"; };
 		7E75410D1B0D3DB700AC0FC7 /* MoaCancelDownloadTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaCancelDownloadTests.swift; sourceTree = "<group>"; };
 		7E75410E1B0D3DB700AC0FC7 /* MoaDownloadTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaDownloadTests.swift; sourceTree = "<group>"; };
@@ -153,11 +150,6 @@
 		7EE1055D1B089D9D005C7030 /* 35px.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 35px.jpg; sourceTree = "<group>"; };
 		7EE1055E1B089D9D005C7030 /* 67px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 67px.png; sourceTree = "<group>"; };
 		7EE1055F1B089D9D005C7030 /* 96px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 96px.png; sourceTree = "<group>"; };
-		7EEB25751B116A3700E606C1 /* LaniariusSmit.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LaniariusSmit.jpg; sourceTree = "<group>"; };
-		7EEB25761B116A3700E606C1 /* Lonchura_forbesi_-_Joseph_Smit.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Lonchura_forbesi_-_Joseph_Smit.jpg"; sourceTree = "<group>"; };
-		7EEB25771B116A3700E606C1 /* MidasGeoffroiiSmit.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MidasGeoffroiiSmit.jpg; sourceTree = "<group>"; };
-		7EEB25781B116A3700E606C1 /* MusSylvaticusSmit.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MusSylvaticusSmit.jpg; sourceTree = "<group>"; };
-		7EEB25791B116A3700E606C1 /* NothocercusNigricapillusSmit-edit.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "NothocercusNigricapillusSmit-edit.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,7 +190,7 @@
 		7E193EE61B1152D40093CD81 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				7EEB25741B116A3200E606C1 /* Drawings */,
+				7E2BAD511B1B01D500A6EAE1 /* Image */,
 				7E193F0D1B11595E0093CD81 /* Utils */,
 				7E193F091B11559B0093CD81 /* AppConstants.swift */,
 				7E193EE91B1152D40093CD81 /* AppDelegate.swift */,
@@ -247,6 +239,14 @@
 				7E193F0E1B11596B0093CD81 /* MoaColor.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		7E2BAD511B1B01D500A6EAE1 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				7E693F311B1B0452000E7156 /* demo_launch_screen.jpg */,
+			);
+			path = Image;
 			sourceTree = "<group>";
 		};
 		7E3877731B105566001ADD7E /* Distrib */ = {
@@ -386,18 +386,6 @@
 				7EE1055F1B089D9D005C7030 /* 96px.png */,
 			);
 			path = Images;
-			sourceTree = "<group>";
-		};
-		7EEB25741B116A3200E606C1 /* Drawings */ = {
-			isa = PBXGroup;
-			children = (
-				7EEB25751B116A3700E606C1 /* LaniariusSmit.jpg */,
-				7EEB25761B116A3700E606C1 /* Lonchura_forbesi_-_Joseph_Smit.jpg */,
-				7EEB25771B116A3700E606C1 /* MidasGeoffroiiSmit.jpg */,
-				7EEB25781B116A3700E606C1 /* MusSylvaticusSmit.jpg */,
-				7EEB25791B116A3700E606C1 /* NothocercusNigricapillusSmit-edit.jpg */,
-			);
-			path = Drawings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -540,13 +528,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E193EEF1B1152D40093CD81 /* Main.storyboard in Resources */,
-				7EEB257A1B116A3700E606C1 /* LaniariusSmit.jpg in Resources */,
-				7EEB257D1B116A3700E606C1 /* MusSylvaticusSmit.jpg in Resources */,
-				7EEB257B1B116A3700E606C1 /* Lonchura_forbesi_-_Joseph_Smit.jpg in Resources */,
 				7E193EF41B1152D40093CD81 /* LaunchScreen.xib in Resources */,
-				7EEB257C1B116A3700E606C1 /* MidasGeoffroiiSmit.jpg in Resources */,
 				7E193EF11B1152D40093CD81 /* Images.xcassets in Resources */,
-				7EEB257E1B116A3700E606C1 /* NothocercusNigricapillusSmit-edit.jpg in Resources */,
+				7E693F321B1B0452000E7156 /* demo_launch_screen.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
