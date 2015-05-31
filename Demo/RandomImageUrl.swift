@@ -26,7 +26,14 @@ class RandomImageUrl {
     "LeopardSmit.jpg",
     "MusSylvaticusSmit.jpg",
     "Psammobates_tentorius.jpg",
-    "StrepsicerosImberbisSmit.jpg"
+    "StrepsicerosImberbisSmit.jpg",
+    "HerpestesFerrugineusSmit.jpg",
+    "HolacanthusIgnatiusSmit.jpg",
+    "LamprophisFiskiiSmit.jpg",
+    "Metallura_eupogon_Smit.jpg",
+    "PhalangistaLemuroidesSmit.jpg",
+    "PytiliaAfraSmit.jpg",
+    "Tupaia_tana_J_Smit.jpg"
   ]
   
   init() { }
