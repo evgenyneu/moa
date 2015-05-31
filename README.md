@@ -136,7 +136,7 @@ Moa.settings.cache.requestCachePolicy = .ReturnCacheDataElseLoad
 Ilya Grigorik did an excellent overview of HTTP caching [in this article](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=en).
 
 
-### Memory cache size
+### Change memory cache size
 
 
 ```Swift
@@ -146,7 +146,7 @@ Moa.settings.cache.memoryCapacityBytes = 20 * 1024 * 1024
 Default size of memory cache is 20 MB.
 
 
-### Disk cache size
+### Change disk cache size
 
 
 ```Swift
