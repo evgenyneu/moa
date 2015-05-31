@@ -133,7 +133,6 @@ If you don't control the server but need caching you can set the `requestCachePo
 Moa.settings.cache.requestCachePolicy = .ReturnCacheDataElseLoad
 ```
 
-[Read this](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=en) excellent article about HTTP caching by Ilya Grigorik.
 
 
 ### Memory cache size
