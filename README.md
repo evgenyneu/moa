@@ -115,6 +115,8 @@ moa.url = "http://site.com/image.jpg"
 
 ### Demo app
 
+The demo app demonstrates loading of collection view images with Moa.
+
 <img src='https://raw.githubusercontent.com/evgenyneu/moa/master/Graphics/demo_app_screenshot.png'
 alt='Moa image downloader demo iOS app' width='250'>
 
