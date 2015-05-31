@@ -133,7 +133,7 @@ You can change the cache settings at any moment by setting the `Moa.settings.cac
 By default images are cached locally according to their response HTTP headers: Cache-Control, Expires and ETag.
 This is useful when you can change the image caching settings on the server side.
 
-If your images are coming the source that you don't control you can still cache the images by setting the `requestCachePolicy` setting to `.ReturnCacheDataElseLoad`.
+If you don't control the server but need caching you can set the `requestCachePolicy` setting to `.ReturnCacheDataElseLoad`.
 
 ```Swift
 Moa.settings.cache.requestCachePolicy = .ReturnCacheDataElseLoad
