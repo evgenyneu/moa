@@ -37,5 +37,11 @@ class ViewController: UIViewController {
       
     changeItemSize(size.width)
   }
+  
+  @IBAction func onJosephSmitTapped(sender: AnyObject) {
+    NSURL(string: "http://en.wikipedia.org/wiki/Joseph_Smit").map { url in
+      UIApplication.sharedApplication().openURL(url)
+    }
+  }
 }
 

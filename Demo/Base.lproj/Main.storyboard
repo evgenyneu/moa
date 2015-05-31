@@ -68,8 +68,9 @@
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joseph Smit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJk-Hn-hzf">
-                                                                <rect key="frame" x="222" y="-6.5" width="157.5" height="54.5"/>
-                                                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="34"/>
+                                                                <rect key="frame" x="229" y="-4.5" width="143.5" height="50"/>
+                                                                <gestureRecognizers/>
+                                                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="31"/>
                                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -101,6 +102,9 @@
                                     <constraint firstAttribute="trailing" secondItem="h5n-Wi-bYt" secondAttribute="trailing" id="UU6-e5-RuL"/>
                                     <constraint firstItem="h5n-Wi-bYt" firstAttribute="top" secondItem="1Xk-I5-bYe" secondAttribute="top" id="Z3i-RJ-9ZD"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="yng-x3-wSm" appends="YES" id="VZe-8S-iWJ"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -119,6 +123,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="yng-x3-wSm">
+                    <connections>
+                        <action selector="onJosephSmitTapped:" destination="BYZ-38-t0r" id="qBq-1y-R53"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
         </scene>
     </scenes>
