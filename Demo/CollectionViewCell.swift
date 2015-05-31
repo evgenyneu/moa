@@ -14,8 +14,11 @@ class CollectionViewCell: UICollectionViewCell {
   
   func prepareForDisplay() {
     backgroundColor = MoaColor.random
-    let url = RandomImage.url
-    imageView.moa.url = url
-    println("Downloading: \(url)")
+    
+    if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+      let url = appDelegate.randomImageUrl.url
+//      println("Downloading: \(url)")
+      imageView.moa.url = url
+    }
   }
 }
