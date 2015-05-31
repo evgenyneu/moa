@@ -1,9 +1,11 @@
-//
-// Helper functions for downloading an image and processing the response.
-//
 
 import UIKit
 
+/**
+
+Helper functions for downloading an image and processing the response.
+
+*/
 struct MoaHttpImage {
   static func createDataTask(url: String,
     onSuccess: (UIImage)->(),

@@ -6,8 +6,8 @@ private var xoAssociationKey: UInt8 = 0
 
 UIImageView extension for downloading image.
 
-  let imageView = UIImageView()
-  imageView.moa.url = "http://site.com/image.jpg"
+    let imageView = UIImageView()
+    imageView.moa.url = "http://site.com/image.jpg"
 
 */
 public extension UIImageView {
@@ -16,8 +16,8 @@ public extension UIImageView {
   Image download extension.
   Assign its `url` property to download and show the image in the `UIImageView`.
   
-    let imageView = UIImageView()
-    imageView.moa.url = "http://site.com/image.jpg"
+      let imageView = UIImageView()
+      imageView.moa.url = "http://site.com/image.jpg"
   
   */
   public var moa: Moa {

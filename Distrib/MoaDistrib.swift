@@ -21,17 +21,17 @@ Downloads an image by url.
 Setting `moa.url` property of `UIImageView` instance starts asynchronous image download using NSURLSession class.
 When download is completed the image is automatically shown in the image view.
 
-  let imageView = UIImageView()
-  imageView.moa.url = "http://site.com/image.jpg"
+    let imageView = UIImageView()
+    imageView.moa.url = "http://site.com/image.jpg"
 
 
 The class can be instantiated and used without `UIImageView`:
 
-  let moa = Moa()
-  moa.onSuccessAsync = { image in
-    return image
-  }
-  moa.url = "http://site.com/image.jpg"
+    let moa = Moa()
+    moa.onSuccessAsync = { image in
+      return image
+    }
+    moa.url = "http://site.com/image.jpg"
 
 */
 public final class Moa {
@@ -42,9 +42,9 @@ public final class Moa {
   
   Instantiate Moa when used without UIImageView.
   
-    let moa = Moa()
-    moa.onSuccessAsync = { image in }
-    moa.url = "http://site.com/image.jpg"
+      let moa = Moa()
+      moa.onSuccessAsync = { image in }
+      moa.url = "http://site.com/image.jpg"
   
   */
   public init() { }
@@ -58,13 +58,13 @@ public final class Moa {
   Assign an image URL to start the download.
   When download is completed the image is automatically shown in the image view.
   
-    imageView.moa.url = "http://mysite.com/image.jpg"
+      imageView.moa.url = "http://mysite.com/image.jpg"
   
   Supply `onSuccessAsync` closure to receive an image when used without UIImageView:
   
-    moa.onSuccessAsync = { image in
-      return image
-    }
+      moa.onSuccessAsync = { image in
+        return image
+      }
 
   */
   public var url: String? {
@@ -88,7 +88,7 @@ public final class Moa {
   
   Call this method to manually cancel the download.
   
-    imageView.moa.cancel()
+      imageView.moa.cancel()
 
   */
   public func cancel() {
@@ -106,10 +106,10 @@ public final class Moa {
   The closure returns an image that will be shown in the image view.
   Return nil if you do not want the image to be shown.
   
-    moa.onSuccessAsync = { image in
-      // Manipulate the image
-      return image
-    }
+      moa.onSuccessAsync = { image in
+        // Manipulate the image
+        return image
+      }
 
   */
   public var onSuccessAsync: ((UIImage)->(UIImage?))?
@@ -120,9 +120,9 @@ public final class Moa {
   The closure is called *asynchronously* if image download fails.
   [See Wiki](https://github.com/evgenyneu/moa/wiki/Moa-errors) for the list of possible error codes.
   
-    onErrorAsync = { error, httpUrlResponse in
-      // Report error
-    }
+      onErrorAsync = { error, httpUrlResponse in
+        // Report error
+      }
   
   */
   public var onErrorAsync: ((NSError, NSHTTPURLResponse?)->())?
@@ -232,12 +232,14 @@ public enum MoaHttpErrors: Int {
 //
 // ----------------------------
 
-//
-// Helper functions for downloading an image and processing the response.
-//
 
 import UIKit
 
+/**
+
+Helper functions for downloading an image and processing the response.
+
+*/
 struct MoaHttpImage {
   static func createDataTask(url: String,
     onSuccess: (UIImage)->(),
@@ -381,8 +383,8 @@ private var xoAssociationKey: UInt8 = 0
 
 UIImageView extension for downloading image.
 
-  let imageView = UIImageView()
-  imageView.moa.url = "http://site.com/image.jpg"
+    let imageView = UIImageView()
+    imageView.moa.url = "http://site.com/image.jpg"
 
 */
 public extension UIImageView {
@@ -391,8 +393,8 @@ public extension UIImageView {
   Image download extension.
   Assign its `url` property to download and show the image in the `UIImageView`.
   
-    let imageView = UIImageView()
-    imageView.moa.url = "http://site.com/image.jpg"
+      let imageView = UIImageView()
+      imageView.moa.url = "http://site.com/image.jpg"
   
   */
   public var moa: Moa {
