@@ -12,7 +12,7 @@ It allows to download and show an image in `UIImageView` by setting its `moa.url
 
 * Images are downloaded asynchronously.
 * Uses NSURLSession for networking and caching.
-* Allows to change cache size and policy.
+* Allows to configure cache size and policy.
 * Can be used without UIImageView.
 * Provides closure properties for image manipulation and error handling.
 
