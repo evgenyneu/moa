@@ -18,7 +18,7 @@ class CollectionViewCell: UICollectionViewCell {
     if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
       imageView.image = nil // clear previous image
       let url = appDelegate.randomImageUrl.url
-      imageView.moa.url = url
+      imageView.moa.url = url      
     }
   }
 }

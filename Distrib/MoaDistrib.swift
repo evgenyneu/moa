@@ -37,7 +37,10 @@ The class can be instantiated and used without `UIImageView`:
 public final class Moa {
   private var imageDownloader: MoaImageDownloader?
   private weak var imageView: UIImageView?
-
+  
+  /// Settings that are applied to all image downloads.
+  public static var settings = MoaSettings()
+  
   /**
   
   Instantiate Moa when used without UIImageView.
@@ -188,7 +191,7 @@ struct MoaHttp {
     onSuccess: (NSData, NSHTTPURLResponse)->(),
     onError: (NSError, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
       
-    return NSURLSession.sharedSession().dataTaskWithURL(nsUrl) { (data, response, error) in
+    return MoaHttpSession.session?.dataTaskWithURL(nsUrl) { (data, response, error) in
       if let httpResponse = response as? NSHTTPURLResponse {
         if error == nil {
           onSuccess(data, httpResponse)
@@ -329,6 +332,55 @@ public enum MoaHttpImageErrors: Int {
 
 // ----------------------------
 //
+// MoaHttpSession.swift
+//
+// ----------------------------
+
+import Foundation
+
+struct MoaHttpSession {
+  private static var currentSession: NSURLSession?
+  
+  static var session: NSURLSession? {
+    get {
+      if currentSession == nil {
+        currentSession = createNewSession()
+      }
+    
+      return currentSession
+    }
+    
+    set {
+      currentSession = newValue
+    }
+  }
+  
+  private static func createNewSession() -> NSURLSession {
+    
+    println("Creating new session")
+  
+    let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+    
+    let cache = NSURLCache(
+      memoryCapacity: Moa.settings.cache.memoryCapacityBytes,
+      diskCapacity: Moa.settings.cache.diskCapacityBytes,
+      diskPath: Moa.settings.cache.diskPath)
+    
+    configuration.URLCache = cache
+    
+    return NSURLSession(configuration: configuration)
+  }
+  
+  static func cacheSettingsChanged(oldSettings: MoaSettingsCache) {
+    if oldSettings != Moa.settings.cache {
+      session = nil
+    }
+  }
+}
+
+
+// ----------------------------
+//
 // MoaImageDownloader.swift
 //
 // ----------------------------
@@ -366,6 +418,66 @@ final class MoaImageDownloader {
     task?.cancel()
     cancelled = true
   }
+}
+
+
+// ----------------------------
+//
+// MoaSettings.swift
+//
+// ----------------------------
+
+
+/**
+
+Settings for Moa image downloader.
+
+*/
+public struct MoaSettings {
+  /// Settings for caching of the images.
+  public var cache = MoaSettingsCache() {
+    didSet {
+      MoaHttpSession.cacheSettingsChanged(oldValue)
+    }
+  }
+}
+
+
+// ----------------------------
+//
+// MoaSettingsCache.swift
+//
+// ----------------------------
+
+/**
+
+Specify settings for caching of downloaded images.
+
+*/
+public struct MoaSettingsCache {
+  /// The memory capacity of the cache, in bytes. Default: 20 MB.
+  public var memoryCapacityBytes: Int = 20 * 1024 * 1024
+  
+  /// The disk capacity of the cache, in bytes. Default: 100 MB.
+  public var diskCapacityBytes: Int = 100 * 1024 * 1024
+  
+  /**
+  
+  The name of a subdirectory of the application’s default cache directory
+  in which to store the on-disk cache.
+  
+  */
+  var diskPath = "moaImageDownloader"
+}
+
+func ==(lhs: MoaSettingsCache, rhs: MoaSettingsCache) -> Bool {
+  return lhs.memoryCapacityBytes == rhs.memoryCapacityBytes
+    && lhs.diskCapacityBytes == rhs.diskCapacityBytes
+    && lhs.diskPath == rhs.diskPath
+}
+
+func !=(lhs: MoaSettingsCache, rhs: MoaSettingsCache) -> Bool {
+  return !(lhs == rhs)
 }
 
 

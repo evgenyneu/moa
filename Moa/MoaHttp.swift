@@ -23,7 +23,7 @@ struct MoaHttp {
     onSuccess: (NSData, NSHTTPURLResponse)->(),
     onError: (NSError, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
       
-    return NSURLSession.sharedSession().dataTaskWithURL(nsUrl) { (data, response, error) in
+    return MoaHttpSession.session?.dataTaskWithURL(nsUrl) { (data, response, error) in
       if let httpResponse = response as? NSHTTPURLResponse {
         if error == nil {
           onSuccess(data, httpResponse)

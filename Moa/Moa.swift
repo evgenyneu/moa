@@ -22,7 +22,10 @@ The class can be instantiated and used without `UIImageView`:
 public final class Moa {
   private var imageDownloader: MoaImageDownloader?
   private weak var imageView: UIImageView?
-
+  
+  /// Settings that are applied to all image downloads.
+  public static var settings = MoaSettings()
+  
   /**
   
   Instantiate Moa when used without UIImageView.
