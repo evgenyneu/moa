@@ -40,16 +40,9 @@ class ViewController: UIViewController {
   }
   
   @IBAction func onJosephSmitTapped(sender: AnyObject) {
-    if Moa.settings.cache.requestCachePolicy == .UseProtocolCachePolicy {
-      Moa.settings.cache.requestCachePolicy = .ReloadIgnoringLocalCacheData
-      println("Do not cache")
-    } else {
-      Moa.settings.cache.requestCachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
-      println("Always cache")
+    NSURL(string: "http://en.wikipedia.org/wiki/Joseph_Smit").map { url in
+      UIApplication.sharedApplication().openURL(url)
     }
-//    NSURL(string: "http://en.wikipedia.org/wiki/Joseph_Smit").map { url in
-//      UIApplication.sharedApplication().openURL(url)
-//    }
   }
 }
 

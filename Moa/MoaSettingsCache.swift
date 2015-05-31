@@ -6,10 +6,10 @@ Specify settings for caching of downloaded images.
 
 */
 public struct MoaSettingsCache {
-  /// The memory capacity of the cache, in bytes. Default: 20 MB.
+  /// The memory capacity of the cache, in bytes. Default value is 20 MB.
   public var memoryCapacityBytes: Int = 20 * 1024 * 1024
   
-  /// The disk capacity of the cache, in bytes. Default: 100 MB.
+  /// The disk capacity of the cache, in bytes. Default value is 100 MB.
   public var diskCapacityBytes: Int = 100 * 1024 * 1024
   
   /**

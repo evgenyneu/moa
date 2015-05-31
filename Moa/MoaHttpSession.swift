@@ -18,9 +18,6 @@ struct MoaHttpSession {
   }
   
   private static func createNewSession() -> NSURLSession {
-    
-    println("Creating new session")
-  
     let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
     
     configuration.requestCachePolicy = Moa.settings.cache.requestCachePolicy

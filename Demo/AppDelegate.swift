@@ -16,19 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   let randomImageUrl = RandomImageUrl()
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    
-//    setupHttpCaching()
-    
-    
-    
+
     return true
-  }
-  
-  private func setupHttpCaching() {
-    let cacheSizeMemory = 100 * 1024 * 1024; // 100 MB
-    let cacheSizeDisk = 100 * 1024 * 1024; // 100 MB
-    let sharedCache = NSURLCache(memoryCapacity: cacheSizeMemory, diskCapacity: cacheSizeDisk, diskPath: "nsurlcache")
-    NSURLCache.setSharedURLCache(sharedCache)
   }
 
   func applicationWillResignActive(application: UIApplication) {

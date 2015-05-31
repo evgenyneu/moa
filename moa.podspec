@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
                    * Images are downloaded asynchronously.
                    * Uses NSURLSession for networking and caching.
-                   * Images are cached locally according to their HTTP response headers.
+                   * Allows to change cache size and policy.
                    * Can be used without UIImageView.
                    * Provides closure properties for image manipulation and error handling.
                    DESC
