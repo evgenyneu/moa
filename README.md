@@ -119,13 +119,7 @@ moa.url = "http://site.com/image.jpg"
 
 ## Caching
 
-Moa uses the built-in NSURLSession caching methods. It creates a dedicated cache storage that is separate from the app's shared url cache.
-
-
-
-### Changing cache settings
-
-You can change the cache settings at any moment by setting the `Moa.settings.cache` property.
+Moa uses the built-in NSURLSession caching methods. It creates a dedicated cache storage that is separate from the app's shared url cache. You can change the cache settings at any moment by setting the `Moa.settings.cache` property.
 
 
 ### Change cache request policy
