@@ -52,11 +52,64 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Xk-I5-bYe">
+                                <rect key="frame" x="0.0" y="550" width="600" height="50"/>
+                                <subviews>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h5n-Wi-bYt">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="FEb-UP-TAa">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xy1-wj-Xkz">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="0NO-nE-Ksd">
+                                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJk-Hn-hzf">
+                                                                <rect key="frame" x="279" y="15" width="42" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="centerX" secondItem="WJk-Hn-hzf" secondAttribute="centerX" id="4tm-4p-GIh"/>
+                                                            <constraint firstAttribute="centerY" secondItem="WJk-Hn-hzf" secondAttribute="centerY" constant="-0.5" id="Ixj-J8-nHB"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <vibrancyEffect>
+                                                        <blurEffect style="light"/>
+                                                    </vibrancyEffect>
+                                                </visualEffectView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="xy1-wj-Xkz" firstAttribute="top" secondItem="FEb-UP-TAa" secondAttribute="top" id="42d-ak-uCg"/>
+                                                <constraint firstAttribute="trailing" secondItem="xy1-wj-Xkz" secondAttribute="trailing" id="Cer-s5-sCt"/>
+                                                <constraint firstAttribute="bottom" secondItem="xy1-wj-Xkz" secondAttribute="bottom" id="iBn-IA-145"/>
+                                                <constraint firstItem="xy1-wj-Xkz" firstAttribute="leading" secondItem="FEb-UP-TAa" secondAttribute="leading" id="mxh-6q-HaD"/>
+                                            </constraints>
+                                        </view>
+                                        <blurEffect style="light"/>
+                                    </visualEffectView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="4Yr-DA-uFk"/>
+                                    <constraint firstItem="h5n-Wi-bYt" firstAttribute="leading" secondItem="1Xk-I5-bYe" secondAttribute="leading" id="6hZ-3k-eaJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="h5n-Wi-bYt" secondAttribute="bottom" id="LEE-Hp-BVY"/>
+                                    <constraint firstAttribute="trailing" secondItem="h5n-Wi-bYt" secondAttribute="trailing" id="UU6-e5-RuL"/>
+                                    <constraint firstItem="h5n-Wi-bYt" firstAttribute="top" secondItem="1Xk-I5-bYe" secondAttribute="top" id="Z3i-RJ-9ZD"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="1Xk-I5-bYe" secondAttribute="trailing" id="0xz-Lk-K7Y"/>
                             <constraint firstItem="xM1-CZ-quP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="GtB-Dy-35U"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1Xk-I5-bYe" secondAttribute="bottom" id="MYL-RW-8g1"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="xM1-CZ-quP" secondAttribute="bottom" id="TMH-Rs-fm8"/>
+                            <constraint firstItem="1Xk-I5-bYe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="e6W-ad-aML"/>
                             <constraint firstItem="xM1-CZ-quP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="top" id="huA-Mk-NmQ"/>
                             <constraint firstAttribute="trailing" secondItem="xM1-CZ-quP" secondAttribute="trailing" id="idt-bL-vhB"/>
                         </constraints>
