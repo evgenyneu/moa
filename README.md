@@ -146,8 +146,7 @@ Moa.settings.cache.requestCachePolicy = .ReturnCacheDataElseLoad
 
 
 
-### Other cache size
-
+### Other cache settings
 
 ```Swift
 // Change memory cache size. Default is 20 MB.
