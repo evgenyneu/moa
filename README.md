@@ -136,7 +136,7 @@ Moa.settings.cache.requestCachePolicy = .UseProtocolCachePolicy
 
 #### Force caching on client side
 
-If you don't control the server you can set the `requestCachePolicy` setting to `.ReturnCacheDataElseLoad`. It will load the images from local cache regardless of its age and expiration date.
+If you don't control the server you can set the `requestCachePolicy` setting to `.ReturnCacheDataElseLoad`. It will load the images from local cache regardless of their age and expiration date.
 
 ```Swift
 // Use local cache regardless of response HTTP headers.
