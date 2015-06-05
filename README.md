@@ -126,7 +126,7 @@ Moa uses the built-in NSURLSession caching methods. It creates a dedicated cache
 #### Caching controlled by the server
 
 By default images are cached locally according to their response HTTP headers: Cache-Control, Expires and ETag.
-This is useful when you control the web server and can configure its image caching responses. It is similar to how the image caching is done in the web browsers where the caching decisions are done on the server side. Ilya Grigorik did an excellent overview of HTTP caching [in this article](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=en).
+This is useful when you control the web server and can configure its image caching responses. It is similar to how the image caching is done in the web browsers where the caching decisions are made on the server side. Ilya Grigorik did an excellent overview of HTTP caching [in this article](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=en).
 
 ```Swift
 // Images are cached according to their response HTTP headers. Default option.
