@@ -122,10 +122,8 @@ moa.url = "http://site.com/image.jpg"
 Moa uses the built-in NSURLSession caching methods. It creates a dedicated cache storage that is separate from the app's shared url cache. You can change the cache settings at any moment by setting the `Moa.settings.cache` property.
 
 
-### Cache request policy
 
-
-#### Server decides how to cache
+#### Caching controlled by the server
 
 By default images are cached locally according to their response HTTP headers: Cache-Control, Expires and ETag.
 This is useful when you control the web server and can configure its image caching responses.
@@ -133,6 +131,7 @@ This is useful when you control the web server and can configure its image cachi
 ```Swift
 // Images are cached according to their response HTTP headers.
 Moa.settings.cache.requestCachePolicy = .UseProtocolCachePolicy
+```
 
 
 #### Force caching on client
