@@ -134,7 +134,7 @@ Moa.settings.cache.requestCachePolicy = .UseProtocolCachePolicy
 ```
 
 
-#### Force caching on client
+#### Force caching on client side
 
 If you don't control the server you can set the `requestCachePolicy` setting to `.ReturnCacheDataElseLoad`. It will load the images from local cache regardless of its age and expiration date.
 
