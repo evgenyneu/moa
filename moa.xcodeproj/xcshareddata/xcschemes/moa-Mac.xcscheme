@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C417C50C1B18929B00ED71BB"
-               BuildableName = "moaosx.framework"
-               BlueprintName = "moaosx"
+               BuildableName = "moa-Mac.framework"
+               BlueprintName = "moa-Mac"
                ReferencedContainer = "container:moa.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,8 +47,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C417C50C1B18929B00ED71BB"
-            BuildableName = "moaosx.framework"
-            BlueprintName = "moaosx"
+            BuildableName = "moa-Mac.framework"
+            BlueprintName = "moa-Mac"
             ReferencedContainer = "container:moa.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -66,8 +66,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C417C50C1B18929B00ED71BB"
-            BuildableName = "moaosx.framework"
-            BlueprintName = "moaosx"
+            BuildableName = "moa-Mac.framework"
+            BlueprintName = "moa-Mac"
             ReferencedContainer = "container:moa.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -84,8 +84,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C417C50C1B18929B00ED71BB"
-            BuildableName = "moaosx.framework"
-            BlueprintName = "moaosx"
+            BuildableName = "moa-Mac.framework"
+            BlueprintName = "moa-Mac"
             ReferencedContainer = "container:moa.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

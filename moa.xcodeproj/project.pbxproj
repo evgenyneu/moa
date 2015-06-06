@@ -161,7 +161,7 @@
 		7EE1055D1B089D9D005C7030 /* 35px.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 35px.jpg; sourceTree = "<group>"; };
 		7EE1055E1B089D9D005C7030 /* 67px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 67px.png; sourceTree = "<group>"; };
 		7EE1055F1B089D9D005C7030 /* 96px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 96px.png; sourceTree = "<group>"; };
-		C417C50D1B18929B00ED71BB /* moaosx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = moaosx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C417C50D1B18929B00ED71BB /* moa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = moa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C417C5101B18929B00ED71BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C417C5111B18929B00ED71BB /* moaosx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = moaosx.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -301,7 +301,7 @@
 				7EA8EF6F1B072B4300C951C4 /* moa.framework */,
 				7EA8EF7A1B072B4300C951C4 /* moaTests.xctest */,
 				7E193EE51B1152D40093CD81 /* Demo.app */,
-				C417C50D1B18929B00ED71BB /* moaosx.framework */,
+				C417C50D1B18929B00ED71BB /* moa.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -503,9 +503,9 @@
 			productReference = 7EA8EF7A1B072B4300C951C4 /* moaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		C417C50C1B18929B00ED71BB /* moaosx */ = {
+		C417C50C1B18929B00ED71BB /* moa-Mac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C417C5241B18929B00ED71BB /* Build configuration list for PBXNativeTarget "moaosx" */;
+			buildConfigurationList = C417C5241B18929B00ED71BB /* Build configuration list for PBXNativeTarget "moa-Mac" */;
 			buildPhases = (
 				C417C5081B18929B00ED71BB /* Sources */,
 				C417C5091B18929B00ED71BB /* Frameworks */,
@@ -516,9 +516,9 @@
 			);
 			dependencies = (
 			);
-			name = moaosx;
+			name = "moa-Mac";
 			productName = moaosx;
-			productReference = C417C50D1B18929B00ED71BB /* moaosx.framework */;
+			productReference = C417C50D1B18929B00ED71BB /* moa.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -563,7 +563,7 @@
 				7EA8EF6E1B072B4300C951C4 /* moa */,
 				7EA8EF791B072B4300C951C4 /* moaTests */,
 				7E193EE41B1152D40093CD81 /* Demo */,
-				C417C50C1B18929B00ED71BB /* moaosx */,
+				C417C50C1B18929B00ED71BB /* moa-Mac */,
 				C417C52D1B18962D00ED71BB /* concatenate_swift_files */,
 			);
 		};
@@ -950,7 +950,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = moa;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
@@ -969,7 +969,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = moa;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
@@ -1044,7 +1044,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C417C5241B18929B00ED71BB /* Build configuration list for PBXNativeTarget "moaosx" */ = {
+		C417C5241B18929B00ED71BB /* Build configuration list for PBXNativeTarget "moa-Mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C417C5201B18929B00ED71BB /* Debug */,
