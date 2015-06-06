@@ -14,20 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7EA8EF6E1B072B4300C951C4"
-               BuildableName = "moa.framework"
-               BlueprintName = "moa"
-               ReferencedContainer = "container:moa.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "NO"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "C417C52D1B18962D00ED71BB"
                BuildableName = "concatenate_swift_files"
                BlueprintName = "concatenate_swift_files"
@@ -43,15 +29,6 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7EA8EF6E1B072B4300C951C4"
-            BuildableName = "moa.framework"
-            BlueprintName = "moa"
-            ReferencedContainer = "container:moa.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -65,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7EA8EF6E1B072B4300C951C4"
-            BuildableName = "moa.framework"
-            BlueprintName = "moa"
+            BlueprintIdentifier = "C417C52D1B18962D00ED71BB"
+            BuildableName = "concatenate_swift_files"
+            BlueprintName = "concatenate_swift_files"
             ReferencedContainer = "container:moa.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -83,9 +60,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7EA8EF6E1B072B4300C951C4"
-            BuildableName = "moa.framework"
-            BlueprintName = "moa"
+            BlueprintIdentifier = "C417C52D1B18962D00ED71BB"
+            BuildableName = "concatenate_swift_files"
+            BlueprintName = "concatenate_swift_files"
             ReferencedContainer = "container:moa.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
