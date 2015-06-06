@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = "moa"
-  s.version     = "1.0.39"
+  s.version     = "1.0.40"
   s.license     = { :type => "MIT" }
   s.homepage    = "https://github.com/evgenyneu/moa"
   s.summary     = "An image download extension for UIImageView written in Swift."
@@ -19,4 +19,5 @@ Pod::Spec.new do |s|
   s.screenshots  = "https://raw.githubusercontent.com/evgenyneu/moa/master/Graphics/Hunting_Moa.jpg"
   s.source_files = "Moa/*.swift"
   s.ios.deployment_target = "8.0"
+  s.osx.deployment_target = "10.10"
 end
