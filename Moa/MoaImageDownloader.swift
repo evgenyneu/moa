@@ -1,5 +1,5 @@
-import UIKit
-
+import Foundation
+    
 final class MoaImageDownloader {
   var task: NSURLSessionDataTask?
   var cancelled = false
@@ -8,7 +8,7 @@ final class MoaImageDownloader {
     cancel()
   }
   
-  func startDownload(url: String, onSuccess: (UIImage)->(),
+  func startDownload(url: String, onSuccess: (MoaImage)->(),
     onError: (NSError, NSHTTPURLResponse?)->()) {
     
     cancelled = false
