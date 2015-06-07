@@ -19,6 +19,7 @@
                         </button>
                     </items>
                     <connections>
+                        <outlet property="button" destination="2fV-oU-Cmq" id="lhx-zI-kfx"/>
                         <outlet property="image" destination="HbB-ac-5NT" id="xpF-dw-WGL"/>
                     </connections>
                 </controller>

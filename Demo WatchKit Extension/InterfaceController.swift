@@ -17,12 +17,9 @@ class InterfaceController: WKInterfaceController {
   
   let randomImageUrl = RandomImageUrl()
   
-  
   override func awakeWithContext(context: AnyObject?) {
     super.awakeWithContext(context)
-    
-    let another = WKInterfaceImage()
-    another.moa.url = "hello"
+  
     onAnoherOneTapped()
   }
   
