@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Demo OSX.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>Demo WatchKit App.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -22,7 +27,7 @@
 		<key>concatenate_swift_files.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>6</integer>
 		</dict>
 		<key>moa-Mac.xcscheme_^#shared#^_</key>
 		<dict>
@@ -48,6 +53,16 @@
 			<true/>
 		</dict>
 		<key>7E193EF81B1152D40093CD81</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7E79A3C51B24009100104A33</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7E79A3D61B24009100104A33</key>
 		<dict>
 			<key>primary</key>
 			<true/>
