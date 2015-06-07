@@ -9,12 +9,64 @@
 
 // ----------------------------
 //
+// ImageView+moa.swift
+//
+// ----------------------------
+
+import Foundation
+
+private var xoAssociationKey: UInt8 = 0
+
+/**
+
+Image view extension for downloading images.
+
+    let imageView = UIImageView()
+    imageView.moa.url = "http://site.com/image.jpg"
+
+*/
+public extension MoaImageView {
+  /**
+  
+  Image download extension.
+  Assign its `url` property to download and show the image in the image view.
+  
+      // iOS
+      let imageView = UIImageView()
+      imageView.moa.url = "http://site.com/image.jpg"
+  
+      // OS X
+      let imageView = NSImageView()
+      imageView.moa.url = "http://site.com/image.jpg"
+  
+  */
+  public var moa: Moa {
+    get {
+      if let value = objc_getAssociatedObject(self, &xoAssociationKey) as? Moa {
+        return value
+      } else {
+        let moa = Moa(imageView: self)
+        objc_setAssociatedObject(self, &xoAssociationKey, moa, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN))
+        return moa
+      }
+    }
+    
+    set {
+      objc_setAssociatedObject(self, &xoAssociationKey, newValue, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN))
+    }
+  }
+}
+
+
+// ----------------------------
+//
 // Moa.swift
 //
 // ----------------------------
 
 #if os(iOS)
     import UIKit
+    import WatchKit
     public typealias MoaImage = UIImage
     public typealias MoaImageView = UIImageView
 #elseif os(OSX)
@@ -50,6 +102,7 @@ The class can be instantiated and used without an image view:
 public final class Moa {
   private var imageDownloader: MoaImageDownloader?
   private weak var imageView: MoaImageView?
+  private weak var wkInterfaceImage: WKInterfaceImage?
 
   /// Image download settings.
   public static var settings = MoaSettings()
@@ -67,6 +120,10 @@ public final class Moa {
 
   init(imageView: MoaImageView) {
     self.imageView = imageView
+  }
+  
+  init(wkInterfaceImage: WKInterfaceImage) {
+    self.wkInterfaceImage = wkInterfaceImage
   }
 
   /**
@@ -167,6 +224,12 @@ public final class Moa {
     if let imageView = imageView {
       dispatch_async(dispatch_get_main_queue()) {
         imageView.image = imageForView
+      }
+    }
+    
+    if let wkInterfaceImage = wkInterfaceImage {
+      dispatch_async(dispatch_get_main_queue()) {
+        wkInterfaceImage.setImage(imageForView)
       }
     }
   }
@@ -531,50 +594,46 @@ func !=(lhs: MoaSettingsCache, rhs: MoaSettingsCache) -> Bool {
 
 // ----------------------------
 //
-// UIImageView+moa.swift
+// WKInterfaceImage+moa.swift
 //
 // ----------------------------
 
-import Foundation
+import WatchKit
 
-private var xoAssociationKey: UInt8 = 0
+private var xoMoaInterfaceImageAssociationKey: UInt8 = 0
 
 /**
 
-Image view extension for downloading images.
+Interface image extension for downloading images.
 
-    let imageView = UIImageView()
-    imageView.moa.url = "http://site.com/image.jpg"
+let interfaceImage = WKInterfaceImage()
+interfaceImage.moa.url = "http://site.com/image.jpg"
 
 */
-public extension MoaImageView {
+public extension WKInterfaceImage {
+  
   /**
   
   Image download extension.
-  Assign its `url` property to download and show the image in the image view.
+  Assign its `url` property to download and show the image.
   
-      // iOS
-      let imageView = UIImageView()
-      imageView.moa.url = "http://site.com/image.jpg"
-  
-      // OS X
-      let imageView = NSImageView()
-      imageView.moa.url = "http://site.com/image.jpg"
+  let interfaceImage = WKInterfaceImage()
+  interfaceImage.moa.url = "http://site.com/image.jpg"
   
   */
   public var moa: Moa {
     get {
-      if let value = objc_getAssociatedObject(self, &xoAssociationKey) as? Moa {
+      if let value = objc_getAssociatedObject(self, &xoMoaInterfaceImageAssociationKey) as? Moa {
         return value
       } else {
-        let moa = Moa(imageView: self)
-        objc_setAssociatedObject(self, &xoAssociationKey, moa, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN))
+        let moa = Moa(wkInterfaceImage: self)
+        objc_setAssociatedObject(self, &xoMoaInterfaceImageAssociationKey, moa, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN))
         return moa
       }
     }
     
     set {
-      objc_setAssociatedObject(self, &xoAssociationKey, newValue, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN))
+      objc_setAssociatedObject(self, &xoMoaInterfaceImageAssociationKey, newValue, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN))
     }
   }
 }
