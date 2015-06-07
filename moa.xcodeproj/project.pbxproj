@@ -55,6 +55,8 @@
 		7E7D251D1B0E8F3500515EE4 /* XCTestCase+eventually.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7D251C1B0E8F3500515EE4 /* XCTestCase+eventually.swift */; };
 		7E8B43911B23DD180085A9DE /* WKInterfaceImage+moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FA7131B23D203008AA0D6 /* WKInterfaceImage+moa.swift */; };
 		7E8B43961B23E0DC0085A9DE /* WKInterfaceImage+moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FA7131B23D203008AA0D6 /* WKInterfaceImage+moa.swift */; };
+		7E99AA321B240F0700D5FCDE /* RandomImageUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F1B1B1160240093CD81 /* RandomImageUrl.swift */; };
+		7E99AA331B240F2000D5FCDE /* iiRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F1D1B1160A30093CD81 /* iiRandom.swift */; };
 		7EA515791B0FF2AB00FEFB07 /* MoaHttpErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA515781B0FF2AB00FEFB07 /* MoaHttpErrors.swift */; };
 		7EA5157A1B0FF2F600FEFB07 /* MoaHttpErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA515781B0FF2AB00FEFB07 /* MoaHttpErrors.swift */; };
 		7EA5157C1B0FF46700FEFB07 /* MoaHttpImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5157B1B0FF46700FEFB07 /* MoaHttpImageTests.swift */; };
@@ -930,7 +932,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E99AA331B240F2000D5FCDE /* iiRandom.swift in Sources */,
 				7E79A3CD1B24009100104A33 /* ViewController.swift in Sources */,
+				7E99AA321B240F0700D5FCDE /* RandomImageUrl.swift in Sources */,
 				7E79A3CB1B24009100104A33 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

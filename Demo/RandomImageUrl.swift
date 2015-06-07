@@ -1,5 +1,3 @@
-import UIKit
-
 /**
 
 Returns URL to random image. Previously returned image names are kept in memory to avoid

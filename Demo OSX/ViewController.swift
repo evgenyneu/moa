@@ -7,8 +7,12 @@
 //
 
 import Cocoa
+import moa
 
 class ViewController: NSViewController {
+  @IBOutlet weak var imageView: NSImageView!
+  
+  let randomImageUrl = RandomImageUrl()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,6 +26,8 @@ class ViewController: NSViewController {
     }
   }
 
-
+  @IBAction func onLoadButtonTapped(sender: AnyObject) {
+    imageView.moa.url = randomImageUrl.url
+  }
 }
 
