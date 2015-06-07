@@ -1,4 +1,4 @@
-# Moa, an image downloader for iOS/Swift
+# Moa, an image downloader written in Swift for iOS and OS X
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)][carthage]
 [![CocoaPods Version](https://img.shields.io/cocoapods/v/moa.svg?style=flat)][cocoadocs]
@@ -7,13 +7,13 @@
 [cocoadocs]: http://cocoadocs.org/docsets/moa
 [carthage]: https://github.com/Carthage/Carthage
 
-Moa is an image download library for iOS written in Swift.
-It allows to download and show an image in `UIImageView` by setting its `moa.url` property.
+Moa is an image download library written in Swift for iOS and OS X.
+It allows to download and show an image in an image view by setting its `moa.url` property.
 
 * Images are downloaded asynchronously.
 * Uses NSURLSession for networking and caching.
 * Allows to configure cache size and policy.
-* Can be used without UIImageView.
+* Can be used without an image view.
 * Provides closure properties for image manipulation and error handling.
 
 <img src='https://raw.githubusercontent.com/evgenyneu/moa/master/Graphics/Hunting_Moa.jpg' alt='Moa hunting' width='400'>
@@ -43,7 +43,7 @@ If you are using CocoaPods add this text to your Podfile and run `pod install`.
 
 1. Add `import moa` to your source code if you used Carthage or CocoaPods setup methods.
 
-1. Set `moa.url` property of `UIImageView` to start asynchronous image download. The image will be automatically displayed when download is finished.
+1. Set `moa.url` property of an image view to start asynchronous image download. The image will be automatically displayed when download is finished.
 
 ```Swift
 imageView.moa.url = "http://site.com/image.jpg"
@@ -51,7 +51,7 @@ imageView.moa.url = "http://site.com/image.jpg"
 
 ## Canceling download
 
-Ongoing image download for the UIImageView is automatically canceled when:
+Ongoing image download for the image view is automatically canceled when:
 
 1. Image view is deallocated.
 2. New image download is started: `imageView.moa.url = ...`.
@@ -103,7 +103,7 @@ The closure is called *asynchronously* if image download fails. [See Wiki](https
 
 
 
-### Download an image without UIImageView
+### Download an image without an image view
 
 An instance of `Moa` class can also be used without an image view.
 
