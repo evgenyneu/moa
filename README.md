@@ -105,7 +105,7 @@ The closure is called *asynchronously* if image download fails. [See Wiki](https
 
 ### Download an image without an image view
 
-An instance of `Moa` class can also be used without an image view.
+An instance of `Moa` class can also be used without an image view. A strong reference to `Moa` instance needs to be kept.
 
 ```Swift
 let moa = Moa()
@@ -115,8 +115,6 @@ moa.onSuccessAsync = { image in
 }
 moa.url = "http://site.com/image.jpg"
 ```
-
-**Note**: Keep a strong reference to `moa` instance somewhere in your app.
 
 
 ## Caching
