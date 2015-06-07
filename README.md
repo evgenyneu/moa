@@ -110,7 +110,7 @@ An instance of `Moa` class can also be used without an image view.
 ```Swift
 let moa = Moa()
 moa.onSuccessAsync = { image in
-  // Dome something with image
+  // image is loaded
   return image
 }
 moa.url = "http://site.com/image.jpg"
@@ -188,7 +188,7 @@ Here is the list of other image download libraries for Swift.
 
 * Demo app includes other drawings by Joseph Smit. Source: [Wikimedia Commons](http://commons.wikimedia.org/w/index.php?title=Category:Joseph_Smit&fileuntil=FuligulaNationiSmit.jpg#mw-category-media).
 
-* OS X support brought to you by [phimage](https://github.com/phimage).
+* OS X support is brought by [phimage](https://github.com/phimage).
 
 
 ## License
