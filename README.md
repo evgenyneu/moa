@@ -108,11 +108,16 @@ The closure is called *asynchronously* if image download fails. [See Wiki](https
 An instance of `Moa` class can also be used without an image view.
 
 ```Swift
-let moa = Moa()
-moa.onSuccessAsync = { image in
-  return image
+class MyViewController: UIViewController {
+    let moa = Moa()
+
+    func loadImage() {
+        moa.onSuccessAsync = { image in
+            return image
+        }
+        moa.url = "http://site.com/image.jpg"
+    }
 }
-moa.url = "http://site.com/image.jpg"
 ```
 
 
@@ -185,6 +190,9 @@ Here is the list of other image download libraries for Swift.
 * Main image: 'Hunting Moa', Extinct Monsters by Rev. H. N. Hutchinson, illustrations by Joseph Smit (1836-1929) and others. 4th ed., 1896. Plate XXIII between pages 232 and 233. File source: [Wikimedia Commons](http://commons.wikimedia.org/wiki/File:Hunting_Moa.jpg).
 
 * Demo app includes other drawings by Joseph Smit. Source: [Wikimedia Commons](http://commons.wikimedia.org/w/index.php?title=Category:Joseph_Smit&fileuntil=FuligulaNationiSmit.jpg#mw-category-media).
+
+* OS X support brought to you by [phimage](https://github.com/phimage).
+
 
 ## License
 
