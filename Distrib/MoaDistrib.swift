@@ -66,7 +66,6 @@ public extension MoaImageView {
 
 #if os(iOS)
   import UIKit
-  import WatchKit
   public typealias MoaImage = UIImage
   public typealias MoaImageView = UIImageView
 #elseif os(OSX)
@@ -102,10 +101,6 @@ The class can be instantiated and used without an image view:
 public final class Moa {
   private var imageDownloader: MoaImageDownloader?
   private weak var imageView: MoaImageView?
-  
-  #if os(iOS)
-    private weak var wkInterfaceImage: WKInterfaceImage?
-  #endif
 
   /// Image download settings.
   public static var settings = MoaSettings()
@@ -124,12 +119,6 @@ public final class Moa {
   init(imageView: MoaImageView) {
     self.imageView = imageView
   }
-  
-  #if os(iOS)
-    init(wkInterfaceImage: WKInterfaceImage) {
-      self.wkInterfaceImage = wkInterfaceImage
-    }
-  #endif
 
   /**
 
@@ -231,14 +220,6 @@ public final class Moa {
         imageView.image = imageForView
       }
     }
-    
-    #if os(iOS)
-      if let wkInterfaceImage = wkInterfaceImage {
-        dispatch_async(dispatch_get_main_queue()) {
-          wkInterfaceImage.setImage(imageForView)
-        }
-      }
-    #endif
   }
 }
 
@@ -597,56 +578,5 @@ func ==(lhs: MoaSettingsCache, rhs: MoaSettingsCache) -> Bool {
 func !=(lhs: MoaSettingsCache, rhs: MoaSettingsCache) -> Bool {
   return !(lhs == rhs)
 }
-
-
-// ----------------------------
-//
-// WKInterfaceImage+moa.swift
-//
-// ----------------------------
-
-#if os(iOS)
-
-  import WatchKit
-
-  private var xoMoaInterfaceImageAssociationKey: UInt8 = 0
-
-  /**
-
-  Interface image extension for downloading images.
-
-  let interfaceImage = WKInterfaceImage()
-  interfaceImage.moa.url = "http://site.com/image.jpg"
-
-  */
-  public extension WKInterfaceImage {
-    
-    /**
-    
-    Image download extension.
-    Assign its `url` property to download and show the image.
-    
-    let interfaceImage = WKInterfaceImage()
-    interfaceImage.moa.url = "http://site.com/image.jpg"
-    
-    */
-    public var moa: Moa {
-      get {
-        if let value = objc_getAssociatedObject(self, &xoMoaInterfaceImageAssociationKey) as? Moa {
-          return value
-        } else {
-          let moa = Moa(wkInterfaceImage: self)
-          objc_setAssociatedObject(self, &xoMoaInterfaceImageAssociationKey, moa, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN))
-          return moa
-        }
-      }
-      
-      set {
-        objc_setAssociatedObject(self, &xoMoaInterfaceImageAssociationKey, newValue, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN))
-      }
-    }
-  }
-
-#endif
 
 

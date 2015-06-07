@@ -1,6 +1,5 @@
 #if os(iOS)
   import UIKit
-  import WatchKit
   public typealias MoaImage = UIImage
   public typealias MoaImageView = UIImageView
 #elseif os(OSX)
@@ -36,10 +35,6 @@ The class can be instantiated and used without an image view:
 public final class Moa {
   private var imageDownloader: MoaImageDownloader?
   private weak var imageView: MoaImageView?
-  
-  #if os(iOS)
-    private weak var wkInterfaceImage: WKInterfaceImage?
-  #endif
 
   /// Image download settings.
   public static var settings = MoaSettings()
@@ -58,12 +53,6 @@ public final class Moa {
   init(imageView: MoaImageView) {
     self.imageView = imageView
   }
-  
-  #if os(iOS)
-    init(wkInterfaceImage: WKInterfaceImage) {
-      self.wkInterfaceImage = wkInterfaceImage
-    }
-  #endif
 
   /**
 
@@ -165,13 +154,5 @@ public final class Moa {
         imageView.image = imageForView
       }
     }
-    
-    #if os(iOS)
-      if let wkInterfaceImage = wkInterfaceImage {
-        dispatch_async(dispatch_get_main_queue()) {
-          wkInterfaceImage.setImage(imageForView)
-        }
-      }
-    #endif
   }
 }
