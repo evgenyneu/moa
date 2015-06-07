@@ -47,6 +47,7 @@
 		7E7541121B0D3DB700AC0FC7 /* MoaWithImageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E75410F1B0D3DB700AC0FC7 /* MoaWithImageViewTests.swift */; };
 		7E7541141B0D3DF000AC0FC7 /* MoaHttpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7541131B0D3DF000AC0FC7 /* MoaHttpTests.swift */; };
 		7E7D251D1B0E8F3500515EE4 /* XCTestCase+eventually.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7D251C1B0E8F3500515EE4 /* XCTestCase+eventually.swift */; };
+		7E8B43911B23DD180085A9DE /* WKInterfaceImage+moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FA7131B23D203008AA0D6 /* WKInterfaceImage+moa.swift */; };
 		7EA515791B0FF2AB00FEFB07 /* MoaHttpErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA515781B0FF2AB00FEFB07 /* MoaHttpErrors.swift */; };
 		7EA5157A1B0FF2F600FEFB07 /* MoaHttpErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA515781B0FF2AB00FEFB07 /* MoaHttpErrors.swift */; };
 		7EA5157C1B0FF46700FEFB07 /* MoaHttpImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5157B1B0FF46700FEFB07 /* MoaHttpImageTests.swift */; };
@@ -871,6 +872,7 @@
 				7EA515831B1002BE00FEFB07 /* MoaImageDownloaderTests.swift in Sources */,
 				7E7541111B0D3DB700AC0FC7 /* MoaDownloadTests.swift in Sources */,
 				7E7541091B0D3C6200AC0FC7 /* MoaHttpImage.swift in Sources */,
+				7E8B43911B23DD180085A9DE /* WKInterfaceImage+moa.swift in Sources */,
 				7EA8EF991B08481800C951C4 /* MoaString.swift in Sources */,
 				7E3694B31B1B436600AABE3F /* MoaHttpSessionTests.swift in Sources */,
 				7E75410A1B0D3C7700AC0FC7 /* MoaHttp.swift in Sources */,
@@ -1286,6 +1288,7 @@
 				7E0FA70A1B23CDEB008AA0D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7E0FA70C1B23CDEB008AA0D6 /* Build configuration list for PBXNativeTarget "Demo WatchKit Extension" */ = {
 			isa = XCConfigurationList;
@@ -1294,6 +1297,7 @@
 				7E0FA7081B23CDEB008AA0D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7E193F051B1152D40093CD81 /* Build configuration list for PBXNativeTarget "Demo" */ = {
 			isa = XCConfigurationList;
