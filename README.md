@@ -186,6 +186,9 @@ Here is the list of other image download libraries for Swift.
 
 * Demo app includes other drawings by Joseph Smit. Source: [Wikimedia Commons](http://commons.wikimedia.org/w/index.php?title=Category:Joseph_Smit&fileuntil=FuligulaNationiSmit.jpg#mw-category-media).
 
+* OS X support brought to you by [phimage](https://github.com/phimage).
+
+
 ## License
 
 Moa is released under the [MIT License](LICENSE).
