@@ -161,7 +161,7 @@ Moa.settings.cache.diskCapacityBytes = 100 * 1024 * 1024
 
 ### Demo app
 
-The demo app shows how to load images in a collection view with Moa.
+The demo iOS app shows how to load images in a collection view with Moa.
 
 <img src='https://raw.githubusercontent.com/evgenyneu/moa/master/Graphics/demo_app_screenshot.png'
 alt='Moa image downloader demo iOS app' width='250'>
