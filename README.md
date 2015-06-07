@@ -108,14 +108,18 @@ The closure is called *asynchronously* if image download fails. [See Wiki](https
 An instance of `Moa` class can also be used without an image view.
 
 ```Swift
-let moa = Moa()
-moa.onSuccessAsync = { image in
-  return image
+class MyViewController: UIViewController {
+    let moa = Moa()
+
+    func loadImage() {
+        moa.onSuccessAsync = { image in
+            return image
+        }
+        moa.url = "http://site.com/image.jpg"
+    }
 }
-moa.url = "http://site.com/image.jpg"
 ```
 
-**Note**: I would keep a strong reference to the moa instance somewhere, in a view controller, for example. 
 
 
 ## Caching
