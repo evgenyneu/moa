@@ -10,7 +10,6 @@ import WatchKit
 import Foundation
 import moa
 
-
 class InterfaceController: WKInterfaceController {
 
   @IBOutlet weak var image: WKInterfaceImage!
