@@ -11,14 +11,19 @@
 /**
 Downloads an image by url.
 
-Setting `moa.url` property of `UIImageView` instance starts asynchronous image download using NSURLSession class.
+Setting `moa.url` property of an image view instance starts asynchronous image download using NSURLSession class.
 When download is completed the image is automatically shown in the image view.
 
+    // iOS
     let imageView = UIImageView()
     imageView.moa.url = "http://site.com/image.jpg"
 
+    // OS X
+    let imageView = NSImageView()
+    imageView.moa.url = "http://site.com/image.jpg"
 
-The class can be instantiated and used without `UIImageView`:
+
+The class can be instantiated and used without an image view:
 
     let moa = Moa()
     moa.onSuccessAsync = { image in
@@ -31,12 +36,12 @@ public final class Moa {
   private var imageDownloader: MoaImageDownloader?
   private weak var imageView: MoaImageView?
 
-  /// Settings that are applied to all image downloads.
+  /// Image download settings.
   public static var settings = MoaSettings()
 
   /**
 
-  Instantiate Moa when used without UIImageView.
+  Instantiate Moa when used without an image view.
 
       let moa = Moa()
       moa.onSuccessAsync = { image in }
@@ -56,7 +61,7 @@ public final class Moa {
 
       imageView.moa.url = "http://mysite.com/image.jpg"
 
-  Supply `onSuccessAsync` closure to receive an image when used without UIImageView:
+  Supply `onSuccessAsync` closure to receive an image when used without an image view:
 
       moa.onSuccessAsync = { image in
         return image
@@ -77,7 +82,7 @@ public final class Moa {
 
   Cancels image download.
 
-  Ongoing image download for the UIImageView is *automatically* cancelled when:
+  Ongoing image download for the image view is *automatically* cancelled when:
 
   1. Image view is deallocated.
   2. New image download is started: `imageView.moa.url = ...`.
