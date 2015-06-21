@@ -45,7 +45,7 @@ If you are using CocoaPods add this text to your Podfile and run `pod install`.
 
 #### Setup in Xcode 6 / Swift 1.2 project
 
-Moa uses Swift 2.0. See [Swift 1.2 setup instuctions](https://github.com/evgenyneu/moa/wiki/Setup-with-Xcode-6-and-Swift-1.2) for Xcode 6 projects.
+Moa is written in Swift 2.0. See [Swift 1.2 setup instuctions](https://github.com/evgenyneu/moa/wiki/Setup-with-Xcode-6-and-Swift-1.2) for Xcode 6 projects.
 
 ## Usage
 
