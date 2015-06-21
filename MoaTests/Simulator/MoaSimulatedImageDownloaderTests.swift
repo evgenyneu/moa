@@ -3,16 +3,24 @@ import UIKit
 import XCTest
 
 class MoaSimulatedImageDownloaderTests: XCTestCase {
+  
+  override func tearDown() {
+    super.tearDown()
+    
+    MoaSimulator.stop()
+  }
+  
   func testInitForUrl_returnNil_urlIsNotSimulated() {
     let result = MoaSimulatedImageDownloader(url: "http://site.com/moa.jpg")
     XCTAssert(result == nil)
   }
   
   func testInitForUrl_urlIsNotSimulated() {
-    MoaSimulator.simulate("http://site.com/moa.jpg")
+    MoaSimulator.simulate("moa.jpg")
     
     let result = MoaSimulatedImageDownloader(url: "http://site.com/moa.jpg")
-    XCTAssert(result == nil)
+    
+    XCTAssertEqual("http://site.com/moa.jpg", result!.url)
   }
   
   //  func testCreateForUrl() {

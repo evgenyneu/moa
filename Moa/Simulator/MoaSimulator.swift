@@ -5,6 +5,7 @@ Used for simulation of image download. It can be useful in unit tests if you wan
 */
 public struct MoaSimulator {  
   static var simulatedUrlParts = [String]()
+  static var downloaders = [MoaSimulatedImageDownloader]()
   
   public static func simulate(urlPart: String) {
     simulatedUrlParts.append(urlPart)

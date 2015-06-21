@@ -4,12 +4,16 @@ import XCTest
 
 class MoaSimulatorTests: XCTestCase {
   
+  override func tearDown() {
+    super.tearDown()
+    
+    MoaSimulator.stop()
+  }
+  
   func testSimulate() {
     MoaSimulator.simulate("image1.jpg")
     
     XCTAssertEqual(["image1.jpg"], MoaSimulator.simulatedUrlParts)
-    
-    MoaSimulator.stop()
   }
   
   // MARK: - Is simulated
@@ -20,8 +24,6 @@ class MoaSimulatorTests: XCTestCase {
     let result = MoaSimulator.isSimulated("http://site.com/image1.jpg")
     
     XCTAssert(result)
-    
-    MoaSimulator.stop()
   }
   
   func testIsSimulated_noDifferectCase() {
@@ -30,8 +32,6 @@ class MoaSimulatorTests: XCTestCase {
     let result = MoaSimulator.isSimulated("http://site.com/image1.jpg")
     
     XCTAssertFalse(result)
-    
-    MoaSimulator.stop()
   }
   
   func testIsSimulated_noDifferentSctring() {
@@ -40,8 +40,33 @@ class MoaSimulatorTests: XCTestCase {
     let result = MoaSimulator.isSimulated("http://site.com/image1.jpg")
     
     XCTAssertFalse(result)
+  }
+  
+  // MARK: - Stop
+  
+  func testStopSimulation() {
+    MoaSimulator.simulate("image1.jpg")
     
     MoaSimulator.stop()
+    
+    XCTAssert(MoaSimulator.simulatedUrlParts.isEmpty)
+  }
+  
+  // MARK: - Register image downloaders
+  
+  func testRegisterImageDownloader() {
+    MoaSimulator.simulate("image1.jpg")
+    let downloader = MoaSimulatedImageDownloader(url: "http://site.com/image1.jpg")
+    
+    XCTAssertEqual(1, MoaSimulator.downloaders.count)
+    XCTAssert(MoaSimulator.downloaders[0] === downloader)
+  }
+  
+  func testDoNotRegisterImageDownlaoder() {
+    MoaSimulator.simulate("image1.jpg")
+    let downloader = MoaSimulatedImageDownloader(url: "http://site.com/different.jpg")
+    
+    XCTAssertEqual(0, MoaSimulator.downloaders.count)
   }
   
   // MARK: - Stop
