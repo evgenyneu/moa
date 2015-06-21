@@ -162,7 +162,7 @@ Moa.settings.cache.diskCapacityBytes = 100 * 1024 * 1024
 
 ## Unit testing
 
-It is sometimes useful to prevent the code from making real HTTP requests. Moa includes `MoaSimulator` class for testing image downloads. It helps verifying image downloads by faking network responses. See [unit test manual](https://github.com/evgenyneu/moa/wiki/Unit-testing-with-Moa) for more information.
+Sometimes it is useful to prevent the code from making real HTTP requests. Moa includes `MoaSimulator` class for testing image downloads. It helps verifying image downloads by faking network responses. See [unit test manual](https://github.com/evgenyneu/moa/wiki/Unit-testing-with-Moa) for more information.
 
 
 ## Demo app
