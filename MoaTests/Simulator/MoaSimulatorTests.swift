@@ -94,9 +94,9 @@ class MoaSimulatorTests: XCTestCase {
     XCTAssert(MoaSimulator.simulators.isEmpty)
   }
   
-  // MARK: - Stop
+  // MARK: - Register downloaders
   
-  func testDownload() {
+  func testRegisterSimulators() {
     let simulator = MoaSimulator.simulate("site.com")
 
     let moa = Moa()
@@ -108,18 +108,29 @@ class MoaSimulatorTests: XCTestCase {
     XCTAssertEqual("http://site.com/image1.jpg", simulator.downloaders[0].url)
     XCTAssertEqual("http://site.com/image2.jpg", simulator.downloaders[1].url)
   }
-//
-//  func testDownload_respondWithImage() {
-//    let downloader = MoaSimulator.simulate("image1.jpg")
-//    
-//    let moa = Moa()
-//    moa.url = "http://site.com/image1.jpg"
-//    moa.url = "http://site.com/image2.jpg"
-//    
-//    XCTAssertEqual(1, MoaSimulator.downloaders.count)
-//    XCTAssertEqual("http://site.com/image1.jpg", MoaSimulator.downloaders[0].url)
-//    
-//    let image = TestBundle.image("96px.png")
-//    downloader.respond(image)
-//  }
+  
+  // MARK: - Respond with images
+
+  func testDownload_respondWithImage() {
+    let simulator = MoaSimulator.simulate("image1.jpg")
+    let downloader = MoaSimulatedImageDownloader(url: "http://site.com/image1.jpg")
+    simulator.downloaders.append(downloader)
+    
+    var imageResponse: UIImage?
+    var errorResponse: NSError?
+    var httpUrlResponse: NSHTTPURLResponse?
+    
+    downloader.startDownload("http://site.com/image1.jpg",
+      onSuccess: { image in
+        imageResponse = image
+      },
+      onError: { error, response in
+        errorResponse = error
+        httpUrlResponse = response
+      })
+    
+
+    let image = TestBundle.image("96px.png")
+//    simulator.respond(image)
+  }
 }

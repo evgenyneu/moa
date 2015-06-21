@@ -17,6 +17,9 @@ public enum MoaHttpImageErrors: Int {
   
   /// Failed to convert response data to UIImage.
   case FailedToReadImageData = -4
+  
+  /// Simulated error used in unit tests
+  case SimulatedError = -5
 
   internal var new: NSError {
     return NSError(domain: "MoaHttpImageErrorDomain", code: rawValue, userInfo: nil)
