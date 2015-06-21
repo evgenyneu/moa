@@ -10,12 +10,8 @@ final class MoaSimulatedImageDownloader: MoaImageDownloader {
   
   let url: String
 
-  init?(url: String) {
+  init(url: String) {
     self.url = url
-
-    if !MoaSimulator.isSimulated(url) { return nil }
-        
-    MoaSimulator.downloaders.append(self)
   }
   
   func startDownload(url: String, onSuccess: (MoaImage)->(),

@@ -19,23 +19,49 @@ Example
     }
 
 */
-public struct MoaSimulator {  
-  static var simulatedUrlParts = [String]()
-  static var downloaders = [MoaSimulatedImageDownloader]()
+public final class MoaSimulator {
+
+  /// Array of currently registered simulators.
+  static var simulators = [MoaSimulator]()
   
   public static func simulate(urlPart: String) {
-    simulatedUrlParts.append(urlPart)
+    simulators.append(MoaSimulator(urlPart: urlPart))
   }
   
-  static func isSimulated(url: String) -> Bool {
-    return contains(simulatedUrlParts) { urlPart in 
-      MoaString.contains(url, substring: urlPart)
+  static func simulatorsMatchingUrl(url: String) -> [MoaSimulator] {
+    return simulators.filter { simulator in
+      MoaString.contains(url, substring: simulator.urlPart)
     }
   }
   
-  /**
-  */
-  public static func clear() {
-    simulatedUrlParts = []
+  static func createDownloader(url: String) -> MoaSimulatedImageDownloader? {
+    let matchingSimulators = simulatorsMatchingUrl(url)
+    
+    if !matchingSimulators.isEmpty {
+      let downloader = MoaSimulatedImageDownloader(url: url)
+
+      for simulator in matchingSimulators {
+        simulator.downloaders.append(downloader)
+      }
+      
+      return downloader
+    }
+    
+    return nil
   }
+  
+  /// Remove download simulators and use network.
+  public static func clear() {
+    simulators = []
+  }
+  
+  // MARK: - Instance
+  
+  var urlPart: String
+  var downloaders = [MoaSimulatedImageDownloader]()
+  
+  init(urlPart: String) {
+    self.urlPart = urlPart
+  }
+
 }
