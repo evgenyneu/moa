@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = "moa"
-  s.version     = "1.0.48"
+  s.version     = "1.0.49"
   s.license     = { :type => "MIT" }
   s.homepage    = "https://github.com/evgenyneu/moa"
   s.summary     = "An image download extension for image view written in Swift."
@@ -13,6 +13,7 @@ Pod::Spec.new do |s|
                    * Allows to configure cache size and policy.
                    * Can be used without an image view.
                    * Provides closure properties for image manipulation and error handling.
+                   * Includes unit testing mode for faking network responses.
                    DESC
   s.authors     = { "Evgenii Neumerzhitckii" => "sausageskin@gmail.com" }
   s.source      = { :git => "https://github.com/evgenyneu/moa.git", :tag => s.version }

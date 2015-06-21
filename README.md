@@ -15,6 +15,7 @@ It allows to download and show an image in an image view by setting its `moa.url
 * Allows to configure cache size and policy.
 * Can be used without an image view.
 * Provides closure properties for image manipulation and error handling.
+* Includes unit testing mode for faking network responses.
 
 <img src='https://raw.githubusercontent.com/evgenyneu/moa/master/Graphics/Hunting_Moa.jpg' alt='Moa hunting' width='400'>
 
