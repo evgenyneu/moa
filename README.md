@@ -42,6 +42,11 @@ If you are using CocoaPods add this text to your Podfile and run `pod install`.
     use_frameworks!
     pod 'moa', '~> 2.0'
 
+
+#### Setup in Xcode 6 / Swift 1.2 project
+
+Use the [previous version of the library](https://github.com/evgenyneu/moa/wiki/Setup-with-Xcode-6-and-Swift-1.2).
+
 ## Usage
 
 1. Add `import moa` to your source code if you used Carthage or CocoaPods setup methods.
