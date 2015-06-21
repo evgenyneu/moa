@@ -20,6 +20,8 @@ It allows to download and show an image in an image view by setting its `moa.url
 
 > "Lost, like the Moa is lost" - Maori proverb
 
+*'Hunting Moa' drawing by Joseph Smit (1836-1929). File source: [Wikimedia Commons](http://commons.wikimedia.org/wiki/File:Hunting_Moa.jpg).*
+
 ## Setup
 
 There are three ways you can add Moa to your Xcode project.
@@ -158,8 +160,12 @@ Moa.settings.cache.diskCapacityBytes = 100 * 1024 * 1024
 ```
 
 
+## Unit testing
 
-### Demo app
+In unit tests it is sometimes useful to prevent the code from making real HTTP requests and supply fake network responses instead. Moa includes `MoaSimulator` class for testing image downloads. See [unit test manual](https://github.com/evgenyneu/moa/wiki/Unit-testing-with-Moa) for more information.
+
+
+## Demo app
 
 The demo iOS app shows how to load images in a collection view with Moa.
 
@@ -181,8 +187,6 @@ Here is the list of other image download libraries for Swift.
 * [zalando/MapleBacon](https://github.com/zalando/MapleBacon)
 
 ## Credits
-
-* Main image: 'Hunting Moa', Extinct Monsters by Rev. H. N. Hutchinson, illustrations by Joseph Smit (1836-1929) and others. 4th ed., 1896. Plate XXIII between pages 232 and 233. File source: [Wikimedia Commons](http://commons.wikimedia.org/wiki/File:Hunting_Moa.jpg).
 
 * Demo app includes other drawings by Joseph Smit. Source: [Wikimedia Commons](http://commons.wikimedia.org/w/index.php?title=Category:Joseph_Smit&fileuntil=FuligulaNationiSmit.jpg#mw-category-media).
 
