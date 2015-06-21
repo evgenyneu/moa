@@ -130,7 +130,7 @@ public final class Moa {
 
   private func startDownload(url: String) {
     cancel()
-    imageDownloader = MoaImageDownloader()
+    imageDownloader = MoaSimulatedImageDownloader(url: url) ?? MoaHttpImageDownloader()
 
     imageDownloader?.startDownload(url,
       onSuccess: { [weak self] image in

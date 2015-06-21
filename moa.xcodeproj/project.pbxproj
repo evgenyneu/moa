@@ -7,11 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7E0A9BD91B366FAA00086393 /* MoaSimulatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A9BD71B366FA500086393 /* MoaSimulatorTests.swift */; };
 		7E112C121B36715C0017AFF0 /* TestBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C101B3671250017AFF0 /* TestBundle.swift */; };
-		7E112C141B3671B80017AFF0 /* MoaSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C131B3671B80017AFF0 /* MoaSimulator.swift */; };
-		7E112C151B3672E70017AFF0 /* MoaSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C131B3671B80017AFF0 /* MoaSimulator.swift */; };
-		7E112C161B3672E70017AFF0 /* MoaSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C131B3671B80017AFF0 /* MoaSimulator.swift */; };
+		7E112C181B3675E70017AFF0 /* MoaImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C171B3675E70017AFF0 /* MoaImageDownloader.swift */; };
+		7E112C191B3675F20017AFF0 /* MoaImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C171B3675E70017AFF0 /* MoaImageDownloader.swift */; };
+		7E112C1A1B3675F20017AFF0 /* MoaImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C171B3675E70017AFF0 /* MoaImageDownloader.swift */; };
+		7E112C241B367E600017AFF0 /* MoaString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C231B367E600017AFF0 /* MoaString.swift */; };
+		7E112C251B367E780017AFF0 /* MoaString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C231B367E600017AFF0 /* MoaString.swift */; };
+		7E112C261B367E790017AFF0 /* MoaString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C231B367E600017AFF0 /* MoaString.swift */; };
+		7E112C2E1B367EC40017AFF0 /* MoaHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C281B367EC40017AFF0 /* MoaHttp.swift */; };
+		7E112C2F1B367EC40017AFF0 /* MoaHttpErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C291B367EC40017AFF0 /* MoaHttpErrors.swift */; };
+		7E112C301B367EC40017AFF0 /* MoaHttpImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C2A1B367EC40017AFF0 /* MoaHttpImage.swift */; };
+		7E112C311B367EC40017AFF0 /* MoaHttpImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C2B1B367EC40017AFF0 /* MoaHttpImageDownloader.swift */; };
+		7E112C321B367EC40017AFF0 /* MoaHttpImageErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C2C1B367EC40017AFF0 /* MoaHttpImageErrors.swift */; };
+		7E112C331B367EC40017AFF0 /* MoaHttpSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C2D1B367EC40017AFF0 /* MoaHttpSession.swift */; };
+		7E112C341B367EC60017AFF0 /* MoaHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C281B367EC40017AFF0 /* MoaHttp.swift */; };
+		7E112C351B367EC70017AFF0 /* MoaHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C281B367EC40017AFF0 /* MoaHttp.swift */; };
+		7E112C361B367EC90017AFF0 /* MoaHttpErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C291B367EC40017AFF0 /* MoaHttpErrors.swift */; };
+		7E112C371B367ECA0017AFF0 /* MoaHttpErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C291B367EC40017AFF0 /* MoaHttpErrors.swift */; };
+		7E112C381B367ECC0017AFF0 /* MoaHttpImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C2A1B367EC40017AFF0 /* MoaHttpImage.swift */; };
+		7E112C391B367ECD0017AFF0 /* MoaHttpImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C2A1B367EC40017AFF0 /* MoaHttpImage.swift */; };
+		7E112C3A1B367ECF0017AFF0 /* MoaHttpImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C2B1B367EC40017AFF0 /* MoaHttpImageDownloader.swift */; };
+		7E112C3B1B367ED00017AFF0 /* MoaHttpImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C2B1B367EC40017AFF0 /* MoaHttpImageDownloader.swift */; };
+		7E112C3C1B367ED20017AFF0 /* MoaHttpImageErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C2C1B367EC40017AFF0 /* MoaHttpImageErrors.swift */; };
+		7E112C3D1B367ED20017AFF0 /* MoaHttpImageErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C2C1B367EC40017AFF0 /* MoaHttpImageErrors.swift */; };
+		7E112C3E1B367ED40017AFF0 /* MoaHttpSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C2D1B367EC40017AFF0 /* MoaHttpSession.swift */; };
+		7E112C3F1B367ED40017AFF0 /* MoaHttpSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C2D1B367EC40017AFF0 /* MoaHttpSession.swift */; };
+		7E112C431B367EF60017AFF0 /* MoaSimulatedImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C411B367EF60017AFF0 /* MoaSimulatedImageDownloader.swift */; };
+		7E112C441B367EF60017AFF0 /* MoaSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C421B367EF60017AFF0 /* MoaSimulator.swift */; };
+		7E112C451B367EF90017AFF0 /* MoaSimulatedImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C411B367EF60017AFF0 /* MoaSimulatedImageDownloader.swift */; };
+		7E112C461B367EF90017AFF0 /* MoaSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C421B367EF60017AFF0 /* MoaSimulator.swift */; };
+		7E112C471B367EF90017AFF0 /* MoaSimulatedImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C411B367EF60017AFF0 /* MoaSimulatedImageDownloader.swift */; };
+		7E112C481B367EF90017AFF0 /* MoaSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C421B367EF60017AFF0 /* MoaSimulator.swift */; };
+		7E112C521B367F440017AFF0 /* MoaHttpImageDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C4A1B367F410017AFF0 /* MoaHttpImageDownloaderTests.swift */; };
+		7E112C531B367F440017AFF0 /* MoaHttpImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C4B1B367F410017AFF0 /* MoaHttpImageTests.swift */; };
+		7E112C541B367F440017AFF0 /* MoaHttpSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C4C1B367F410017AFF0 /* MoaHttpSessionTests.swift */; };
+		7E112C551B367F440017AFF0 /* MoaHttpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C4D1B367F410017AFF0 /* MoaHttpTests.swift */; };
+		7E112C5B1B367F810017AFF0 /* MoaSimulatedImageDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C571B367F780017AFF0 /* MoaSimulatedImageDownloaderTests.swift */; };
+		7E112C5C1B367F810017AFF0 /* MoaSimulatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C581B367F780017AFF0 /* MoaSimulatorTests.swift */; };
 		7E193EEA1B1152D40093CD81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193EE91B1152D40093CD81 /* AppDelegate.swift */; };
 		7E193EEC1B1152D40093CD81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193EEB1B1152D40093CD81 /* ViewController.swift */; };
 		7E193EEF1B1152D40093CD81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E193EED1B1152D40093CD81 /* Main.storyboard */; };
@@ -25,23 +57,17 @@
 		7E193F1E1B1160A30093CD81 /* iiRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F1D1B1160A30093CD81 /* iiRandom.swift */; };
 		7E2DF8591B24015700CBA715 /* moa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C417C50D1B18929B00ED71BB /* moa.framework */; };
 		7E2DF85A1B24015700CBA715 /* moa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C417C50D1B18929B00ED71BB /* moa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		7E30CDFB1B22766700F6258E /* MoaHttpSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCC1CB1B1B392700BC9569 /* MoaHttpSession.swift */; };
 		7E30CDFC1B22766B00F6258E /* MoaSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCC1C81B1B33AF00BC9569 /* MoaSettings.swift */; };
 		7E30CDFD1B22767100F6258E /* MoaSettingsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCC1D11B1B3F2E00BC9569 /* MoaSettingsCache.swift */; };
 		7E3694B01B1B430300AABE3F /* MoaSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3694AE1B1B430000AABE3F /* MoaSettingsTests.swift */; };
-		7E3694B31B1B436600AABE3F /* MoaHttpSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3694B11B1B433400AABE3F /* MoaHttpSessionTests.swift */; };
 		7E3877761B10558E001ADD7E /* concatenate_swift_files.sh in Resources */ = {isa = PBXBuildFile; fileRef = 7E3877751B10558E001ADD7E /* concatenate_swift_files.sh */; };
 		7E693F341B1B15D4000E7156 /* launch_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E693F331B1B15D4000E7156 /* launch_screen.png */; };
 		7E6FDB581B088E600095C29F /* text.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E6FDB571B088E600095C29F /* text.txt */; };
 		7E7541071B0D3C5100AC0FC7 /* Moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFA71B0858DD00C951C4 /* Moa.swift */; };
-		7E7541081B0D3C5800AC0FC7 /* MoaImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFB11B087D4A00C951C4 /* MoaImageDownloader.swift */; };
-		7E7541091B0D3C6200AC0FC7 /* MoaHttpImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFAF1B087A5200C951C4 /* MoaHttpImage.swift */; };
-		7E75410A1B0D3C7700AC0FC7 /* MoaHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFAD1B08791500C951C4 /* MoaHttp.swift */; };
 		7E75410B1B0D3CA300AC0FC7 /* ImageView+moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EF931B08454B00C951C4 /* ImageView+moa.swift */; };
 		7E7541101B0D3DB700AC0FC7 /* MoaCancelDownloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E75410D1B0D3DB700AC0FC7 /* MoaCancelDownloadTests.swift */; };
 		7E7541111B0D3DB700AC0FC7 /* MoaDownloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E75410E1B0D3DB700AC0FC7 /* MoaDownloadTests.swift */; };
 		7E7541121B0D3DB700AC0FC7 /* MoaWithImageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E75410F1B0D3DB700AC0FC7 /* MoaWithImageViewTests.swift */; };
-		7E7541141B0D3DF000AC0FC7 /* MoaHttpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7541131B0D3DF000AC0FC7 /* MoaHttpTests.swift */; };
 		7E79A3CB1B24009100104A33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E79A3CA1B24009100104A33 /* AppDelegate.swift */; };
 		7E79A3CD1B24009100104A33 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E79A3CC1B24009100104A33 /* ViewController.swift */; };
 		7E79A3CF1B24009100104A33 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E79A3CE1B24009100104A33 /* Images.xcassets */; };
@@ -49,30 +75,18 @@
 		7E7D251D1B0E8F3500515EE4 /* XCTestCase+eventually.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7D251C1B0E8F3500515EE4 /* XCTestCase+eventually.swift */; };
 		7E99AA321B240F0700D5FCDE /* RandomImageUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F1B1B1160240093CD81 /* RandomImageUrl.swift */; };
 		7E99AA331B240F2000D5FCDE /* iiRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F1D1B1160A30093CD81 /* iiRandom.swift */; };
-		7EA515791B0FF2AB00FEFB07 /* MoaHttpErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA515781B0FF2AB00FEFB07 /* MoaHttpErrors.swift */; };
-		7EA5157A1B0FF2F600FEFB07 /* MoaHttpErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA515781B0FF2AB00FEFB07 /* MoaHttpErrors.swift */; };
-		7EA5157C1B0FF46700FEFB07 /* MoaHttpImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5157B1B0FF46700FEFB07 /* MoaHttpImageTests.swift */; };
-		7EA5157E1B0FF6D700FEFB07 /* MoaHttpImageErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5157D1B0FF6D700FEFB07 /* MoaHttpImageErrors.swift */; };
-		7EA5157F1B0FF80800FEFB07 /* MoaHttpImageErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5157D1B0FF6D700FEFB07 /* MoaHttpImageErrors.swift */; };
 		7EA515811B0FFBED00FEFB07 /* MoaTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA515801B0FFBED00FEFB07 /* MoaTest.swift */; };
-		7EA515831B1002BE00FEFB07 /* MoaImageDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA515821B1002BE00FEFB07 /* MoaImageDownloaderTests.swift */; };
 		7EA8EF751B072B4300C951C4 /* Moa.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EA8EF741B072B4300C951C4 /* Moa.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7EA8EF7B1B072B4300C951C4 /* moa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA8EF6F1B072B4300C951C4 /* moa.framework */; };
 		7EA8EF821B072B4300C951C4 /* UIImageView+moaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EF811B072B4300C951C4 /* UIImageView+moaTests.swift */; };
 		7EA8EF901B07415C00C951C4 /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA8EF8E1B07408800C951C4 /* OHHTTPStubs.framework */; };
 		7EA8EF911B07416000C951C4 /* OHHTTPStubs.framework in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8EF8E1B07408800C951C4 /* OHHTTPStubs.framework */; };
 		7EA8EF941B08454B00C951C4 /* ImageView+moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EF931B08454B00C951C4 /* ImageView+moa.swift */; };
-		7EA8EF991B08481800C951C4 /* MoaString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EF981B08481800C951C4 /* MoaString.swift */; };
 		7EA8EF9B1B08484000C951C4 /* StubHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EF9A1B08484000C951C4 /* StubHttp.swift */; };
 		7EA8EFA01B084D7D00C951C4 /* MoaTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EF9F1B084D7D00C951C4 /* MoaTimer.swift */; };
 		7EA8EFA81B0858DD00C951C4 /* Moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFA71B0858DD00C951C4 /* Moa.swift */; };
-		7EA8EFAE1B08791500C951C4 /* MoaHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFAD1B08791500C951C4 /* MoaHttp.swift */; };
-		7EA8EFB01B087A5200C951C4 /* MoaHttpImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFAF1B087A5200C951C4 /* MoaHttpImage.swift */; };
-		7EA8EFB21B087D4A00C951C4 /* MoaImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFB11B087D4A00C951C4 /* MoaImageDownloader.swift */; };
 		7EBCC1C91B1B33AF00BC9569 /* MoaSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCC1C81B1B33AF00BC9569 /* MoaSettings.swift */; };
 		7EBCC1CA1B1B373B00BC9569 /* MoaSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCC1C81B1B33AF00BC9569 /* MoaSettings.swift */; };
-		7EBCC1CC1B1B392700BC9569 /* MoaHttpSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCC1CB1B1B392700BC9569 /* MoaHttpSession.swift */; };
-		7EBCC1CD1B1B3A9E00BC9569 /* MoaHttpSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCC1CB1B1B392700BC9569 /* MoaHttpSession.swift */; };
 		7EBCC1D01B1B3EE200BC9569 /* MoaSettingsCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCC1CE1B1B3EC600BC9569 /* MoaSettingsCacheTests.swift */; };
 		7EBCC1D21B1B3F2E00BC9569 /* MoaSettingsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCC1D11B1B3F2E00BC9569 /* MoaSettingsCache.swift */; };
 		7EBCC1D31B1B3F9D00BC9569 /* MoaSettingsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCC1D11B1B3F2E00BC9569 /* MoaSettingsCache.swift */; };
@@ -83,11 +97,6 @@
 		7EEB25841B116D4D00E606C1 /* moa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA8EF6F1B072B4300C951C4 /* moa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C417C5121B18929B00ED71BB /* moaosx.h in Headers */ = {isa = PBXBuildFile; fileRef = C417C5111B18929B00ED71BB /* moaosx.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C417C5261B1892C600ED71BB /* Moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFA71B0858DD00C951C4 /* Moa.swift */; };
-		C417C5271B1892C600ED71BB /* MoaHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFAD1B08791500C951C4 /* MoaHttp.swift */; };
-		C417C5281B1892C600ED71BB /* MoaHttpErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA515781B0FF2AB00FEFB07 /* MoaHttpErrors.swift */; };
-		C417C5291B1892C600ED71BB /* MoaHttpImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFAF1B087A5200C951C4 /* MoaHttpImage.swift */; };
-		C417C52A1B1892C600ED71BB /* MoaHttpImageErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5157D1B0FF6D700FEFB07 /* MoaHttpImageErrors.swift */; };
-		C417C52B1B1892C600ED71BB /* MoaImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFB11B087D4A00C951C4 /* MoaImageDownloader.swift */; };
 		C417C52C1B18954400ED71BB /* ImageView+moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EF931B08454B00C951C4 /* ImageView+moa.swift */; };
 /* End PBXBuildFile section */
 
@@ -151,9 +160,23 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7E0A9BD71B366FA500086393 /* MoaSimulatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaSimulatorTests.swift; sourceTree = "<group>"; };
 		7E112C101B3671250017AFF0 /* TestBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestBundle.swift; sourceTree = "<group>"; };
-		7E112C131B3671B80017AFF0 /* MoaSimulator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaSimulator.swift; sourceTree = "<group>"; };
+		7E112C171B3675E70017AFF0 /* MoaImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaImageDownloader.swift; sourceTree = "<group>"; };
+		7E112C231B367E600017AFF0 /* MoaString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaString.swift; sourceTree = "<group>"; };
+		7E112C281B367EC40017AFF0 /* MoaHttp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttp.swift; sourceTree = "<group>"; };
+		7E112C291B367EC40017AFF0 /* MoaHttpErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttpErrors.swift; sourceTree = "<group>"; };
+		7E112C2A1B367EC40017AFF0 /* MoaHttpImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttpImage.swift; sourceTree = "<group>"; };
+		7E112C2B1B367EC40017AFF0 /* MoaHttpImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttpImageDownloader.swift; sourceTree = "<group>"; };
+		7E112C2C1B367EC40017AFF0 /* MoaHttpImageErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttpImageErrors.swift; sourceTree = "<group>"; };
+		7E112C2D1B367EC40017AFF0 /* MoaHttpSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttpSession.swift; sourceTree = "<group>"; };
+		7E112C411B367EF60017AFF0 /* MoaSimulatedImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaSimulatedImageDownloader.swift; sourceTree = "<group>"; };
+		7E112C421B367EF60017AFF0 /* MoaSimulator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaSimulator.swift; sourceTree = "<group>"; };
+		7E112C4A1B367F410017AFF0 /* MoaHttpImageDownloaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttpImageDownloaderTests.swift; sourceTree = "<group>"; };
+		7E112C4B1B367F410017AFF0 /* MoaHttpImageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttpImageTests.swift; sourceTree = "<group>"; };
+		7E112C4C1B367F410017AFF0 /* MoaHttpSessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttpSessionTests.swift; sourceTree = "<group>"; };
+		7E112C4D1B367F410017AFF0 /* MoaHttpTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttpTests.swift; sourceTree = "<group>"; };
+		7E112C571B367F780017AFF0 /* MoaSimulatedImageDownloaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaSimulatedImageDownloaderTests.swift; sourceTree = "<group>"; };
+		7E112C581B367F780017AFF0 /* MoaSimulatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaSimulatorTests.swift; sourceTree = "<group>"; };
 		7E193EE51B1152D40093CD81 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E193EE81B1152D40093CD81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E193EE91B1152D40093CD81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -168,7 +191,6 @@
 		7E193F1B1B1160240093CD81 /* RandomImageUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomImageUrl.swift; sourceTree = "<group>"; };
 		7E193F1D1B1160A30093CD81 /* iiRandom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iiRandom.swift; sourceTree = "<group>"; };
 		7E3694AE1B1B430000AABE3F /* MoaSettingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaSettingsTests.swift; sourceTree = "<group>"; };
-		7E3694B11B1B433400AABE3F /* MoaHttpSessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttpSessionTests.swift; sourceTree = "<group>"; };
 		7E3877751B10558E001ADD7E /* concatenate_swift_files.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = concatenate_swift_files.sh; sourceTree = "<group>"; };
 		7E3877771B1055CB001ADD7E /* MoaDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaDistrib.swift; sourceTree = "<group>"; };
 		7E693F331B1B15D4000E7156 /* launch_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launch_screen.png; path = Graphics/launch_screen.png; sourceTree = SOURCE_ROOT; };
@@ -176,7 +198,6 @@
 		7E75410D1B0D3DB700AC0FC7 /* MoaCancelDownloadTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaCancelDownloadTests.swift; sourceTree = "<group>"; };
 		7E75410E1B0D3DB700AC0FC7 /* MoaDownloadTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaDownloadTests.swift; sourceTree = "<group>"; };
 		7E75410F1B0D3DB700AC0FC7 /* MoaWithImageViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaWithImageViewTests.swift; sourceTree = "<group>"; };
-		7E7541131B0D3DF000AC0FC7 /* MoaHttpTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttpTests.swift; sourceTree = "<group>"; };
 		7E79A3C61B24009100104A33 /* Demo OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo OSX.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E79A3C91B24009100104A33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E79A3CA1B24009100104A33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -184,11 +205,7 @@
 		7E79A3CE1B24009100104A33 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7E79A3D11B24009100104A33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7E7D251C1B0E8F3500515EE4 /* XCTestCase+eventually.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+eventually.swift"; sourceTree = "<group>"; };
-		7EA515781B0FF2AB00FEFB07 /* MoaHttpErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttpErrors.swift; sourceTree = "<group>"; };
-		7EA5157B1B0FF46700FEFB07 /* MoaHttpImageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttpImageTests.swift; sourceTree = "<group>"; };
-		7EA5157D1B0FF6D700FEFB07 /* MoaHttpImageErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttpImageErrors.swift; sourceTree = "<group>"; };
 		7EA515801B0FFBED00FEFB07 /* MoaTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaTest.swift; sourceTree = "<group>"; };
-		7EA515821B1002BE00FEFB07 /* MoaImageDownloaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaImageDownloaderTests.swift; sourceTree = "<group>"; };
 		7EA8EF6F1B072B4300C951C4 /* moa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = moa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA8EF731B072B4300C951C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EA8EF741B072B4300C951C4 /* Moa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Moa.h; sourceTree = "<group>"; };
@@ -197,15 +214,10 @@
 		7EA8EF811B072B4300C951C4 /* UIImageView+moaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+moaTests.swift"; sourceTree = "<group>"; };
 		7EA8EF8E1B07408800C951C4 /* OHHTTPStubs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OHHTTPStubs.framework; path = Carthage/Build/iOS/OHHTTPStubs.framework; sourceTree = SOURCE_ROOT; };
 		7EA8EF931B08454B00C951C4 /* ImageView+moa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ImageView+moa.swift"; sourceTree = "<group>"; };
-		7EA8EF981B08481800C951C4 /* MoaString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaString.swift; sourceTree = "<group>"; };
 		7EA8EF9A1B08484000C951C4 /* StubHttp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubHttp.swift; sourceTree = "<group>"; };
 		7EA8EF9F1B084D7D00C951C4 /* MoaTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaTimer.swift; sourceTree = "<group>"; };
 		7EA8EFA71B0858DD00C951C4 /* Moa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Moa.swift; sourceTree = "<group>"; };
-		7EA8EFAD1B08791500C951C4 /* MoaHttp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttp.swift; sourceTree = "<group>"; };
-		7EA8EFAF1B087A5200C951C4 /* MoaHttpImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttpImage.swift; sourceTree = "<group>"; };
-		7EA8EFB11B087D4A00C951C4 /* MoaImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaImageDownloader.swift; sourceTree = "<group>"; };
 		7EBCC1C81B1B33AF00BC9569 /* MoaSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaSettings.swift; sourceTree = "<group>"; };
-		7EBCC1CB1B1B392700BC9569 /* MoaHttpSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaHttpSession.swift; sourceTree = "<group>"; };
 		7EBCC1CE1B1B3EC600BC9569 /* MoaSettingsCacheTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaSettingsCacheTests.swift; sourceTree = "<group>"; };
 		7EBCC1D11B1B3F2E00BC9569 /* MoaSettingsCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaSettingsCache.swift; sourceTree = "<group>"; };
 		7EE1055D1B089D9D005C7030 /* 35px.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 35px.jpg; sourceTree = "<group>"; };
@@ -259,6 +271,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E112C221B367E2E0017AFF0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7E112C231B367E600017AFF0 /* MoaString.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		7E112C271B367E870017AFF0 /* Http */ = {
+			isa = PBXGroup;
+			children = (
+				7E112C281B367EC40017AFF0 /* MoaHttp.swift */,
+				7E112C291B367EC40017AFF0 /* MoaHttpErrors.swift */,
+				7E112C2A1B367EC40017AFF0 /* MoaHttpImage.swift */,
+				7E112C2B1B367EC40017AFF0 /* MoaHttpImageDownloader.swift */,
+				7E112C2C1B367EC40017AFF0 /* MoaHttpImageErrors.swift */,
+				7E112C2D1B367EC40017AFF0 /* MoaHttpSession.swift */,
+			);
+			path = Http;
+			sourceTree = "<group>";
+		};
+		7E112C401B367EE10017AFF0 /* Simulator */ = {
+			isa = PBXGroup;
+			children = (
+				7E112C411B367EF60017AFF0 /* MoaSimulatedImageDownloader.swift */,
+				7E112C421B367EF60017AFF0 /* MoaSimulator.swift */,
+			);
+			path = Simulator;
+			sourceTree = "<group>";
+		};
+		7E112C491B367F260017AFF0 /* Http */ = {
+			isa = PBXGroup;
+			children = (
+				7E112C4A1B367F410017AFF0 /* MoaHttpImageDownloaderTests.swift */,
+				7E112C4B1B367F410017AFF0 /* MoaHttpImageTests.swift */,
+				7E112C4C1B367F410017AFF0 /* MoaHttpSessionTests.swift */,
+				7E112C4D1B367F410017AFF0 /* MoaHttpTests.swift */,
+			);
+			path = Http;
+			sourceTree = "<group>";
+		};
+		7E112C561B367F620017AFF0 /* Simulator */ = {
+			isa = PBXGroup;
+			children = (
+				7E112C571B367F780017AFF0 /* MoaSimulatedImageDownloaderTests.swift */,
+				7E112C581B367F780017AFF0 /* MoaSimulatorTests.swift */,
+			);
+			path = Simulator;
+			sourceTree = "<group>";
+		};
 		7E193EE61B1152D40093CD81 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,16 +451,13 @@
 		7EA8EF711B072B4300C951C4 /* Moa */ = {
 			isa = PBXGroup;
 			children = (
+				7E112C271B367E870017AFF0 /* Http */,
+				7E112C401B367EE10017AFF0 /* Simulator */,
+				7E112C221B367E2E0017AFF0 /* Utils */,
 				7EA8EFA71B0858DD00C951C4 /* Moa.swift */,
-				7EA8EFAD1B08791500C951C4 /* MoaHttp.swift */,
-				7EA515781B0FF2AB00FEFB07 /* MoaHttpErrors.swift */,
-				7EA8EFAF1B087A5200C951C4 /* MoaHttpImage.swift */,
-				7EA5157D1B0FF6D700FEFB07 /* MoaHttpImageErrors.swift */,
-				7EBCC1CB1B1B392700BC9569 /* MoaHttpSession.swift */,
-				7EA8EFB11B087D4A00C951C4 /* MoaImageDownloader.swift */,
+				7E112C171B3675E70017AFF0 /* MoaImageDownloader.swift */,
 				7EBCC1C81B1B33AF00BC9569 /* MoaSettings.swift */,
 				7EBCC1D11B1B3F2E00BC9569 /* MoaSettingsCache.swift */,
-				7E112C131B3671B80017AFF0 /* MoaSimulator.swift */,
 				7EA8EF931B08454B00C951C4 /* ImageView+moa.swift */,
 				7EA8EF741B072B4300C951C4 /* Moa.h */,
 				7EA8EF721B072B4300C951C4 /* Supporting Files */,
@@ -417,17 +476,14 @@
 		7EA8EF7E1B072B4300C951C4 /* MoaTests */ = {
 			isa = PBXGroup;
 			children = (
-				7E75410C1B0D3DA500AC0FC7 /* Moa */,
 				7E6FDB561B088E550095C29F /* Data */,
-				7EA8EF9C1B08490D00C951C4 /* Images */,
+				7E112C491B367F260017AFF0 /* Http */,
 				7EA8EF971B08480700C951C4 /* Helpers */,
-				7E0A9BD71B366FA500086393 /* MoaSimulatorTests.swift */,
+				7EA8EF9C1B08490D00C951C4 /* Images */,
+				7E75410C1B0D3DA500AC0FC7 /* Moa */,
+				7E112C561B367F620017AFF0 /* Simulator */,
 				7EBCC1CE1B1B3EC600BC9569 /* MoaSettingsCacheTests.swift */,
 				7E3694AE1B1B430000AABE3F /* MoaSettingsTests.swift */,
-				7E7541131B0D3DF000AC0FC7 /* MoaHttpTests.swift */,
-				7EA5157B1B0FF46700FEFB07 /* MoaHttpImageTests.swift */,
-				7E3694B11B1B433400AABE3F /* MoaHttpSessionTests.swift */,
-				7EA515821B1002BE00FEFB07 /* MoaImageDownloaderTests.swift */,
 				7EA8EF811B072B4300C951C4 /* UIImageView+moaTests.swift */,
 				7EA8EF7F1B072B4300C951C4 /* Supporting Files */,
 			);
@@ -453,7 +509,6 @@
 		7EA8EF971B08480700C951C4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				7EA8EF981B08481800C951C4 /* MoaString.swift */,
 				7EA515801B0FFBED00FEFB07 /* MoaTest.swift */,
 				7EA8EF9F1B084D7D00C951C4 /* MoaTimer.swift */,
 				7EA8EF9A1B08484000C951C4 /* StubHttp.swift */,
@@ -775,17 +830,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EA515791B0FF2AB00FEFB07 /* MoaHttpErrors.swift in Sources */,
-				7E112C141B3671B80017AFF0 /* MoaSimulator.swift in Sources */,
 				7EA8EF941B08454B00C951C4 /* ImageView+moa.swift in Sources */,
+				7E112C2F1B367EC40017AFF0 /* MoaHttpErrors.swift in Sources */,
+				7E112C441B367EF60017AFF0 /* MoaSimulator.swift in Sources */,
+				7E112C2E1B367EC40017AFF0 /* MoaHttp.swift in Sources */,
+				7E112C301B367EC40017AFF0 /* MoaHttpImage.swift in Sources */,
+				7E112C321B367EC40017AFF0 /* MoaHttpImageErrors.swift in Sources */,
+				7E112C431B367EF60017AFF0 /* MoaSimulatedImageDownloader.swift in Sources */,
+				7E112C331B367EC40017AFF0 /* MoaHttpSession.swift in Sources */,
 				7EBCC1C91B1B33AF00BC9569 /* MoaSettings.swift in Sources */,
-				7EBCC1CC1B1B392700BC9569 /* MoaHttpSession.swift in Sources */,
-				7EA8EFB01B087A5200C951C4 /* MoaHttpImage.swift in Sources */,
+				7E112C311B367EC40017AFF0 /* MoaHttpImageDownloader.swift in Sources */,
+				7E112C181B3675E70017AFF0 /* MoaImageDownloader.swift in Sources */,
 				7EBCC1D21B1B3F2E00BC9569 /* MoaSettingsCache.swift in Sources */,
-				7EA5157E1B0FF6D700FEFB07 /* MoaHttpImageErrors.swift in Sources */,
 				7EA8EFA81B0858DD00C951C4 /* Moa.swift in Sources */,
-				7EA8EFAE1B08791500C951C4 /* MoaHttp.swift in Sources */,
-				7EA8EFB21B087D4A00C951C4 /* MoaImageDownloader.swift in Sources */,
+				7E112C241B367E600017AFF0 /* MoaString.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,34 +851,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E7541141B0D3DF000AC0FC7 /* MoaHttpTests.swift in Sources */,
 				7EA8EFA01B084D7D00C951C4 /* MoaTimer.swift in Sources */,
-				7E112C151B3672E70017AFF0 /* MoaSimulator.swift in Sources */,
 				7E3694B01B1B430300AABE3F /* MoaSettingsTests.swift in Sources */,
+				7E112C521B367F440017AFF0 /* MoaHttpImageDownloaderTests.swift in Sources */,
+				7E112C191B3675F20017AFF0 /* MoaImageDownloader.swift in Sources */,
 				7EBCC1D31B1B3F9D00BC9569 /* MoaSettingsCache.swift in Sources */,
-				7EA5157F1B0FF80800FEFB07 /* MoaHttpImageErrors.swift in Sources */,
+				7E112C251B367E780017AFF0 /* MoaString.swift in Sources */,
+				7E112C3A1B367ECF0017AFF0 /* MoaHttpImageDownloader.swift in Sources */,
+				7E112C551B367F440017AFF0 /* MoaHttpTests.swift in Sources */,
 				7E7541071B0D3C5100AC0FC7 /* Moa.swift in Sources */,
 				7EA8EF821B072B4300C951C4 /* UIImageView+moaTests.swift in Sources */,
 				7E7541101B0D3DB700AC0FC7 /* MoaCancelDownloadTests.swift in Sources */,
-				7EBCC1CD1B1B3A9E00BC9569 /* MoaHttpSession.swift in Sources */,
 				7EBCC1CA1B1B373B00BC9569 /* MoaSettings.swift in Sources */,
-				7EA5157C1B0FF46700FEFB07 /* MoaHttpImageTests.swift in Sources */,
 				7E7541121B0D3DB700AC0FC7 /* MoaWithImageViewTests.swift in Sources */,
-				7E7541081B0D3C5800AC0FC7 /* MoaImageDownloader.swift in Sources */,
+				7E112C451B367EF90017AFF0 /* MoaSimulatedImageDownloader.swift in Sources */,
 				7E75410B1B0D3CA300AC0FC7 /* ImageView+moa.swift in Sources */,
-				7EA515831B1002BE00FEFB07 /* MoaImageDownloaderTests.swift in Sources */,
+				7E112C541B367F440017AFF0 /* MoaHttpSessionTests.swift in Sources */,
+				7E112C361B367EC90017AFF0 /* MoaHttpErrors.swift in Sources */,
+				7E112C531B367F440017AFF0 /* MoaHttpImageTests.swift in Sources */,
 				7E7541111B0D3DB700AC0FC7 /* MoaDownloadTests.swift in Sources */,
-				7E7541091B0D3C6200AC0FC7 /* MoaHttpImage.swift in Sources */,
-				7E0A9BD91B366FAA00086393 /* MoaSimulatorTests.swift in Sources */,
-				7EA8EF991B08481800C951C4 /* MoaString.swift in Sources */,
-				7E3694B31B1B436600AABE3F /* MoaHttpSessionTests.swift in Sources */,
-				7E75410A1B0D3C7700AC0FC7 /* MoaHttp.swift in Sources */,
+				7E112C3E1B367ED40017AFF0 /* MoaHttpSession.swift in Sources */,
 				7E112C121B36715C0017AFF0 /* TestBundle.swift in Sources */,
+				7E112C3C1B367ED20017AFF0 /* MoaHttpImageErrors.swift in Sources */,
+				7E112C381B367ECC0017AFF0 /* MoaHttpImage.swift in Sources */,
+				7E112C5B1B367F810017AFF0 /* MoaSimulatedImageDownloaderTests.swift in Sources */,
+				7E112C5C1B367F810017AFF0 /* MoaSimulatorTests.swift in Sources */,
 				7EBCC1D01B1B3EE200BC9569 /* MoaSettingsCacheTests.swift in Sources */,
-				7EA5157A1B0FF2F600FEFB07 /* MoaHttpErrors.swift in Sources */,
+				7E112C341B367EC60017AFF0 /* MoaHttp.swift in Sources */,
 				7E7D251D1B0E8F3500515EE4 /* XCTestCase+eventually.swift in Sources */,
 				7EA515811B0FFBED00FEFB07 /* MoaTest.swift in Sources */,
 				7EA8EF9B1B08484000C951C4 /* StubHttp.swift in Sources */,
+				7E112C461B367EF90017AFF0 /* MoaSimulator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -828,17 +889,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E30CDFB1B22766700F6258E /* MoaHttpSession.swift in Sources */,
-				7E112C161B3672E70017AFF0 /* MoaSimulator.swift in Sources */,
 				7E30CDFD1B22767100F6258E /* MoaSettingsCache.swift in Sources */,
-				C417C52B1B1892C600ED71BB /* MoaImageDownloader.swift in Sources */,
+				7E112C371B367ECA0017AFF0 /* MoaHttpErrors.swift in Sources */,
+				7E112C481B367EF90017AFF0 /* MoaSimulator.swift in Sources */,
+				7E112C351B367EC70017AFF0 /* MoaHttp.swift in Sources */,
+				7E112C391B367ECD0017AFF0 /* MoaHttpImage.swift in Sources */,
+				7E112C3D1B367ED20017AFF0 /* MoaHttpImageErrors.swift in Sources */,
+				7E112C471B367EF90017AFF0 /* MoaSimulatedImageDownloader.swift in Sources */,
+				7E112C3F1B367ED40017AFF0 /* MoaHttpSession.swift in Sources */,
 				C417C52C1B18954400ED71BB /* ImageView+moa.swift in Sources */,
+				7E112C3B1B367ED00017AFF0 /* MoaHttpImageDownloader.swift in Sources */,
 				7E30CDFC1B22766B00F6258E /* MoaSettings.swift in Sources */,
-				C417C5281B1892C600ED71BB /* MoaHttpErrors.swift in Sources */,
-				C417C5291B1892C600ED71BB /* MoaHttpImage.swift in Sources */,
-				C417C52A1B1892C600ED71BB /* MoaHttpImageErrors.swift in Sources */,
+				7E112C1A1B3675F20017AFF0 /* MoaImageDownloader.swift in Sources */,
 				C417C5261B1892C600ED71BB /* Moa.swift in Sources */,
-				C417C5271B1892C600ED71BB /* MoaHttp.swift in Sources */,
+				7E112C261B367E790017AFF0 /* MoaString.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

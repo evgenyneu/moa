@@ -11,7 +11,7 @@ class MoaImageDownloaderTests: XCTestCase {
     var errorFromCallback: NSError?
     var httpUrlResponseFromCallback: NSHTTPURLResponse?
     
-    let downloader = MoaImageDownloader()
+    let downloader = MoaHttpImageDownloader()
     downloader.startDownload("http://evgenii.com/moa/35px.jpg",
       onSuccess: { image in
         imageFromCallback = image
@@ -37,7 +37,7 @@ class MoaImageDownloaderTests: XCTestCase {
     var errorFromCallback: NSError?
     var httpUrlResponseFromCallback: NSHTTPURLResponse?
     
-    let downloader = MoaImageDownloader()
+    let downloader = MoaHttpImageDownloader()
     downloader.startDownload("http://evgenii.com/moa/35px.jpg",
       onSuccess: { image in
         imageFromCallback = image
@@ -65,7 +65,7 @@ class MoaImageDownloaderTests: XCTestCase {
     var errorFromCallback: NSError?
     var httpUrlResponseFromCallback: NSHTTPURLResponse?
     
-    let downloader = MoaImageDownloader()
+    let downloader = MoaHttpImageDownloader()
     downloader.startDownload("http://evgenii.com/moa/35px.jpg",
       onSuccess: { image in
         imageFromCallback = image
@@ -96,7 +96,7 @@ class MoaImageDownloaderTests: XCTestCase {
     var task: NSURLSessionDataTask?
   
     let closure:()->() = {
-      let downloader = MoaImageDownloader()
+      let downloader = MoaHttpImageDownloader()
       downloader.startDownload("http://evgenii.com/moa/35px.jpg",
         onSuccess: { image in
           imageFromCallback = image
@@ -125,7 +125,7 @@ class MoaImageDownloaderTests: XCTestCase {
     
     var imageFromCallback: UIImage?
     
-    let downloader = MoaImageDownloader()
+    let downloader = MoaHttpImageDownloader()
     downloader.cancelled = true
     
     downloader.startDownload("http://evgenii.com/moa/35px.jpg",
