@@ -9,6 +9,290 @@
 
 // ----------------------------
 //
+// MoaHttp.swift
+//
+// ----------------------------
+
+import Foundation
+
+/**
+
+Shortcut function for creating NSURLSessionDataTask.
+
+*/
+struct MoaHttp {
+  static func createDataTask(url: String,
+    onSuccess: (NSData, NSHTTPURLResponse)->(),
+    onError: (NSError, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
+      
+    if let nsUrl = NSURL(string: url) {
+      return createDataTask(nsUrl, onSuccess: onSuccess, onError: onError)
+    }
+    
+    // Error converting string to NSURL
+    onError(MoaHttpErrors.InvalidUrlString.new, nil)
+    return nil
+  }
+  
+  private static func createDataTask(nsUrl: NSURL,
+    onSuccess: (NSData, NSHTTPURLResponse)->(),
+    onError: (NSError, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
+      
+    return MoaHttpSession.session?.dataTaskWithURL(nsUrl) { (data, response, error) in
+      if let httpResponse = response as? NSHTTPURLResponse {
+        if error == nil {
+          onSuccess(data, httpResponse)
+        } else {
+          onError(error, httpResponse)
+        }
+      } else {
+        onError(error, nil)
+      }
+    }
+  }
+}
+
+
+// ----------------------------
+//
+// MoaHttpErrors.swift
+//
+// ----------------------------
+
+import Foundation
+
+/**
+
+Http error types.
+
+*/
+public enum MoaHttpErrors: Int {
+  /// Incorrect URL is supplied.
+  case InvalidUrlString = -1
+  
+  internal var new: NSError {
+    return NSError(domain: "MoaHttpErrorDomain", code: rawValue, userInfo: nil)
+  }
+}
+
+
+// ----------------------------
+//
+// MoaHttpImage.swift
+//
+// ----------------------------
+
+
+import Foundation
+
+/**
+
+Helper functions for downloading an image and processing the response.
+
+*/
+struct MoaHttpImage {
+  static func createDataTask(url: String,
+    onSuccess: (MoaImage)->(),
+    onError: (NSError, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
+    
+    return MoaHttp.createDataTask(url,
+      onSuccess: { data, response in
+        self.handleSuccess(data, response: response, onSuccess: onSuccess, onError: onError)
+      },
+      onError: onError
+    )
+  }
+  
+  static func handleSuccess(data: NSData,
+    response: NSHTTPURLResponse,
+    onSuccess: (MoaImage)->(),
+    onError: (NSError, NSHTTPURLResponse?)->()) {
+      
+    // Show error if response code is not 200
+    if response.statusCode != 200 {
+      onError(MoaHttpImageErrors.HttpStatusCodeIsNot200.new, response)
+      return
+    }
+    
+    // Ensure response has the valid MIME type
+    if let mimeType = response.MIMEType {
+      if !validMimeType(mimeType) {
+        // Not an image Content-Type http header
+        let error = MoaHttpImageErrors.NotAnImageContentTypeInResponseHttpHeader.new
+        onError(error, response)
+        return
+      }
+    } else {
+      // Missing Content-Type http header
+      let error = MoaHttpImageErrors.MissingResponseContentTypeHttpHeader.new
+      onError(error, response)
+      return
+    }
+      
+    if let image = MoaImage(data: data) {
+      onSuccess(image)
+    } else {
+      // Failed to convert response data to UIImage
+      let error = MoaHttpImageErrors.FailedToReadImageData.new
+      onError(error, response)
+    }
+  }
+  
+  private static func validMimeType(mimeType: String) -> Bool {
+    let validMimeTypes = ["image/jpeg", "image/pjpeg", "image/png"]
+    return contains(validMimeTypes, mimeType)
+  }
+}
+
+
+// ----------------------------
+//
+// MoaHttpImageDownloader.swift
+//
+// ----------------------------
+
+import Foundation
+
+final class MoaHttpImageDownloader: MoaImageDownloader {
+  var task: NSURLSessionDataTask?
+  var cancelled = false
+  
+  deinit {
+    cancel()
+  }
+  
+  func startDownload(url: String, onSuccess: (MoaImage)->(),
+    onError: (NSError, NSHTTPURLResponse?)->()) {
+    
+    cancelled = false
+  
+    task = MoaHttpImage.createDataTask(url,
+      onSuccess: onSuccess,
+      onError: { [weak self] error, response in
+        if let currentSelf = self
+          where !currentSelf.cancelled { // Do not report error if task was manually cancelled
+    
+          onError(error, response)
+        }
+      }
+    )
+      
+    task?.resume()
+  }
+  
+  func cancel() {
+    task?.cancel()
+    cancelled = true
+  }
+}
+
+
+// ----------------------------
+//
+// MoaHttpImageErrors.swift
+//
+// ----------------------------
+
+import Foundation
+
+/**
+
+Image download error types.
+
+*/
+public enum MoaHttpImageErrors: Int {
+  /// Response HTTP status code is not 200.
+  case HttpStatusCodeIsNot200 = -1
+  
+  /// Response is missing Content-Type http header.
+  case MissingResponseContentTypeHttpHeader = -2
+  
+  /// Response Content-Type http header is not an image type.
+  case NotAnImageContentTypeInResponseHttpHeader = -3
+  
+  /// Failed to convert response data to UIImage.
+  case FailedToReadImageData = -4
+  
+  /// Simulated error used in unit tests
+  case SimulatedError = -5
+
+  internal var new: NSError {
+    return NSError(domain: "MoaHttpImageErrorDomain", code: rawValue, userInfo: nil)
+  }
+}
+
+
+// ----------------------------
+//
+// MoaHttpSession.swift
+//
+// ----------------------------
+
+import Foundation
+
+struct MoaHttpSession {
+  private static var currentSession: NSURLSession?
+  
+  static var session: NSURLSession? {
+    get {
+      if currentSession == nil {
+        currentSession = createNewSession()
+      }
+    
+      return currentSession
+    }
+    
+    set {
+      currentSession = newValue
+    }
+  }
+  
+  private static func createNewSession() -> NSURLSession {
+    let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+    
+    configuration.requestCachePolicy = Moa.settings.cache.requestCachePolicy
+    
+    #if os(iOS)
+      // Cache path is a directory name in iOS
+      let cachePath = Moa.settings.cache.diskPath
+    #elseif os(OSX)
+      // Cache path is a disk path in OSX
+      let cachePath = osxCachePath(Moa.settings.cache.diskPath)
+    #endif
+    
+    let cache = NSURLCache(
+      memoryCapacity: Moa.settings.cache.memoryCapacityBytes,
+      diskCapacity: Moa.settings.cache.diskCapacityBytes,
+      diskPath: cachePath)
+    
+    configuration.URLCache = cache
+    
+    return NSURLSession(configuration: configuration)
+  }
+  
+  // Returns the cache path for OSX.
+  private static func osxCachePath(dirName: String) -> String {
+    var basePath = NSTemporaryDirectory()
+    if let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.ApplicationSupportDirectory,
+      NSSearchPathDomainMask.UserDomainMask, true) as? [String]
+      where paths.count > 0 {
+        
+      basePath = paths[0]
+    }
+    
+    return basePath.stringByAppendingPathComponent(dirName)
+  }
+  
+  static func cacheSettingsChanged(oldSettings: MoaSettingsCache) {
+    if oldSettings != Moa.settings.cache {
+      session = nil
+    }
+  }
+}
+
+
+// ----------------------------
+//
 // ImageView+moa.swift
 //
 // ----------------------------
@@ -196,11 +480,14 @@ public final class Moa {
 
   private func startDownload(url: String) {
     cancel()
-    imageDownloader = MoaImageDownloader()
+    
+    let simulatedDownloader = MoaSimulator.createDownloader(url)
+    imageDownloader = simulatedDownloader ?? MoaHttpImageDownloader()
 
     imageDownloader?.startDownload(url,
       onSuccess: { [weak self] image in
-        self?.onHandleSuccess(image)
+        let simulated = simulatedDownloader != nil
+        self?.onHandleSuccess(image, isSimulated: simulated)
       },
       onError: { [weak self] error, response in
         self?.onErrorAsync?(error, response)
@@ -208,7 +495,7 @@ public final class Moa {
     )
   }
 
-  private func onHandleSuccess(image: MoaImage) {
+  private func onHandleSuccess(image: MoaImage, isSimulated: Bool) {
     var imageForView: MoaImage? = image
 
     if let onSuccessAsync = onSuccessAsync {
@@ -216,248 +503,16 @@ public final class Moa {
     }
 
     if let imageView = imageView {
-      dispatch_async(dispatch_get_main_queue()) {
+      
+      if isSimulated {
+        // Assign image in the same queu for simulated download to make unit testing simpler with synchronous code
         imageView.image = imageForView
-      }
-    }
-  }
-}
-
-
-// ----------------------------
-//
-// MoaHttp.swift
-//
-// ----------------------------
-
-import Foundation
-
-/**
-
-Shortcut function for creating NSURLSessionDataTask.
-
-*/
-struct MoaHttp {
-  static func createDataTask(url: String,
-    onSuccess: (NSData, NSHTTPURLResponse)->(),
-    onError: (NSError, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
-      
-    if let nsUrl = NSURL(string: url) {
-      return createDataTask(nsUrl, onSuccess: onSuccess, onError: onError)
-    }
-    
-    // Error converting string to NSURL
-    onError(MoaHttpErrors.InvalidUrlString.new, nil)
-    return nil
-  }
-  
-  private static func createDataTask(nsUrl: NSURL,
-    onSuccess: (NSData, NSHTTPURLResponse)->(),
-    onError: (NSError, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
-      
-    return MoaHttpSession.session?.dataTaskWithURL(nsUrl) { (data, response, error) in
-      if let httpResponse = response as? NSHTTPURLResponse {
-        if error == nil {
-          onSuccess(data, httpResponse)
-        } else {
-          onError(error, httpResponse)
-        }
       } else {
-        onError(error, nil)
+        dispatch_async(dispatch_get_main_queue()) {
+          imageView.image = imageForView
+        }
       }
-    }
-  }
-}
-
-
-// ----------------------------
-//
-// MoaHttpErrors.swift
-//
-// ----------------------------
-
-import Foundation
-
-/**
-
-Http error types.
-
-*/
-public enum MoaHttpErrors: Int {
-  /// Incorrect URL is supplied.
-  case InvalidUrlString = -1
-  
-  internal var new: NSError {
-    return NSError(domain: "MoaHttpErrorDomain", code: rawValue, userInfo: nil)
-  }
-}
-
-
-// ----------------------------
-//
-// MoaHttpImage.swift
-//
-// ----------------------------
-
-
-import Foundation
-
-/**
-
-Helper functions for downloading an image and processing the response.
-
-*/
-struct MoaHttpImage {
-  static func createDataTask(url: String,
-    onSuccess: (MoaImage)->(),
-    onError: (NSError, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
-    
-    return MoaHttp.createDataTask(url,
-      onSuccess: { data, response in
-        self.handleSuccess(data, response: response, onSuccess: onSuccess, onError: onError)
-      },
-      onError: onError
-    )
-  }
-  
-  static func handleSuccess(data: NSData,
-    response: NSHTTPURLResponse,
-    onSuccess: (MoaImage)->(),
-    onError: (NSError, NSHTTPURLResponse?)->()) {
       
-    // Show error if response code is not 200
-    if response.statusCode != 200 {
-      onError(MoaHttpImageErrors.HttpStatusCodeIsNot200.new, response)
-      return
-    }
-    
-    // Ensure response has the valid MIME type
-    if let mimeType = response.MIMEType {
-      if !validMimeType(mimeType) {
-        // Not an image Content-Type http header
-        let error = MoaHttpImageErrors.NotAnImageContentTypeInResponseHttpHeader.new
-        onError(error, response)
-        return
-      }
-    } else {
-      // Missing Content-Type http header
-      let error = MoaHttpImageErrors.MissingResponseContentTypeHttpHeader.new
-      onError(error, response)
-      return
-    }
-      
-    if let image = MoaImage(data: data) {
-      onSuccess(image)
-    } else {
-      // Failed to convert response data to UIImage
-      let error = MoaHttpImageErrors.FailedToReadImageData.new
-      onError(error, response)
-    }
-  }
-  
-  private static func validMimeType(mimeType: String) -> Bool {
-    let validMimeTypes = ["image/jpeg", "image/pjpeg", "image/png"]
-    return contains(validMimeTypes, mimeType)
-  }
-}
-
-
-// ----------------------------
-//
-// MoaHttpImageErrors.swift
-//
-// ----------------------------
-
-import Foundation
-
-/**
-
-Image download error types.
-
-*/
-public enum MoaHttpImageErrors: Int {
-  /// Response HTTP status code is not 200.
-  case HttpStatusCodeIsNot200 = -1
-  
-  /// Response is missing Content-Type http header.
-  case MissingResponseContentTypeHttpHeader = -2
-  
-  /// Response Content-Type http header is not an image type.
-  case NotAnImageContentTypeInResponseHttpHeader = -3
-  
-  /// Failed to convert response data to UIImage.
-  case FailedToReadImageData = -4
-
-  internal var new: NSError {
-    return NSError(domain: "MoaHttpImageErrorDomain", code: rawValue, userInfo: nil)
-  }
-}
-
-
-// ----------------------------
-//
-// MoaHttpSession.swift
-//
-// ----------------------------
-
-import Foundation
-
-struct MoaHttpSession {
-  private static var currentSession: NSURLSession?
-  
-  static var session: NSURLSession? {
-    get {
-      if currentSession == nil {
-        currentSession = createNewSession()
-      }
-    
-      return currentSession
-    }
-    
-    set {
-      currentSession = newValue
-    }
-  }
-  
-  private static func createNewSession() -> NSURLSession {
-    let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-    
-    configuration.requestCachePolicy = Moa.settings.cache.requestCachePolicy
-    
-    #if os(iOS)
-      // Cache path is a directory name in iOS
-      let cachePath = Moa.settings.cache.diskPath
-    #elseif os(OSX)
-      // Cache path is a disk path in OSX
-      let cachePath = osxCachePath(Moa.settings.cache.diskPath)
-    #endif
-    
-    let cache = NSURLCache(
-      memoryCapacity: Moa.settings.cache.memoryCapacityBytes,
-      diskCapacity: Moa.settings.cache.diskCapacityBytes,
-      diskPath: cachePath)
-    
-    configuration.URLCache = cache
-    
-    return NSURLSession(configuration: configuration)
-  }
-  
-  // Returns the cache path for OSX.
-  private static func osxCachePath(dirName: String) -> String {
-    var basePath = NSTemporaryDirectory()
-    if let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.ApplicationSupportDirectory,
-      NSSearchPathDomainMask.UserDomainMask, true) as? [String]
-      where paths.count > 0 {
-        
-      basePath = paths[0]
-    }
-    
-    return basePath.stringByAppendingPathComponent(dirName)
-  }
-  
-  static func cacheSettingsChanged(oldSettings: MoaSettingsCache) {
-    if oldSettings != Moa.settings.cache {
-      session = nil
     }
   }
 }
@@ -470,38 +525,13 @@ struct MoaHttpSession {
 // ----------------------------
 
 import Foundation
-    
-final class MoaImageDownloader {
-  var task: NSURLSessionDataTask?
-  var cancelled = false
-  
-  deinit {
-    cancel()
-  }
-  
+
+/// Downloads an image.
+protocol MoaImageDownloader {
   func startDownload(url: String, onSuccess: (MoaImage)->(),
-    onError: (NSError, NSHTTPURLResponse?)->()) {
-    
-    cancelled = false
+    onError: (NSError, NSHTTPURLResponse?)->())
   
-    task = MoaHttpImage.createDataTask(url,
-      onSuccess: onSuccess,
-      onError: { [weak self] error, response in
-        if let currentSelf = self
-          where !currentSelf.cancelled { // Do not report error if task was manually cancelled
-    
-          onError(error, response)
-        }
-      }
-    )
-      
-    task?.resume()
-  }
-  
-  func cancel() {
-    task?.cancel()
-    cancelled = true
-  }
+  func cancel()
 }
 
 
@@ -577,6 +607,291 @@ func ==(lhs: MoaSettingsCache, rhs: MoaSettingsCache) -> Bool {
 
 func !=(lhs: MoaSettingsCache, rhs: MoaSettingsCache) -> Bool {
   return !(lhs == rhs)
+}
+
+
+// ----------------------------
+//
+// MoaSimulatedImageDownloader.swift
+//
+// ----------------------------
+
+import Foundation
+
+/**
+
+Simulates download of images in unit test. This downloader is used instead of the HTTP downloaded when the moa simulator is started: MoaSimulator.start().
+
+*/
+public final class MoaSimulatedImageDownloader: MoaImageDownloader {
+  
+  /// Url of the downloader.
+  public let url: String
+  
+  /// Indicates if the request was cancelled.
+  public var cancelled = false
+  
+  var autorespondWithImage: MoaImage?
+  
+  var autorespondWithError: (error: NSError?, response: NSHTTPURLResponse?)?
+  
+  var onSuccess: ((MoaImage)->())?
+  var onError: ((NSError, NSHTTPURLResponse?)->())?
+
+  init(url: String) {
+    self.url = url
+  }
+  
+  func startDownload(url: String, onSuccess: (MoaImage)->(),
+    onError: (NSError, NSHTTPURLResponse?)->()) {
+      
+    self.onSuccess = onSuccess
+    self.onError = onError
+      
+    if let autorespondWithImage = autorespondWithImage {
+      respondWithImage(autorespondWithImage)
+    }
+      
+    if let autorespondWithError = autorespondWithError {
+      respondWithError(error: autorespondWithError.error, response: autorespondWithError.response)
+    }
+  }
+  
+  func cancel() {
+    cancelled = true
+  }
+  
+  /**
+  
+  Simulate a successful server response with the supplied image.
+  
+  :param: image: Image that is be passed to success handler of all ongoing requests.
+  
+  */
+  public func respondWithImage(image: MoaImage) {
+    onSuccess?(image)
+  }
+  
+  /**
+  
+  Simulate an error response from server.
+  
+  :param: error: Optional error that is passed to the error handler ongoing request.
+  
+  :param: response: Optional response that is passed to the error handler ongoing request.
+  
+  */
+  public func respondWithError(error: NSError? = nil, response: NSHTTPURLResponse? = nil) {
+    onError?(error ?? MoaHttpImageErrors.SimulatedError.new, response)
+  }
+}
+
+
+// ----------------------------
+//
+// MoaSimulator.swift
+//
+// ----------------------------
+
+import Foundation
+
+/**
+
+Simulates image download in unit tests instead of sending real network requests.
+
+Example:
+
+    override func tearDown() {
+      super.tearDown()
+
+      MoaSimulator.clear()
+    }
+
+    func testDownload() {
+      // Create simulator to catch downloads of the given image
+      let simulator = MoaSimulator.simulate("35px.jpg")
+
+      // Download the image
+      let imageView = UIImageView()
+      imageView.moa.url = "http://site.com/35px.jpg"
+
+      // Check the image download has been requested
+      XCTAssertEqual(1, simulator.downloaders.count)
+      XCTAssertEqual("http://site.com/35px.jpg", simulator.downloaders[0].url)
+
+      // Simulate server response with the given image
+      let bundle = NSBundle(forClass: self.dynamicType)
+      let image =  UIImage(named: "35px.jpg", inBundle: bundle, compatibleWithTraitCollection: nil)!
+      simulator.respondWithImage(image)
+
+      // Check the image has arrived
+      XCTAssertEqual(35, imageView.image!.size.width)
+    }
+
+*/
+public final class MoaSimulator {
+
+  /// Array of currently registered simulators.
+  static var simulators = [MoaSimulator]()
+  
+  /**
+  
+  Returns a simulator that will be used to catch image requests that have matching URLs. This method is usually called at the beginning of the unit test.
+  
+  :param: urlPart: Image download request that include the supplied urlPart will be simulated. All other requests will continue to real network.
+  
+  :returns: Simulator object. It is usually used in unit test to verify which request have been sent and simulating server response by calling its respondWithImage and respondWithError methods.
+  
+  */
+  public static func simulate(urlPart: String) -> MoaSimulator {
+    let simulator = MoaSimulator(urlPart: urlPart)
+    simulators.append(simulator)
+    return simulator
+  }
+  
+  /**
+  
+  Respond to all future download requests that have matching URLs. Call `clear` method to stop auto responding.
+  
+  :param: urlPart: Image download request that include the supplied urlPart will automatically and immediately succeed with the supplied image. All other requests will continue to real network.
+  
+  :param: image: Image that is be passed to success handler of future requests.
+  
+  :returns: Simulator object. It is usually used in unit test to verify which request have been sent.  One does not need to call its `respondWithImage` method because it will be called automatically for all matching requests.
+  
+  */
+  public static func autorespondWithImage(urlPart: String, image: MoaImage) -> MoaSimulator {
+    let simulator = simulate(urlPart)
+    simulator.autorespondWithImage = image
+    return simulator
+  }
+  
+  /**
+  
+  Fail all future download requests that have matching URLs. Call `clear` method to stop auto responding.
+  
+  :param: urlPart: Image download request that include the supplied urlPart will automatically and immediately fail. All other requests will continue to real network.
+  
+  :param: error: Optional error that is passed to the error handler of failed requests.
+  
+  :param: response: Optional response that is passed to the error handler of failed requests.
+  
+  :returns: Simulator object. It is usually used in unit test to verify which request have been sent.  One does not need to call its `respondWithError` method because it will be called automatically for all matching requests.
+  
+  */
+  public static func autorespondWithError(urlPart: String, error: NSError? = nil,
+    response: NSHTTPURLResponse? = nil) -> MoaSimulator {
+      
+    let simulator = simulate(urlPart)
+    simulator.autorespondWithError = (error, response)
+    return simulator
+  }
+  
+  /// Stop using simulators and use real network instead.
+  public static func clear() {
+    simulators = []
+  }
+  
+  static func simulatorsMatchingUrl(url: String) -> [MoaSimulator] {
+    return simulators.filter { simulator in
+      MoaString.contains(url, substring: simulator.urlPart)
+    }
+  }
+  
+  static func createDownloader(url: String) -> MoaSimulatedImageDownloader? {
+    let matchingSimulators = simulatorsMatchingUrl(url)
+    
+    if !matchingSimulators.isEmpty {
+      let downloader = MoaSimulatedImageDownloader(url: url)
+
+      for simulator in matchingSimulators {
+        simulator.downloaders.append(downloader)
+        
+        if let autorespondWithImage = simulator.autorespondWithImage {
+          downloader.autorespondWithImage = autorespondWithImage
+        }
+        
+        if let autorespondWithError = simulator.autorespondWithError {
+          downloader.autorespondWithError = autorespondWithError
+        }
+      }
+      
+      return downloader
+    }
+    
+    return nil
+  }
+  
+  // MARK: - Instance
+  
+  var urlPart: String
+  
+  /// The image that will be used to respond to all future download requests
+  var autorespondWithImage: MoaImage?
+  
+  var autorespondWithError: (error: NSError?, response: NSHTTPURLResponse?)?
+  
+  /// Array of registered image downloaders.
+  public var downloaders = [MoaSimulatedImageDownloader]()
+  
+  init(urlPart: String) {
+    self.urlPart = urlPart
+  }
+  
+  /**
+  
+  Simulate a successful server response with the supplied image.
+  
+  :param: image: Image that is be passed to success handler of all ongoing requests.
+  
+  */
+  public func respondWithImage(image: MoaImage) {
+    for downloader in downloaders {
+      downloader.respondWithImage(image)
+    }
+  }
+  
+  /**
+  
+  Simulate an error response from server.
+  
+  :param: error: Optional error that is passed to the error handler of all ongoing requests.
+  
+  :param: response: Optional response that is passed to the error handler of all ongoing requests.
+  
+  */
+  public func respondWithError(error: NSError? = nil, response: NSHTTPURLResponse? = nil) {
+    for downloader in downloaders {
+      downloader.respondWithError(error: error, response: response)
+    }
+  }
+}
+
+
+// ----------------------------
+//
+// MoaString.swift
+//
+// ----------------------------
+
+import Foundation
+
+//
+// Helpers for working with strings
+//
+
+struct MoaString {
+  static func contains(text: String, substring: String,
+    ignoreCase: Bool = false,
+    ignoreDiacritic: Bool = false) -> Bool {
+            
+    var options = NSStringCompareOptions.allZeros
+    
+    if ignoreCase { options |= NSStringCompareOptions.CaseInsensitiveSearch }
+    if ignoreDiacritic { options |= NSStringCompareOptions.DiacriticInsensitiveSearch }
+    
+    return text.rangeOfString(substring, options: options) != nil
+  }
 }
 
 

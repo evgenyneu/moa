@@ -20,6 +20,20 @@
                ReferencedContainer = "container:moa.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C417C52D1B18962D00ED71BB"
+               BuildableName = "concatenate_swift_files"
+               BlueprintName = "concatenate_swift_files"
+               ReferencedContainer = "container:moa.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
