@@ -72,25 +72,25 @@ public final class MoaSimulator {
   
   /**
   
-  Simulate successful response by calling the success handler with the supplied image.
+  Respond to existing download requests with the supplied image.
   
   :param: image: Image that will be passed to success handler
   
   */
-  public func simulateSuccess(image: UIImage) {
+  public func respondWithImage(image: UIImage) {
     for downloader in downloaders {
-      downloader.simulateSuccess(image)
+      downloader.respondWithImage(image)
     }
   }
   
   /**
   
-  Simulate an error response by calling the error handler.
+  Respond to existing download requests with the error.
   
   */
-  public func simulateError(error: NSError? = nil, response: NSHTTPURLResponse? = nil) {
+  public func respondWithError(error: NSError? = nil, response: NSHTTPURLResponse? = nil) {
     for downloader in downloaders {
-      downloader.simulateError(error: error, response: response)
+      downloader.respondWithError(error: error, response: response)
     }
   }
 }

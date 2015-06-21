@@ -131,7 +131,7 @@ class MoaSimulatorTests: XCTestCase {
     
 
     let image = TestBundle.image("35px.jpg")!
-    simulator.simulateSuccess(image)
+    simulator.respondWithImage(image)
     
     XCTAssertEqual(35, imageResponse!.size.width)
     XCTAssert(errorResponse == nil)
@@ -162,10 +162,39 @@ class MoaSimulatorTests: XCTestCase {
     let response = NSHTTPURLResponse(URL: NSURL(string: "http://error.com")!, statusCode: 422,
       HTTPVersion: nil, headerFields: nil)
     
-    simulator.simulateError(error: error, response: response)
+    simulator.respondWithError(error: error, response: response)
     
     XCTAssert(imageResponse == nil)
     XCTAssertEqual(543_534, errorResponse!.code)
     XCTAssertEqual(422, httpUrlResponse!.statusCode)
   }
+  
+  // MARK: - Simulate future downloads with successful response
+  
+//  func testDownload_simulateSuccess() {
+//    let simulator = MoaSimulator.simulate("image1.jpg")
+//    let downloader = MoaSimulatedImageDownloader(url: "http://site.com/image1.jpg")
+//    simulator.downloaders.append(downloader)
+//    
+//    var imageResponse: UIImage?
+//    var errorResponse: NSError?
+//    var httpUrlResponse: NSHTTPURLResponse?
+//    
+//    downloader.startDownload("http://site.com/image1.jpg",
+//      onSuccess: { image in
+//        imageResponse = image
+//      },
+//      onError: { error, response in
+//        errorResponse = error
+//        httpUrlResponse = response
+//    })
+//    
+//    
+//    let image = TestBundle.image("35px.jpg")!
+//    simulator.simulateSuccess(image)
+//    
+//    XCTAssertEqual(35, imageResponse!.size.width)
+//    XCTAssert(errorResponse == nil)
+//    XCTAssert(httpUrlResponse == nil)
+//  }
 }

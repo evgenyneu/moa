@@ -27,7 +27,7 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     
 
     let image = TestBundle.image("96px.png")!
-    downloader.simulateSuccess(image)
+    downloader.respondWithImage(image)
     
     XCTAssertEqual(96, imageResponse!.size.width)
     XCTAssert(errorResponse == nil)
@@ -50,7 +50,7 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
         httpUrlResponse = response
     })
     
-    downloader.simulateError()
+    downloader.respondWithError()
     
     XCTAssert(imageResponse == nil)
     XCTAssertEqual(MoaHttpImageErrors.SimulatedError.rawValue, errorResponse!.code)
