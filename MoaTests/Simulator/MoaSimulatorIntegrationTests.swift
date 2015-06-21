@@ -113,7 +113,8 @@ class MoaSimulatorIntegrationTests: XCTestCase {
     XCTAssertEqual("http://site.com/35px.jpg", simulator.downloaders[0].url)
     
     // Simulate server response with the given image
-    let image = TestBundle.image("35px.jpg")!
+    let bundle = NSBundle(forClass: self.dynamicType)
+    let image =  UIImage(named: "35px.jpg", inBundle: bundle, compatibleWithTraitCollection: nil)!
     simulator.respondWithImage(image)
 
     // Check the image has arrived
@@ -122,7 +123,8 @@ class MoaSimulatorIntegrationTests: XCTestCase {
   
   func testAutorespondWithImageDownloadToImageView() {
     // Create simulator to catch downloads of the given image
-    let image = TestBundle.image("35px.jpg")!
+    let bundle = NSBundle(forClass: self.dynamicType)
+    let image =  UIImage(named: "35px.jpg", inBundle: bundle, compatibleWithTraitCollection: nil)!
     let simulator = MoaSimulator.autorespondWithImage("35px.jpg", image: image)
     
     // Download the image

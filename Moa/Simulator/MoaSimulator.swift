@@ -4,7 +4,7 @@ import UIKit
 
 Simulates image download in unit tests instead of sending real network requests.
 
-Example
+Example:
 
     override func tearDown() {
       super.tearDown()
@@ -14,19 +14,21 @@ Example
 
     func testDownload() {
       // Create simulator to catch downloads of the given image
-      let simulator = MoaSimulator.simulate("35px.png")
+      let simulator = MoaSimulator.simulate("35px.jpg")
 
       // Download the image
       let imageView = UIImageView()
-      imageView.moa.url = "http://site.com/image.jpg"
+      imageView.moa.url = "http://site.com/35px.jpg"
 
       // Check the image download has been requested
       XCTAssertEqual(1, simulator.downloaders.count)
-      XCTAssertEqual("http://evgenii.com/moa/35px.png", simulator.downloaders[0].url)
+      XCTAssertEqual("http://site.com/35px.jpg", simulator.downloaders[0].url)
 
       // Simulate server response with the given image
-      simulator.respondWithImage(UIImage(named: "35px.jpg"))
-      
+      let bundle = NSBundle(forClass: self.dynamicType)
+      let image =  UIImage(named: "35px.jpg", inBundle: bundle, compatibleWithTraitCollection: nil)!
+      simulator.respondWithImage(image)
+
       // Check the image has arrived
       XCTAssertEqual(35, imageView.image!.size.width)
     }
