@@ -24,8 +24,10 @@ public final class MoaSimulator {
   /// Array of currently registered simulators.
   static var simulators = [MoaSimulator]()
   
-  public static func simulate(urlPart: String) {
-    simulators.append(MoaSimulator(urlPart: urlPart))
+  public static func simulate(urlPart: String) -> MoaSimulator {
+    let simulator = MoaSimulator(urlPart: urlPart)
+    simulators.append(simulator)
+    return simulator
   }
   
   static func simulatorsMatchingUrl(url: String) -> [MoaSimulator] {

@@ -11,7 +11,9 @@ class MoaSimulatorTests: XCTestCase {
   }
   
   func testSimulate() {
-    MoaSimulator.simulate("image1.jpg")
+    let result = MoaSimulator.simulate("image1.jpg")
+    
+    XCTAssertEqual("image1.jpg", result.urlPart)
     
     XCTAssertEqual(1, MoaSimulator.simulators.count)
     XCTAssertEqual("image1.jpg", MoaSimulator.simulators[0].urlPart)
@@ -94,17 +96,19 @@ class MoaSimulatorTests: XCTestCase {
   
   // MARK: - Stop
   
-//  func testDownload() {
-//    let simulator = MoaSimulator.simulate("image1.jpg")
+  func testDownload() {
+    let simulator = MoaSimulator.simulate("site.com")
+
+    let moa = Moa()
+    moa.url = "http://site.com/image1.jpg"
+    moa.url = "http://site.com/image2.jpg"
+    moa.url = "http://different.com/image3.jpg"
+    
+    XCTAssertEqual(2, simulator.downloaders.count)
+    XCTAssertEqual("http://site.com/image1.jpg", simulator.downloaders[0].url)
+    XCTAssertEqual("http://site.com/image2.jpg", simulator.downloaders[1].url)
+  }
 //
-//    let moa = Moa()
-//    moa.url = "http://site.com/image1.jpg"
-//    moa.url = "http://site.com/image2.jpg"
-//    
-//    XCTAssertEqual(1, simulator.downloaders.count)
-//    XCTAssertEqual("http://site.com/image1.jpg", simulator.downloaders[0].url)
-//  }
-//  
 //  func testDownload_respondWithImage() {
 //    let downloader = MoaSimulator.simulate("image1.jpg")
 //    
