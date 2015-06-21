@@ -74,11 +74,11 @@ class MoaSimulatorTests: XCTestCase {
     XCTAssert(simulator.downloaders[0] === downloader)
   }
   
-  func testDoNotRegisterImageDownlaoder() {
+  func testDoNotRegisterImageDownloader() {
     let simulator = MoaSimulator(urlPart: "image1.jpg")
     MoaSimulator.simulators.append(simulator)
     
-    let downloader = MoaSimulatedImageDownloader(url: "http://site.com/different.jpg")
+    MoaSimulatedImageDownloader(url: "http://site.com/different.jpg")
     
     XCTAssertEqual(0, simulator.downloaders.count)
   }
@@ -161,7 +161,7 @@ class MoaSimulatorTests: XCTestCase {
     let response = NSHTTPURLResponse(URL: NSURL(string: "http://error.com")!, statusCode: 422,
       HTTPVersion: nil, headerFields: nil)
     
-    simulator.respondWithError(error: error, response: response)
+    simulator.respondWithError(error, response: response)
     
     XCTAssert(imageResponse == nil)
     XCTAssertEqual(543_534, errorResponse!.code)
@@ -197,9 +197,7 @@ class MoaSimulatorTests: XCTestCase {
   
   // MARK: - Autorespond with error
   
-  func testDownload_autorespondWithError() {
-    let image = TestBundle.image("35px.jpg")!
-    
+  func testDownload_autorespondWithError() {    
     let error = NSError(domain: "test", code: 543_534, userInfo: nil)
     
     let response = NSHTTPURLResponse(URL: NSURL(string: "http://error.com")!, statusCode: 422,

@@ -23,11 +23,11 @@ class StubHttp {
   
   class func requestUrlIncludes(urlPart:String) -> (NSURLRequest->Bool) {
     return { req in
-      MoaString.contains(req.URL!.absoluteString!, substring: urlPart)
+      MoaString.contains(req.URL!.absoluteString, substring: urlPart)
     }
   }
   
-  private class func fixture(#filename: String,
+  private class func fixture(filename filename: String,
     responseHeaders: [NSObject : AnyObject]?,
     statusCode: Int = 200,
     responseTime: NSTimeInterval = 0) -> (NSURLRequest->OHHTTPStubsResponse) {
@@ -62,7 +62,7 @@ class StubHttp {
   
   // MARK: - with text
   
-  private class func fixture(#text: String,
+  private class func fixture(text text: String,
     responseHeaders: [NSObject : AnyObject]?,
     statusCode: Int = 200,
     responseTime: NSTimeInterval = 0) -> (NSURLRequest->OHHTTPStubsResponse) {

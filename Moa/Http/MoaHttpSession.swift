@@ -43,10 +43,10 @@ struct MoaHttpSession {
   // Returns the cache path for OSX.
   private static func osxCachePath(dirName: String) -> String {
     var basePath = NSTemporaryDirectory()
-    if let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.ApplicationSupportDirectory,
-      NSSearchPathDomainMask.UserDomainMask, true) as? [String]
-      where paths.count > 0 {
-        
+    let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.ApplicationSupportDirectory,
+      NSSearchPathDomainMask.UserDomainMask, true)
+    
+    if paths.count > 0 {
       basePath = paths[0]
     }
     

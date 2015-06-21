@@ -22,8 +22,8 @@ Shortcut function for creating NSURLSessionDataTask.
 */
 struct MoaHttp {
   static func createDataTask(url: String,
-    onSuccess: (NSData, NSHTTPURLResponse)->(),
-    onError: (NSError, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
+    onSuccess: (NSData?, NSHTTPURLResponse)->(),
+    onError: (NSError?, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
       
     if let nsUrl = NSURL(string: url) {
       return createDataTask(nsUrl, onSuccess: onSuccess, onError: onError)
@@ -35,8 +35,8 @@ struct MoaHttp {
   }
   
   private static func createDataTask(nsUrl: NSURL,
-    onSuccess: (NSData, NSHTTPURLResponse)->(),
-    onError: (NSError, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
+    onSuccess: (NSData?, NSHTTPURLResponse)->(),
+    onError: (NSError?, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
       
     return MoaHttpSession.session?.dataTaskWithURL(nsUrl) { (data, response, error) in
       if let httpResponse = response as? NSHTTPURLResponse {
@@ -93,7 +93,7 @@ Helper functions for downloading an image and processing the response.
 struct MoaHttpImage {
   static func createDataTask(url: String,
     onSuccess: (MoaImage)->(),
-    onError: (NSError, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
+    onError: (NSError?, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
     
     return MoaHttp.createDataTask(url,
       onSuccess: { data, response in
@@ -103,7 +103,7 @@ struct MoaHttpImage {
     )
   }
   
-  static func handleSuccess(data: NSData,
+  static func handleSuccess(data: NSData?,
     response: NSHTTPURLResponse,
     onSuccess: (MoaImage)->(),
     onError: (NSError, NSHTTPURLResponse?)->()) {
@@ -129,7 +129,7 @@ struct MoaHttpImage {
       return
     }
       
-    if let image = MoaImage(data: data) {
+    if let data = data, image = MoaImage(data: data) {
       onSuccess(image)
     } else {
       // Failed to convert response data to UIImage
@@ -140,7 +140,7 @@ struct MoaHttpImage {
   
   private static func validMimeType(mimeType: String) -> Bool {
     let validMimeTypes = ["image/jpeg", "image/pjpeg", "image/png"]
-    return contains(validMimeTypes, mimeType)
+    return validMimeTypes.contains(mimeType)
   }
 }
 
@@ -162,7 +162,7 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
   }
   
   func startDownload(url: String, onSuccess: (MoaImage)->(),
-    onError: (NSError, NSHTTPURLResponse?)->()) {
+    onError: (NSError?, NSHTTPURLResponse?)->()) {
     
     cancelled = false
   
@@ -273,10 +273,10 @@ struct MoaHttpSession {
   // Returns the cache path for OSX.
   private static func osxCachePath(dirName: String) -> String {
     var basePath = NSTemporaryDirectory()
-    if let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.ApplicationSupportDirectory,
-      NSSearchPathDomainMask.UserDomainMask, true) as? [String]
-      where paths.count > 0 {
-        
+    let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.ApplicationSupportDirectory,
+      NSSearchPathDomainMask.UserDomainMask, true)
+    
+    if paths.count > 0 {
       basePath = paths[0]
     }
     
@@ -330,13 +330,13 @@ public extension MoaImageView {
         return value
       } else {
         let moa = Moa(imageView: self)
-        objc_setAssociatedObject(self, &xoAssociationKey, moa, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN))
+        objc_setAssociatedObject(self, &xoAssociationKey, moa, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
         return moa
       }
     }
     
     set {
-      objc_setAssociatedObject(self, &xoAssociationKey, newValue, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN))
+      objc_setAssociatedObject(self, &xoAssociationKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
     }
   }
 }
@@ -476,7 +476,7 @@ public final class Moa {
       }
 
   */
-  public var onErrorAsync: ((NSError, NSHTTPURLResponse?)->())?
+  public var onErrorAsync: ((NSError?, NSHTTPURLResponse?)->())?
 
   private func startDownload(url: String) {
     cancel()
@@ -529,7 +529,7 @@ import Foundation
 /// Downloads an image.
 protocol MoaImageDownloader {
   func startDownload(url: String, onSuccess: (MoaImage)->(),
-    onError: (NSError, NSHTTPURLResponse?)->())
+    onError: (NSError?, NSHTTPURLResponse?)->())
   
   func cancel()
 }
@@ -643,7 +643,7 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   }
   
   func startDownload(url: String, onSuccess: (MoaImage)->(),
-    onError: (NSError, NSHTTPURLResponse?)->()) {
+    onError: (NSError?, NSHTTPURLResponse?)->()) {
       
     self.onSuccess = onSuccess
     self.onError = onError
@@ -653,7 +653,7 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
     }
       
     if let autorespondWithError = autorespondWithError {
-      respondWithError(error: autorespondWithError.error, response: autorespondWithError.response)
+      respondWithError(autorespondWithError.error, response: autorespondWithError.response)
     }
   }
   
@@ -862,7 +862,7 @@ public final class MoaSimulator {
   */
   public func respondWithError(error: NSError? = nil, response: NSHTTPURLResponse? = nil) {
     for downloader in downloaders {
-      downloader.respondWithError(error: error, response: response)
+      downloader.respondWithError(error, response: response)
     }
   }
 }
@@ -885,10 +885,10 @@ struct MoaString {
     ignoreCase: Bool = false,
     ignoreDiacritic: Bool = false) -> Bool {
             
-    var options = NSStringCompareOptions.allZeros
+    var options = NSStringCompareOptions()
     
-    if ignoreCase { options |= NSStringCompareOptions.CaseInsensitiveSearch }
-    if ignoreDiacritic { options |= NSStringCompareOptions.DiacriticInsensitiveSearch }
+    if ignoreCase { options.insert(NSStringCompareOptions.CaseInsensitiveSearch) }
+    if ignoreDiacritic { options.insert(NSStringCompareOptions.DiacriticInsensitiveSearch) }
     
     return text.rangeOfString(substring, options: options) != nil
   }

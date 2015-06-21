@@ -4,12 +4,11 @@ extension XCTestCase {
   func moa_eventually(
     @autoclosure(escaping) condition: () -> Bool,
     timeout: NSTimeInterval = 1,
-    
     callback: ()->()) {
     
     let moaExpectation = expectationWithDescription("moa expectation")
     
-    let timer = MoaTimer.runAfter(0.01) { [weak self] timer in
+    let _ = MoaTimer.runAfter(0.01) { timer in
       if condition() { moaExpectation.fulfill() }
     }
     
@@ -21,7 +20,7 @@ extension XCTestCase {
   func moa_eventually(timeout: NSTimeInterval = 0.1, callback: ()->()) {
     let moaExpectation = expectationWithDescription("moa expectation")
     
-    let timer = MoaTimer.runAfter(timeout) { [weak self] timer in
+    let _ = MoaTimer.runAfter(timeout) { timer in
       moaExpectation.fulfill()
     }
     

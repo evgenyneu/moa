@@ -78,7 +78,7 @@ class MoaImageDownloaderTests: XCTestCase {
     
     downloader.cancel()
     
-    moa_eventually(timeout: 0.3) {
+    moa_eventually(0.3) {
       XCTAssert(downloader.cancelled)
       XCTAssertEqual(NSURLSessionTaskState.Completed, downloader.task!.state)
       XCTAssert(imageFromCallback == nil)
@@ -112,7 +112,7 @@ class MoaImageDownloaderTests: XCTestCase {
     
     closure() // downloader instance will be deallocated in the closure
     
-    moa_eventually(timeout: 0.3) {
+    moa_eventually(0.3) {
       XCTAssertEqual(NSURLSessionTaskState.Completed, task!.state)
       XCTAssert(imageFromCallback == nil)
       XCTAssert(errorFromCallback == nil)

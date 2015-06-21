@@ -17,7 +17,7 @@ class MoaHttpTests: XCTestCase {
     
     let dataDask = MoaHttp.createDataTask("http://server.net/path",
       onSuccess: { data, response in
-        responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
+        responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
       },
       onError: { error, response in
         errorFromCallback = error

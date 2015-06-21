@@ -25,7 +25,7 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   }
   
   func startDownload(url: String, onSuccess: (MoaImage)->(),
-    onError: (NSError, NSHTTPURLResponse?)->()) {
+    onError: (NSError?, NSHTTPURLResponse?)->()) {
       
     self.onSuccess = onSuccess
     self.onError = onError
@@ -35,7 +35,7 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
     }
       
     if let autorespondWithError = autorespondWithError {
-      respondWithError(error: autorespondWithError.error, response: autorespondWithError.response)
+      respondWithError(autorespondWithError.error, response: autorespondWithError.response)
     }
   }
   

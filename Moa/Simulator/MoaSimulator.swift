@@ -167,7 +167,7 @@ public final class MoaSimulator {
   */
   public func respondWithError(error: NSError? = nil, response: NSHTTPURLResponse? = nil) {
     for downloader in downloaders {
-      downloader.respondWithError(error: error, response: response)
+      downloader.respondWithError(error, response: response)
     }
   }
 }

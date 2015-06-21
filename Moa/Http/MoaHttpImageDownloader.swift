@@ -9,7 +9,7 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
   }
   
   func startDownload(url: String, onSuccess: (MoaImage)->(),
-    onError: (NSError, NSHTTPURLResponse?)->()) {
+    onError: (NSError?, NSHTTPURLResponse?)->()) {
     
     cancelled = false
   

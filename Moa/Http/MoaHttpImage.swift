@@ -9,7 +9,7 @@ Helper functions for downloading an image and processing the response.
 struct MoaHttpImage {
   static func createDataTask(url: String,
     onSuccess: (MoaImage)->(),
-    onError: (NSError, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
+    onError: (NSError?, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
     
     return MoaHttp.createDataTask(url,
       onSuccess: { data, response in
@@ -19,7 +19,7 @@ struct MoaHttpImage {
     )
   }
   
-  static func handleSuccess(data: NSData,
+  static func handleSuccess(data: NSData?,
     response: NSHTTPURLResponse,
     onSuccess: (MoaImage)->(),
     onError: (NSError, NSHTTPURLResponse?)->()) {
@@ -45,7 +45,7 @@ struct MoaHttpImage {
       return
     }
       
-    if let image = MoaImage(data: data) {
+    if let data = data, image = MoaImage(data: data) {
       onSuccess(image)
     } else {
       // Failed to convert response data to UIImage
@@ -56,6 +56,6 @@ struct MoaHttpImage {
   
   private static func validMimeType(mimeType: String) -> Bool {
     let validMimeTypes = ["image/jpeg", "image/pjpeg", "image/png"]
-    return contains(validMimeTypes, mimeType)
+    return validMimeTypes.contains(mimeType)
   }
 }

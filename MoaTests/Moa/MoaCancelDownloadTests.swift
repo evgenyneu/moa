@@ -30,13 +30,13 @@ class MoaCancelDownloadTests: XCTestCase {
     moa.url = "http://evgenii.com/moa/96px.png"
     
     // Cancel download before 96px.png image has arrived
-    let timerChangeImage = MoaTimer.runAfter(0.01) { timer in
+    MoaTimer.runAfter(0.01) { timer in
       moa.cancel()
     }
     
     // Wait more than 0.3 seconds (96px.png image response) to make sure it never comes back.
     // It proves that 96px.png image download was cancelled.
-    moa_eventually(timeout: 0.5) {
+    moa_eventually(0.5) {
       XCTAssert(imageResponse == nil)
       XCTAssert(errorResponse == nil)
       XCTAssert(httpUrlResponse == nil)
@@ -65,13 +65,13 @@ class MoaCancelDownloadTests: XCTestCase {
     moa.url = "http://evgenii.com/moa/96px.png"
     
     // Set url property to nil before 96px.png image has arrived
-    let timerChangeImage = MoaTimer.runAfter(0.01) { timer in
+    MoaTimer.runAfter(0.01) { timer in
       moa.url = nil
     }
     
     // Wait more than 0.3 seconds (96px.png image response) to make sure it never comes back.
     // It proves that 96px.png image download was cancelled.
-    moa_eventually(timeout: 0.5) {
+    moa_eventually(0.5) {
       XCTAssert(imageResponse == nil)
       XCTAssert(errorResponse == nil)
       XCTAssert(httpUrlResponse == nil)
@@ -102,13 +102,13 @@ class MoaCancelDownloadTests: XCTestCase {
     moa.url = "http://evgenii.com/moa/96px.png"
     
     // Request 35px.jpg image before 96px.png image has arrived
-    let timerChangeImage = MoaTimer.runAfter(0.01) { timer in
+    MoaTimer.runAfter(0.01) { timer in
       moa.url = "http://evgenii.com/moa/35px.jpg"
     }
     
     // Wait more than 0.3 seconds (96px.png image response) to make sure it never comes back.
     // It proves that 96px.png image download was cancelled.
-    moa_eventually(timeout: 0.5) {
+    moa_eventually(0.5) {
       XCTAssertEqual(35, imageResponse!.size.width)
       XCTAssert(errorResponse == nil)
       XCTAssert(httpUrlResponse == nil)

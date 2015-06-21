@@ -126,7 +126,7 @@ public final class Moa {
       }
 
   */
-  public var onErrorAsync: ((NSError, NSHTTPURLResponse?)->())?
+  public var onErrorAsync: ((NSError?, NSHTTPURLResponse?)->())?
 
   private func startDownload(url: String) {
     cancel()
