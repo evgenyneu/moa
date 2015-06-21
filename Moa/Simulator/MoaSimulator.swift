@@ -1,6 +1,8 @@
+import UIKit
+
 /**
 
-Used for simulation of image download in unit tests.
+Simulates image download in unit tests instead of sending real network requests.
 
 Example
 
@@ -52,7 +54,7 @@ public final class MoaSimulator {
     return nil
   }
   
-  /// Remove download simulators and use network.
+  /// Remove simulators and use real network instead.
   public static func clear() {
     simulators = []
   }
@@ -60,10 +62,35 @@ public final class MoaSimulator {
   // MARK: - Instance
   
   var urlPart: String
-  var downloaders = [MoaSimulatedImageDownloader]()
+  
+  /// Array of registered image downloaders.
+  public var downloaders = [MoaSimulatedImageDownloader]()
   
   init(urlPart: String) {
     self.urlPart = urlPart
   }
-
+  
+  /**
+  
+  Simulate successful response by calling the success handler with the supplied image.
+  
+  :param: image: Image that will be passed to success handler
+  
+  */
+  public func simulateSuccess(image: UIImage) {
+    for downloader in downloaders {
+      downloader.simulateSuccess(image)
+    }
+  }
+  
+  /**
+  
+  Simulate an error response by calling the error handler.
+  
+  */
+  public func simulateError(error: NSError? = nil, response: NSHTTPURLResponse? = nil) {
+    for downloader in downloaders {
+      downloader.simulateError(error: error, response: response)
+    }
+  }
 }

@@ -9,7 +9,7 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     XCTAssertEqual("http://site.com/moa.jpg", result.url)
   }
   
-  func testDownload_respondWithImage() {
+  func testDownload_simulateSuccess() {
     let downloader = MoaSimulatedImageDownloader(url: "http://site.com/image1.jpg")
     
     var imageResponse: UIImage?
@@ -27,7 +27,7 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     
 
     let image = TestBundle.image("96px.png")!
-    downloader.simulateResponse(image)
+    downloader.simulateSuccess(image)
     
     XCTAssertEqual(96, imageResponse!.size.width)
     XCTAssert(errorResponse == nil)

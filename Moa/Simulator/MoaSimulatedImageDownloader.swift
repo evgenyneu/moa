@@ -8,7 +8,8 @@ Simulates download of images in unit test. This downloader is used instead of th
 */
 public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   
-  let url: String
+  /// Url of the downloader.
+  public let url: String
   
   /// Indicates if the request was cancelled.
   public var cancelled = false
@@ -38,7 +39,7 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   :param: image: Image that will be passed to success handler
   
   */
-  public func simulateResponse(image: UIImage) {
+  public func simulateSuccess(image: UIImage) {
     onSuccess?(image)
   }
   
@@ -47,7 +48,7 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   Simulate an error response by calling the error handler.
   
   */
-  public func simulateError() {
-    onError?(MoaHttpImageErrors.SimulatedError.new, nil)
+  public func simulateError(error: NSError? = nil, response: NSHTTPURLResponse? = nil) {
+    onError?(error ?? MoaHttpImageErrors.SimulatedError.new, response)
   }
 }
