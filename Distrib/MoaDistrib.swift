@@ -665,7 +665,7 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   
   Simulate a successful server response with the supplied image.
   
-  :param: image: Image that is be passed to success handler of all ongoing requests.
+  - parameter image: Image that is be passed to success handler of all ongoing requests.
   
   */
   public func respondWithImage(image: MoaImage) {
@@ -676,9 +676,9 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   
   Simulate an error response from server.
   
-  :param: error: Optional error that is passed to the error handler ongoing request.
+  - parameter error: Optional error that is passed to the error handler ongoing request.
   
-  :param: response: Optional response that is passed to the error handler ongoing request.
+  - parameter response: Optional response that is passed to the error handler ongoing request.
   
   */
   public func respondWithError(error: NSError? = nil, response: NSHTTPURLResponse? = nil) {
@@ -738,9 +738,9 @@ public final class MoaSimulator {
   
   Returns a simulator that will be used to catch image requests that have matching URLs. This method is usually called at the beginning of the unit test.
   
-  :param: urlPart: Image download request that include the supplied urlPart will be simulated. All other requests will continue to real network.
+  - parameter urlPart: Image download request that include the supplied urlPart will be simulated. All other requests will continue to real network.
   
-  :returns: Simulator object. It is usually used in unit test to verify which request have been sent and simulating server response by calling its respondWithImage and respondWithError methods.
+  - returns: Simulator object. It is usually used in unit test to verify which request have been sent and simulating server response by calling its respondWithImage and respondWithError methods.
   
   */
   public static func simulate(urlPart: String) -> MoaSimulator {
@@ -753,11 +753,11 @@ public final class MoaSimulator {
   
   Respond to all future download requests that have matching URLs. Call `clear` method to stop auto responding.
   
-  :param: urlPart: Image download request that include the supplied urlPart will automatically and immediately succeed with the supplied image. All other requests will continue to real network.
+  - parameter urlPart: Image download request that include the supplied urlPart will automatically and immediately succeed with the supplied image. All other requests will continue to real network.
   
-  :param: image: Image that is be passed to success handler of future requests.
+  - parameter image: Image that is be passed to success handler of future requests.
   
-  :returns: Simulator object. It is usually used in unit test to verify which request have been sent.  One does not need to call its `respondWithImage` method because it will be called automatically for all matching requests.
+  - returns: Simulator object. It is usually used in unit test to verify which request have been sent.  One does not need to call its `respondWithImage` method because it will be called automatically for all matching requests.
   
   */
   public static func autorespondWithImage(urlPart: String, image: MoaImage) -> MoaSimulator {
@@ -770,13 +770,13 @@ public final class MoaSimulator {
   
   Fail all future download requests that have matching URLs. Call `clear` method to stop auto responding.
   
-  :param: urlPart: Image download request that include the supplied urlPart will automatically and immediately fail. All other requests will continue to real network.
+  - parameter urlPart: Image download request that include the supplied urlPart will automatically and immediately fail. All other requests will continue to real network.
   
-  :param: error: Optional error that is passed to the error handler of failed requests.
+  - parameter error: Optional error that is passed to the error handler of failed requests.
   
-  :param: response: Optional response that is passed to the error handler of failed requests.
+  - parameter response: Optional response that is passed to the error handler of failed requests.
   
-  :returns: Simulator object. It is usually used in unit test to verify which request have been sent.  One does not need to call its `respondWithError` method because it will be called automatically for all matching requests.
+  - returns: Simulator object. It is usually used in unit test to verify which request have been sent.  One does not need to call its `respondWithError` method because it will be called automatically for all matching requests.
   
   */
   public static func autorespondWithError(urlPart: String, error: NSError? = nil,
@@ -842,7 +842,7 @@ public final class MoaSimulator {
   
   Simulate a successful server response with the supplied image.
   
-  :param: image: Image that is be passed to success handler of all ongoing requests.
+  - parameter image: Image that is be passed to success handler of all ongoing requests.
   
   */
   public func respondWithImage(image: MoaImage) {
@@ -855,9 +855,9 @@ public final class MoaSimulator {
   
   Simulate an error response from server.
   
-  :param: error: Optional error that is passed to the error handler of all ongoing requests.
+  - parameter error: Optional error that is passed to the error handler of all ongoing requests.
   
-  :param: response: Optional response that is passed to the error handler of all ongoing requests.
+  - parameter response: Optional response that is passed to the error handler of all ongoing requests.
   
   */
   public func respondWithError(error: NSError? = nil, response: NSHTTPURLResponse? = nil) {

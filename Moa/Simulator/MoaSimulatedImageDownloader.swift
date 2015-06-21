@@ -47,7 +47,7 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   
   Simulate a successful server response with the supplied image.
   
-  :param: image: Image that is be passed to success handler of all ongoing requests.
+  - parameter image: Image that is be passed to success handler of all ongoing requests.
   
   */
   public func respondWithImage(image: MoaImage) {
@@ -58,9 +58,9 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   
   Simulate an error response from server.
   
-  :param: error: Optional error that is passed to the error handler ongoing request.
+  - parameter error: Optional error that is passed to the error handler ongoing request.
   
-  :param: response: Optional response that is passed to the error handler ongoing request.
+  - parameter response: Optional response that is passed to the error handler ongoing request.
   
   */
   public func respondWithError(error: NSError? = nil, response: NSHTTPURLResponse? = nil) {
