@@ -50,7 +50,7 @@ class RandomImageUrl {
   }
   
   func rememberImageName(url: String) {
-    if contains(seenImageNames, url) { return }
+    if seenImageNames.contains(url) { return }
     seenImageNames.append(url)
     
     if seenImageNames.count > RandomImageUrl.maxSeenImageCount {
@@ -75,7 +75,7 @@ class RandomImageUrl {
   private var allUnseenImageNames: [String] {
     return RandomImageUrl.imageNames.filter { [weak self] phrase in
       if let currentSelf = self {
-        return !contains(currentSelf.seenImageNames, phrase)
+        return !currentSelf.seenImageNames.contains(phrase)
       }
       return false
     }
