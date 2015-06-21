@@ -44,7 +44,8 @@
 		7E112C551B367F440017AFF0 /* MoaHttpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C4D1B367F410017AFF0 /* MoaHttpTests.swift */; };
 		7E112C5B1B367F810017AFF0 /* MoaSimulatedImageDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C571B367F780017AFF0 /* MoaSimulatedImageDownloaderTests.swift */; };
 		7E112C5C1B367F810017AFF0 /* MoaSimulatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C581B367F780017AFF0 /* MoaSimulatorTests.swift */; };
-		7E112C5E1B36A9240017AFF0 /* MoaSimulatorIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C5D1B36A9240017AFF0 /* MoaSimulatorIntegrationTests.swift */; };
+		7E112C5F1B36AF080017AFF0 /* MoaSimulatorIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C5D1B36A9240017AFF0 /* MoaSimulatorIntegrationTests.swift */; };
+		7E112C631B36AFDB0017AFF0 /* MoaStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C611B36AFBB0017AFF0 /* MoaStringTests.swift */; };
 		7E193EEA1B1152D40093CD81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193EE91B1152D40093CD81 /* AppDelegate.swift */; };
 		7E193EEC1B1152D40093CD81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193EEB1B1152D40093CD81 /* ViewController.swift */; };
 		7E193EEF1B1152D40093CD81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E193EED1B1152D40093CD81 /* Main.storyboard */; };
@@ -179,6 +180,7 @@
 		7E112C571B367F780017AFF0 /* MoaSimulatedImageDownloaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaSimulatedImageDownloaderTests.swift; sourceTree = "<group>"; };
 		7E112C581B367F780017AFF0 /* MoaSimulatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaSimulatorTests.swift; sourceTree = "<group>"; };
 		7E112C5D1B36A9240017AFF0 /* MoaSimulatorIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaSimulatorIntegrationTests.swift; sourceTree = "<group>"; };
+		7E112C611B36AFBB0017AFF0 /* MoaStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaStringTests.swift; sourceTree = "<group>"; };
 		7E193EE51B1152D40093CD81 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E193EE81B1152D40093CD81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E193EE91B1152D40093CD81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -322,6 +324,14 @@
 				7E112C5D1B36A9240017AFF0 /* MoaSimulatorIntegrationTests.swift */,
 			);
 			path = Simulator;
+			sourceTree = "<group>";
+		};
+		7E112C601B36AFAA0017AFF0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7E112C611B36AFBB0017AFF0 /* MoaStringTests.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		7E193EE61B1152D40093CD81 /* Demo */ = {
@@ -485,6 +495,7 @@
 				7EA8EF9C1B08490D00C951C4 /* Images */,
 				7E75410C1B0D3DA500AC0FC7 /* Moa */,
 				7E112C561B367F620017AFF0 /* Simulator */,
+				7E112C601B36AFAA0017AFF0 /* Utils */,
 				7EBCC1CE1B1B3EC600BC9569 /* MoaSettingsCacheTests.swift */,
 				7E3694AE1B1B430000AABE3F /* MoaSettingsTests.swift */,
 				7EA8EF811B072B4300C951C4 /* UIImageView+moaTests.swift */,
@@ -847,7 +858,6 @@
 				7EBCC1D21B1B3F2E00BC9569 /* MoaSettingsCache.swift in Sources */,
 				7EA8EFA81B0858DD00C951C4 /* Moa.swift in Sources */,
 				7E112C241B367E600017AFF0 /* MoaString.swift in Sources */,
-				7E112C5E1B36A9240017AFF0 /* MoaSimulatorIntegrationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -869,6 +879,7 @@
 				7EBCC1CA1B1B373B00BC9569 /* MoaSettings.swift in Sources */,
 				7E7541121B0D3DB700AC0FC7 /* MoaWithImageViewTests.swift in Sources */,
 				7E112C451B367EF90017AFF0 /* MoaSimulatedImageDownloader.swift in Sources */,
+				7E112C631B36AFDB0017AFF0 /* MoaStringTests.swift in Sources */,
 				7E75410B1B0D3CA300AC0FC7 /* ImageView+moa.swift in Sources */,
 				7E112C541B367F440017AFF0 /* MoaHttpSessionTests.swift in Sources */,
 				7E112C361B367EC90017AFF0 /* MoaHttpErrors.swift in Sources */,
@@ -876,6 +887,7 @@
 				7E7541111B0D3DB700AC0FC7 /* MoaDownloadTests.swift in Sources */,
 				7E112C3E1B367ED40017AFF0 /* MoaHttpSession.swift in Sources */,
 				7E112C121B36715C0017AFF0 /* TestBundle.swift in Sources */,
+				7E112C5F1B36AF080017AFF0 /* MoaSimulatorIntegrationTests.swift in Sources */,
 				7E112C3C1B367ED20017AFF0 /* MoaHttpImageErrors.swift in Sources */,
 				7E112C381B367ECC0017AFF0 /* MoaHttpImage.swift in Sources */,
 				7E112C5B1B367F810017AFF0 /* MoaSimulatedImageDownloaderTests.swift in Sources */,

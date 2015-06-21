@@ -13,11 +13,22 @@ Example
     }
 
     func testDownload() {
-      MoaSimulator.simulate("image.jpg")
+      // Create simulator to catch downloads of the given image
+      let simulator = MoaSimulator.simulate("35px.png")
 
+      // Download the image
+      let imageView = UIImageView()
       imageView.moa.url = "http://site.com/image.jpg"
 
-     
+      // Check the image download has been requested
+      XCTAssertEqual(1, simulator.downloaders.count)
+      XCTAssertEqual("http://evgenii.com/moa/35px.png", simulator.downloaders[0].url)
+
+      // Simulate server response with the given image
+      simulator.respondWithImage(UIImage(named: "35px.jpg"))
+      
+      // Check the image has arrived
+      XCTAssertEqual(35, imageView.image!.size.width)
     }
 
 */
@@ -25,7 +36,6 @@ public final class MoaSimulator {
 
   /// Array of currently registered simulators.
   static var simulators = [MoaSimulator]()
-  
   
   /**
   
@@ -40,6 +50,49 @@ public final class MoaSimulator {
     let simulator = MoaSimulator(urlPart: urlPart)
     simulators.append(simulator)
     return simulator
+  }
+  
+  /**
+  
+  Respond to all future download requests that have matching URLs. Call `clear` method to stop auto responding.
+  
+  :param: urlPart: Image download request that include the supplied urlPart will automatically and immediately succeed with the supplied image. All other requests will continue to real network.
+  
+  :param: image: Image that is be passed to success handler of future requests.
+  
+  :returns: Simulator object. It is usually used in unit test to verify which request have been sent.  One does not need to call its `respondWithImage` method because it will be called automatically for all matching requests.
+  
+  */
+  public static func autorespondWithImage(urlPart: String, image: UIImage) -> MoaSimulator {
+    let simulator = simulate(urlPart)
+    simulator.autorespondWithImage = image
+    return simulator
+  }
+  
+  /**
+  
+  Fail all future download requests that have matching URLs. Call `clear` method to stop auto responding.
+  
+  :param: urlPart: Image download request that include the supplied urlPart will automatically and immediately fail. All other requests will continue to real network.
+  
+  :param: error: Optional error that is passed to the error handler of failed requests.
+  
+  :param: response: Optional response that is passed to the error handler of failed requests.
+  
+  :returns: Simulator object. It is usually used in unit test to verify which request have been sent.  One does not need to call its `respondWithError` method because it will be called automatically for all matching requests.
+  
+  */
+  public static func autorespondWithError(urlPart: String, error: NSError? = nil,
+    response: NSHTTPURLResponse? = nil) -> MoaSimulator {
+      
+    let simulator = simulate(urlPart)
+    simulator.autorespondWithError = (error, response)
+    return simulator
+  }
+  
+  /// Stop using simulators and use real network instead.
+  public static func clear() {
+    simulators = []
   }
   
   static func simulatorsMatchingUrl(url: String) -> [MoaSimulator] {
@@ -72,11 +125,6 @@ public final class MoaSimulator {
     return nil
   }
   
-  /// Remove simulators and use real network instead.
-  public static func clear() {
-    simulators = []
-  }
-  
   // MARK: - Instance
   
   var urlPart: String
@@ -91,39 +139,6 @@ public final class MoaSimulator {
   
   init(urlPart: String) {
     self.urlPart = urlPart
-  }
-  
-  /**
-  
-  Respond to all future download requests that have matching URLs. Call `clear` method to stop auto responding.
-  
-  :param: urlPart: Image download request that include the supplied urlPart will automatically and immediately succeed with the supplied image. All other requests will continue to real network.
-  
-  :param: image: Image that is be passed to success handler of future requests.
-  
-  */
-  public static func autorespondWithImage(urlPart: String, image: UIImage) {
-    let simulator = simulate(urlPart)
-    simulator.autorespondWithImage = image
-  }
-  
-  
-  /**
-  
-  Fail all future download requests that have matching URLs. Call `clear` method to stop auto responding.
-  
-  :param: urlPart: Image download request that include the supplied urlPart will automatically and immediately fail. All other requests will continue to real network.
-  
-  :param: error: Optional error that is passed to the error handler of failed requests.
-  
-  :param: response: Optional response that is passed to the error handler of failed requests.
-  
-  */
-  public static func autorespondWithError(urlPart: String, error: NSError? = nil,
-    response: NSHTTPURLResponse? = nil) {
-      
-    let simulator = simulate(urlPart)
-    simulator.autorespondWithError = (error, response)
   }
   
   /**

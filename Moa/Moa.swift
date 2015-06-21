@@ -131,11 +131,13 @@ public final class Moa {
   private func startDownload(url: String) {
     cancel()
     
-    imageDownloader = MoaSimulator.createDownloader(url) ?? MoaHttpImageDownloader()
+    let simulatedDownloader = MoaSimulator.createDownloader(url)
+    imageDownloader = simulatedDownloader ?? MoaHttpImageDownloader()
 
     imageDownloader?.startDownload(url,
       onSuccess: { [weak self] image in
-        self?.onHandleSuccess(image)
+        let simulated = simulatedDownloader != nil
+        self?.onHandleSuccess(image, isSimulated: simulated)
       },
       onError: { [weak self] error, response in
         self?.onErrorAsync?(error, response)
@@ -143,7 +145,7 @@ public final class Moa {
     )
   }
 
-  private func onHandleSuccess(image: MoaImage) {
+  private func onHandleSuccess(image: MoaImage, isSimulated: Bool) {
     var imageForView: MoaImage? = image
 
     if let onSuccessAsync = onSuccessAsync {
@@ -151,9 +153,16 @@ public final class Moa {
     }
 
     if let imageView = imageView {
-      dispatch_async(dispatch_get_main_queue()) {
+      
+      if isSimulated {
+        // Assign image in the same queu for simulated download to make unit testing simpler with synchronous code
         imageView.image = imageForView
+      } else {
+        dispatch_async(dispatch_get_main_queue()) {
+          imageView.image = imageForView
+        }
       }
+      
     }
   }
 }

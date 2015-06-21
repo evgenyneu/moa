@@ -8,7 +8,7 @@ struct MoaString {
   static func contains(text: String, substring: String,
     ignoreCase: Bool = false,
     ignoreDiacritic: Bool = false) -> Bool {
-      
+            
     var options = NSStringCompareOptions.allZeros
     
     if ignoreCase { options |= NSStringCompareOptions.CaseInsensitiveSearch }
