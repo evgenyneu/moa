@@ -7,7 +7,7 @@ class MoaSimulatorTests: XCTestCase {
   override func tearDown() {
     super.tearDown()
     
-    MoaSimulator.stop()
+    MoaSimulator.clear()
   }
   
   func testSimulate() {
@@ -47,7 +47,7 @@ class MoaSimulatorTests: XCTestCase {
   func testStopSimulation() {
     MoaSimulator.simulate("image1.jpg")
     
-    MoaSimulator.stop()
+    MoaSimulator.clear()
     
     XCTAssert(MoaSimulator.simulatedUrlParts.isEmpty)
   }
@@ -71,29 +71,17 @@ class MoaSimulatorTests: XCTestCase {
   
   // MARK: - Stop
   
-//  func testCreateForUrl() {
-//    let result = MoaSimulator.createForUrl("http://site.com/image1.jpg")
-//    XCTAssert(result == nil)
-//  }
-  
-//  func testStop_removeSimulator() {
-//    MoaSimulator.started = true
-//    
-//    MoaSimulator.stop()
-//    
-//    XCTAssertFalse(MoaSimulator.started)
-//  }
-  
   func testTestSub() {
-//    MoaSimulator.simulateAll()
-//
-//    let moa = Moa()
-//    moa.url = "http://site.com/image1.jpg"
-//    moa.url = "http://site.com/image2.jpg"
-//    
-//    XCTAssertEqual(2, MoaSimulator.urls.count)
-//    
-//    MoaSimulator.stop()
+//    let image = TestBundle.image("96px.png")
+    MoaSimulator.simulate("image1.jpg")
 
+    let moa = Moa()
+    moa.url = "http://site.com/image1.jpg"
+    moa.url = "http://site.com/image2.jpg"
+    
+    XCTAssertEqual(1, MoaSimulator.downloaders.count)
+    XCTAssertEqual("http://site.com/image1.jpg", MoaSimulator.downloaders[0].url)
+
+    
   }
 }

@@ -1,6 +1,22 @@
 /**
 
-Used for simulation of image download. It can be useful in unit tests if you want to check which images where requested. One can supply UIImage objects for specific request URLs.
+Used for simulation of image download in unit tests.
+
+Example
+
+    override func tearDown() {
+      super.tearDown()
+
+      MoaSimulator.clear()
+    }
+
+    func testDownload() {
+      MoaSimulator.simulate("image.jpg")
+
+      imageView.moa.url = "http://site.com/image.jpg"
+
+     
+    }
 
 */
 public struct MoaSimulator {  
@@ -17,7 +33,9 @@ public struct MoaSimulator {
     }
   }
   
-  static func stop() {
+  /**
+  */
+  public static func clear() {
     simulatedUrlParts = []
   }
 }
