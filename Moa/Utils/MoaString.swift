@@ -1,8 +1,8 @@
+import Foundation
+
 //
 // Helpers for working with strings
 //
-
-import UIKit
 
 struct MoaString {
   static func contains(text: String, substring: String,

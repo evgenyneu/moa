@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 /// Downloads an image.
 protocol MoaImageDownloader {

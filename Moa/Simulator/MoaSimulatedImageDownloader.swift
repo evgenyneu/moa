@@ -1,5 +1,4 @@
-
-import UIKit
+import Foundation
 
 /**
 
@@ -14,7 +13,7 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   /// Indicates if the request was cancelled.
   public var cancelled = false
   
-  var autorespondWithImage: UIImage?
+  var autorespondWithImage: MoaImage?
   
   var autorespondWithError: (error: NSError?, response: NSHTTPURLResponse?)?
   
@@ -51,7 +50,7 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   :param: image: Image that is be passed to success handler of all ongoing requests.
   
   */
-  public func respondWithImage(image: UIImage) {
+  public func respondWithImage(image: MoaImage) {
     onSuccess?(image)
   }
   

@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 /**
 
@@ -65,7 +65,7 @@ public final class MoaSimulator {
   :returns: Simulator object. It is usually used in unit test to verify which request have been sent.  One does not need to call its `respondWithImage` method because it will be called automatically for all matching requests.
   
   */
-  public static func autorespondWithImage(urlPart: String, image: UIImage) -> MoaSimulator {
+  public static func autorespondWithImage(urlPart: String, image: MoaImage) -> MoaSimulator {
     let simulator = simulate(urlPart)
     simulator.autorespondWithImage = image
     return simulator
@@ -132,7 +132,7 @@ public final class MoaSimulator {
   var urlPart: String
   
   /// The image that will be used to respond to all future download requests
-  var autorespondWithImage: UIImage?
+  var autorespondWithImage: MoaImage?
   
   var autorespondWithError: (error: NSError?, response: NSHTTPURLResponse?)?
   
@@ -150,7 +150,7 @@ public final class MoaSimulator {
   :param: image: Image that is be passed to success handler of all ongoing requests.
   
   */
-  public func respondWithImage(image: UIImage) {
+  public func respondWithImage(image: MoaImage) {
     for downloader in downloaders {
       downloader.respondWithImage(image)
     }
