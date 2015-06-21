@@ -14,6 +14,10 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   /// Indicates if the request was cancelled.
   public var cancelled = false
   
+  var autorespondWithImage: UIImage?
+  
+  var autorespondWithError: (error: NSError?, response: NSHTTPURLResponse?)?
+  
   var onSuccess: ((MoaImage)->())?
   var onError: ((NSError, NSHTTPURLResponse?)->())?
 
@@ -26,6 +30,14 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
       
     self.onSuccess = onSuccess
     self.onError = onError
+      
+    if let autorespondWithImage = autorespondWithImage {
+      respondWithImage(autorespondWithImage)
+    }
+      
+    if let autorespondWithError = autorespondWithError {
+      respondWithError(error: autorespondWithError.error, response: autorespondWithError.response)
+    }
   }
   
   func cancel() {
@@ -34,9 +46,9 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   
   /**
   
-  Respond to existing download requests with the supplied image.
+  Simulate a successful server response with the supplied image.
   
-  :param: image: Image that will be passed to success handler
+  :param: image: Image that is be passed to success handler of all ongoing requests.
   
   */
   public func respondWithImage(image: UIImage) {
@@ -45,7 +57,11 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   
   /**
   
-  Respond to existing download requests with the error.
+  Simulate an error response from server.
+  
+  :param: error: Optional error that is passed to the error handler ongoing request.
+  
+  :param: response: Optional response that is passed to the error handler ongoing request.
   
   */
   public func respondWithError(error: NSError? = nil, response: NSHTTPURLResponse? = nil) {

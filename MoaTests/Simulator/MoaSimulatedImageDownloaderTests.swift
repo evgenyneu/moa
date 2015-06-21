@@ -66,4 +66,53 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     
     XCTAssert(result.cancelled)
   }
+  
+  // MARK: - Autorespond with image
+  
+  func testAutorespondWithImage() {
+    let downloader = MoaSimulatedImageDownloader(url: "irrelevant")
+    let image = TestBundle.image("35px.jpg")!
+    downloader.autorespondWithImage = image
+    
+    var imageResponse: UIImage?
+    var errorResponse: NSError?
+    var httpUrlResponse: NSHTTPURLResponse?
+    
+    downloader.startDownload("http://site.com/image1.jpg",
+      onSuccess: { image in
+        imageResponse = image
+      },
+      onError: { error, response in
+        errorResponse = error
+        httpUrlResponse = response
+    })
+    
+    XCTAssertEqual(35, imageResponse!.size.width)
+    XCTAssert(errorResponse == nil)
+    XCTAssert(httpUrlResponse == nil)
+  }
+  
+  // MARK: - Autorespond with error
+  
+  func testAutorespondWithError() {
+    let downloader = MoaSimulatedImageDownloader(url: "irrelevant")
+    downloader.autorespondWithError = (nil, nil)
+    
+    var imageResponse: UIImage?
+    var errorResponse: NSError?
+    var httpUrlResponse: NSHTTPURLResponse?
+    
+    downloader.startDownload("http://site.com/image1.jpg",
+      onSuccess: { image in
+        imageResponse = image
+      },
+      onError: { error, response in
+        errorResponse = error
+        httpUrlResponse = response
+    })
+    
+    XCTAssert(imageResponse == nil)
+    XCTAssertEqual(MoaHttpImageErrors.SimulatedError.rawValue, errorResponse!.code)
+    XCTAssert(httpUrlResponse == nil)
+  }
 }

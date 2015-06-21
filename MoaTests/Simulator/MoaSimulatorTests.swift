@@ -157,7 +157,6 @@ class MoaSimulatorTests: XCTestCase {
     })
     
     let error = NSError(domain: "test", code: 543_534, userInfo: nil)
-  
     
     let response = NSHTTPURLResponse(URL: NSURL(string: "http://error.com")!, statusCode: 422,
       HTTPVersion: nil, headerFields: nil)
@@ -171,30 +170,60 @@ class MoaSimulatorTests: XCTestCase {
   
   // MARK: - Simulate future downloads with successful response
   
-//  func testDownload_simulateSuccess() {
-//    let simulator = MoaSimulator.simulate("image1.jpg")
-//    let downloader = MoaSimulatedImageDownloader(url: "http://site.com/image1.jpg")
-//    simulator.downloaders.append(downloader)
-//    
-//    var imageResponse: UIImage?
-//    var errorResponse: NSError?
-//    var httpUrlResponse: NSHTTPURLResponse?
-//    
-//    downloader.startDownload("http://site.com/image1.jpg",
-//      onSuccess: { image in
-//        imageResponse = image
-//      },
-//      onError: { error, response in
-//        errorResponse = error
-//        httpUrlResponse = response
-//    })
-//    
-//    
-//    let image = TestBundle.image("35px.jpg")!
-//    simulator.simulateSuccess(image)
-//    
-//    XCTAssertEqual(35, imageResponse!.size.width)
-//    XCTAssert(errorResponse == nil)
-//    XCTAssert(httpUrlResponse == nil)
-//  }
+  func testDownload_autorespondWithImage() {
+    let image = TestBundle.image("35px.jpg")!
+
+    MoaSimulator.autorespondWithImage("image1.jpg", image: image)
+    
+    let downloader = MoaSimulator.createDownloader("http://site.com/image1.jpg")!
+    
+    var imageResponse: UIImage?
+    var errorResponse: NSError?
+    var httpUrlResponse: NSHTTPURLResponse?
+    
+    downloader.startDownload("http://site.com/image1.jpg",
+      onSuccess: { image in
+        imageResponse = image
+      },
+      onError: { error, response in
+        errorResponse = error
+        httpUrlResponse = response
+    })
+    
+    XCTAssertEqual(35, imageResponse!.size.width)
+    XCTAssert(errorResponse == nil)
+    XCTAssert(httpUrlResponse == nil)
+  }
+  
+  // MARK: - Autorespond with error
+  
+  func testDownload_autorespondWithError() {
+    let image = TestBundle.image("35px.jpg")!
+    
+    let error = NSError(domain: "test", code: 543_534, userInfo: nil)
+    
+    let response = NSHTTPURLResponse(URL: NSURL(string: "http://error.com")!, statusCode: 422,
+      HTTPVersion: nil, headerFields: nil)
+    
+    MoaSimulator.autorespondWithError("image1.jpg", error: error, response: response)
+    
+    let downloader = MoaSimulator.createDownloader("http://site.com/image1.jpg")!
+    
+    var imageResponse: UIImage?
+    var errorResponse: NSError?
+    var httpUrlResponse: NSHTTPURLResponse?
+    
+    downloader.startDownload("http://site.com/image1.jpg",
+      onSuccess: { image in
+        imageResponse = image
+      },
+      onError: { error, response in
+        errorResponse = error
+        httpUrlResponse = response
+    })
+    
+    XCTAssert(imageResponse == nil)
+    XCTAssertEqual(543_534, errorResponse!.code)
+    XCTAssertEqual(422, httpUrlResponse!.statusCode)
+  }
 }
