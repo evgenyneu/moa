@@ -96,6 +96,22 @@ public final class Moa {
     imageDownloader?.cancel()
     imageDownloader = nil
   }
+  
+  /**
+  
+  The closure will be called after download finishes and before the image
+  is assigned to the image view. The closure is called in the main queue.
+  
+  The closure returns an image that will be shown in the image view.
+  Return nil if you do not want the image to be shown.
+  
+  moa.onSuccess = { image in
+    // Image is received
+    return image
+  }
+  
+  */
+  public var onSuccess: ((MoaImage)->(MoaImage?))?
 
   /**
 
@@ -137,7 +153,7 @@ public final class Moa {
     imageDownloader?.startDownload(url,
       onSuccess: { [weak self] image in
         let simulated = simulatedDownloader != nil
-        self?.onHandleSuccess(image, isSimulated: simulated)
+        self?.onHandleSuccessAsync(image, isSimulated: simulated)
       },
       onError: { [weak self] error, response in
         self?.onErrorAsync?(error, response)
@@ -145,24 +161,38 @@ public final class Moa {
     )
   }
 
-  private func onHandleSuccess(image: MoaImage, isSimulated: Bool) {
+  /**
+
+  Called asynchronously by image downloader when image is received.
+  
+  - parameter image: Image received by the downloader
+  - parameter isSimulated: True if the image was supplied by moa simulator rather than real network.
+
+  */
+  private func onHandleSuccessAsync(image: MoaImage, isSimulated: Bool) {
     var imageForView: MoaImage? = image
 
     if let onSuccessAsync = onSuccessAsync {
       imageForView = onSuccessAsync(image)
     }
 
-    if let imageView = imageView {
-      
-      if isSimulated {
-        // Assign image in the same queu for simulated download to make unit testing simpler with synchronous code
-        imageView.image = imageForView
-      } else {
-        dispatch_async(dispatch_get_main_queue()) {
-          imageView.image = imageForView
-        }
+    if isSimulated {
+      // Assign image in the same queue for simulated download to make unit testing simpler with synchronous code
+      onHandleSuccessMainQueue(imageForView)
+    } else {
+      dispatch_async(dispatch_get_main_queue()) { [weak self] in
+        self?.onHandleSuccessMainQueue(image)
       }
-      
     }
+  }
+  
+  private func onHandleSuccessMainQueue(image: MoaImage?) {
+    var imageForView: MoaImage? = image
+    
+    if let onSuccess = onSuccess, image = image {
+      imageForView = onSuccess(image)
+    }
+    
+    imageView?.image = imageForView
   }
 }

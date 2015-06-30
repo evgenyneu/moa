@@ -176,4 +176,47 @@ class MoaDownloadTests: XCTestCase {
       XCTAssertEqual(200, httpUrlResponse!.statusCode)
     }
   }
+  
+  // MARK: - On success callback
+  
+  func testOnSuccessCallback() {
+    StubHttp.with96pxPngImage()
+    
+    let moa = Moa()
+    var imageResponse: UIImage?
+    
+    moa.onSuccess = { image in
+      imageResponse = image
+      return nil
+    }
+    
+    moa.url = "http://evgenii.com/moa/96px.png"
+    
+    moa_eventually(imageResponse != nil) {
+      XCTAssertEqual(96, imageResponse!.size.width)
+    }
+  }
+  
+  func testOnSuccessCallback_getsImageFromOnSuccessAsync() {
+    StubHttp.with96pxPngImage()
+    
+    let moa = Moa()
+    var imageResponse: UIImage?
+    
+    moa.onSuccessAsync = { image in
+      imageResponse = image
+      return TestBundle.image("67px.png")
+    }
+    
+    moa.onSuccess = { image in
+      imageResponse = image
+      return nil
+    }
+    
+    moa.url = "http://evgenii.com/moa/96px.png"
+    
+    moa_eventually(imageResponse != nil) {
+      XCTAssertEqual(96, imageResponse!.size.width)
+    }
+  }
 }
