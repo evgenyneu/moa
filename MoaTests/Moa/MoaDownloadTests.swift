@@ -249,6 +249,8 @@ class MoaDownloadTests: XCTestCase {
     }
   }
   
+  // MARK: - Supply error image
+  
   func testSupplyErrorImage() {
     StubHttp.withImage("96px.png", forUrlPart: "96px.png", statusCode: 404)
     
