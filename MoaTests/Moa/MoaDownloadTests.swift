@@ -197,14 +197,13 @@ class MoaDownloadTests: XCTestCase {
     }
   }
   
-  func testOnSuccessCallback_mainQueue_GetsImageFromOnSuccessAsync() {
+  func testOnSuccessCallback_mainQueue_getsImageFromOnSuccessAsync() {
     StubHttp.with96pxPngImage()
     
     let moa = Moa()
     var imageResponse: UIImage?
     
     moa.onSuccessAsync = { image in
-      imageResponse = image
       return TestBundle.image("67px.png")
     }
     

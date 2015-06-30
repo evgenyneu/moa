@@ -8,11 +8,13 @@ extension XCTestCase {
     
     let moaExpectation = expectationWithDescription("moa expectation")
     
-    let _ = MoaTimer.runAfter(0.01) { timer in
+    let timer = MoaTimer.runAfter(0.01, repeats: true) { timer in
       if condition() { moaExpectation.fulfill() }
     }
     
     waitForExpectationsWithTimeout(timeout) { error in }
+      
+    timer.cancel()
     
     callback()
   }
