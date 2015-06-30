@@ -181,7 +181,7 @@ public final class Moa {
       onHandleSuccessMainQueue(imageForView)
     } else {
       dispatch_async(dispatch_get_main_queue()) { [weak self] in
-        self?.onHandleSuccessMainQueue(image)
+        self?.onHandleSuccessMainQueue(imageForView)
       }
     }
   }

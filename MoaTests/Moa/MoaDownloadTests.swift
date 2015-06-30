@@ -216,7 +216,7 @@ class MoaDownloadTests: XCTestCase {
     moa.url = "http://evgenii.com/moa/96px.png"
     
     moa_eventually(imageResponse != nil) {
-      XCTAssertEqual(96, imageResponse!.size.width)
+      XCTAssertEqual(67, imageResponse!.size.width)
     }
   }
 }
