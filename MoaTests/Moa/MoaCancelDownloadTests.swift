@@ -6,6 +6,7 @@ class MoaCancelDownloadTests: XCTestCase {
     super.tearDown()
     
     StubHttp.removeAllStubs()
+    Moa.errorImage = nil
   }
   
   func testCancelDownload() {

@@ -6,6 +6,7 @@ class MoaDownloadTests: XCTestCase {
     super.tearDown()
     
     StubHttp.removeAllStubs()
+    Moa.errorImage = nil
   }
   
   func testLoadPngImage() {
@@ -287,4 +288,82 @@ class MoaDownloadTests: XCTestCase {
       XCTAssertEqual(404, httpUrlResponse!.statusCode)
     }
   }
+  
+  // MARK: - Supply global error image
+  
+  func testSupplyGlobalErrorImage() {
+    StubHttp.withImage("96px.png", forUrlPart: "96px.png", statusCode: 404)
+    
+    let moa = Moa()
+    Moa.errorImage = TestBundle.image("67px.png")
+    
+    var imageResponseAsync: UIImage?
+    var imageResponse: UIImage?
+    var errorResponse: NSError?
+    var httpUrlResponse: NSHTTPURLResponse?
+    
+    moa.onSuccessAsync = { image in
+      imageResponseAsync = image
+      return image
+    }
+    
+    moa.onSuccess = { image in
+      imageResponse = image
+      return nil
+    }
+    
+    moa.onErrorAsync = { error, response in
+      errorResponse = error
+      httpUrlResponse = response
+    }
+    
+    moa.url = "http://evgenii.com/moa/96px.png"
+    
+    moa_eventually(imageResponse != nil && errorResponse != nil) {
+      XCTAssertEqual(67, imageResponseAsync!.size.width)
+      XCTAssertEqual(67, imageResponse!.size.width)
+      XCTAssertEqual(MoaHttpImageErrors.HttpStatusCodeIsNot200.rawValue, errorResponse!.code)
+      XCTAssertEqual("MoaHttpImageErrorDomain", errorResponse!.domain)
+      XCTAssertEqual(404, httpUrlResponse!.statusCode)
+    }
+  }
+  
+  func testSupplyGlobalErrorImage_localImageIsUsedWithBothAreSupplied() {
+    StubHttp.withImage("96px.png", forUrlPart: "96px.png", statusCode: 404)
+    
+    let moa = Moa()
+    Moa.errorImage = TestBundle.image("67px.png")
+    moa.errorImage = TestBundle.image("35px.jpg")
+    var imageResponseAsync: UIImage?
+    var imageResponse: UIImage?
+    var errorResponse: NSError?
+    var httpUrlResponse: NSHTTPURLResponse?
+    
+    moa.onSuccessAsync = { image in
+      imageResponseAsync = image
+      return image
+    }
+    
+    moa.onSuccess = { image in
+      imageResponse = image
+      return nil
+    }
+    
+    moa.onErrorAsync = { error, response in
+      errorResponse = error
+      httpUrlResponse = response
+    }
+    
+    moa.url = "http://evgenii.com/moa/96px.png"
+    
+    moa_eventually(imageResponse != nil && errorResponse != nil) {
+      XCTAssertEqual(35, imageResponseAsync!.size.width)
+      XCTAssertEqual(35, imageResponse!.size.width)
+      XCTAssertEqual(MoaHttpImageErrors.HttpStatusCodeIsNot200.rawValue, errorResponse!.code)
+      XCTAssertEqual("MoaHttpImageErrorDomain", errorResponse!.domain)
+      XCTAssertEqual(404, httpUrlResponse!.statusCode)
+    }
+  }
+
+
 }

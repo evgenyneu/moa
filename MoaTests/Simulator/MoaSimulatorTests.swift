@@ -8,6 +8,7 @@ class MoaSimulatorTests: XCTestCase {
     super.tearDown()
     
     MoaSimulator.clear()
+    Moa.errorImage = nil
   }
   
   func testSimulate() {

@@ -76,6 +76,11 @@ imageView.moa.errorImage = UIImage(named: "ImageNotFound.jpg")
 imageView.moa.url = "http://site.com/image.jpg"
 ```
 
+Alternatively, one can supply a global error image that will be used for all filed image downloads.
+
+```Swift
+Moa.errorImage = UIImage(named: "ImageNotFound.jpg")
+```
 
 ## Advanced features
 
@@ -93,12 +98,12 @@ imageView.moa.onSuccess = { image in
 imageView.moa.url = "http://site.com/image.jpg"
 ```
 
-The closure will be called after download finishes and before the image
-is assigned to the image view. This is a good place to manipulate the image before it is shown. The closure returns an image that will be shown in the image view. Return nil if you do not want the image to be shown.
+The closure will be called after download finishes and before the image is assigned to the image view.
 
-Note that the closure as called in the *main queue*. Use `onSuccessAsync` instead if you need to do time consuming operations.
-
-When `errorImage` is supplied and an error occures the success closures are called.
+* This is a good place to manipulate the image before it is shown.
+* The closure returns an image that will be shown in the image view. Return nil if you do not want the image to be shown.
+* The closure as called in the *main queue*. Use `onSuccessAsync` instead if you need to do time consuming operations.
+* When `errorImage` is supplied and an error occurs the success closures are called.
 
 
 ### Supplying error closure

@@ -508,10 +508,17 @@ public final class Moa {
   
   /**
   
-  Image that will be used if error occurs. The images will be assigned to the image view. Callbacks `onSuccess` and `onSuccessAsync` will  be called with the supplied image. Callbacks `onError` and `onErrorAsync` will be called.
+  Image that will be used if error occurs. The image will be assigned to the image view. Callbacks `onSuccess` and `onSuccessAsync` will  be called with the supplied image. Callbacks `onError` and `onErrorAsync` will also be called.
   
   */
-  public var errorImage: UIImage?
+  public var errorImage: MoaImage?
+  
+  /**
+  
+  A global error image that will be used if error occurs in any of the image downloads. The image will be assigned to the image view. Callbacks `onSuccess` and `onSuccessAsync` will  be called with the supplied image. Callbacks `onError` and `onErrorAsync` will also be called.
+  
+  */
+  public static var errorImage: MoaImage?
 
   private func startDownload(url: String) {
     cancel()
@@ -582,7 +589,7 @@ public final class Moa {
   
   */
   private func handleErrorAsync(error: NSError?, response: NSHTTPURLResponse?, isSimulated: Bool) {
-    if let errorImage = errorImage {
+    if let errorImage = globalOrInstanceErrorImage {
       handleSuccessAsync(errorImage, isSimulated: isSimulated)
     }
     
@@ -592,6 +599,12 @@ public final class Moa {
       dispatch_async(dispatch_get_main_queue()) {
         onError(error, response)
       }
+    }
+  }
+  
+  private var globalOrInstanceErrorImage: MoaImage? {
+    get {
+      return errorImage ?? Moa.errorImage
     }
   }
 }

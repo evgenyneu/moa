@@ -8,6 +8,7 @@ class MoaSimulatorIntegrationTests: XCTestCase {
     super.tearDown()
     MoaSimulator.clear()
     StubHttp.removeAllStubs()
+    Moa.errorImage = nil
   }
 
   func testSimulateImageDownload() {
