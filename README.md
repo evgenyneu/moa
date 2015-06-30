@@ -79,29 +79,35 @@ Call `imageView.moa.cancel()` to manually cancel the download.
 Assign a closure that will be called when image is received.
 
 ```Swift
-imageView.moa.onSuccessAsync = { image in
+imageView.moa.onSuccess = { image in
   return image
 }
 
 imageView.moa.url = "http://site.com/image.jpg"
 ```
 
-The closure will be called *asynchronously* after download finishes and before the image
+The closure will be called after download finishes and before the image
 is assigned to the image view. This is a good place to manipulate the image before it is shown. The closure returns an image that will be shown in the image view. Return nil if you do not want the image to be shown.
+
+Note that the closure as called in the *main queue*. Use `onSuccessAsync` instead if you need to do time consuming operations.
 
 
 
 ### Supplying error closure
 
 ```Swift
-imageView.moa.onErrorAsync = { error, response in
+imageView.moa.onError = { error, response in
   // Handle error
 }
 
 imageView.moa.url = "http://site.com/image.jpg"
 ```
 
-The closure is called *asynchronously* if image download fails. [See Wiki](https://github.com/evgenyneu/moa/wiki/Moa-errors) for the list of possible error codes.
+The closure is called if image download fails. [See Wiki](https://github.com/evgenyneu/moa/wiki/Moa-errors) for the list of possible error codes.
+
+Note that the closure as called in the *main queue*. Use `onErrorAsync` instead if you need to do time consuming operations.
+
+
 
 **Closure arguments**:
 
