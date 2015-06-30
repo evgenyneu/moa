@@ -76,14 +76,15 @@ imageView.moa.errorImage = UIImage(named: "ImageNotFound.jpg")
 imageView.moa.url = "http://site.com/image.jpg"
 ```
 
-Alternatively, one can supply a global error image that will be used for all filed image downloads.
+Alternatively, one can supply a global error image that will be used for all failed image downloads.
 
 ```Swift
 Moa.errorImage = UIImage(named: "ImageNotFound.jpg")
 ```
 
-## Advanced features
 
+
+## Advanced features
 
 
 ### Supplying completion closure
