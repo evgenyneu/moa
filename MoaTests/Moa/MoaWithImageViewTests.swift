@@ -131,4 +131,46 @@ class MoaWithImageViewTests: XCTestCase {
       XCTAssertEqual(404, httpUrlResponse!.statusCode)
     }
   }
+  
+  // MARK: - onSuccess callback (main queue)
+  
+  func testSetImageToImageView_withOnSuccessCallback() {
+    StubHttp.with96pxPngImage()
+    
+    let imageView = UIImageView()
+    
+    var imageResponse: UIImage?
+    
+    imageView.moa.onSuccess = { image in
+      imageResponse = image
+      return image
+    }
+    
+    imageView.moa.url = "http://evgenii.com/moa/96px.png"
+    
+    moa_eventually(imageResponse != nil) {
+      XCTAssertEqual(96, imageView.image!.size.width)
+      XCTAssertEqual(96, imageResponse!.size.width)
+    }
+  }
+  
+  func testSetImageToImageView_withOnSuccessCallback_supplyDifferentImageWithCallback() {
+    StubHttp.with96pxPngImage()
+    
+    let imageView = UIImageView()
+    
+    var imageResponse: UIImage?
+    
+    imageView.moa.onSuccess = { image in
+      imageResponse = image
+      return TestBundle.image("67px.png")
+    }
+    
+    imageView.moa.url = "http://evgenii.com/moa/96px.png"
+    
+    moa_eventually(imageResponse != nil) {
+      XCTAssertEqual(67, imageView.image!.size.width)
+    }
+  }
+
 }

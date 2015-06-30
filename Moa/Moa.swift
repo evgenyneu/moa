@@ -165,7 +165,7 @@ public final class Moa {
 
   Called asynchronously by image downloader when image is received.
   
-  - parameter image: Image received by the downloader
+  - parameter image: Image received by the downloader.
   - parameter isSimulated: True if the image was supplied by moa simulator rather than real network.
 
   */
@@ -186,6 +186,13 @@ public final class Moa {
     }
   }
   
+  /**
+  
+  Called by image downloader in the main queue when image is received.
+  
+  - parameter image: Image received by the downloader.
+  
+  */
   private func onHandleSuccessMainQueue(image: MoaImage?) {
     var imageForView: MoaImage? = image
     
