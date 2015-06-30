@@ -504,20 +504,28 @@ public final class Moa {
 
   */
   public var onErrorAsync: ((NSError?, NSHTTPURLResponse?)->())?
+  
+  
+  /**
+  
+  Image that will be used if error occurs. The images will be assigned to the image view. Callbacks `onSuccess` and `onSuccessAsync` will  be called with the supplied image. Callbacks `onError` and `onErrorAsync` will be called.
+  
+  */
+  public var errorImage: UIImage?
 
   private func startDownload(url: String) {
     cancel()
     
     let simulatedDownloader = MoaSimulator.createDownloader(url)
     imageDownloader = simulatedDownloader ?? MoaHttpImageDownloader()
-
+    let simulated = simulatedDownloader != nil
+    
     imageDownloader?.startDownload(url,
       onSuccess: { [weak self] image in
-        let simulated = simulatedDownloader != nil
-        self?.onHandleSuccessAsync(image, isSimulated: simulated)
+        self?.handleSuccessAsync(image, isSimulated: simulated)
       },
       onError: { [weak self] error, response in
-        self?.onHandleErrorAsync(error, response: response)
+        self?.handleErrorAsync(error, response: response, isSimulated: simulated)
       }
     )
   }
@@ -530,7 +538,7 @@ public final class Moa {
   - parameter isSimulated: True if the image was supplied by moa simulator rather than real network.
 
   */
-  private func onHandleSuccessAsync(image: MoaImage, isSimulated: Bool) {
+  private func handleSuccessAsync(image: MoaImage, isSimulated: Bool) {
     var imageForView: MoaImage? = image
 
     if let onSuccessAsync = onSuccessAsync {
@@ -539,10 +547,10 @@ public final class Moa {
 
     if isSimulated {
       // Assign image in the same queue for simulated download to make unit testing simpler with synchronous code
-      onHandleSuccessMainQueue(imageForView)
+      handleSuccessMainQueue(imageForView)
     } else {
       dispatch_async(dispatch_get_main_queue()) { [weak self] in
-        self?.onHandleSuccessMainQueue(imageForView)
+        self?.handleSuccessMainQueue(imageForView)
       }
     }
   }
@@ -554,7 +562,7 @@ public final class Moa {
   - parameter image: Image received by the downloader.
   
   */
-  private func onHandleSuccessMainQueue(image: MoaImage?) {
+  private func handleSuccessMainQueue(image: MoaImage?) {
     var imageForView: MoaImage? = image
     
     if let onSuccess = onSuccess, image = image {
@@ -570,9 +578,14 @@ public final class Moa {
   
   - parameter error: Error object.
   - parameter response: HTTP response object, can be useful for getting HTTP status code.
+  - parameter isSimulated: True if the image was supplied by moa simulator rather than real network.
   
   */
-  private func onHandleErrorAsync(error: NSError?, response: NSHTTPURLResponse?) {
+  private func handleErrorAsync(error: NSError?, response: NSHTTPURLResponse?, isSimulated: Bool) {
+    if let errorImage = errorImage {
+      handleSuccessAsync(errorImage, isSimulated: isSimulated)
+    }
+    
     onErrorAsync?(error, response)
     
     if let onError = onError {

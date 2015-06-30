@@ -248,5 +248,41 @@ class MoaDownloadTests: XCTestCase {
       XCTAssertEqual(404, httpUrlResponse!.statusCode)
     }
   }
-
+  
+  func testSupplyErrorImage() {
+    StubHttp.withImage("96px.png", forUrlPart: "96px.png", statusCode: 404)
+    
+    let moa = Moa()
+    moa.errorImage = TestBundle.image("67px.png")
+    
+    var imageResponseAsync: UIImage?
+    var imageResponse: UIImage?
+    var errorResponse: NSError?
+    var httpUrlResponse: NSHTTPURLResponse?
+    
+    moa.onSuccessAsync = { image in
+      imageResponseAsync = image
+      return image
+    }
+    
+    moa.onSuccess = { image in
+      imageResponse = image
+      return nil
+    }
+    
+    moa.onErrorAsync = { error, response in
+      errorResponse = error
+      httpUrlResponse = response
+    }
+    
+    moa.url = "http://evgenii.com/moa/96px.png"
+    
+    moa_eventually(imageResponse != nil && errorResponse != nil) {
+      XCTAssertEqual(67, imageResponseAsync!.size.width)
+      XCTAssertEqual(67, imageResponse!.size.width)
+      XCTAssertEqual(MoaHttpImageErrors.HttpStatusCodeIsNot200.rawValue, errorResponse!.code)
+      XCTAssertEqual("MoaHttpImageErrorDomain", errorResponse!.domain)
+      XCTAssertEqual(404, httpUrlResponse!.statusCode)
+    }
+  }
 }
