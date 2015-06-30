@@ -105,10 +105,10 @@ public final class Moa {
   The closure returns an image that will be shown in the image view.
   Return nil if you do not want the image to be shown.
   
-  moa.onSuccess = { image in
-    // Image is received
-    return image
-  }
+      moa.onSuccess = { image in
+        // Image is received
+        return image
+      }
   
   */
   public var onSuccess: ((MoaImage)->(MoaImage?))?
@@ -131,7 +131,18 @@ public final class Moa {
   */
   public var onSuccessAsync: ((MoaImage)->(MoaImage?))?
 
-
+  /**
+  
+  The closure is called in the main queue if image download fails.
+  [See Wiki](https://github.com/evgenyneu/moa/wiki/Moa-errors) for the list of possible error codes.
+  
+      onError = { error, httpUrlResponse in
+        // Report error
+      }
+  
+  */
+  public var onError: ((NSError?, NSHTTPURLResponse?)->())?
+  
   /**
 
   The closure is called *asynchronously* if image download fails.
@@ -156,7 +167,7 @@ public final class Moa {
         self?.onHandleSuccessAsync(image, isSimulated: simulated)
       },
       onError: { [weak self] error, response in
-        self?.onErrorAsync?(error, response)
+        self?.onHandleErrorAsync(error, response: response)
       }
     )
   }
@@ -201,5 +212,23 @@ public final class Moa {
     }
     
     imageView?.image = imageForView
+  }
+  
+  /**
+  
+  Called asynchronously by image downloader if imaged download fails.
+  
+  - parameter error: Error object.
+  - parameter response: HTTP response object, can be useful for getting HTTP status code.
+  
+  */
+  private func onHandleErrorAsync(error: NSError?, response: NSHTTPURLResponse?) {
+    onErrorAsync?(error, response)
+    
+    if let onError = onError {
+      dispatch_async(dispatch_get_main_queue()) {
+        onError(error, response)
+      }
+    }
   }
 }

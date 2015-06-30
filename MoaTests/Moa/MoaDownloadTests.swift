@@ -177,9 +177,9 @@ class MoaDownloadTests: XCTestCase {
     }
   }
   
-  // MARK: - On success callback
+  // MARK: - On success callback (main queue)
   
-  func testOnSuccessCallback() {
+  func testOnSuccessCallback_mainQueue() {
     StubHttp.with96pxPngImage()
     
     let moa = Moa()
@@ -197,7 +197,7 @@ class MoaDownloadTests: XCTestCase {
     }
   }
   
-  func testOnSuccessCallback_getsImageFromOnSuccessAsync() {
+  func testOnSuccessCallback_mainQueue_GetsImageFromOnSuccessAsync() {
     StubHttp.with96pxPngImage()
     
     let moa = Moa()
@@ -219,4 +219,35 @@ class MoaDownloadTests: XCTestCase {
       XCTAssertEqual(67, imageResponse!.size.width)
     }
   }
+  
+  // MARK: - On error callback (main queue)
+  
+  func testOnErrorCallback_mainQueue() {
+    StubHttp.withImage("96px.png", forUrlPart: "96px.png", statusCode: 404)
+    
+    let moa = Moa()
+    var imageResponse: UIImage?
+    var errorResponse: NSError?
+    var httpUrlResponse: NSHTTPURLResponse?
+    
+    moa.onSuccess = { image in
+      imageResponse = image
+      return nil
+    }
+    
+    moa.onError = { error, response in
+      errorResponse = error
+      httpUrlResponse = response
+    }
+    
+    moa.url = "http://evgenii.com/moa/96px.png"
+    
+    moa_eventually(errorResponse != nil) {
+      XCTAssert(imageResponse == nil)
+      XCTAssertEqual(MoaHttpImageErrors.HttpStatusCodeIsNot200.rawValue, errorResponse!.code)
+      XCTAssertEqual("MoaHttpImageErrorDomain", errorResponse!.domain)
+      XCTAssertEqual(404, httpUrlResponse!.statusCode)
+    }
+  }
+
 }
