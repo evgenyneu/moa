@@ -67,7 +67,14 @@ Ongoing image download for the image view is automatically canceled when:
 Call `imageView.moa.cancel()` to manually cancel the download.
 
 
+## Supply error image
 
+You can supply an error image that will be used if an error occurs during image download.
+
+```Swift
+imageView.moa.errorImage = UIImage(named: "ImageNotFound.jpg")
+imageView.moa.url = "http://site.com/image.jpg"
+```
 
 
 ## Advanced features
@@ -91,6 +98,7 @@ is assigned to the image view. This is a good place to manipulate the image befo
 
 Note that the closure as called in the *main queue*. Use `onSuccessAsync` instead if you need to do time consuming operations.
 
+When `errorImage` is supplied and an error occures the success closures are called.
 
 
 ### Supplying error closure
