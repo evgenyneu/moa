@@ -99,8 +99,7 @@ imageView.moa.onSuccess = { image in
 imageView.moa.url = "http://site.com/image.jpg"
 ```
 
-The closure will be called after download finishes and before the image is assigned to the image view.
-
+* The closure will be called after download finishes and before the image is assigned to the image view.
 * This is a good place to manipulate the image before it is shown.
 * The closure returns an image that will be shown in the image view. Return nil if you do not want the image to be shown.
 * The closure as called in the *main queue*. Use `onSuccessAsync` instead if you need to do time consuming operations.
