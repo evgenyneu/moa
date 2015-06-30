@@ -100,13 +100,9 @@ imageView.moa.url = "http://site.com/image.jpg"
 ```
 
 * The closure will be called after download finishes and before the image is assigned to the image view.
-
 * This is a good place to manipulate the image before it is shown.
-
 * The closure returns an image that will be shown in the image view. Return nil if you do not want the image to be shown.
-
 * The closure as called in the *main queue*. Use `onSuccessAsync` instead if you need to do time consuming operations.
-
 * When `errorImage` is supplied and an error occurs the success closures are called.
 
 
@@ -121,7 +117,6 @@ imageView.moa.url = "http://site.com/image.jpg"
 ```
 
 * The closure is called if image download fails. [See Wiki](https://github.com/evgenyneu/moa/wiki/Moa-errors) for the list of possible error codes.
-
 * The closure as called in the *main queue*. Use `onErrorAsync` instead if you need to do time consuming operations.
 
 
