@@ -118,8 +118,6 @@ imageView.moa.url = "http://site.com/image.jpg"
 
 * The closure is called if image download fails. [See Wiki](https://github.com/evgenyneu/moa/wiki/Moa-errors) for the list of possible error codes.
 * The closure as called in the *main queue*. Use `onErrorAsync` property instead if you need to do time consuming operations.
-* **Closure arguments**: *error*: NSError instance, *response*: NSHTTPURLResponse instance.
-
 
 
 ### Download an image without an image view
