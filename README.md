@@ -151,6 +151,10 @@ Moa.settings.cache.requestCachePolicy = .ReturnCacheDataElseLoad
 
 Sometimes it is useful to prevent code from making real HTTP requests. Moa includes `MoaSimulator` class for testing image downloads and faking network responses. See [unit test manual](https://github.com/evgenyneu/moa/wiki/Unit-testing-with-Moa) for more information.
 
+```Swift
+// Autorespond with the given image to all image requests
+MoaSimulator.autorespondWithImage("www.site.com", image: UIImage(named: "35px.jpg")!)
+```
 
 ## Demo app
 
