@@ -126,7 +126,7 @@ An instance of `Moa` class can also be used without an image view. A strong refe
 
 ```Swift
 let moa = Moa()
-moa.onSuccessAsync = { image in
+moa.onSuccess = { image in
   // image is loaded
   return image
 }
