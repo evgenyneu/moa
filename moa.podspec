@@ -20,5 +20,5 @@ Pod::Spec.new do |s|
   s.screenshots  = "https://raw.githubusercontent.com/evgenyneu/moa/master/Graphics/Hunting_Moa.jpg"
   s.source_files = "Moa/**/*.swift"
   s.ios.deployment_target = "8.0"
-  s.osx.deployment_target = "10.10"
+  s.osx.deployment_target = "10.9"
 end
