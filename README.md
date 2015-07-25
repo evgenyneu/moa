@@ -126,7 +126,7 @@ An instance of `Moa` class can also be used without an image view. A strong refe
 
 ```Swift
 let moa = Moa()
-moa.onSuccessAsync = { image in
+moa.onSuccess = { image in
   // image is loaded
   return image
 }
@@ -134,44 +134,16 @@ moa.url = "http://site.com/image.jpg"
 ```
 
 
-## Caching
+## Image caching
 
-Moa uses the built-in NSURLSession caching methods. It creates a dedicated cache storage that is separate from the app's shared url cache. You can change the cache settings at any moment by setting the `Moa.settings.cache` property.
-
-
-
-#### Caching controlled by the server
-
-By default images are cached locally according to their response HTTP headers: Cache-Control, Expires and ETag.
-This is useful when you control the web server and can configure its image caching responses. It is similar to how the image caching is done in the web browsers where the caching decisions are made on the server side. Ilya Grigorik did an excellent overview of HTTP caching [in this article](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=en).
+Use the `Moa.settings.cache` to change caching settings. For more information please refer to the [moa image caching manual](https://github.com/evgenyneu/moa/wiki/Moa-image-caching).
 
 ```Swift
 // By default images are cached according to their response HTTP headers.
 Moa.settings.cache.requestCachePolicy = .UseProtocolCachePolicy
-```
 
-
-#### Force caching on client side
-
-If you don't control the server you can set the `requestCachePolicy` setting to `.ReturnCacheDataElseLoad`. It will load the images from local cache regardless of their age and expiration date.
-
-```Swift
-// Use local cache regardless of response HTTP headers.
+// Always cache images locally regardless of their response HTTP headers
 Moa.settings.cache.requestCachePolicy = .ReturnCacheDataElseLoad
-```
-
-
-
-
-### Other cache settings
-
-```Swift
-// Change memory cache size. Default is 20 MB.
-Moa.settings.cache.memoryCapacityBytes = 20 * 1024 * 1024
-
-// Change disk cache size. Default is 100 MB.
-Moa.settings.cache.diskCapacityBytes = 100 * 1024 * 1024
-
 ```
 
 
@@ -179,6 +151,10 @@ Moa.settings.cache.diskCapacityBytes = 100 * 1024 * 1024
 
 Sometimes it is useful to prevent code from making real HTTP requests. Moa includes `MoaSimulator` class for testing image downloads and faking network responses. See [unit test manual](https://github.com/evgenyneu/moa/wiki/Unit-testing-with-Moa) for more information.
 
+```Swift
+// Autorespond with the given image to all image requests
+MoaSimulator.autorespondWithImage("www.site.com", image: UIImage(named: "35px.jpg")!)
+```
 
 ## Demo app
 
