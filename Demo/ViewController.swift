@@ -9,7 +9,7 @@ class ViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+        
     collectionView.dataSource = collectionViewDataSource
     setupCollectionViewLayout()
   }
