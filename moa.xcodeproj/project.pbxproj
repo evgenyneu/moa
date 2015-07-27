@@ -62,7 +62,6 @@
 		7E30CDFC1B22766B00F6258E /* MoaSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCC1C81B1B33AF00BC9569 /* MoaSettings.swift */; };
 		7E30CDFD1B22767100F6258E /* MoaSettingsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCC1D11B1B3F2E00BC9569 /* MoaSettingsCache.swift */; };
 		7E3694B01B1B430300AABE3F /* MoaSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3694AE1B1B430000AABE3F /* MoaSettingsTests.swift */; };
-		7E3877761B10558E001ADD7E /* concatenate_swift_files.sh in Resources */ = {isa = PBXBuildFile; fileRef = 7E3877751B10558E001ADD7E /* concatenate_swift_files.sh */; };
 		7E693F341B1B15D4000E7156 /* launch_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E693F331B1B15D4000E7156 /* launch_screen.png */; };
 		7E6FDB581B088E600095C29F /* text.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E6FDB571B088E600095C29F /* text.txt */; };
 		7E7541071B0D3C5100AC0FC7 /* Moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFA71B0858DD00C951C4 /* Moa.swift */; };
@@ -771,7 +770,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E3877761B10558E001ADD7E /* concatenate_swift_files.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
