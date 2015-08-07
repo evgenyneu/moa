@@ -280,7 +280,7 @@ struct MoaHttpSession {
       basePath = paths[0]
     }
     
-    return basePath.stringByAppendingPathComponent(dirName)
+    return (basePath as NSString).stringByAppendingPathComponent(dirName)
   }
   
   static func cacheSettingsChanged(oldSettings: MoaSettingsCache) {
