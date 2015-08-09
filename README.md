@@ -51,9 +51,9 @@ Moa is written in Swift 2 for Xcode 7. See [Swift 1.2 setup instuctions](https:/
 
 1. Add `import moa` to your source code if you used Carthage or CocoaPods setup methods.
 
-1. Drag an Image View to your view in the storyboard. Create an outlet property for this image view in your view controller.
+1. Drag an Image View to your view in the storyboard. Create an outlet property for this image view in your view controller. Alternatively, instead of using the storyboard you can create a `UIImageView` in code.
 
-1. Set `moa.url` property of an image view to start asynchronous image download. The image will be automatically displayed when download is finished.
+1. Set `moa.url` property of the image view to start asynchronous image download. The image will be automatically displayed when download is finished.
 
 ```Swift
 imageView.moa.url = "http://site.com/image.jpg"
