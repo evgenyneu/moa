@@ -61,7 +61,7 @@ imageView.moa.url = "https://site.com/image.jpg"
 
 ## Loading images from insecure HTTP hosts
 
-If your image URLs are not *https* you can either change them to **https** or [and an exception](http://evgenii.com/blog/loading-data-from-non-secure-hosts-in-ios9-with-nsurlsession/) to the **Info.plist** file. This will allow the App Transport Security to load the images from insecure HTTP hosts.
+If your image URLs are not **https** you can either make them **https** or [and an exception](http://evgenii.com/blog/loading-data-from-non-secure-hosts-in-ios9-with-nsurlsession/) to the **Info.plist** file. This will allow the App Transport Security to load the images from insecure HTTP hosts.
 
 ## Canceling download
 
