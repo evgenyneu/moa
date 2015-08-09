@@ -1,13 +1,16 @@
 #!/bin/bash
 
 #
-#  Combines *.swift files into a single file.
+#  Combines *.swift files into a single file. Used in Xcode to build a single swift distributive file. In Xcode it is done by creating an external build tool configuration.
 #
 #  Usage
 #  ------
 #
 #  ./combine_swift_files.sh source_dir destination_file [optional_header_text]
 #
+
+# Handle paths with spaces (http://unix.stackexchange.com/a/9499)
+IFS=$'\n'
 
 destination=$2
 headermessage=$3
@@ -49,5 +52,3 @@ fi
 echo -e "$text" > "$destination"
 
 echo -e "\nSwift files combined into $destination"
-
-
