@@ -9,7 +9,7 @@
 #  2. Click "Info" tab in target settings.
 #  3. In "Build Tool" field specify the path to this script file, for example: $PROJECT_DIR/scripts/concatenate_swift_files.sh
 #  4. In "Arguments" field specify the arguments, for example $PROJECT_DIR/YourSubDir $PROJECT_DIR/Distrib/Distrib.swift "// Your header"
-#  5. Build the target and it will concatenate your swift files into a single swift files.
+#  5. Build the target and it will concatenate your swift files into a single swift file.
 #
 #  You can see an example of using the script in this project: https://github.com/evgenyneu/moa
 #
