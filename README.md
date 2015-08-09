@@ -55,8 +55,10 @@ Moa is written in Swift 2 for Xcode 7. See [Swift 1.2 setup instuctions](https:/
 
 1. Set `moa.url` property of the image view to start asynchronous image download. The image will be automatically displayed when download is finished.
 
+1. [And an exception](http://evgenii.com/blog/loading-data-from-non-secure-hosts-in-ios9-with-nsurlsession/) to the **Info.plist** file if your image urls are not *https*. This will allow the App Transport Security to load the images from insecure HTTP hosts.
+
 ```Swift
-imageView.moa.url = "http://site.com/image.jpg"
+imageView.moa.url = "https://site.com/image.jpg"
 ```
 
 ## Canceling download
