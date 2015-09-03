@@ -19,21 +19,6 @@ enum MoaError: ErrorType {
   /// Simulated error used in unit tests. Error code: 5.
   case SimulatedError
   
-  static func fromError(error: NSError) -> MoaError? {
-    if !MoaString.contains(error.domain, substring: "MoaError") { return nil }
-    
-    switch error.code {
-    case 0: return .InvalidUrlString
-    case 1: return .HttpStatusCodeIsNot200
-    case 2: return .MissingResponseContentTypeHttpHeader
-    case 3: return .NotAnImageContentTypeInResponseHttpHeader
-    case 4: return .FailedToReadImageData
-    case 5: return .SimulatedError
-
-    default: return nil
-    }
-  }
-  
   var localizedDescription: String {
     let comment = "Moa image downloader error"
   
