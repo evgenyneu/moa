@@ -60,7 +60,8 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     downloader.respondWithError()
     
     XCTAssert(imageResponse == nil)
-    XCTAssertEqual(MoaHttpImageErrors.SimulatedError.rawValue, errorResponse!.code)
+    XCTAssertEqual(MoaError.SimulatedError._code, errorResponse!.code)
+    XCTAssertEqual(5, errorResponse!.code)
     XCTAssert(httpUrlResponse == nil)
   }
   
@@ -119,7 +120,8 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     })
     
     XCTAssert(imageResponse == nil)
-    XCTAssertEqual(MoaHttpImageErrors.SimulatedError.rawValue, errorResponse!.code)
+    XCTAssertEqual(MoaError.SimulatedError._code, errorResponse!.code)
+    XCTAssertEqual(5, errorResponse!.code)
     XCTAssert(httpUrlResponse == nil)
   }
 }

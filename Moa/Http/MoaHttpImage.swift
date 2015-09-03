@@ -26,7 +26,7 @@ struct MoaHttpImage {
       
     // Show error if response code is not 200
     if response.statusCode != 200 {
-      onError(MoaHttpImageErrors.HttpStatusCodeIsNot200.new, response)
+      onError(MoaError.HttpStatusCodeIsNot200 as NSError, response)
       return
     }
     
@@ -34,13 +34,13 @@ struct MoaHttpImage {
     if let mimeType = response.MIMEType {
       if !validMimeType(mimeType) {
         // Not an image Content-Type http header
-        let error = MoaHttpImageErrors.NotAnImageContentTypeInResponseHttpHeader.new
+        let error = MoaError.NotAnImageContentTypeInResponseHttpHeader as NSError
         onError(error, response)
         return
       }
     } else {
       // Missing Content-Type http header
-      let error = MoaHttpImageErrors.MissingResponseContentTypeHttpHeader.new
+      let error = MoaError.MissingResponseContentTypeHttpHeader as NSError
       onError(error, response)
       return
     }
@@ -49,7 +49,7 @@ struct MoaHttpImage {
       onSuccess(image)
     } else {
       // Failed to convert response data to UIImage
-      let error = MoaHttpImageErrors.FailedToReadImageData.new
+      let error = MoaError.FailedToReadImageData as NSError
       onError(error, response)
     }
   }

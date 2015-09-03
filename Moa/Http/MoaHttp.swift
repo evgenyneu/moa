@@ -15,7 +15,7 @@ struct MoaHttp {
     }
     
     // Error converting string to NSURL
-    onError(MoaHttpErrors.InvalidUrlString.new, nil)
+    onError(MoaError.InvalidUrlString as NSError, nil)
     return nil
   }
   

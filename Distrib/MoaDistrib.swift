@@ -9,6 +9,33 @@
 
 // ----------------------------
 //
+// MoaError.swift
+//
+// ----------------------------
+
+enum MoaError: ErrorType {
+  /// Incorrect URL is supplied. Error code: 0.
+  case InvalidUrlString
+  
+  /// Response HTTP status code is not 200. Error code: 1.
+  case HttpStatusCodeIsNot200
+  
+  /// Response is missing Content-Type http header. Error code: 2.
+  case MissingResponseContentTypeHttpHeader
+  
+  /// Response Content-Type http header is not an image type. Error code: 3.
+  case NotAnImageContentTypeInResponseHttpHeader
+  
+  /// Failed to convert response data to UIImage. Error code: 4.
+  case FailedToReadImageData
+  
+  /// Simulated error used in unit tests. Error code: 5.
+  case SimulatedError
+}
+
+
+// ----------------------------
+//
 // MoaHttp.swift
 //
 // ----------------------------
@@ -30,7 +57,7 @@ struct MoaHttp {
     }
     
     // Error converting string to NSURL
-    onError(MoaHttpErrors.InvalidUrlString.new, nil)
+    onError(MoaError.InvalidUrlString as NSError, nil)
     return nil
   }
   
@@ -49,29 +76,6 @@ struct MoaHttp {
         onError(error, nil)
       }
     }
-  }
-}
-
-
-// ----------------------------
-//
-// MoaHttpErrors.swift
-//
-// ----------------------------
-
-import Foundation
-
-/**
-
-Http error types.
-
-*/
-public enum MoaHttpErrors: Int {
-  /// Incorrect URL is supplied.
-  case InvalidUrlString = -1
-  
-  internal var new: NSError {
-    return NSError(domain: "MoaHttpErrorDomain", code: rawValue, userInfo: nil)
   }
 }
 
@@ -110,7 +114,7 @@ struct MoaHttpImage {
       
     // Show error if response code is not 200
     if response.statusCode != 200 {
-      onError(MoaHttpImageErrors.HttpStatusCodeIsNot200.new, response)
+      onError(MoaError.HttpStatusCodeIsNot200 as NSError, response)
       return
     }
     
@@ -118,13 +122,13 @@ struct MoaHttpImage {
     if let mimeType = response.MIMEType {
       if !validMimeType(mimeType) {
         // Not an image Content-Type http header
-        let error = MoaHttpImageErrors.NotAnImageContentTypeInResponseHttpHeader.new
+        let error = MoaError.NotAnImageContentTypeInResponseHttpHeader as NSError
         onError(error, response)
         return
       }
     } else {
       // Missing Content-Type http header
-      let error = MoaHttpImageErrors.MissingResponseContentTypeHttpHeader.new
+      let error = MoaError.MissingResponseContentTypeHttpHeader as NSError
       onError(error, response)
       return
     }
@@ -133,7 +137,7 @@ struct MoaHttpImage {
       onSuccess(image)
     } else {
       // Failed to convert response data to UIImage
-      let error = MoaHttpImageErrors.FailedToReadImageData.new
+      let error = MoaError.FailedToReadImageData as NSError
       onError(error, response)
     }
   }
@@ -170,6 +174,11 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
   func startDownload(url: String, onSuccess: (MoaImage)->(),
     onError: (NSError?, NSHTTPURLResponse?)->()) {
       
+    var error: MoaError?
+    error = MoaError(4)
+      
+      
+      
     logger?(.RequestSent, url, nil)
     
     cancelled = false
@@ -199,41 +208,6 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
     
     let url = task?.originalRequest?.URL?.absoluteString ?? ""
     logger?(.RequestCancelled, url, nil)
-  }
-}
-
-
-// ----------------------------
-//
-// MoaHttpImageErrors.swift
-//
-// ----------------------------
-
-import Foundation
-
-/**
-
-Image download error types.
-
-*/
-public enum MoaHttpImageErrors: Int {
-  /// Response HTTP status code is not 200.
-  case HttpStatusCodeIsNot200 = -1
-  
-  /// Response is missing Content-Type http header.
-  case MissingResponseContentTypeHttpHeader = -2
-  
-  /// Response Content-Type http header is not an image type.
-  case NotAnImageContentTypeInResponseHttpHeader = -3
-  
-  /// Failed to convert response data to UIImage.
-  case FailedToReadImageData = -4
-  
-  /// Simulated error used in unit tests
-  case SimulatedError = -5
-
-  internal var new: NSError {
-    return NSError(domain: "MoaHttpImageErrorDomain", code: rawValue, userInfo: nil)
   }
 }
 
@@ -840,7 +814,7 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   
   */
   public func respondWithError(error: NSError? = nil, response: NSHTTPURLResponse? = nil) {
-    onError?(error ?? MoaHttpImageErrors.SimulatedError.new, response)
+    onError?(error ?? MoaError.SimulatedError as NSError, response)
   }
 }
 
