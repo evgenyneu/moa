@@ -111,6 +111,7 @@ class MoaDownloadTests: XCTestCase {
     
     moa_eventually(errorResponse != nil) {
       XCTAssert(imageResponse == nil)
+      
       XCTAssertEqual(-1009, errorResponse!.code)
       XCTAssertEqual("NSURLErrorDomain", errorResponse!.domain)
       XCTAssert(httpUrlResponse == nil)
