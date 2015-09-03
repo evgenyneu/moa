@@ -17,21 +17,19 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
   func startDownload(url: String, onSuccess: (MoaImage)->(),
     onError: (NSError?, NSHTTPURLResponse?)->()) {
       
-    logger?(.RequestUrl, url, nil)
+    logger?(.RequestSent, url, nil)
     
     cancelled = false
   
     task = MoaHttpImage.createDataTask(url,
       onSuccess: { [weak self] image in
-        self?.logger?(.ResponseSuccessUrl, url, 200)
+        self?.logger?(.ResponseSuccess, url, 200)
         onSuccess(image)
       },
       onError: { [weak self] error, response in
-        self?.logger?(.ResponseErrorUrl, url, response?.statusCode)
-
-        if let currentSelf = self
-          where !currentSelf.cancelled { // Do not report error if task was manually cancelled
-    
+        if let currentSelf = self where !currentSelf.cancelled {
+          // Do not report error if task was manually cancelled
+          self?.logger?(.ResponseError, url, response?.statusCode)
           onError(error, response)
         }
       }
@@ -41,8 +39,8 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
   }
   
   func cancel() {
-    let url = task?.originalRequest?.URL?.absoluteString ?? nil
-    logger?(.RequestCancelUrl, url, nil)
+    let url = task?.originalRequest?.URL?.absoluteString ?? ""
+    logger?(.RequestCancelled, url, nil)
     
     task?.cancel()
     cancelled = true

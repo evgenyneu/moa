@@ -40,7 +40,7 @@ public final class Moa {
   public static var settings = MoaSettings()
   
   /// Supply a callback closure for getting request, response and error logs
-  public var logger: MoaLoggerCallback?
+  public static var logger: MoaLoggerCallback?
 
   /**
 
@@ -177,7 +177,7 @@ public final class Moa {
     cancel()
     
     let simulatedDownloader = MoaSimulator.createDownloader(url)
-    imageDownloader = simulatedDownloader ?? MoaHttpImageDownloader(logger: logger)
+    imageDownloader = simulatedDownloader ?? MoaHttpImageDownloader(logger: Moa.logger)
     let simulated = simulatedDownloader != nil
     
     imageDownloader?.startDownload(url,

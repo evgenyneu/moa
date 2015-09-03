@@ -2,11 +2,15 @@ import UIKit
 import XCTest
 
 class MoaImageDownloaderTests: XCTestCase {
+  override func tearDown() {
+    super.tearDown()
+    
+    StubHttp.removeAllStubs()
+  }
+  
   // MARK: - startDownload
   
-  func testLogger(type: MoaLogType, message: String?, statusCode: Int?) {
-    
-  }
+  func testLogger(type: MoaLogType, message: String, statusCode: Int?) { }
   
   func testStartDownload_success() {
     StubHttp.with35pxJpgImage()

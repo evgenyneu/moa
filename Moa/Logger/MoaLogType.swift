@@ -4,15 +4,15 @@ Types of log messages.
 
 */
 public enum MoaLogType: Int{
-  /// String containing request URL
-  case RequestUrl
+  /// Request is sent
+  case RequestSent
   
-  /// String containing request URL
-  case ResponseSuccessUrl
+  // Request is cancelled
+  case RequestCancelled
   
-  /// Contains reponse error message for HTTP error like "No internet connection"
-  case ResponseErrorUrl
+  /// Successful response is received
+  case ResponseSuccess
   
-  /// Sent when request is cancelled
-  case RequestCancelUrl
+  /// Response error is received
+  case ResponseError
 }

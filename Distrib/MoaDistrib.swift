@@ -170,21 +170,19 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
   func startDownload(url: String, onSuccess: (MoaImage)->(),
     onError: (NSError?, NSHTTPURLResponse?)->()) {
       
-    logger?(.RequestUrl, url, nil)
+    logger?(.RequestSent, url, nil)
     
     cancelled = false
   
     task = MoaHttpImage.createDataTask(url,
       onSuccess: { [weak self] image in
-        self?.logger?(.ResponseSuccessUrl, url, 200)
+        self?.logger?(.ResponseSuccess, url, 200)
         onSuccess(image)
       },
       onError: { [weak self] error, response in
-        self?.logger?(.ResponseErrorUrl, url, response?.statusCode)
-
-        if let currentSelf = self
-          where !currentSelf.cancelled { // Do not report error if task was manually cancelled
-    
+        if let currentSelf = self where !currentSelf.cancelled {
+          // Do not report error if task was manually cancelled
+          self?.logger?(.ResponseError, url, response?.statusCode)
           onError(error, response)
         }
       }
@@ -194,8 +192,8 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
   }
   
   func cancel() {
-    let url = task?.originalRequest?.URL?.absoluteString ?? nil
-    logger?(.RequestCancelUrl, url, nil)
+    let url = task?.originalRequest?.URL?.absoluteString ?? ""
+    logger?(.RequestCancelled, url, nil)
     
     task?.cancel()
     cancelled = true
@@ -372,11 +370,11 @@ A logger closure.
 Parameters:
 
 1. Type of the log.
-2. Log message, if applicable.
+2. URL of the request.
 3. Http status code, if applicable.
 
 */
-public typealias MoaLoggerCallback = (MoaLogType, String?, Int?)->()
+public typealias MoaLoggerCallback = (MoaLogType, String, Int?)->()
 
 
 // ----------------------------
@@ -391,17 +389,17 @@ Types of log messages.
 
 */
 public enum MoaLogType: Int{
-  /// String containing request URL
-  case RequestUrl
+  /// Request is sent
+  case RequestSent
   
-  /// String containing request URL
-  case ResponseSuccessUrl
+  // Request is cancelled
+  case RequestCancelled
   
-  /// Contains reponse error message for HTTP error like "No internet connection"
-  case ResponseErrorUrl
+  /// Successful response is received
+  case ResponseSuccess
   
-  /// Sent when request is cancelled
-  case RequestCancelUrl
+  /// Response error is received
+  case ResponseError
 }
 
 
@@ -453,7 +451,7 @@ public final class Moa {
   public static var settings = MoaSettings()
   
   /// Supply a callback closure for getting request, response and error logs
-  public var logger: MoaLoggerCallback?
+  public static var logger: MoaLoggerCallback?
 
   /**
 
@@ -590,7 +588,7 @@ public final class Moa {
     cancel()
     
     let simulatedDownloader = MoaSimulator.createDownloader(url)
-    imageDownloader = simulatedDownloader ?? MoaHttpImageDownloader(logger: logger)
+    imageDownloader = simulatedDownloader ?? MoaHttpImageDownloader(logger: Moa.logger)
     let simulated = simulatedDownloader != nil
     
     imageDownloader?.startDownload(url,
