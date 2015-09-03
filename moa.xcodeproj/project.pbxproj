@@ -67,6 +67,7 @@
 		7E672EEE1B9906A200167DFE /* MoaError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E672EED1B9906A200167DFE /* MoaError.swift */; settings = {ASSET_TAGS = (); }; };
 		7E672EEF1B9906C500167DFE /* MoaError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E672EED1B9906A200167DFE /* MoaError.swift */; settings = {ASSET_TAGS = (); }; };
 		7E672EF01B9906C500167DFE /* MoaError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E672EED1B9906A200167DFE /* MoaError.swift */; settings = {ASSET_TAGS = (); }; };
+		7E672EF31B990B8400167DFE /* MoaErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E672EF11B990B6D00167DFE /* MoaErrorTests.swift */; settings = {ASSET_TAGS = (); }; };
 		7E693F341B1B15D4000E7156 /* launch_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E693F331B1B15D4000E7156 /* launch_screen.png */; };
 		7E6FDB581B088E600095C29F /* text.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E6FDB571B088E600095C29F /* text.txt */; };
 		7E7541071B0D3C5100AC0FC7 /* Moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFA71B0858DD00C951C4 /* Moa.swift */; };
@@ -204,6 +205,7 @@
 		7E672EE71B98F3C000167DFE /* MoaLoggerHttpImageDownloaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaLoggerHttpImageDownloaderTests.swift; sourceTree = "<group>"; };
 		7E672EEA1B98FA0D00167DFE /* MoaLoggerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaLoggerTests.swift; sourceTree = "<group>"; };
 		7E672EED1B9906A200167DFE /* MoaError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaError.swift; sourceTree = "<group>"; };
+		7E672EF11B990B6D00167DFE /* MoaErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaErrorTests.swift; sourceTree = "<group>"; };
 		7E693F331B1B15D4000E7156 /* launch_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launch_screen.png; path = Graphics/launch_screen.png; sourceTree = SOURCE_ROOT; };
 		7E6FDB571B088E600095C29F /* text.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = text.txt; sourceTree = "<group>"; };
 		7E75410D1B0D3DB700AC0FC7 /* MoaCancelDownloadTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaCancelDownloadTests.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 		7E112C491B367F260017AFF0 /* Http */ = {
 			isa = PBXGroup;
 			children = (
+				7E672EF11B990B6D00167DFE /* MoaErrorTests.swift */,
 				7E112C4A1B367F410017AFF0 /* MoaHttpImageDownloaderTests.swift */,
 				7E112C4B1B367F410017AFF0 /* MoaHttpImageTests.swift */,
 				7E112C4C1B367F410017AFF0 /* MoaHttpSessionTests.swift */,
@@ -900,6 +903,7 @@
 				7E112C251B367E780017AFF0 /* MoaString.swift in Sources */,
 				7E112C3A1B367ECF0017AFF0 /* MoaHttpImageDownloader.swift in Sources */,
 				7E672EEC1B98FA4700167DFE /* MoaLoggerTests.swift in Sources */,
+				7E672EF31B990B8400167DFE /* MoaErrorTests.swift in Sources */,
 				7E672EE91B98F3D700167DFE /* MoaLoggerHttpImageDownloaderTests.swift in Sources */,
 				7E112C551B367F440017AFF0 /* MoaHttpTests.swift in Sources */,
 				7E7541071B0D3C5100AC0FC7 /* Moa.swift in Sources */,
