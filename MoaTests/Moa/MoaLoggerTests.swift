@@ -6,6 +6,7 @@ class MoaLoggerTests: XCTestCase {
     super.tearDown()
     
     StubHttp.removeAllStubs()
+    Moa.logger = nil
   }
   
   var logTypes = [MoaLogType]()
@@ -20,7 +21,6 @@ class MoaLoggerTests: XCTestCase {
   
   func testLogger_loadImage() {
     StubHttp.with96pxPngImage()
-    
     Moa.logger = testLogger
     
     let moa = Moa()
@@ -53,4 +53,75 @@ class MoaLoggerTests: XCTestCase {
       XCTAssertEqual(200, self.logStatusCodes[1])
     }
   }
+  
+  func testLoadImage_noInternetConnectionError() {
+    Moa.logger = testLogger
+
+    // Code: -1009
+    let notConnectedErrorCode = Int(CFNetworkErrors.CFURLErrorNotConnectedToInternet.rawValue)
+    
+    let notConnectedError = NSError(domain: NSURLErrorDomain,
+      code: notConnectedErrorCode, userInfo: nil)
+    
+    StubHttp.withError(notConnectedError, forUrlPart: "96px.png")
+    
+    let moa = Moa()
+    var errorResponse: NSError?
+    
+    moa.onSuccessAsync = { image in return nil }
+    
+    moa.onErrorAsync = { error, _ in
+      errorResponse = error
+    }
+    
+    moa.url = "http://evgenii.com/moa/96px.png"
+    
+    moa_eventually(errorResponse != nil) {
+      // Log the error response
+      // -------------
+      
+      XCTAssertEqual(2, self.logTypes.count)
+      XCTAssertEqual(MoaLogType.ResponseError, self.logTypes[1])
+      XCTAssertEqual("http://evgenii.com/moa/96px.png", self.logUrls[1])
+      XCTAssert(self.logStatusCodes[1] == nil)
+    }
+  }
+  
+  func testCancelDownloadBySettingNilUrl() {
+    Moa.logger = testLogger
+
+    // Make 96px.png image reponse is slow so it is received in 0.3 seconds
+    StubHttp.withImage("96px.png", forUrlPart: "96px.png", statusCode: 200, responseTime: 0.3)
+    
+    let moa = Moa()
+    
+    moa.onSuccessAsync = { _ in
+      return nil
+    }
+    
+    moa.onErrorAsync = { _, _ in }
+    
+    moa.url = "http://evgenii.com/moa/96px.png"
+    
+    XCTAssertEqual(1, self.logTypes.count)
+
+    
+    // Set url property to nil before 96px.png image has arrived
+    MoaTimer.runAfter(0.01) { timer in
+      moa.url = nil
+    }
+    
+    // Wait more than 0.3 seconds (96px.png image response) to make sure it never comes back.
+    // It proves that 96px.png image download was cancelled.
+    moa_eventually(0.5) {
+      // Log the reponse cancel
+      // -------------
+      
+      XCTAssertEqual(2, self.logTypes.count)
+      XCTAssertEqual(MoaLogType.RequestCancelled, self.logTypes[1])
+      XCTAssertEqual("http://evgenii.com/moa/96px.png", self.logUrls[1])
+      XCTAssert(self.logStatusCodes[1] == nil)
+    }
+  }
+
 }

@@ -192,11 +192,13 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
   }
   
   func cancel() {
-    let url = task?.originalRequest?.URL?.absoluteString ?? ""
-    logger?(.RequestCancelled, url, nil)
+    if cancelled { return }
+    cancelled = true
     
     task?.cancel()
-    cancelled = true
+    
+    let url = task?.originalRequest?.URL?.absoluteString ?? ""
+    logger?(.RequestCancelled, url, nil)
   }
 }
 
