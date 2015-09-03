@@ -157,18 +157,31 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
   var task: NSURLSessionDataTask?
   var cancelled = false
   
+  var logger: MoaLoggerCallback?
+  
+  init(logger: MoaLoggerCallback?) {
+    self.logger = logger
+  }
+  
   deinit {
     cancel()
   }
   
   func startDownload(url: String, onSuccess: (MoaImage)->(),
     onError: (NSError?, NSHTTPURLResponse?)->()) {
+      
+    logger?(.RequestUrl, url, nil)
     
     cancelled = false
   
     task = MoaHttpImage.createDataTask(url,
-      onSuccess: onSuccess,
+      onSuccess: { [weak self] image in
+        self?.logger?(.ResponseSuccessUrl, url, 200)
+        onSuccess(image)
+      },
       onError: { [weak self] error, response in
+        self?.logger?(.ResponseErrorUrl, url, response?.statusCode)
+
         if let currentSelf = self
           where !currentSelf.cancelled { // Do not report error if task was manually cancelled
     
@@ -181,6 +194,9 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
   }
   
   func cancel() {
+    let url = task?.originalRequest?.URL?.absoluteString ?? nil
+    logger?(.RequestCancelUrl, url, nil)
+    
     task?.cancel()
     cancelled = true
   }
@@ -344,6 +360,53 @@ public extension MoaImageView {
 
 // ----------------------------
 //
+// MoaLoggerCallback.swift
+//
+// ----------------------------
+
+
+/**
+
+A logger closure.
+
+Parameters:
+
+1. Type of the log.
+2. Log message, if applicable.
+3. Http status code, if applicable.
+
+*/
+public typealias MoaLoggerCallback = (MoaLogType, String?, Int?)->()
+
+
+// ----------------------------
+//
+// MoaLogType.swift
+//
+// ----------------------------
+
+/**
+
+Types of log messages.
+
+*/
+public enum MoaLogType: Int{
+  /// String containing request URL
+  case RequestUrl
+  
+  /// String containing request URL
+  case ResponseSuccessUrl
+  
+  /// Contains reponse error message for HTTP error like "No internet connection"
+  case ResponseErrorUrl
+  
+  /// Sent when request is cancelled
+  case RequestCancelUrl
+}
+
+
+// ----------------------------
+//
 // Moa.swift
 //
 // ----------------------------
@@ -388,6 +451,9 @@ public final class Moa {
 
   /// Image download settings.
   public static var settings = MoaSettings()
+  
+  /// Supply a callback closure for getting request, response and error logs
+  public var logger: MoaLoggerCallback?
 
   /**
 
@@ -524,7 +590,7 @@ public final class Moa {
     cancel()
     
     let simulatedDownloader = MoaSimulator.createDownloader(url)
-    imageDownloader = simulatedDownloader ?? MoaHttpImageDownloader()
+    imageDownloader = simulatedDownloader ?? MoaHttpImageDownloader(logger: logger)
     let simulated = simulatedDownloader != nil
     
     imageDownloader?.startDownload(url,

@@ -4,6 +4,10 @@ import XCTest
 class MoaImageDownloaderTests: XCTestCase {
   // MARK: - startDownload
   
+  func testLogger(type: MoaLogType, message: String?, statusCode: Int?) {
+    
+  }
+  
   func testStartDownload_success() {
     StubHttp.with35pxJpgImage()
     
@@ -11,7 +15,7 @@ class MoaImageDownloaderTests: XCTestCase {
     var errorFromCallback: NSError?
     var httpUrlResponseFromCallback: NSHTTPURLResponse?
     
-    let downloader = MoaHttpImageDownloader()
+    let downloader = MoaHttpImageDownloader(logger: testLogger)
     downloader.startDownload("http://evgenii.com/moa/35px.jpg",
       onSuccess: { image in
         imageFromCallback = image
@@ -37,7 +41,7 @@ class MoaImageDownloaderTests: XCTestCase {
     var errorFromCallback: NSError?
     var httpUrlResponseFromCallback: NSHTTPURLResponse?
     
-    let downloader = MoaHttpImageDownloader()
+    let downloader = MoaHttpImageDownloader(logger: testLogger)
     downloader.startDownload("http://evgenii.com/moa/35px.jpg",
       onSuccess: { image in
         imageFromCallback = image
@@ -65,7 +69,7 @@ class MoaImageDownloaderTests: XCTestCase {
     var errorFromCallback: NSError?
     var httpUrlResponseFromCallback: NSHTTPURLResponse?
     
-    let downloader = MoaHttpImageDownloader()
+    let downloader = MoaHttpImageDownloader(logger: testLogger)
     downloader.startDownload("http://evgenii.com/moa/35px.jpg",
       onSuccess: { image in
         imageFromCallback = image
@@ -96,7 +100,7 @@ class MoaImageDownloaderTests: XCTestCase {
     var task: NSURLSessionDataTask?
   
     let closure:()->() = {
-      let downloader = MoaHttpImageDownloader()
+      let downloader = MoaHttpImageDownloader(logger: self.testLogger)
       downloader.startDownload("http://evgenii.com/moa/35px.jpg",
         onSuccess: { image in
           imageFromCallback = image
@@ -125,7 +129,7 @@ class MoaImageDownloaderTests: XCTestCase {
     
     var imageFromCallback: UIImage?
     
-    let downloader = MoaHttpImageDownloader()
+    let downloader = MoaHttpImageDownloader(logger: testLogger)
     downloader.cancelled = true
     
     downloader.startDownload("http://evgenii.com/moa/35px.jpg",
