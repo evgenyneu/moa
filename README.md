@@ -154,7 +154,7 @@ Moa.settings.cache.requestCachePolicy = .ReturnCacheDataElseLoad
 
 ## Logging
 
-Assign a closure to `Moa.logger` that will be called on image requests, responses, errors and requests cancellation. This can be useful for debugging. Or you can use `MoaConsoleLogger` function to see the log messages in the Xcode console. See [logging manual](https://github.com/evgenyneu/moa/wiki/Logging-with-Moa) for more information.
+Assign a closure to `Moa.logger` and it will be called during image requests, responses, errors and request are cancelled. You can also use a pre-made `MoaConsoleLogger` function to see the log messages in the Xcode console. See [logging manual](https://github.com/evgenyneu/moa/wiki/Logging-with-Moa) for more information.
 
 
 ```Swift
