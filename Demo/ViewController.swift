@@ -13,6 +13,17 @@ class ViewController: UIViewController {
     // Log to console
     Moa.logger = MoaConsoleLogger
     
+    Moa.logger = { logType, url, statusCode, error in
+      switch logType {
+      case .RequestSent: print("GET \(url)")
+      case .RequestCancelled: print("Cancelled \(url)")
+      case .ResponseSuccess: print("Success \(url)")
+      case .ResponseError:
+        let errorDescription = error?.localizedDescription ?? ""
+        print("Error \(url) \(errorDescription)")
+      } 
+    }
+    
     Moa.settings.maximumSimultaneousDownloads = 10
     
     collectionView.dataSource = collectionViewDataSource
