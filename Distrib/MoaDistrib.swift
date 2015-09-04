@@ -368,6 +368,29 @@ public extension MoaImageView {
 
 // ----------------------------
 //
+// MoaConsoleLogger.swift
+//
+// ----------------------------
+
+import Foundation
+
+/**
+
+Logs image download requests, responses and errors to Xcode console for debugging.
+
+Usage:
+
+    Moa.logger = MoaConsoleLogger
+
+*/
+public func MoaConsoleLogger(type: MoaLogType, url: String, statusCode: Int?, error: NSError?) {
+  let text = MoaLoggerText(type, url: url, statusCode: statusCode, error: error)
+  print(text)
+}
+
+
+// ----------------------------
+//
 // MoaLoggerCallback.swift
 //
 // ----------------------------
@@ -387,6 +410,66 @@ Parameters:
 
 */
 public typealias MoaLoggerCallback = (MoaLogType, String, Int?, NSError?)->()
+
+
+// ----------------------------
+//
+// MoaLoggerText.swift
+//
+// ----------------------------
+
+import Foundation
+
+/**
+
+A helper function that creates a human readable text from log arguments.
+
+Usage:
+
+    Moa.logger = { type, url, statusCode, error in
+
+      let text = MoaLoggerText(type: type, url: url, statusCode: statusCode, error: error)
+      // Log log text to your destination
+    }
+
+For logging into Xcode console you can use MoaConsoleLogger function.
+
+    Moa.logger = MoaConsoleLogger
+
+*/
+public func MoaLoggerText(type: MoaLogType, url: String, statusCode: Int?,
+  error: NSError?) -> String {
+  
+  var text = "[moa] "
+  var suffix = ""
+  
+  switch type {
+  case .RequestSent:
+    text += "GET "
+  case .RequestCancelled:
+    text += "Cancelled "
+  case .ResponseSuccess:
+    text += "Success "
+  case .ResponseError:
+    text += "Error "
+    
+    if let statusCode = statusCode {
+      text += "\(statusCode) "
+    }
+    
+    if let error = error {
+      suffix = error.localizedDescription
+    }
+  }
+  
+  text += url
+  
+  if suffix != "" {
+    text += " \(suffix)"
+  }
+  
+  return text
+}
 
 
 // ----------------------------
