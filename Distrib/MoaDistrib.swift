@@ -482,14 +482,6 @@ public func MoaLoggerText(type: MoaLogType, url: String, statusCode: Int?,
       suffix = error.localizedDescription
     }
   }
-    
-    
-    switch type {
-    case .RequestSent: print("GET \(url)")
-    case .RequestCancelled: print("Cancelled \(url)")
-    case .ResponseSuccess: print("Success \(url)")
-    case .ResponseError: print("Error \(url) \(error?.localizedDescription)")
-    }
   
   text += url
   
