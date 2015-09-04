@@ -33,10 +33,12 @@ enum MoaError: ErrorType {
       return NSLocalizedString("Response HTTP header is missing content type.", comment: comment)
       
     case .NotAnImageContentTypeInResponseHttpHeader:
-      return NSLocalizedString("Response content type is not an image type. Content type needs to be  'image/jpeg', 'image/pjpeg' or 'image/png'", comment: comment)
+      return NSLocalizedString("Response content type is not an image type. Content type needs to be  'image/jpeg', 'image/pjpeg' or 'image/png'",
+        comment: comment)
       
     case .FailedToReadImageData:
-      return NSLocalizedString("Could not convert response data to an image format.", comment: comment)
+      return NSLocalizedString("Could not convert response data to an image format.",
+        comment: comment)
       
     case .SimulatedError:
       return NSLocalizedString("Test error.", comment: comment)

@@ -1,18 +1,18 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "7B7F25A81B3AE664A325F939B56BE2B86717F1A7+++8A5F546",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "7B7F25A81B3AE664A325F939B56BE2B86717F1A7+++19FD417",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "7B7F25A81B3AE664A325F939B56BE2B86717F1A7+++867754B" : 0,
-    "7B7F25A81B3AE664A325F939B56BE2B86717F1A7+++8A5F546" : 0,
-    "7B7F25A81B3AE664A325F939B56BE2B86717F1A7+++FA47234" : 0
+    "7B7F25A81B3AE664A325F939B56BE2B86717F1A7+++236A8B0" : 0,
+    "7B7F25A81B3AE664A325F939B56BE2B86717F1A7+++AEE4F45" : 0,
+    "7B7F25A81B3AE664A325F939B56BE2B86717F1A7+++19FD417" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "5CE75212-18CE-4F70-9F4B-AF196EBC5A8F",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "7B7F25A81B3AE664A325F939B56BE2B86717F1A7+++867754B" : "..\/..\/Developer\/GithubDemos\/Moa",
-    "7B7F25A81B3AE664A325F939B56BE2B86717F1A7+++8A5F546" : "moa\/",
-    "7B7F25A81B3AE664A325F939B56BE2B86717F1A7+++FA47234" : "..\/..\/Developer\/GithubDemos\/Moa"
+    "7B7F25A81B3AE664A325F939B56BE2B86717F1A7+++236A8B0" : "..\/..\/Developer\/GithubDemos\/Moa",
+    "7B7F25A81B3AE664A325F939B56BE2B86717F1A7+++AEE4F45" : "..\/..\/Developer\/GithubDemos\/Moa",
+    "7B7F25A81B3AE664A325F939B56BE2B86717F1A7+++19FD417" : "moa\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "moa",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -21,17 +21,17 @@
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:evgenyneu\/moa.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7B7F25A81B3AE664A325F939B56BE2B86717F1A7+++867754B"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7B7F25A81B3AE664A325F939B56BE2B86717F1A7+++19FD417"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:evgenyneu\/moa.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7B7F25A81B3AE664A325F939B56BE2B86717F1A7+++8A5F546"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7B7F25A81B3AE664A325F939B56BE2B86717F1A7+++236A8B0"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:evgenyneu\/moa.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7B7F25A81B3AE664A325F939B56BE2B86717F1A7+++FA47234"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7B7F25A81B3AE664A325F939B56BE2B86717F1A7+++AEE4F45"
     }
   ]
 }

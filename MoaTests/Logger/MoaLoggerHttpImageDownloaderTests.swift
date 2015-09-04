@@ -44,6 +44,7 @@ class MoaLoggerHttpImageDownloaderTests: XCTestCase {
     XCTAssertEqual(MoaLogType.RequestSent, logTypes[0])
     XCTAssertEqual("http://evgenii.com/moa/35px.jpg", logUrls[0])
     XCTAssert(logStatusCodes[0] == nil)
+    XCTAssert(logErrors[0] == nil)
     
     moa_eventually(imageFromCallback != nil) {
       // Log the successful response
@@ -53,6 +54,7 @@ class MoaLoggerHttpImageDownloaderTests: XCTestCase {
       XCTAssertEqual(MoaLogType.ResponseSuccess, self.logTypes[1])
       XCTAssertEqual("http://evgenii.com/moa/35px.jpg", self.logUrls[1])
       XCTAssertEqual(200, self.logStatusCodes[1])
+      XCTAssert(self.logErrors[1] == nil)
     }
   }
   
@@ -77,6 +79,9 @@ class MoaLoggerHttpImageDownloaderTests: XCTestCase {
       XCTAssertEqual(MoaLogType.ResponseError, self.logTypes[1])
       XCTAssertEqual("http://evgenii.com/moa/35px.jpg", self.logUrls[1])
       XCTAssertEqual(404, self.logStatusCodes[1])
+      XCTAssertEqual("Response HTTP status code is not 200.", self.logErrors[1]?.localizedDescription)
+      XCTAssertEqual("MoaError", self.logErrors[1]?.domain)
+      XCTAssertEqual(1, self.logErrors[1]?.code)
     }
   }
   

@@ -18,7 +18,7 @@ class MoaLoggerTests: XCTestCase {
     logTypes.append(type)
     logUrls.append(url)
     logStatusCodes.append(statusCode)
-    logErrors
+    logErrors.append(error)
   }
   
   func testLogger_loadImage() {

@@ -10,7 +10,7 @@ class MoaImageDownloaderTests: XCTestCase {
   
   // MARK: - startDownload
   
-  func testLogger(type: MoaLogType, message: String, statusCode: Int?) { }
+  func testLogger(type: MoaLogType, message: String, statusCode: Int?, error: NSError?) { }
   
   func testStartDownload_success() {
     StubHttp.with35pxJpgImage()
