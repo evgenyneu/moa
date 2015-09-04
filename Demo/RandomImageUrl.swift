@@ -46,7 +46,7 @@ class RandomImageUrl {
     let imageName = randomUnseenImageName
     rememberImageName(imageName)
 
-    return RandomImageUrl.hostAndPath + imageName
+    return RandomImageUrl.hostAndPath + imageName + "?version=g"
   }
   
   func rememberImageName(url: String) {

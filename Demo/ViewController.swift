@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     // Log to console
     Moa.logger = MoaConsoleLogger
     
+    Moa.settings.maximumSimultaneousDownloads = 10
+    
     collectionView.dataSource = collectionViewDataSource
     setupCollectionViewLayout()
   }
@@ -48,4 +50,3 @@ class ViewController: UIViewController {
     }
   }
 }
-

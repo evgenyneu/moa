@@ -37,7 +37,11 @@ public final class Moa {
   private weak var imageView: MoaImageView?
 
   /// Image download settings.
-  public static var settings = MoaSettings()
+  public static var settings = MoaSettings() {
+    didSet {
+      MoaHttpSession.settingsChanged(oldValue)
+    }
+  }
   
   /// Supply a callback closure for getting request, response and error logs
   public static var logger: MoaLoggerCallback?

@@ -285,6 +285,9 @@ struct MoaHttpSession {
   private static func createNewSession() -> NSURLSession {
     let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
     
+    configuration.timeoutIntervalForRequest = Moa.settings.requestTimeoutSeconds
+    configuration.timeoutIntervalForResource = Moa.settings.requestTimeoutSeconds
+    configuration.HTTPMaximumConnectionsPerHost = Moa.settings.maximumSimultaneousDownloads
     configuration.requestCachePolicy = Moa.settings.cache.requestCachePolicy
     
     #if os(iOS)
@@ -320,6 +323,12 @@ struct MoaHttpSession {
   
   static func cacheSettingsChanged(oldSettings: MoaSettingsCache) {
     if oldSettings != Moa.settings.cache {
+      session = nil
+    }
+  }
+  
+  static func settingsChanged(oldSettings: MoaSettings) {
+    if oldSettings != Moa.settings  {
       session = nil
     }
   }
@@ -555,7 +564,11 @@ public final class Moa {
   private weak var imageView: MoaImageView?
 
   /// Image download settings.
-  public static var settings = MoaSettings()
+  public static var settings = MoaSettings() {
+    didSet {
+      MoaHttpSession.settingsChanged(oldValue)
+    }
+  }
   
   /// Supply a callback closure for getting request, response and error logs
   public static var logger: MoaLoggerCallback?
@@ -817,6 +830,22 @@ public struct MoaSettings {
       MoaHttpSession.cacheSettingsChanged(oldValue)
     }
   }
+  
+  /// Timeout for image requests in seconds. This will cause a timeout if a resource is not able to be retrieved within a given timeout. Default timeout: 30 seconds.
+  public var requestTimeoutSeconds: Double = 30
+  
+  /// Maximum number of simultaneous image downloads. Default: 10.
+  public var maximumSimultaneousDownloads: Int = 10
+}
+
+func ==(lhs: MoaSettings, rhs: MoaSettings) -> Bool {
+  return lhs.requestTimeoutSeconds == rhs.requestTimeoutSeconds
+    && lhs.maximumSimultaneousDownloads == rhs.maximumSimultaneousDownloads
+    && lhs.cache == rhs.cache
+}
+
+func !=(lhs: MoaSettings, rhs: MoaSettings) -> Bool {
+  return !(lhs == rhs)
 }
 
 

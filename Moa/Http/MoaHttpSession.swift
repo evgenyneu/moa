@@ -20,6 +20,9 @@ struct MoaHttpSession {
   private static func createNewSession() -> NSURLSession {
     let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
     
+    configuration.timeoutIntervalForRequest = Moa.settings.requestTimeoutSeconds
+    configuration.timeoutIntervalForResource = Moa.settings.requestTimeoutSeconds
+    configuration.HTTPMaximumConnectionsPerHost = Moa.settings.maximumSimultaneousDownloads
     configuration.requestCachePolicy = Moa.settings.cache.requestCachePolicy
     
     #if os(iOS)
@@ -55,6 +58,12 @@ struct MoaHttpSession {
   
   static func cacheSettingsChanged(oldSettings: MoaSettingsCache) {
     if oldSettings != Moa.settings.cache {
+      session = nil
+    }
+  }
+  
+  static func settingsChanged(oldSettings: MoaSettings) {
+    if oldSettings != Moa.settings  {
       session = nil
     }
   }

@@ -6,6 +6,7 @@ class MoaImageDownloaderTests: XCTestCase {
     super.tearDown()
     
     StubHttp.removeAllStubs()
+    Moa.settings.requestTimeoutSeconds = 30
   }
   
   // MARK: - startDownload
@@ -62,6 +63,33 @@ class MoaImageDownloaderTests: XCTestCase {
       XCTAssertEqual(1, errorFromCallback!.code)
       XCTAssertEqual("MoaError", errorFromCallback!.domain)
       XCTAssertEqual(404, httpUrlResponseFromCallback!.statusCode)
+    }
+  }
+  
+  func testTimeoutError() {
+    Moa.settings.requestTimeoutSeconds = 0.1
+    StubHttp.withImage("96px.png", forUrlPart: "35px.jpg", statusCode: 200, responseTime: 0.2)
+    
+    var imageFromCallback: UIImage?
+    var errorFromCallback: NSError?
+    var httpUrlResponseFromCallback: NSHTTPURLResponse?
+    
+    let downloader = MoaHttpImageDownloader(logger: testLogger)
+    downloader.startDownload("http://evgenii.com/moa/35px.jpg",
+      onSuccess: { image in
+        imageFromCallback = image
+      },
+      onError: { error, response in
+        errorFromCallback = error
+        httpUrlResponseFromCallback = response
+      }
+    )
+    
+    moa_eventually(0.3) {
+      XCTAssert(imageFromCallback == nil)
+      XCTAssertEqual(-1001, errorFromCallback!.code)
+      XCTAssertEqual("NSURLErrorDomain", errorFromCallback!.domain)
+      XCTAssert(httpUrlResponseFromCallback == nil)
     }
   }
   
