@@ -48,10 +48,12 @@ enum MoaError: ErrorType {
       return NSLocalizedString("Response HTTP header is missing content type.", comment: comment)
       
     case .NotAnImageContentTypeInResponseHttpHeader:
-      return NSLocalizedString("Response content type is not an image type. Content type needs to be  'image/jpeg', 'image/pjpeg' or 'image/png'", comment: comment)
+      return NSLocalizedString("Response content type is not an image type. Content type needs to be  'image/jpeg', 'image/pjpeg' or 'image/png'",
+        comment: comment)
       
     case .FailedToReadImageData:
-      return NSLocalizedString("Could not convert response data to an image format.", comment: comment)
+      return NSLocalizedString("Could not convert response data to an image format.",
+        comment: comment)
       
     case .SimulatedError:
       return NSLocalizedString("Test error.", comment: comment)
@@ -94,7 +96,7 @@ struct MoaHttp {
     }
     
     // Error converting string to NSURL
-    onError(MoaError.InvalidUrlString as NSError, nil)
+    onError(MoaError.InvalidUrlString.nsError, nil)
     return nil
   }
   
@@ -151,7 +153,7 @@ struct MoaHttpImage {
       
     // Show error if response code is not 200
     if response.statusCode != 200 {
-      onError(MoaError.HttpStatusCodeIsNot200 as NSError, response)
+      onError(MoaError.HttpStatusCodeIsNot200.nsError, response)
       return
     }
     
@@ -159,13 +161,13 @@ struct MoaHttpImage {
     if let mimeType = response.MIMEType {
       if !validMimeType(mimeType) {
         // Not an image Content-Type http header
-        let error = MoaError.NotAnImageContentTypeInResponseHttpHeader as NSError
+        let error = MoaError.NotAnImageContentTypeInResponseHttpHeader.nsError
         onError(error, response)
         return
       }
     } else {
       // Missing Content-Type http header
-      let error = MoaError.MissingResponseContentTypeHttpHeader as NSError
+      let error = MoaError.MissingResponseContentTypeHttpHeader.nsError
       onError(error, response)
       return
     }
@@ -174,7 +176,7 @@ struct MoaHttpImage {
       onSuccess(image)
     } else {
       // Failed to convert response data to UIImage
-      let error = MoaError.FailedToReadImageData as NSError
+      let error = MoaError.FailedToReadImageData.nsError
       onError(error, response)
     }
   }
@@ -848,7 +850,7 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   
   */
   public func respondWithError(error: NSError? = nil, response: NSHTTPURLResponse? = nil) {
-    onError?(error ?? MoaError.SimulatedError as NSError, response)
+    onError?(error ?? MoaError.SimulatedError.nsError, response)
   }
 }
 

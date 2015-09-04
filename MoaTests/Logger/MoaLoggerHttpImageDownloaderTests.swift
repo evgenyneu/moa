@@ -104,6 +104,7 @@ class MoaLoggerHttpImageDownloaderTests: XCTestCase {
       XCTAssertEqual(MoaLogType.RequestCancelled, self.logTypes[1])
       XCTAssertEqual("http://evgenii.com/moa/35px.jpg", self.logUrls[1])
       XCTAssert(self.logStatusCodes[1] == nil)
+      XCTAssert(self.logErrors[1] == nil)
     }
   }
 }

@@ -53,6 +53,7 @@ class MoaLoggerTests: XCTestCase {
       XCTAssertEqual(MoaLogType.ResponseSuccess, self.logTypes[1])
       XCTAssertEqual("http://evgenii.com/moa/96px.png", self.logUrls[1])
       XCTAssertEqual(200, self.logStatusCodes[1])
+      XCTAssert(self.logErrors[1] == nil)
     }
   }
   
@@ -86,6 +87,8 @@ class MoaLoggerTests: XCTestCase {
       XCTAssertEqual(MoaLogType.ResponseError, self.logTypes[1])
       XCTAssertEqual("http://evgenii.com/moa/96px.png", self.logUrls[1])
       XCTAssert(self.logStatusCodes[1] == nil)
+      XCTAssertEqual("The operation couldn’t be completed. (NSURLErrorDomain error -1009.)",
+        self.logErrors[1]!.localizedDescription)
     }
   }
   
@@ -123,6 +126,7 @@ class MoaLoggerTests: XCTestCase {
       XCTAssertEqual(MoaLogType.RequestCancelled, self.logTypes[1])
       XCTAssertEqual("http://evgenii.com/moa/96px.png", self.logUrls[1])
       XCTAssert(self.logStatusCodes[1] == nil)
+      XCTAssert(self.logErrors[1] == nil)
     }
   }
 
