@@ -13,18 +13,11 @@ class ViewController: UIViewController {
     // Log to console
     Moa.logger = MoaConsoleLogger
     
-    Moa.logger = { logType, url, statusCode, error in
-      switch logType {
-      case .RequestSent: print("GET \(url)")
-      case .RequestCancelled: print("Cancelled \(url)")
-      case .ResponseSuccess: print("Success \(url)")
-      case .ResponseError:
-        let errorDescription = error?.localizedDescription ?? ""
-        print("Error \(url) \(errorDescription)")
-      } 
-    }
+    // Maximum number of simultaneous image downloads. Default: 10.
+    Moa.settings.maximumSimultaneousDownloads = 5
     
-    Moa.settings.maximumSimultaneousDownloads = 10
+    // Timeout for image requests in seconds. This will cause a timeout if a resource is not able to be retrieved within a given timeout. Default timeout: 30 seconds.
+    Moa.settings.requestTimeoutSeconds = 10
     
     collectionView.dataSource = collectionViewDataSource
     setupCollectionViewLayout()
