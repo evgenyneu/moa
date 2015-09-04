@@ -33,14 +33,14 @@ Simply add [MoaDistrib.swift](https://github.com/evgenyneu/moa/blob/master/Distr
 
 **Setup with Carthage (iOS 8+)**
 
-Alternatively, add `github "evgenyneu/moa" ~> 2.0` to your Cartfile and run `carthage update`.
+Alternatively, add `github "evgenyneu/moa" ~> 2.1` to your Cartfile and run `carthage update`.
 
 **Setup with CocoaPods (iOS 8+)**
 
 If you are using CocoaPods add this text to your Podfile and run `pod install`.
 
     use_frameworks!
-    pod 'moa', '~> 2.0'
+    pod 'moa', '~> 2.1'
 
 
 #### Setup in Xcode 6
