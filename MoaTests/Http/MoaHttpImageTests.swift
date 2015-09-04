@@ -59,7 +59,7 @@ class MoaHttpImageTests: XCTestCase {
       XCTAssert(imageFromCallback == nil)
       XCTAssertEqual(MoaError.HttpStatusCodeIsNot200._code, errorFromCallback!.code)
       XCTAssertEqual(1, errorFromCallback!.code)
-      XCTAssertEqual("moaTests.MoaError", errorFromCallback!.domain)
+      XCTAssertEqual("MoaError", errorFromCallback!.domain)
       XCTAssertEqual(404, httpUrlResponseFromCallback!.statusCode)
     }
   }
@@ -145,7 +145,7 @@ class MoaHttpImageTests: XCTestCase {
     XCTAssert(imageFromCallback == nil)
     XCTAssertEqual(MoaError.HttpStatusCodeIsNot200._code, errorFromCallback!.code)
     XCTAssertEqual(1, errorFromCallback!.code)
-    XCTAssertEqual("moaTests.MoaError", errorFromCallback!.domain)
+    XCTAssertEqual("MoaError", errorFromCallback!.domain)
     XCTAssertEqual(500, httpUrlResponseFromCallback!.statusCode)
   }
   
@@ -173,7 +173,7 @@ class MoaHttpImageTests: XCTestCase {
     XCTAssertEqual(MoaError.MissingResponseContentTypeHttpHeader._code,
       errorFromCallback!.code)
     
-    XCTAssertEqual("moaTests.MoaError", errorFromCallback!.domain)
+    XCTAssertEqual("MoaError", errorFromCallback!.domain)
     XCTAssertEqual(200, httpUrlResponseFromCallback!.statusCode)
   }
   
@@ -201,7 +201,7 @@ class MoaHttpImageTests: XCTestCase {
     XCTAssertEqual(MoaError.NotAnImageContentTypeInResponseHttpHeader._code,
       errorFromCallback!.code)
     
-    XCTAssertEqual("moaTests.MoaError", errorFromCallback!.domain)
+    XCTAssertEqual("MoaError", errorFromCallback!.domain)
     XCTAssertEqual(200, httpUrlResponseFromCallback!.statusCode)
   }
   
@@ -229,7 +229,7 @@ class MoaHttpImageTests: XCTestCase {
     XCTAssertEqual(MoaError.FailedToReadImageData._code,
       errorFromCallback!.code)
     
-    XCTAssertEqual("moaTests.MoaError", errorFromCallback!.domain)
+    XCTAssertEqual("MoaError", errorFromCallback!.domain)
     XCTAssertEqual(200, httpUrlResponseFromCallback!.statusCode)
   }
 }

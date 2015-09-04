@@ -60,7 +60,7 @@ class MoaImageDownloaderTests: XCTestCase {
       XCTAssert(imageFromCallback == nil)
       XCTAssertEqual(MoaError.HttpStatusCodeIsNot200._code, errorFromCallback!.code)
       XCTAssertEqual(1, errorFromCallback!.code)
-      XCTAssertEqual("moaTests.MoaError", errorFromCallback!.domain)
+      XCTAssertEqual("MoaError", errorFromCallback!.domain)
       XCTAssertEqual(404, httpUrlResponseFromCallback!.statusCode)
     }
   }
