@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2BA0147F1B995CDF004F6676 /* MoaTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA0147D1B995BCE004F6676 /* MoaTimeTests.swift */; settings = {ASSET_TAGS = (); }; };
 		2BB1704C1B9828A200DADFB8 /* MoaLoggerCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1704B1B9828A200DADFB8 /* MoaLoggerCallback.swift */; settings = {ASSET_TAGS = (); }; };
 		2BB1704E1B9828D500DADFB8 /* MoaLogType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1704D1B9828D500DADFB8 /* MoaLogType.swift */; settings = {ASSET_TAGS = (); }; };
 		2BB1704F1B9829DF00DADFB8 /* MoaLogType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1704D1B9828D500DADFB8 /* MoaLogType.swift */; settings = {ASSET_TAGS = (); }; };
@@ -177,6 +178,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2BA0147D1B995BCE004F6676 /* MoaTimeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaTimeTests.swift; sourceTree = "<group>"; };
 		2BB1704B1B9828A200DADFB8 /* MoaLoggerCallback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaLoggerCallback.swift; sourceTree = "<group>"; };
 		2BB1704D1B9828D500DADFB8 /* MoaLogType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaLogType.swift; sourceTree = "<group>"; };
 		7E112C101B3671250017AFF0 /* TestBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestBundle.swift; sourceTree = "<group>"; };
@@ -365,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				7E112C611B36AFBB0017AFF0 /* MoaStringTests.swift */,
+				2BA0147D1B995BCE004F6676 /* MoaTimeTests.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -915,6 +918,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BA0147F1B995CDF004F6676 /* MoaTimeTests.swift in Sources */,
 				7E672EEF1B9906C500167DFE /* MoaError.swift in Sources */,
 				7EA8EFA01B084D7D00C951C4 /* MoaTimer.swift in Sources */,
 				7E3694B01B1B430300AABE3F /* MoaSettingsTests.swift in Sources */,
