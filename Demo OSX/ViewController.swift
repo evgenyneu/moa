@@ -20,8 +20,10 @@ class ViewController: NSViewController {
     } else {
         // Fallback on earlier versions
     }
-
-    // Do any additional setup after loading the view.
+    
+    // Log to console
+    
+    Moa.logger = MoaConsoleLogger
   }
 
   override var representedObject: AnyObject? {

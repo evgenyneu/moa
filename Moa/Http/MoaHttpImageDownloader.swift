@@ -4,7 +4,12 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
   var task: NSURLSessionDataTask?
   var cancelled = false
   
+  // When false - the cancel request will not be logged. It is used in order to avoid
+  // loggin cancel requests after success or error has been received.
+  var canLogCancel = true
+  
   var logger: MoaLoggerCallback?
+  
   
   init(logger: MoaLoggerCallback?) {
     self.logger = logger
@@ -20,13 +25,17 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
     logger?(.RequestSent, url, nil, nil)
     
     cancelled = false
+    canLogCancel = true
   
     task = MoaHttpImage.createDataTask(url,
       onSuccess: { [weak self] image in
         self?.logger?(.ResponseSuccess, url, 200, nil)
         onSuccess(image)
+        self?.canLogCancel = false
       },
       onError: { [weak self] error, response in
+        self?.canLogCancel = false
+        
         if let currentSelf = self where !currentSelf.cancelled {
           // Do not report error if task was manually cancelled
           self?.logger?(.ResponseError, url, response?.statusCode, error)
@@ -44,7 +53,9 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
     
     task?.cancel()
     
-    let url = task?.originalRequest?.URL?.absoluteString ?? ""
-    logger?(.RequestCancelled, url, nil, nil)
+    if canLogCancel {
+      let url = task?.originalRequest?.URL?.absoluteString ?? ""
+      logger?(.RequestCancelled, url, nil, nil)
+    }
   }
 }

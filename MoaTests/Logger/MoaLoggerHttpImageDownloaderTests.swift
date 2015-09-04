@@ -107,4 +107,63 @@ class MoaLoggerHttpImageDownloaderTests: XCTestCase {
       XCTAssert(self.logErrors[1] == nil)
     }
   }
+  
+  func testLogger_doNotLogCancelAfterDownloadSuccess() {
+    StubHttp.with35pxJpgImage()
+    
+    var imageFromCallback: UIImage?
+    
+    let downloader = MoaHttpImageDownloader(logger: testLogger)
+    downloader.startDownload("http://evgenii.com/moa/35px.jpg",
+      onSuccess: { image in
+        imageFromCallback = image
+        
+      },
+      onError: { error, response in
+      }
+    )
+    
+    // Log the request
+    // -------------
+    
+    XCTAssertEqual(1, logTypes.count)
+    XCTAssertEqual(MoaLogType.RequestSent, logTypes[0])
+    XCTAssertEqual("http://evgenii.com/moa/35px.jpg", logUrls[0])
+    XCTAssert(logStatusCodes[0] == nil)
+    XCTAssert(logErrors[0] == nil)
+    
+    moa_eventually(imageFromCallback != nil) {
+      downloader.cancel()
+      
+      // Log the successful response
+      // -------------
+      
+      XCTAssertEqual(2, self.logTypes.count)
+      XCTAssertEqual(MoaLogType.ResponseSuccess, self.logTypes[1])
+    }
+  }
+  
+  func testLogger_doNotLogCancelAfterError() {
+    StubHttp.withText("error", forUrlPart: "35px.jpg", statusCode: 404)
+    
+    var errorFromCallback: NSError?
+    
+    let downloader = MoaHttpImageDownloader(logger: testLogger)
+    downloader.startDownload("http://evgenii.com/moa/35px.jpg",
+      onSuccess: { _ in },
+      onError: { error, _ in
+        errorFromCallback = error
+      }
+    )
+    
+    moa_eventually(errorFromCallback != nil) {
+      downloader.cancel()
+
+      // Log the error response
+      // -------------
+      
+      XCTAssertEqual(2, self.logTypes.count)
+      XCTAssertEqual(MoaLogType.ResponseError, self.logTypes[1])
+    }
+  }
 }

@@ -20,7 +20,8 @@ For logging into Xcode console you can use MoaConsoleLogger function.
 public func MoaLoggerText(type: MoaLogType, url: String, statusCode: Int?,
   error: NSError?) -> String {
   
-  var text = "[moa] "
+  let time = MoaTime.nowIso8601Utc
+  var text = "[moa] \(time) "
   var suffix = ""
   
   switch type {

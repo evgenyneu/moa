@@ -10,7 +10,9 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    // Log to console
     Moa.logger = MoaConsoleLogger
+    
     collectionView.dataSource = collectionViewDataSource
     setupCollectionViewLayout()
   }

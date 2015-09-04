@@ -87,6 +87,9 @@
 		7E94E8881B9926FC00B22919 /* MoaLoggerText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E8861B99262600B22919 /* MoaLoggerText.swift */; settings = {ASSET_TAGS = (); }; };
 		7E94E8891B9926FC00B22919 /* MoaLoggerText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E8861B99262600B22919 /* MoaLoggerText.swift */; settings = {ASSET_TAGS = (); }; };
 		7E94E88C1B99276900B22919 /* MoaLoggerTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E88A1B99271A00B22919 /* MoaLoggerTextTests.swift */; settings = {ASSET_TAGS = (); }; };
+		7E94E88E1B992E4700B22919 /* MoaTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E88D1B992E4700B22919 /* MoaTime.swift */; settings = {ASSET_TAGS = (); }; };
+		7E94E88F1B992E5500B22919 /* MoaTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E88D1B992E4700B22919 /* MoaTime.swift */; settings = {ASSET_TAGS = (); }; };
+		7E94E8901B992E5500B22919 /* MoaTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E88D1B992E4700B22919 /* MoaTime.swift */; settings = {ASSET_TAGS = (); }; };
 		7E99AA321B240F0700D5FCDE /* RandomImageUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F1B1B1160240093CD81 /* RandomImageUrl.swift */; };
 		7E99AA331B240F2000D5FCDE /* iiRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F1D1B1160A30093CD81 /* iiRandom.swift */; };
 		7EA515811B0FFBED00FEFB07 /* MoaTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA515801B0FFBED00FEFB07 /* MoaTest.swift */; };
@@ -228,6 +231,7 @@
 		7E94E8821B99238300B22919 /* MoaConsoleLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaConsoleLogger.swift; sourceTree = "<group>"; };
 		7E94E8861B99262600B22919 /* MoaLoggerText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaLoggerText.swift; sourceTree = "<group>"; };
 		7E94E88A1B99271A00B22919 /* MoaLoggerTextTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaLoggerTextTests.swift; sourceTree = "<group>"; };
+		7E94E88D1B992E4700B22919 /* MoaTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaTime.swift; sourceTree = "<group>"; };
 		7EA515801B0FFBED00FEFB07 /* MoaTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaTest.swift; sourceTree = "<group>"; };
 		7EA8EF6F1B072B4300C951C4 /* moa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = moa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA8EF731B072B4300C951C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -309,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				7E112C231B367E600017AFF0 /* MoaString.swift */,
+				7E94E88D1B992E4700B22919 /* MoaTime.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -891,6 +896,7 @@
 				7E112C2E1B367EC40017AFF0 /* MoaHttp.swift in Sources */,
 				7E112C301B367EC40017AFF0 /* MoaHttpImage.swift in Sources */,
 				7E112C431B367EF60017AFF0 /* MoaSimulatedImageDownloader.swift in Sources */,
+				7E94E88E1B992E4700B22919 /* MoaTime.swift in Sources */,
 				7E112C331B367EC40017AFF0 /* MoaHttpSession.swift in Sources */,
 				7E672EEE1B9906A200167DFE /* MoaError.swift in Sources */,
 				7EBCC1C91B1B33AF00BC9569 /* MoaSettings.swift in Sources */,
@@ -924,6 +930,7 @@
 				7E112C551B367F440017AFF0 /* MoaHttpTests.swift in Sources */,
 				7E7541071B0D3C5100AC0FC7 /* Moa.swift in Sources */,
 				7EA8EF821B072B4300C951C4 /* UIImageView+moaTests.swift in Sources */,
+				7E94E88F1B992E5500B22919 /* MoaTime.swift in Sources */,
 				7E7541101B0D3DB700AC0FC7 /* MoaCancelDownloadTests.swift in Sources */,
 				7EBCC1CA1B1B373B00BC9569 /* MoaSettings.swift in Sources */,
 				7E7541121B0D3DB700AC0FC7 /* MoaWithImageViewTests.swift in Sources */,
@@ -962,6 +969,7 @@
 				7E112C481B367EF90017AFF0 /* MoaSimulator.swift in Sources */,
 				7E112C351B367EC70017AFF0 /* MoaHttp.swift in Sources */,
 				7E112C391B367ECD0017AFF0 /* MoaHttpImage.swift in Sources */,
+				7E94E8901B992E5500B22919 /* MoaTime.swift in Sources */,
 				2BB170501B9829DF00DADFB8 /* MoaLogType.swift in Sources */,
 				7E112C471B367EF90017AFF0 /* MoaSimulatedImageDownloader.swift in Sources */,
 				7E112C3F1B367ED40017AFF0 /* MoaHttpSession.swift in Sources */,
