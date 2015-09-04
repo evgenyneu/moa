@@ -225,9 +225,9 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
   
     task = MoaHttpImage.createDataTask(url,
       onSuccess: { [weak self] image in
+        self?.canLogCancel = false
         self?.logger?(.ResponseSuccess, url, 200, nil)
         onSuccess(image)
-        self?.canLogCancel = false
       },
       onError: { [weak self] error, response in
         self?.canLogCancel = false
