@@ -12,11 +12,13 @@ class MoaLoggerTests: XCTestCase {
   var logTypes = [MoaLogType]()
   var logUrls = [String]()
   var logStatusCodes = [Int?]()
+  var logErrors = [NSError?]()
   
-  func testLogger(type: MoaLogType, url: String, statusCode: Int?) {
+  func testLogger(type: MoaLogType, url: String, statusCode: Int?, error: NSError?) {
     logTypes.append(type)
     logUrls.append(url)
     logStatusCodes.append(statusCode)
+    logErrors
   }
   
   func testLogger_loadImage() {
