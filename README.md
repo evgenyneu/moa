@@ -122,8 +122,8 @@ imageView.moa.onError = { error, response in
 imageView.moa.url = "http://site.com/image.jpg"
 ```
 
-* The closure is called if image download fails. [See Wiki](https://github.com/evgenyneu/moa/wiki/Moa-errors) for the list of possible error codes.
-* The closure as called in the *main queue*. Use `onErrorAsync` property instead if you need to do time consuming operations.
+* The closure is called in the *main queue* if image download fails. Use `onErrorAsync` property instead if you need to do time consuming operations.
+* Use `error.localizedDescription` to get a human-readable error description.
 
 
 ### Download an image without an image view
