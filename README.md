@@ -217,3 +217,7 @@ Here is the list of other image download libraries for Swift.
 Moa is released under the [MIT License](LICENSE).
 
 
+## 🌿
+
+This project is dedicated to [Moa](https://en.wikipedia.org/wiki/Moa), flightless birds that lived in New Zealand and became extinct in 15th century.
+
