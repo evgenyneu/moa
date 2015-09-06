@@ -161,7 +161,7 @@ Use `Moa.settings` property to change moa settings.
 // Set the maximum number of simultaneous image downloads. Default: 10.
 Moa.settings.maximumSimultaneousDownloads = 5
 
-// Chenge timeout for image requests. Default: 30.
+// Change timeout for image requests. Default: 30.
 Moa.settings.requestTimeoutSeconds = 10
 ```
 
