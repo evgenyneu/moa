@@ -222,5 +222,5 @@ If you notice any issue, got stuck or just want to chat feel free to create an i
 
 ## •ᴥ•
 
-This project is dedicated to [the moa](https://en.wikipedia.org/wiki/Moa), gigantic flightless birds that lived in New Zealand and became extinct in 15th century.
+This project is dedicated to [the moa](https://en.wikipedia.org/wiki/Moa), species of flightless birds that lived in New Zealand and became extinct in 15th century.
 
