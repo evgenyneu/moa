@@ -216,6 +216,9 @@ Here is the list of other image download libraries for Swift.
 
 Moa is released under the [MIT License](LICENSE).
 
+## Feedback is welcome
+
+If you notice any issue, got stuck or just want to chat feel free to create an issue. I will be happy to help you.
 
 ## •ᴥ•
 
