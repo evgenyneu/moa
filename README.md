@@ -154,7 +154,7 @@ Moa.settings.cache.requestCachePolicy = .ReturnCacheDataElseLoad
 
 ## Settings
 
-Use `Moa.settings` property to change moa settings.
+Use `Moa.settings` property to change moa image download settings.
 
 ```Swift
 
