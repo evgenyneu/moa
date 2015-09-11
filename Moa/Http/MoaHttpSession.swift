@@ -1,6 +1,7 @@
 import Foundation
 
-struct MoaHttpSession {
+/// Contains functions for managing NSURLSession.
+public struct MoaHttpSession {
   private static var currentSession: NSURLSession?
   
   static var session: NSURLSession? {
@@ -66,5 +67,11 @@ struct MoaHttpSession {
     if oldSettings != Moa.settings  {
       session = nil
     }
+  }
+  
+  /// Calls `finishTasksAndInvalidate` on the current session. A new session will be created for future downloads.
+  public static func clearSession() {
+    currentSession?.finishTasksAndInvalidate()
+    currentSession = nil
   }
 }

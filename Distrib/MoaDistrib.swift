@@ -265,7 +265,8 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
 
 import Foundation
 
-struct MoaHttpSession {
+/// Contains functions for managing NSURLSession.
+public struct MoaHttpSession {
   private static var currentSession: NSURLSession?
   
   static var session: NSURLSession? {
@@ -331,6 +332,12 @@ struct MoaHttpSession {
     if oldSettings != Moa.settings  {
       session = nil
     }
+  }
+  
+  /// Calls `finishTasksAndInvalidate` on the current session. A new session will be created for future downloads.
+  public static func clearSession() {
+    currentSession?.finishTasksAndInvalidate()
+    currentSession = nil
   }
 }
 
@@ -831,11 +838,11 @@ public struct MoaSettings {
     }
   }
   
-  /// Timeout for image requests in seconds. This will cause a timeout if a resource is not able to be retrieved within a given timeout. Default timeout: 30 seconds.
-  public var requestTimeoutSeconds: Double = 30
+  /// Timeout for image requests in seconds. This will cause a timeout if a resource is not able to be retrieved within a given timeout. Default timeout: 10 seconds.
+  public var requestTimeoutSeconds: Double = 10
   
-  /// Maximum number of simultaneous image downloads. Default: 10.
-  public var maximumSimultaneousDownloads: Int = 10
+  /// Maximum number of simultaneous image downloads. Default: 4.
+  public var maximumSimultaneousDownloads: Int = 4
 }
 
 func ==(lhs: MoaSettings, rhs: MoaSettings) -> Bool {

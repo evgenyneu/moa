@@ -30,4 +30,15 @@ class MoaHttpSessionTests: XCTestCase {
     Moa.settings.cache.memoryCapacityBytes = 928_312
     XCTAssertEqual(928_312, MoaHttpSession.session!.configuration.URLCache!.memoryCapacity)
   }
+  
+  // Clear session
+  
+  func testClearSession() {
+    let session1 = MoaHttpSession.session
+    MoaHttpSession.clearSession()
+  
+    let session2 = MoaHttpSession.session // Should create new session object
+    
+    XCTAssert(session1 !== session2)
+  }
 }
