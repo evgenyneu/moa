@@ -141,7 +141,7 @@ moa.url = "http://site.com/image.jpg"
 
 ### Clearing HTTP session
 
-The following method calls `finishTasksAndInvalidate` on the current NSURLSession object. A new session object will be created for future downloads.
+The following method calls `finishTasksAndInvalidate` on the current NSURLSession object. A new session object will be created for future image downloads.
 
 ```Swift
 MoaHttpSession.clearSession()
