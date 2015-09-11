@@ -158,11 +158,11 @@ Use `Moa.settings` property to change moa image download settings.
 
 ```Swift
 
-// Set the maximum number of simultaneous image downloads. Default: 10.
+// Set the maximum number of simultaneous image downloads. Default: 4.
 Moa.settings.maximumSimultaneousDownloads = 5
 
-// Change timeout for image requests. Default: 30.
-Moa.settings.requestTimeoutSeconds = 10
+// Change timeout for image requests. Default: 10.
+Moa.settings.requestTimeoutSeconds = 20
 ```
 
 ## Logging
