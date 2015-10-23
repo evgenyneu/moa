@@ -139,6 +139,15 @@ moa.onSuccess = { image in
 moa.url = "http://site.com/image.jpg"
 ```
 
+### Clearing HTTP session
+
+The following method calls `finishTasksAndInvalidate` on the current NSURLSession object. A new session object will be created for future image downloads.
+
+```Swift
+MoaHttpSession.clearSession()
+```
+
+You may never need to call this method in your app. I needed to call it periodically to workaround a strange [NSURLSession bug](http://stackoverflow.com/questions/32493339/sending-400-http-requests-result-in-the-request-timed-out-errors-with-nsurlse) which you may not encounter.
 
 ## Image caching
 
