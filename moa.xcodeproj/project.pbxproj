@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2BA0147F1B995CDF004F6676 /* MoaTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA0147D1B995BCE004F6676 /* MoaTimeTests.swift */; settings = {ASSET_TAGS = (); }; };
-		2BB1704C1B9828A200DADFB8 /* MoaLoggerCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1704B1B9828A200DADFB8 /* MoaLoggerCallback.swift */; settings = {ASSET_TAGS = (); }; };
-		2BB1704E1B9828D500DADFB8 /* MoaLogType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1704D1B9828D500DADFB8 /* MoaLogType.swift */; settings = {ASSET_TAGS = (); }; };
-		2BB1704F1B9829DF00DADFB8 /* MoaLogType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1704D1B9828D500DADFB8 /* MoaLogType.swift */; settings = {ASSET_TAGS = (); }; };
-		2BB170501B9829DF00DADFB8 /* MoaLogType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1704D1B9828D500DADFB8 /* MoaLogType.swift */; settings = {ASSET_TAGS = (); }; };
-		2BB170511B9829E100DADFB8 /* MoaLoggerCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1704B1B9828A200DADFB8 /* MoaLoggerCallback.swift */; settings = {ASSET_TAGS = (); }; };
-		2BB170521B9829E200DADFB8 /* MoaLoggerCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1704B1B9828A200DADFB8 /* MoaLoggerCallback.swift */; settings = {ASSET_TAGS = (); }; };
+		2BA0147F1B995CDF004F6676 /* MoaTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA0147D1B995BCE004F6676 /* MoaTimeTests.swift */; };
+		2BB1704C1B9828A200DADFB8 /* MoaLoggerCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1704B1B9828A200DADFB8 /* MoaLoggerCallback.swift */; };
+		2BB1704E1B9828D500DADFB8 /* MoaLogType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1704D1B9828D500DADFB8 /* MoaLogType.swift */; };
+		2BB1704F1B9829DF00DADFB8 /* MoaLogType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1704D1B9828D500DADFB8 /* MoaLogType.swift */; };
+		2BB170501B9829DF00DADFB8 /* MoaLogType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1704D1B9828D500DADFB8 /* MoaLogType.swift */; };
+		2BB170511B9829E100DADFB8 /* MoaLoggerCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1704B1B9828A200DADFB8 /* MoaLoggerCallback.swift */; };
+		2BB170521B9829E200DADFB8 /* MoaLoggerCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1704B1B9828A200DADFB8 /* MoaLoggerCallback.swift */; };
 		7E112C121B36715C0017AFF0 /* TestBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C101B3671250017AFF0 /* TestBundle.swift */; };
 		7E112C181B3675E70017AFF0 /* MoaImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C171B3675E70017AFF0 /* MoaImageDownloader.swift */; };
 		7E112C191B3675F20017AFF0 /* MoaImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C171B3675E70017AFF0 /* MoaImageDownloader.swift */; };
@@ -63,12 +63,12 @@
 		7E30CDFC1B22766B00F6258E /* MoaSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCC1C81B1B33AF00BC9569 /* MoaSettings.swift */; };
 		7E30CDFD1B22767100F6258E /* MoaSettingsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCC1D11B1B3F2E00BC9569 /* MoaSettingsCache.swift */; };
 		7E3694B01B1B430300AABE3F /* MoaSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3694AE1B1B430000AABE3F /* MoaSettingsTests.swift */; };
-		7E672EE91B98F3D700167DFE /* MoaLoggerHttpImageDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E672EE71B98F3C000167DFE /* MoaLoggerHttpImageDownloaderTests.swift */; settings = {ASSET_TAGS = (); }; };
-		7E672EEC1B98FA4700167DFE /* MoaLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E672EEA1B98FA0D00167DFE /* MoaLoggerTests.swift */; settings = {ASSET_TAGS = (); }; };
-		7E672EEE1B9906A200167DFE /* MoaError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E672EED1B9906A200167DFE /* MoaError.swift */; settings = {ASSET_TAGS = (); }; };
-		7E672EEF1B9906C500167DFE /* MoaError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E672EED1B9906A200167DFE /* MoaError.swift */; settings = {ASSET_TAGS = (); }; };
-		7E672EF01B9906C500167DFE /* MoaError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E672EED1B9906A200167DFE /* MoaError.swift */; settings = {ASSET_TAGS = (); }; };
-		7E672EF31B990B8400167DFE /* MoaErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E672EF11B990B6D00167DFE /* MoaErrorTests.swift */; settings = {ASSET_TAGS = (); }; };
+		7E672EE91B98F3D700167DFE /* MoaLoggerHttpImageDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E672EE71B98F3C000167DFE /* MoaLoggerHttpImageDownloaderTests.swift */; };
+		7E672EEC1B98FA4700167DFE /* MoaLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E672EEA1B98FA0D00167DFE /* MoaLoggerTests.swift */; };
+		7E672EEE1B9906A200167DFE /* MoaError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E672EED1B9906A200167DFE /* MoaError.swift */; };
+		7E672EEF1B9906C500167DFE /* MoaError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E672EED1B9906A200167DFE /* MoaError.swift */; };
+		7E672EF01B9906C500167DFE /* MoaError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E672EED1B9906A200167DFE /* MoaError.swift */; };
+		7E672EF31B990B8400167DFE /* MoaErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E672EF11B990B6D00167DFE /* MoaErrorTests.swift */; };
 		7E693F341B1B15D4000E7156 /* launch_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E693F331B1B15D4000E7156 /* launch_screen.png */; };
 		7E6FDB581B088E600095C29F /* text.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E6FDB571B088E600095C29F /* text.txt */; };
 		7E7541071B0D3C5100AC0FC7 /* Moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFA71B0858DD00C951C4 /* Moa.swift */; };
@@ -81,16 +81,16 @@
 		7E79A3CF1B24009100104A33 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E79A3CE1B24009100104A33 /* Images.xcassets */; };
 		7E79A3D21B24009100104A33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E79A3D01B24009100104A33 /* Main.storyboard */; };
 		7E7D251D1B0E8F3500515EE4 /* XCTestCase+eventually.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7D251C1B0E8F3500515EE4 /* XCTestCase+eventually.swift */; };
-		7E94E8831B99238300B22919 /* MoaConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E8821B99238300B22919 /* MoaConsoleLogger.swift */; settings = {ASSET_TAGS = (); }; };
-		7E94E8841B99241100B22919 /* MoaConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E8821B99238300B22919 /* MoaConsoleLogger.swift */; settings = {ASSET_TAGS = (); }; };
-		7E94E8851B99241100B22919 /* MoaConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E8821B99238300B22919 /* MoaConsoleLogger.swift */; settings = {ASSET_TAGS = (); }; };
-		7E94E8871B99262600B22919 /* MoaLoggerText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E8861B99262600B22919 /* MoaLoggerText.swift */; settings = {ASSET_TAGS = (); }; };
-		7E94E8881B9926FC00B22919 /* MoaLoggerText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E8861B99262600B22919 /* MoaLoggerText.swift */; settings = {ASSET_TAGS = (); }; };
-		7E94E8891B9926FC00B22919 /* MoaLoggerText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E8861B99262600B22919 /* MoaLoggerText.swift */; settings = {ASSET_TAGS = (); }; };
-		7E94E88C1B99276900B22919 /* MoaLoggerTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E88A1B99271A00B22919 /* MoaLoggerTextTests.swift */; settings = {ASSET_TAGS = (); }; };
-		7E94E88E1B992E4700B22919 /* MoaTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E88D1B992E4700B22919 /* MoaTime.swift */; settings = {ASSET_TAGS = (); }; };
-		7E94E88F1B992E5500B22919 /* MoaTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E88D1B992E4700B22919 /* MoaTime.swift */; settings = {ASSET_TAGS = (); }; };
-		7E94E8901B992E5500B22919 /* MoaTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E88D1B992E4700B22919 /* MoaTime.swift */; settings = {ASSET_TAGS = (); }; };
+		7E94E8831B99238300B22919 /* MoaConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E8821B99238300B22919 /* MoaConsoleLogger.swift */; };
+		7E94E8841B99241100B22919 /* MoaConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E8821B99238300B22919 /* MoaConsoleLogger.swift */; };
+		7E94E8851B99241100B22919 /* MoaConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E8821B99238300B22919 /* MoaConsoleLogger.swift */; };
+		7E94E8871B99262600B22919 /* MoaLoggerText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E8861B99262600B22919 /* MoaLoggerText.swift */; };
+		7E94E8881B9926FC00B22919 /* MoaLoggerText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E8861B99262600B22919 /* MoaLoggerText.swift */; };
+		7E94E8891B9926FC00B22919 /* MoaLoggerText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E8861B99262600B22919 /* MoaLoggerText.swift */; };
+		7E94E88C1B99276900B22919 /* MoaLoggerTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E88A1B99271A00B22919 /* MoaLoggerTextTests.swift */; };
+		7E94E88E1B992E4700B22919 /* MoaTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E88D1B992E4700B22919 /* MoaTime.swift */; };
+		7E94E88F1B992E5500B22919 /* MoaTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E88D1B992E4700B22919 /* MoaTime.swift */; };
+		7E94E8901B992E5500B22919 /* MoaTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E88D1B992E4700B22919 /* MoaTime.swift */; };
 		7E99AA321B240F0700D5FCDE /* RandomImageUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F1B1B1160240093CD81 /* RandomImageUrl.swift */; };
 		7E99AA331B240F2000D5FCDE /* iiRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E193F1D1B1160A30093CD81 /* iiRandom.swift */; };
 		7EA515811B0FFBED00FEFB07 /* MoaTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA515801B0FFBED00FEFB07 /* MoaTest.swift */; };
@@ -1228,7 +1228,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
@@ -1247,7 +1246,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);

@@ -79,8 +79,6 @@ class MoaSimulatorTests: XCTestCase {
     let simulator = MoaSimulator(urlPart: "image1.jpg")
     MoaSimulator.simulators.append(simulator)
     
-    MoaSimulatedImageDownloader(url: "http://site.com/different.jpg")
-    
     XCTAssertEqual(0, simulator.downloaders.count)
   }
   
