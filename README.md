@@ -40,6 +40,7 @@ Alternatively, add `github "evgenyneu/moa" ~> 2.1` to your Cartfile and run `car
 If you are using CocoaPods add this text to your Podfile and run `pod install`.
 
     use_frameworks!
+    target 'Your target name'
     pod 'moa', '~> 2.1'
 
 
