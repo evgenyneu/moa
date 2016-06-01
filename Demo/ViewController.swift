@@ -49,7 +49,7 @@ class ViewController: UIViewController {
   }
   
   @IBAction func onJosephSmitTapped(sender: AnyObject) {
-    NSURL(string: "http://en.wikipedia.org/wiki/Joseph_Smit").map { url in
+    if let url = NSURL(string: "http://en.wikipedia.org/wiki/Joseph_Smit") {
       UIApplication.sharedApplication().openURL(url)
     }
   }
