@@ -15,8 +15,22 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7E075EDE1CFEC63B00771077"
-               BuildableName = "moa-tvOS.framework"
+               BuildableName = "moa.framework"
                BlueprintName = "moa-tvOS"
+               ReferencedContainer = "container:moa.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C417C52D1B18962D00ED71BB"
+               BuildableName = "concatenate_swift_files"
+               BlueprintName = "concatenate_swift_files"
                ReferencedContainer = "container:moa.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,6 +43,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "7E075EDE1CFEC63B00771077"
+            BuildableName = "moa.framework"
+            BlueprintName = "moa-tvOS"
+            ReferencedContainer = "container:moa.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -46,7 +69,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7E075EDE1CFEC63B00771077"
-            BuildableName = "moa-tvOS.framework"
+            BuildableName = "moa.framework"
             BlueprintName = "moa-tvOS"
             ReferencedContainer = "container:moa.xcodeproj">
          </BuildableReference>
@@ -64,7 +87,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7E075EDE1CFEC63B00771077"
-            BuildableName = "moa-tvOS.framework"
+            BuildableName = "moa.framework"
             BlueprintName = "moa-tvOS"
             ReferencedContainer = "container:moa.xcodeproj">
          </BuildableReference>
