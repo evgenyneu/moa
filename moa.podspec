@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.homepage    = "https://github.com/evgenyneu/moa"
   s.summary     = "An image download extension for image view written in Swift."
   s.description  = <<-DESC
-                   Moa is an image download library written in Swift for iOS and OS X.
+                   Moa is an image download library written in Swift for iOS, tvOS and OS X.
                    It allows to download and show an image in an image view by setting its moa.url property.
 
                    * Images are downloaded asynchronously.
