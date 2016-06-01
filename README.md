@@ -1,4 +1,4 @@
-# Moa, an image downloader written in Swift for iOS and OS X
+# Moa, an image downloader written in Swift for iOS, tvOS and OS X
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)][carthage]
 [![CocoaPods Version](https://img.shields.io/cocoapods/v/moa.svg?style=flat)][cocoadocs]
@@ -7,7 +7,7 @@
 [cocoadocs]: http://cocoadocs.org/docsets/moa
 [carthage]: https://github.com/Carthage/Carthage
 
-Moa is an image download library written in Swift for iOS and OS X.
+Moa is an image download library written in Swift for iOS, tvOS and OS X.
 It allows to download and show an image in an image view by setting its `moa.url` property.
 
 ```Swift
@@ -37,7 +37,7 @@ Simply add [MoaDistrib.swift](https://github.com/evgenyneu/moa/blob/master/Distr
 
 **Setup with Carthage (iOS 8+)**
 
-Alternatively, add `github "evgenyneu/moa" ~> 2.1` to your Cartfile and run `carthage update`.
+Alternatively, add `github "evgenyneu/moa" ~> 3.0` to your Cartfile and run `carthage update`.
 
 **Setup with CocoaPods (iOS 8+)**
 
@@ -45,7 +45,7 @@ If you are using CocoaPods add this text to your Podfile and run `pod install`.
 
     use_frameworks!
     target 'Your target name'
-    pod 'moa', '~> 2.1'
+    pod 'moa', '~> 3.0'
 
 
 #### Setup in Xcode 6
