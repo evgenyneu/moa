@@ -1,4 +1,4 @@
-#if os(iOS)
+#if os(iOS) || os(tvOS)
   import UIKit
   public typealias MoaImage = UIImage
   public typealias MoaImageView = UIImageView
