@@ -7,7 +7,7 @@ public enum MoaLogType: Int{
   /// Request is sent
   case RequestSent
   
-  // Request is cancelled
+  /// Request is cancelled
   case RequestCancelled
   
   /// Successful response is received
