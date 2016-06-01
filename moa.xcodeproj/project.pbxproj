@@ -14,6 +14,25 @@
 		2BB170501B9829DF00DADFB8 /* MoaLogType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1704D1B9828D500DADFB8 /* MoaLogType.swift */; };
 		2BB170511B9829E100DADFB8 /* MoaLoggerCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1704B1B9828A200DADFB8 /* MoaLoggerCallback.swift */; };
 		2BB170521B9829E200DADFB8 /* MoaLoggerCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1704B1B9828A200DADFB8 /* MoaLoggerCallback.swift */; };
+		7E075EE21CFEC63B00771077 /* moa-tvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E075EE11CFEC63B00771077 /* moa-tvOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E075EE71CFEC80F00771077 /* MoaImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C171B3675E70017AFF0 /* MoaImageDownloader.swift */; };
+		7E075EE81CFEC81200771077 /* MoaSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCC1C81B1B33AF00BC9569 /* MoaSettings.swift */; };
+		7E075EE91CFEC81400771077 /* MoaSettingsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCC1D11B1B3F2E00BC9569 /* MoaSettingsCache.swift */; };
+		7E075EEA1CFEC81600771077 /* ImageView+moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EF931B08454B00C951C4 /* ImageView+moa.swift */; };
+		7E075EEB1CFEC81A00771077 /* Moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8EFA71B0858DD00C951C4 /* Moa.swift */; };
+		7E075EEC1CFEC82100771077 /* MoaString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C231B367E600017AFF0 /* MoaString.swift */; };
+		7E075EED1CFEC82100771077 /* MoaTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E88D1B992E4700B22919 /* MoaTime.swift */; };
+		7E075EEE1CFEC82700771077 /* MoaSimulatedImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C411B367EF60017AFF0 /* MoaSimulatedImageDownloader.swift */; };
+		7E075EEF1CFEC82700771077 /* MoaSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C421B367EF60017AFF0 /* MoaSimulator.swift */; };
+		7E075EF01CFEC82D00771077 /* MoaConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E8821B99238300B22919 /* MoaConsoleLogger.swift */; };
+		7E075EF11CFEC82D00771077 /* MoaLoggerCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1704B1B9828A200DADFB8 /* MoaLoggerCallback.swift */; };
+		7E075EF21CFEC82D00771077 /* MoaLoggerText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94E8861B99262600B22919 /* MoaLoggerText.swift */; };
+		7E075EF31CFEC82D00771077 /* MoaLogType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1704D1B9828D500DADFB8 /* MoaLogType.swift */; };
+		7E075EF41CFEC83400771077 /* MoaError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E672EED1B9906A200167DFE /* MoaError.swift */; };
+		7E075EF51CFEC83400771077 /* MoaHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C281B367EC40017AFF0 /* MoaHttp.swift */; };
+		7E075EF61CFEC83400771077 /* MoaHttpImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C2A1B367EC40017AFF0 /* MoaHttpImage.swift */; };
+		7E075EF71CFEC83400771077 /* MoaHttpImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C2B1B367EC40017AFF0 /* MoaHttpImageDownloader.swift */; };
+		7E075EF81CFEC83400771077 /* MoaHttpSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C2D1B367EC40017AFF0 /* MoaHttpSession.swift */; };
 		7E112C121B36715C0017AFF0 /* TestBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C101B3671250017AFF0 /* TestBundle.swift */; };
 		7E112C181B3675E70017AFF0 /* MoaImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C171B3675E70017AFF0 /* MoaImageDownloader.swift */; };
 		7E112C191B3675F20017AFF0 /* MoaImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E112C171B3675E70017AFF0 /* MoaImageDownloader.swift */; };
@@ -181,6 +200,9 @@
 		2BA0147D1B995BCE004F6676 /* MoaTimeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaTimeTests.swift; sourceTree = "<group>"; };
 		2BB1704B1B9828A200DADFB8 /* MoaLoggerCallback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaLoggerCallback.swift; sourceTree = "<group>"; };
 		2BB1704D1B9828D500DADFB8 /* MoaLogType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaLogType.swift; sourceTree = "<group>"; };
+		7E075EDF1CFEC63B00771077 /* moa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = moa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E075EE11CFEC63B00771077 /* moa-tvOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "moa-tvOS.h"; sourceTree = "<group>"; };
+		7E075EE31CFEC63B00771077 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E112C101B3671250017AFF0 /* TestBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestBundle.swift; sourceTree = "<group>"; };
 		7E112C171B3675E70017AFF0 /* MoaImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaImageDownloader.swift; sourceTree = "<group>"; };
 		7E112C231B367E600017AFF0 /* MoaString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaString.swift; sourceTree = "<group>"; };
@@ -258,6 +280,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7E075EDB1CFEC63B00771077 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7E193EE21B1152D40093CD81 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -309,6 +338,15 @@
 				2BB1704D1B9828D500DADFB8 /* MoaLogType.swift */,
 			);
 			path = Logger;
+			sourceTree = "<group>";
+		};
+		7E075EE01CFEC63B00771077 /* moa-tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				7E075EE11CFEC63B00771077 /* moa-tvOS.h */,
+				7E075EE31CFEC63B00771077 /* Info.plist */,
+			);
+			path = "moa-tvOS";
 			sourceTree = "<group>";
 		};
 		7E112C221B367E2E0017AFF0 /* Utils */ = {
@@ -490,6 +528,7 @@
 				7E193EE61B1152D40093CD81 /* Demo */,
 				7E79A3C71B24009100104A33 /* Demo OSX */,
 				C417C50E1B18929B00ED71BB /* OSX */,
+				7E075EE01CFEC63B00771077 /* moa-tvOS */,
 				7EA8EF701B072B4300C951C4 /* Products */,
 				7E3877741B10558E001ADD7E /* scripts */,
 			);
@@ -505,6 +544,7 @@
 				7E193EE51B1152D40093CD81 /* Demo.app */,
 				C417C50D1B18929B00ED71BB /* moa.framework */,
 				7E79A3C61B24009100104A33 /* Demo OSX.app */,
+				7E075EDF1CFEC63B00771077 /* moa.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -613,6 +653,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		7E075EDC1CFEC63B00771077 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E075EE21CFEC63B00771077 /* moa-tvOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7EA8EF6C1B072B4300C951C4 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -649,6 +697,24 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
+		7E075EDE1CFEC63B00771077 /* moa-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E075EE61CFEC63B00771077 /* Build configuration list for PBXNativeTarget "moa-tvOS" */;
+			buildPhases = (
+				7E075EDA1CFEC63B00771077 /* Sources */,
+				7E075EDB1CFEC63B00771077 /* Frameworks */,
+				7E075EDC1CFEC63B00771077 /* Headers */,
+				7E075EDD1CFEC63B00771077 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "moa-tvOS";
+			productName = "moa-tvOS";
+			productReference = 7E075EDF1CFEC63B00771077 /* moa.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		7E193EE41B1152D40093CD81 /* Demo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7E193F051B1152D40093CD81 /* Build configuration list for PBXNativeTarget "Demo" */;
@@ -754,6 +820,9 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Evgenii Neumerzhitckii";
 				TargetAttributes = {
+					7E075EDE1CFEC63B00771077 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
 					7E193EE41B1152D40093CD81 = {
 						CreatedOnToolsVersion = 6.4;
 					};
@@ -793,11 +862,19 @@
 				7E193EE41B1152D40093CD81 /* Demo */,
 				7E79A3C51B24009100104A33 /* Demo OSX */,
 				C417C52D1B18962D00ED71BB /* concatenate_swift_files */,
+				7E075EDE1CFEC63B00771077 /* moa-tvOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7E075EDD1CFEC63B00771077 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7E193EE31B1152D40093CD81 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -877,6 +954,31 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7E075EDA1CFEC63B00771077 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E075EEA1CFEC81600771077 /* ImageView+moa.swift in Sources */,
+				7E075EEE1CFEC82700771077 /* MoaSimulatedImageDownloader.swift in Sources */,
+				7E075EED1CFEC82100771077 /* MoaTime.swift in Sources */,
+				7E075EEF1CFEC82700771077 /* MoaSimulator.swift in Sources */,
+				7E075EF31CFEC82D00771077 /* MoaLogType.swift in Sources */,
+				7E075EF51CFEC83400771077 /* MoaHttp.swift in Sources */,
+				7E075EE81CFEC81200771077 /* MoaSettings.swift in Sources */,
+				7E075EEC1CFEC82100771077 /* MoaString.swift in Sources */,
+				7E075EE91CFEC81400771077 /* MoaSettingsCache.swift in Sources */,
+				7E075EF01CFEC82D00771077 /* MoaConsoleLogger.swift in Sources */,
+				7E075EF71CFEC83400771077 /* MoaHttpImageDownloader.swift in Sources */,
+				7E075EF21CFEC82D00771077 /* MoaLoggerText.swift in Sources */,
+				7E075EF81CFEC83400771077 /* MoaHttpSession.swift in Sources */,
+				7E075EE71CFEC80F00771077 /* MoaImageDownloader.swift in Sources */,
+				7E075EF11CFEC82D00771077 /* MoaLoggerCallback.swift in Sources */,
+				7E075EF61CFEC83400771077 /* MoaHttpImage.swift in Sources */,
+				7E075EF41CFEC83400771077 /* MoaError.swift in Sources */,
+				7E075EEB1CFEC81A00771077 /* Moa.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7E193EE11B1152D40093CD81 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1050,6 +1152,47 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		7E075EE41CFEC63B00771077 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "moa-tvOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.evgenii.moa-tvOS";
+				PRODUCT_NAME = moa;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		7E075EE51CFEC63B00771077 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "moa-tvOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.evgenii.moa-tvOS";
+				PRODUCT_NAME = moa;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
 		7E193F011B1152D40093CD81 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1348,6 +1491,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7E075EE61CFEC63B00771077 /* Build configuration list for PBXNativeTarget "moa-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E075EE41CFEC63B00771077 /* Debug */,
+				7E075EE51CFEC63B00771077 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		7E193F051B1152D40093CD81 /* Build configuration list for PBXNativeTarget "Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

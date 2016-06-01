@@ -7,7 +7,7 @@
 		<key>Demo OSX.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>4</integer>
 		</dict>
 		<key>Demo.xcscheme_^#shared#^_</key>
 		<dict>
@@ -22,12 +22,17 @@
 		<key>concatenate_swift_files.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>5</integer>
 		</dict>
 		<key>moa-Mac.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>2</integer>
+		</dict>
+		<key>moa-tvOS.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>moa.xcscheme_^#shared#^_</key>
 		<dict>
@@ -37,6 +42,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>7E075EDE1CFEC63B00771077</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7E0FA6F71B23CDEB008AA0D6</key>
 		<dict>
 			<key>primary</key>
