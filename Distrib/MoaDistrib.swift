@@ -48,7 +48,7 @@ enum MoaError: ErrorType {
       return NSLocalizedString("Response HTTP header is missing content type.", comment: comment)
       
     case .NotAnImageContentTypeInResponseHttpHeader:
-      return NSLocalizedString("Response content type is not an image type. Content type needs to be  'image/jpeg', 'image/pjpeg' or 'image/png'",
+      return NSLocalizedString("Response content type is not an image type. Content type needs to be  'image/jpeg', 'image/pjpeg', 'image/png' or 'image/gif'",
         comment: comment)
       
     case .FailedToReadImageData:
@@ -182,7 +182,7 @@ struct MoaHttpImage {
   }
   
   private static func validMimeType(mimeType: String) -> Bool {
-    let validMimeTypes = ["image/jpeg", "image/jpg", "image/pjpeg", "image/png"]
+    let validMimeTypes = ["image/jpeg", "image/jpg", "image/pjpeg", "image/png", "image/gif"]
     return validMimeTypes.contains(mimeType)
   }
 }

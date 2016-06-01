@@ -18,7 +18,7 @@ class MoaErrorTests: XCTestCase {
     
     error = MoaError.NotAnImageContentTypeInResponseHttpHeader.nsError
     XCTAssertEqual(3, error.code)
-    XCTAssertEqual("Response content type is not an image type. Content type needs to be  'image/jpeg', 'image/pjpeg' or 'image/png'", error.localizedDescription)
+    XCTAssertEqual("Response content type is not an image type. Content type needs to be  'image/jpeg', 'image/pjpeg', 'image/png' or 'image/gif'", error.localizedDescription)
     
     error = MoaError.FailedToReadImageData.nsError
     XCTAssertEqual(4, error.code)
