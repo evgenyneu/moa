@@ -291,7 +291,7 @@ public struct MoaHttpSession {
     configuration.HTTPMaximumConnectionsPerHost = Moa.settings.maximumSimultaneousDownloads
     configuration.requestCachePolicy = Moa.settings.cache.requestCachePolicy
     
-    #if os(iOS)
+    #if os(iOS) || os(tvOS)
       // Cache path is a directory name in iOS
       let cachePath = Moa.settings.cache.diskPath
     #elseif os(OSX)
@@ -532,7 +532,7 @@ public enum MoaLogType: Int{
 //
 // ----------------------------
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
   import UIKit
   public typealias MoaImage = UIImage
   public typealias MoaImageView = UIImageView

@@ -26,7 +26,7 @@ public struct MoaHttpSession {
     configuration.HTTPMaximumConnectionsPerHost = Moa.settings.maximumSimultaneousDownloads
     configuration.requestCachePolicy = Moa.settings.cache.requestCachePolicy
     
-    #if os(iOS)
+    #if os(iOS) || os(tvOS)
       // Cache path is a directory name in iOS
       let cachePath = Moa.settings.cache.diskPath
     #elseif os(OSX)
