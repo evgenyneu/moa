@@ -1,5 +1,5 @@
 //
-// Image downloader written in Swift for iOS and OS X.
+// Image downloader written in Swift for iOS, tvOS and OS X.
 //
 // https://github.com/evgenyneu/moa
 //
