@@ -93,7 +93,14 @@ Alternatively, one can supply a global error image that will be used for all fai
 Moa.errorImage = UIImage(named: "ImageNotFound.jpg")
 ```
 
+## Supplying a placeholder image
 
+Here is how to show a placeholder image in the image view. The placeholder will be replaced by the image from the network when it arrives.
+
+```Swift
+imageView.image = placeholderImage
+imageView.moa.url = "https://site.com/image.jpg" 
+```
 
 ## Advanced features
 
