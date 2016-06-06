@@ -78,7 +78,7 @@ Ongoing image download for the image view is automatically canceled when:
 Call `imageView.moa.cancel()` to manually cancel the download.
 
 
-## Supply error image
+## Supply an error image
 
 You can supply an error image that will be used if an error occurs during image download.
 
@@ -93,7 +93,7 @@ Alternatively, one can supply a global error image that will be used for all fai
 Moa.errorImage = UIImage(named: "ImageNotFound.jpg")
 ```
 
-## Supplying a placeholder image
+## Show a placeholder image
 
 Here is how to show a placeholder image in the image view. The placeholder will be replaced by the image from the network when it arrives.
 
