@@ -61,7 +61,7 @@ class MoaLoggerTests: XCTestCase {
     Moa.logger = testLogger
 
     // Code: -1009
-    let notConnectedErrorCode = Int(CFNetworkErrors.cfurlErrorNotConnectedToInternet.rawValue)
+    let notConnectedErrorCode = Int(CFNetworkErrors.CFURLErrorNotConnectedToInternet.rawValue)
     
     let notConnectedError = NSError(domain: NSURLErrorDomain,
       code: notConnectedErrorCode, userInfo: nil)

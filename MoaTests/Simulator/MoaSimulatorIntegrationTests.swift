@@ -17,7 +17,7 @@ class MoaSimulatorIntegrationTests: XCTestCase {
     let moa = Moa()
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: HTTPURLResponse?
+    var httpUrlResponse: NSHTTPURLResponse?
     
     moa.onSuccessAsync = { image in
       imageResponse = image
@@ -49,7 +49,7 @@ class MoaSimulatorIntegrationTests: XCTestCase {
     let moa = Moa()
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: HTTPURLResponse?
+    var httpUrlResponse: NSHTTPURLResponse?
     
     moa.onSuccessAsync = { image in
       imageResponse = image
@@ -79,7 +79,7 @@ class MoaSimulatorIntegrationTests: XCTestCase {
     let moa = Moa()
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: HTTPURLResponse?
+    var httpUrlResponse: NSHTTPURLResponse?
     
     moa.onSuccessAsync = { image in
       imageResponse = image
@@ -114,7 +114,7 @@ class MoaSimulatorIntegrationTests: XCTestCase {
     XCTAssertEqual("http://site.com/35px.jpg", simulator.downloaders[0].url)
     
     // Simulate server response with the given image
-    let bundle = Bundle(forClass: self.dynamicType)
+    let bundle = NSBundle(forClass: self.dynamicType)
     let image =  UIImage(named: "35px.jpg", inBundle: bundle, compatibleWithTraitCollection: nil)!
     simulator.respondWithImage(image)
 
@@ -124,7 +124,7 @@ class MoaSimulatorIntegrationTests: XCTestCase {
   
   func testAutorespondWithImageDownloadToImageView() {
     // Create simulator to catch downloads of the given image
-    let bundle = Bundle(forClass: self.dynamicType)
+    let bundle = NSBundle(forClass: self.dynamicType)
     let image =  UIImage(named: "35px.jpg", inBundle: bundle, compatibleWithTraitCollection: nil)!
     let simulator = MoaSimulator.autorespondWithImage("35px.jpg", image: image)
     

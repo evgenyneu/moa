@@ -21,7 +21,7 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: HTTPURLResponse?
+    var httpUrlResponse: NSHTTPURLResponse?
     
     downloader.startDownload("http://site.com/image1.jpg",
       onSuccess: { image in
@@ -46,7 +46,7 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: HTTPURLResponse?
+    var httpUrlResponse: NSHTTPURLResponse?
     
     downloader.startDownload("http://site.com/image1.jpg",
       onSuccess: { image in
@@ -84,7 +84,7 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: HTTPURLResponse?
+    var httpUrlResponse: NSHTTPURLResponse?
     
     downloader.startDownload("http://site.com/image1.jpg",
       onSuccess: { image in
@@ -108,7 +108,7 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: HTTPURLResponse?
+    var httpUrlResponse: NSHTTPURLResponse?
     
     downloader.startDownload("http://site.com/image1.jpg",
       onSuccess: { image in

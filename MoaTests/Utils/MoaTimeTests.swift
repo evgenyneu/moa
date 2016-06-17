@@ -4,7 +4,7 @@ import XCTest
 
 class MoaTimeTests: XCTestCase {
   func testLogTimeDate() {
-    let calendar = Calendar.current()
+    let calendar = NSCalendar.currentCalendar()
     let components = NSDateComponents()
     components.year = 2027
     components.month = 11
@@ -13,7 +13,7 @@ class MoaTimeTests: XCTestCase {
     components.minute = 51
     components.second = 41
     
-    let date = calendar.date(from: components as DateComponents)!
+    let date = calendar.dateFromComponents(components)!
     
     let result = MoaTime.logTime(date)
     

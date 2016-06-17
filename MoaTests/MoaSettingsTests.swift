@@ -65,7 +65,7 @@ class MoaSettingsTests: XCTestCase {
     let sessionAfter = MoaHttpSession.session
     
     XCTAssert(sessionBefore !== sessionAfter)
-    XCTAssertEqual(200, sessionAfter!.configuration.httpMaximumConnectionsPerHost)
+    XCTAssertEqual(200, sessionAfter!.configuration.HTTPMaximumConnectionsPerHost)
   }
   
   func testChangeSettings_chagingMaximumDownloadsWithSameValueDoesNotUpdateHttpSession() {

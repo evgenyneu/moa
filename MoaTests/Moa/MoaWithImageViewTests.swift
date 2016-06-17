@@ -27,7 +27,7 @@ class MoaWithImageViewTests: XCTestCase {
     
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: HTTPURLResponse?
+    var httpUrlResponse: NSHTTPURLResponse?
     
     imageView.moa.onSuccessAsync = { image in
       imageResponse = image
@@ -55,7 +55,7 @@ class MoaWithImageViewTests: XCTestCase {
     let imageView = UIImageView()
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: HTTPURLResponse?
+    var httpUrlResponse: NSHTTPURLResponse?
     
     imageView.moa.onSuccessAsync = { image in
       imageResponse = image
@@ -83,7 +83,7 @@ class MoaWithImageViewTests: XCTestCase {
     let imageView = UIImageView()
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: HTTPURLResponse?
+    var httpUrlResponse: NSHTTPURLResponse?
     
     imageView.moa.onSuccessAsync = { image in
       imageResponse = image
@@ -111,7 +111,7 @@ class MoaWithImageViewTests: XCTestCase {
     let imageView = UIImageView()
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: HTTPURLResponse?
+    var httpUrlResponse: NSHTTPURLResponse?
     
     imageView.moa.onSuccessAsync = { image in
       imageResponse = image
@@ -183,7 +183,7 @@ class MoaWithImageViewTests: XCTestCase {
     let imageView = UIImageView()
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: HTTPURLResponse?
+    var httpUrlResponse: NSHTTPURLResponse?
     
     imageView.moa.onSuccess = { image in
       imageResponse = image
@@ -214,7 +214,7 @@ class MoaWithImageViewTests: XCTestCase {
     let imageView = UIImageView()
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: HTTPURLResponse?
+    var httpUrlResponse: NSHTTPURLResponse?
     
     imageView.moa.errorImage = TestBundle.image("67px.png")
     
@@ -245,7 +245,7 @@ class MoaWithImageViewTests: XCTestCase {
     let imageView = UIImageView()
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: HTTPURLResponse?
+    var httpUrlResponse: NSHTTPURLResponse?
     
     Moa.errorImage = TestBundle.image("35px.jpg")
     

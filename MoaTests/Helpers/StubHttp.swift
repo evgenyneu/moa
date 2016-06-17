@@ -21,18 +21,18 @@ class StubHttp {
     withImage(imageName, forUrlPart: imageName, responseHeaders: ["Content-Type": "image/jpeg"])
   }
   
-  class func requestUrlIncludes(urlPart:String) -> ((NSURLRequest)->Bool) {
+  class func requestUrlIncludes(urlPart:String) -> (NSURLRequest->Bool) {
     return { req in
-      MoaString.contains(req.url!.absoluteString!, substring: urlPart)
+      MoaString.contains(req.URL!.absoluteString, substring: urlPart)
     }
   }
   
-  private class func fixture(filename: String,
+  private class func fixture(filename filename: String,
     responseHeaders: [NSObject : AnyObject]?,
     statusCode: Int = 200,
-    responseTime: TimeInterval = 0) -> ((NSURLRequest)->OHHTTPStubsResponse) {
+    responseTime: NSTimeInterval = 0) -> (NSURLRequest->OHHTTPStubsResponse) {
       
-    let filePath = Bundle(forClass: self).pathForResource(filename, ofType: nil)!
+    let filePath = NSBundle(forClass: self).pathForResource(filename, ofType: nil)!
     
     return { _ in
       var response = OHHTTPStubsResponse(fileAtPath: filePath,
@@ -50,7 +50,7 @@ class StubHttp {
     forUrlPart urlPart: String,
     responseHeaders: [NSObject : AnyObject]? = ["Content-Type": "image/png"],
     statusCode: Int = 200,
-    responseTime: TimeInterval = 0) {
+    responseTime: NSTimeInterval = 0) {
       
     OHHTTPStubs.stubRequestsPassingTest(requestUrlIncludes(urlPart),
       withStubResponse: fixture(filename: imageName,
@@ -62,12 +62,12 @@ class StubHttp {
   
   // MARK: - with text
   
-  private class func fixture(text: String,
+  private class func fixture(text text: String,
     responseHeaders: [NSObject : AnyObject]?,
     statusCode: Int = 200,
-    responseTime: TimeInterval = 0) -> ((NSURLRequest)->OHHTTPStubsResponse) {
+    responseTime: NSTimeInterval = 0) -> (NSURLRequest->OHHTTPStubsResponse) {
       
-    let data = text.data(String.Encoding.utf8)!
+    let data = text.dataUsingEncoding(NSUTF8StringEncoding)!
     
     return { _ in
       var response = OHHTTPStubsResponse(data: data,
@@ -85,7 +85,7 @@ class StubHttp {
     forUrlPart urlPart: String,
     responseHeaders: [NSObject : AnyObject]? = ["Content-Type": "html/text"],
     statusCode: Int = 200,
-    responseTime: TimeInterval = 0) {
+    responseTime: NSTimeInterval = 0) {
       
     OHHTTPStubs.stubRequestsPassingTest(requestUrlIncludes(urlPart),
       withStubResponse: fixture(text: text,
