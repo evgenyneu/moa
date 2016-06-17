@@ -1,3 +1,3 @@
 struct AppConstants {
-  static let collectionViewCellId = "Collection View Cell"
+  static let collectionViewCellId = "Collectino View Cell"
 }
