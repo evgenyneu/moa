@@ -1059,6 +1059,7 @@ public final class MoaSimulator {
   - returns: Simulator object. It is usually used in unit test to verify which request have been sent.  One does not need to call its `respondWithImage` method because it will be called automatically for all matching requests.
   
   */
+  @discardableResult
   public static func autorespondWithImage(_ urlPart: String, image: MoaImage) -> MoaSimulator {
     let simulator = simulate(urlPart)
     simulator.autorespondWithImage = image
@@ -1078,6 +1079,7 @@ public final class MoaSimulator {
   - returns: Simulator object. It is usually used in unit test to verify which request have been sent.  One does not need to call its `respondWithError` method because it will be called automatically for all matching requests.
   
   */
+  @discardableResult
   public static func autorespondWithError(_ urlPart: String, error: NSError? = nil,
     response: HTTPURLResponse? = nil) -> MoaSimulator {
       

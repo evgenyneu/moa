@@ -157,8 +157,8 @@ class MoaSimulatorTests: XCTestCase {
     
     let error = NSError(domain: "test", code: 543_534, userInfo: nil)
     
-    let response = HTTPURLResponse(URL: NSURL(string: "http://error.com")! as URL, statusCode: 422,
-      HTTPVersion: nil, headerFields: nil)
+    let response = HTTPURLResponse(url: NSURL(string: "http://error.com")! as URL, statusCode: 422,
+      httpVersion: nil, headerFields: nil)
     
     simulator.respondWithError(error, response: response)
     
@@ -199,8 +199,8 @@ class MoaSimulatorTests: XCTestCase {
   func testDownload_autorespondWithError() {    
     let error = NSError(domain: "test", code: 543_534, userInfo: nil)
     
-    let response = HTTPURLResponse(URL: NSURL(string: "http://error.com")! as URL, statusCode: 422,
-      HTTPVersion: nil, headerFields: nil)
+    let response = HTTPURLResponse(url: NSURL(string: "http://error.com")! as URL, statusCode: 422,
+      httpVersion: nil, headerFields: nil)
     
     MoaSimulator.autorespondWithError("image1.jpg", error: error, response: response)
     

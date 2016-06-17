@@ -36,8 +36,8 @@ final class MoaTimer: NSObject {
     super.init()
     
     self.callback = callback
-    timer = Timer.scheduledTimerWithTimeInterval(interval, target: self,
-      selector: #selector(MoaTimer.timerFired(_:)), userInfo: nil, repeats: repeats)
+    timer = Timer.scheduledTimer(timeInterval: interval, target: self,
+      selector: #selector(timerFired), userInfo: nil, repeats: repeats)
   }
   
   deinit {
@@ -54,7 +54,8 @@ final class MoaTimer: NSObject {
     if !repeats { cancel() }
   }
   
-  class func runAfter(interval: TimeInterval, repeats: Bool = false,
+  @discardableResult
+  class func runAfter(_ interval: TimeInterval, repeats: Bool = false,
     callback: (MoaTimer)->()) -> MoaTimer {
       
     return MoaTimer(interval: interval, repeats: repeats, callback: callback)

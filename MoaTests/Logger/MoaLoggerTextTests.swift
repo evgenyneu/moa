@@ -3,30 +3,30 @@ import XCTest
 
 class MoaLoggerTextTests: XCTestCase {
   func testRequestSent() {
-    let result = MoaLoggerText(.RequestSent, url: "http://mysite.edu/image.jpg",
+    let result = MoaLoggerText(.requestSent, url: "http://mysite.edu/image.jpg",
       statusCode: nil, error: nil)
     
-    MoaString.contains(result, substring: "GET http://mysite.edu/image.jpg")
+    XCTAssert(MoaString.contains(result, substring: "GET http://mysite.edu/image.jpg"))
   }
   
   func testRequestResponseSuccess() {
-    let result = MoaLoggerText(.ResponseSuccess, url: "http://mysite.edu/image.jpg",
+    let result = MoaLoggerText(.responseSuccess, url: "http://mysite.edu/image.jpg",
       statusCode: 200, error: nil)
     
-    MoaString.contains(result, substring: "Received http://mysite.edu/image.jpg")
+    XCTAssert(MoaString.contains(result, substring: "Received http://mysite.edu/image.jpg"))
   }
   
   func testRequestError() {
-    let result = MoaLoggerText(.ResponseError, url: "http://mysite.edu/image.jpg",
-      statusCode: 500, error: MoaError.MissingResponseContentTypeHttpHeader.nsError)
+    let result = MoaLoggerText(.responseError, url: "http://mysite.edu/image.jpg",
+      statusCode: 500, error: MoaError.missingResponseContentTypeHttpHeader.nsError)
     
-    MoaString.contains(result, substring: "Error 500 http://mysite.edu/image.jpg Response HTTP header is missing content type.")
+    XCTAssert(MoaString.contains(result, substring: "Error 500 http://mysite.edu/image.jpg Response HTTP header is missing content type."))
   }
   
   func testRequestCancelled() {
-    let result = MoaLoggerText(.RequestCancelled, url: "http://mysite.edu/image.jpg",
+    let result = MoaLoggerText(.requestCancelled, url: "http://mysite.edu/image.jpg",
       statusCode: nil, error: nil)
     
-    MoaString.contains(result, substring: "Cancelled http://mysite.edu/image.jpg")
+    XCTAssert(MoaString.contains(result, substring: "Cancelled http://mysite.edu/image.jpg"))
   }
 }

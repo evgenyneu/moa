@@ -1,12 +1,12 @@
 import UIKit
 
 class MoaTest {
-  static func nsDataFromFile(name: String) -> NSData {
-    let url = Bundle(forClass: self).urlForResource(name, withExtension: nil)!
-    return NSData(contentsOfURL: url)!
+  static func nsDataFromFile(_ name: String) -> Data {
+    let url = Bundle(for: self).urlForResource(name, withExtension: nil)!
+    return try! Data(contentsOf: url)
   }
   
-  static func uiImageFromFile(name: String) -> UIImage {
+  static func uiImageFromFile(_ name: String) -> UIImage {
     return UIImage(data: nsDataFromFile(name))!
   }
 }

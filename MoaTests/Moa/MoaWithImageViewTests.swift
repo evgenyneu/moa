@@ -127,7 +127,7 @@ class MoaWithImageViewTests: XCTestCase {
     
     moa_eventually(errorResponse != nil) {
       XCTAssert(imageResponse == nil)
-      XCTAssertEqual(MoaError.HttpStatusCodeIsNot200._code, errorResponse!.code)
+      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorResponse!.code)
       XCTAssertEqual(1, errorResponse!.code)
       XCTAssertEqual("MoaError", errorResponse!.domain)
       XCTAssertEqual(404, httpUrlResponse!.statusCode)
@@ -199,7 +199,7 @@ class MoaWithImageViewTests: XCTestCase {
     
     moa_eventually(errorResponse != nil) {
       XCTAssert(imageResponse == nil)
-      XCTAssertEqual(MoaError.HttpStatusCodeIsNot200._code, errorResponse!.code)
+      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorResponse!.code)
       XCTAssertEqual(1, errorResponse!.code)
       XCTAssertEqual("MoaError", errorResponse!.domain)
       XCTAssertEqual(404, httpUrlResponse!.statusCode)
@@ -232,7 +232,7 @@ class MoaWithImageViewTests: XCTestCase {
     
     moa_eventually(imageResponse != nil) {
       XCTAssertEqual(67, imageView.image!.size.width)
-      XCTAssertEqual(MoaError.HttpStatusCodeIsNot200._code, errorResponse!.code)
+      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorResponse!.code)
       XCTAssertEqual(1, errorResponse!.code)
       XCTAssertEqual("MoaError", errorResponse!.domain)
       XCTAssertEqual(404, httpUrlResponse!.statusCode)
@@ -263,7 +263,7 @@ class MoaWithImageViewTests: XCTestCase {
     
     moa_eventually(imageResponse != nil) {
       XCTAssertEqual(35, imageView.image!.size.width)
-      XCTAssertEqual(MoaError.HttpStatusCodeIsNot200._code, errorResponse!.code)
+      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorResponse!.code)
       XCTAssertEqual(1, errorResponse!.code)
       XCTAssertEqual("MoaError", errorResponse!.domain)
       XCTAssertEqual(404, httpUrlResponse!.statusCode)

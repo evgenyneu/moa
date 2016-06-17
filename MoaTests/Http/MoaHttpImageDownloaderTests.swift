@@ -59,7 +59,7 @@ class MoaImageDownloaderTests: XCTestCase {
     
     moa_eventually(errorFromCallback != nil) {
       XCTAssert(imageFromCallback == nil)
-      XCTAssertEqual(MoaError.HttpStatusCodeIsNot200._code, errorFromCallback!.code)
+      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorFromCallback!.code)
       XCTAssertEqual(1, errorFromCallback!.code)
       XCTAssertEqual("MoaError", errorFromCallback!.domain)
       XCTAssertEqual(404, httpUrlResponseFromCallback!.statusCode)
@@ -117,7 +117,7 @@ class MoaImageDownloaderTests: XCTestCase {
     
     moa_eventually(0.3) {
       XCTAssert(downloader.cancelled)
-      XCTAssertEqual(NSURLSessionTaskState.Completed, downloader.task!.state)
+      XCTAssertEqual(URLSessionTask.State.completed, downloader.task!.state)
       XCTAssert(imageFromCallback == nil)
       XCTAssert(errorFromCallback == nil)
       XCTAssert(httpUrlResponseFromCallback == nil)
@@ -150,7 +150,7 @@ class MoaImageDownloaderTests: XCTestCase {
     closure() // downloader instance will be deallocated in the closure
     
     moa_eventually(0.3) {
-      XCTAssertEqual(NSURLSessionTaskState.Completed, task!.state)
+      XCTAssertEqual(URLSessionTask.State.completed, task!.state)
       XCTAssert(imageFromCallback == nil)
       XCTAssert(errorFromCallback == nil)
       XCTAssert(httpUrlResponseFromCallback == nil)
