@@ -1,7 +1,7 @@
 import Foundation
 
 final class MoaHttpImageDownloader: MoaImageDownloader {
-  var task: NSURLSessionDataTask?
+  var task: URLSessionDataTask?
   var cancelled = false
   
   // When false - the cancel request will not be logged. It is used in order to avoid
@@ -19,10 +19,10 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
     cancel()
   }
   
-  func startDownload(url: String, onSuccess: (MoaImage)->(),
-    onError: (NSError?, NSHTTPURLResponse?)->()) {
+  func startDownload(_ url: String, onSuccess: (MoaImage)->(),
+    onError: (NSError?, HTTPURLResponse?)->()) {
       
-    logger?(.RequestSent, url, nil, nil)
+    logger?(.requestSent, url, nil, nil)
     
     cancelled = false
     canLogCancel = true
@@ -30,7 +30,7 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
     task = MoaHttpImage.createDataTask(url,
       onSuccess: { [weak self] image in
         self?.canLogCancel = false
-        self?.logger?(.ResponseSuccess, url, 200, nil)
+        self?.logger?(.responseSuccess, url, 200, nil)
         onSuccess(image)
       },
       onError: { [weak self] error, response in
@@ -38,7 +38,7 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
         
         if let currentSelf = self where !currentSelf.cancelled {
           // Do not report error if task was manually cancelled
-          self?.logger?(.ResponseError, url, response?.statusCode, error)
+          self?.logger?(.responseError, url, response?.statusCode, error)
           onError(error, response)
         }
       }
@@ -54,8 +54,8 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
     task?.cancel()
     
     if canLogCancel {
-      let url = task?.originalRequest?.URL?.absoluteString ?? ""
-      logger?(.RequestCancelled, url, nil, nil)
+      let url = task?.originalRequest?.url?.absoluteString ?? ""
+      logger?(.requestCancelled, url, nil, nil)
     }
   }
 }

@@ -49,7 +49,7 @@ class RandomImageUrl {
     return RandomImageUrl.hostAndPath + imageName
   }
   
-  func rememberImageName(url: String) {
+  func rememberImageName(_ url: String) {
     if seenImageNames.contains(url) { return }
     seenImageNames.append(url)
     

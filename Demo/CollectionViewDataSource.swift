@@ -1,17 +1,17 @@
 import UIKit
 
 class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
-  func collectionView(collectionView: UICollectionView,
+  func collectionView(_ collectionView: UICollectionView,
     numberOfItemsInSection section: Int) -> Int {
   
     return 1000
   }
   
-  func collectionView(collectionView: UICollectionView,
-    cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+  func collectionView(_ collectionView: UICollectionView,
+    cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
-    let cell = collectionView.dequeueReusableCellWithReuseIdentifier(AppConstants.collectionViewCellId,
-      forIndexPath: indexPath) as? CollectionViewCell
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppConstants.collectionViewCellId,
+      for: indexPath) as? CollectionViewCell
       
     cell?.prepareForDisplay()
       

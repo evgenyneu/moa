@@ -15,47 +15,47 @@
 
 import Foundation
 
-enum MoaError: ErrorType {
+enum MoaError: ErrorProtocol {
   /// Incorrect URL is supplied. Error code: 0.
-  case InvalidUrlString
+  case invalidUrlString
   
   /// Response HTTP status code is not 200. Error code: 1.
-  case HttpStatusCodeIsNot200
+  case httpStatusCodeIsNot200
   
   /// Response is missing Content-Type http header. Error code: 2.
-  case MissingResponseContentTypeHttpHeader
+  case missingResponseContentTypeHttpHeader
   
   /// Response Content-Type http header is not an image type. Error code: 3.
-  case NotAnImageContentTypeInResponseHttpHeader
+  case notAnImageContentTypeInResponseHttpHeader
   
   /// Failed to convert response data to UIImage. Error code: 4.
-  case FailedToReadImageData
+  case failedToReadImageData
   
   /// Simulated error used in unit tests. Error code: 5.
-  case SimulatedError
+  case simulatedError
   
   var localizedDescription: String {
     let comment = "Moa image downloader error"
   
     switch self {
-    case .InvalidUrlString:
+    case .invalidUrlString:
       return NSLocalizedString("Invalid URL.", comment: comment)
     
-    case .HttpStatusCodeIsNot200:
+    case .httpStatusCodeIsNot200:
       return NSLocalizedString("Response HTTP status code is not 200.", comment: comment)
       
-    case .MissingResponseContentTypeHttpHeader:
+    case .missingResponseContentTypeHttpHeader:
       return NSLocalizedString("Response HTTP header is missing content type.", comment: comment)
       
-    case .NotAnImageContentTypeInResponseHttpHeader:
+    case .notAnImageContentTypeInResponseHttpHeader:
       return NSLocalizedString("Response content type is not an image type. Content type needs to be  'image/jpeg', 'image/pjpeg', 'image/png' or 'image/gif'",
         comment: comment)
       
-    case .FailedToReadImageData:
+    case .failedToReadImageData:
       return NSLocalizedString("Could not convert response data to an image format.",
         comment: comment)
       
-    case .SimulatedError:
+    case .simulatedError:
       return NSLocalizedString("Test error.", comment: comment)
     }
   }
@@ -87,25 +87,25 @@ Shortcut function for creating NSURLSessionDataTask.
 
 */
 struct MoaHttp {
-  static func createDataTask(url: String,
-    onSuccess: (NSData?, NSHTTPURLResponse)->(),
-    onError: (NSError?, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
+  static func createDataTask(_ url: String,
+    onSuccess: (Data?, HTTPURLResponse)->(),
+    onError: (NSError?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
       
-    if let nsUrl = NSURL(string: url) {
+    if let nsUrl = URL(string: url) {
       return createDataTask(nsUrl, onSuccess: onSuccess, onError: onError)
     }
     
     // Error converting string to NSURL
-    onError(MoaError.InvalidUrlString.nsError, nil)
+    onError(MoaError.invalidUrlString.nsError, nil)
     return nil
   }
   
-  private static func createDataTask(nsUrl: NSURL,
-    onSuccess: (NSData?, NSHTTPURLResponse)->(),
-    onError: (NSError?, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
+  private static func createDataTask(_ nsUrl: URL,
+    onSuccess: (Data?, HTTPURLResponse)->(),
+    onError: (NSError?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
       
-    return MoaHttpSession.session?.dataTaskWithURL(nsUrl) { (data, response, error) in
-      if let httpResponse = response as? NSHTTPURLResponse {
+    return MoaHttpSession.session?.dataTask(with: nsUrl) { (data, response, error) in
+      if let httpResponse = response as? HTTPURLResponse {
         if error == nil {
           onSuccess(data, httpResponse)
         } else {
@@ -134,9 +134,9 @@ Helper functions for downloading an image and processing the response.
 
 */
 struct MoaHttpImage {
-  static func createDataTask(url: String,
+  static func createDataTask(_ url: String,
     onSuccess: (MoaImage)->(),
-    onError: (NSError?, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
+    onError: (NSError?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
     
     return MoaHttp.createDataTask(url,
       onSuccess: { data, response in
@@ -146,28 +146,28 @@ struct MoaHttpImage {
     )
   }
   
-  static func handleSuccess(data: NSData?,
-    response: NSHTTPURLResponse,
+  static func handleSuccess(_ data: Data?,
+    response: HTTPURLResponse,
     onSuccess: (MoaImage)->(),
-    onError: (NSError, NSHTTPURLResponse?)->()) {
+    onError: (NSError, HTTPURLResponse?)->()) {
       
     // Show error if response code is not 200
     if response.statusCode != 200 {
-      onError(MoaError.HttpStatusCodeIsNot200.nsError, response)
+      onError(MoaError.httpStatusCodeIsNot200.nsError, response)
       return
     }
     
     // Ensure response has the valid MIME type
-    if let mimeType = response.MIMEType {
+    if let mimeType = response.mimeType {
       if !validMimeType(mimeType) {
         // Not an image Content-Type http header
-        let error = MoaError.NotAnImageContentTypeInResponseHttpHeader.nsError
+        let error = MoaError.notAnImageContentTypeInResponseHttpHeader.nsError
         onError(error, response)
         return
       }
     } else {
       // Missing Content-Type http header
-      let error = MoaError.MissingResponseContentTypeHttpHeader.nsError
+      let error = MoaError.missingResponseContentTypeHttpHeader.nsError
       onError(error, response)
       return
     }
@@ -176,12 +176,12 @@ struct MoaHttpImage {
       onSuccess(image)
     } else {
       // Failed to convert response data to UIImage
-      let error = MoaError.FailedToReadImageData.nsError
+      let error = MoaError.failedToReadImageData.nsError
       onError(error, response)
     }
   }
   
-  private static func validMimeType(mimeType: String) -> Bool {
+  private static func validMimeType(_ mimeType: String) -> Bool {
     let validMimeTypes = ["image/jpeg", "image/jpg", "image/pjpeg", "image/png", "image/gif"]
     return validMimeTypes.contains(mimeType)
   }
@@ -197,7 +197,7 @@ struct MoaHttpImage {
 import Foundation
 
 final class MoaHttpImageDownloader: MoaImageDownloader {
-  var task: NSURLSessionDataTask?
+  var task: URLSessionDataTask?
   var cancelled = false
   
   // When false - the cancel request will not be logged. It is used in order to avoid
@@ -215,10 +215,10 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
     cancel()
   }
   
-  func startDownload(url: String, onSuccess: (MoaImage)->(),
-    onError: (NSError?, NSHTTPURLResponse?)->()) {
+  func startDownload(_ url: String, onSuccess: (MoaImage)->(),
+    onError: (NSError?, HTTPURLResponse?)->()) {
       
-    logger?(.RequestSent, url, nil, nil)
+    logger?(.requestSent, url, nil, nil)
     
     cancelled = false
     canLogCancel = true
@@ -226,7 +226,7 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
     task = MoaHttpImage.createDataTask(url,
       onSuccess: { [weak self] image in
         self?.canLogCancel = false
-        self?.logger?(.ResponseSuccess, url, 200, nil)
+        self?.logger?(.responseSuccess, url, 200, nil)
         onSuccess(image)
       },
       onError: { [weak self] error, response in
@@ -234,7 +234,7 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
         
         if let currentSelf = self where !currentSelf.cancelled {
           // Do not report error if task was manually cancelled
-          self?.logger?(.ResponseError, url, response?.statusCode, error)
+          self?.logger?(.responseError, url, response?.statusCode, error)
           onError(error, response)
         }
       }
@@ -250,8 +250,8 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
     task?.cancel()
     
     if canLogCancel {
-      let url = task?.originalRequest?.URL?.absoluteString ?? ""
-      logger?(.RequestCancelled, url, nil, nil)
+      let url = task?.originalRequest?.url?.absoluteString ?? ""
+      logger?(.requestCancelled, url, nil, nil)
     }
   }
 }
@@ -267,9 +267,9 @@ import Foundation
 
 /// Contains functions for managing NSURLSession.
 public struct MoaHttpSession {
-  private static var currentSession: NSURLSession?
+  private static var currentSession: URLSession?
   
-  static var session: NSURLSession? {
+  static var session: URLSession? {
     get {
       if currentSession == nil {
         currentSession = createNewSession()
@@ -283,12 +283,12 @@ public struct MoaHttpSession {
     }
   }
   
-  private static func createNewSession() -> NSURLSession {
-    let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+  private static func createNewSession() -> URLSession {
+    let configuration = URLSessionConfiguration.default()
     
     configuration.timeoutIntervalForRequest = Moa.settings.requestTimeoutSeconds
     configuration.timeoutIntervalForResource = Moa.settings.requestTimeoutSeconds
-    configuration.HTTPMaximumConnectionsPerHost = Moa.settings.maximumSimultaneousDownloads
+    configuration.httpMaximumConnectionsPerHost = Moa.settings.maximumSimultaneousDownloads
     configuration.requestCachePolicy = Moa.settings.cache.requestCachePolicy
     
     #if os(iOS) || os(tvOS)
@@ -299,36 +299,36 @@ public struct MoaHttpSession {
       let cachePath = osxCachePath(Moa.settings.cache.diskPath)
     #endif
     
-    let cache = NSURLCache(
+    let cache = URLCache(
       memoryCapacity: Moa.settings.cache.memoryCapacityBytes,
       diskCapacity: Moa.settings.cache.diskCapacityBytes,
       diskPath: cachePath)
     
-    configuration.URLCache = cache
+    configuration.urlCache = cache
     
-    return NSURLSession(configuration: configuration)
+    return URLSession(configuration: configuration)
   }
   
   // Returns the cache path for OSX.
-  private static func osxCachePath(dirName: String) -> String {
+  private static func osxCachePath(_ dirName: String) -> String {
     var basePath = NSTemporaryDirectory()
-    let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.ApplicationSupportDirectory,
-      NSSearchPathDomainMask.UserDomainMask, true)
+    let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.applicationSupportDirectory,
+      FileManager.SearchPathDomainMask.userDomainMask, true)
     
     if paths.count > 0 {
       basePath = paths[0]
     }
     
-    return (basePath as NSString).stringByAppendingPathComponent(dirName)
+    return (basePath as NSString).appendingPathComponent(dirName)
   }
   
-  static func cacheSettingsChanged(oldSettings: MoaSettingsCache) {
+  static func cacheSettingsChanged(_ oldSettings: MoaSettingsCache) {
     if oldSettings != Moa.settings.cache {
       session = nil
     }
   }
   
-  static func settingsChanged(oldSettings: MoaSettings) {
+  static func settingsChanged(_ oldSettings: MoaSettings) {
     if oldSettings != Moa.settings  {
       session = nil
     }
@@ -410,7 +410,7 @@ Usage:
     Moa.logger = MoaConsoleLogger
 
 */
-public func MoaConsoleLogger(type: MoaLogType, url: String, statusCode: Int?, error: NSError?) {
+public func MoaConsoleLogger(_ type: MoaLogType, url: String, statusCode: Int?, error: NSError?) {
   let text = MoaLoggerText(type, url: url, statusCode: statusCode, error: error)
   print(text)
 }
@@ -464,7 +464,7 @@ For logging into Xcode console you can use MoaConsoleLogger function.
     Moa.logger = MoaConsoleLogger
 
 */
-public func MoaLoggerText(type: MoaLogType, url: String, statusCode: Int?,
+public func MoaLoggerText(_ type: MoaLogType, url: String, statusCode: Int?,
   error: NSError?) -> String {
   
   let time = MoaTime.nowLogTime
@@ -472,13 +472,13 @@ public func MoaLoggerText(type: MoaLogType, url: String, statusCode: Int?,
   var suffix = ""
   
   switch type {
-  case .RequestSent:
+  case .requestSent:
     text += "GET "
-  case .RequestCancelled:
+  case .requestCancelled:
     text += "Cancelled "
-  case .ResponseSuccess:
+  case .responseSuccess:
     text += "Received "
-  case .ResponseError:
+  case .responseError:
     text += "Error "
     
     if let statusCode = statusCode {
@@ -513,16 +513,16 @@ Types of log messages.
 */
 public enum MoaLogType: Int{
   /// Request is sent
-  case RequestSent
+  case requestSent
   
-  // Request is cancelled
-  case RequestCancelled
+  /// Request is cancelled
+  case requestCancelled
   
   /// Successful response is received
-  case ResponseSuccess
+  case responseSuccess
   
   /// Response error is received
-  case ResponseError
+  case responseError
 }
 
 
@@ -682,7 +682,7 @@ public final class Moa {
       }
   
   */
-  public var onError: ((NSError?, NSHTTPURLResponse?)->())?
+  public var onError: ((NSError?, HTTPURLResponse?)->())?
   
   /**
 
@@ -694,7 +694,7 @@ public final class Moa {
       }
 
   */
-  public var onErrorAsync: ((NSError?, NSHTTPURLResponse?)->())?
+  public var onErrorAsync: ((NSError?, HTTPURLResponse?)->())?
   
   
   /**
@@ -711,7 +711,7 @@ public final class Moa {
   */
   public static var errorImage: MoaImage?
 
-  private func startDownload(url: String) {
+  private func startDownload(_ url: String) {
     cancel()
     
     let simulatedDownloader = MoaSimulator.createDownloader(url)
@@ -736,7 +736,7 @@ public final class Moa {
   - parameter isSimulated: True if the image was supplied by moa simulator rather than real network.
 
   */
-  private func handleSuccessAsync(image: MoaImage, isSimulated: Bool) {
+  private func handleSuccessAsync(_ image: MoaImage, isSimulated: Bool) {
     var imageForView: MoaImage? = image
 
     if let onSuccessAsync = onSuccessAsync {
@@ -747,7 +747,7 @@ public final class Moa {
       // Assign image in the same queue for simulated download to make unit testing simpler with synchronous code
       handleSuccessMainQueue(imageForView)
     } else {
-      dispatch_async(dispatch_get_main_queue()) { [weak self] in
+      DispatchQueue.main.async { [weak self] in
         self?.handleSuccessMainQueue(imageForView)
       }
     }
@@ -760,7 +760,7 @@ public final class Moa {
   - parameter image: Image received by the downloader.
   
   */
-  private func handleSuccessMainQueue(image: MoaImage?) {
+  private func handleSuccessMainQueue(_ image: MoaImage?) {
     var imageForView: MoaImage? = image
     
     if let onSuccess = onSuccess, image = image {
@@ -779,7 +779,7 @@ public final class Moa {
   - parameter isSimulated: True if the image was supplied by moa simulator rather than real network.
   
   */
-  private func handleErrorAsync(error: NSError?, response: NSHTTPURLResponse?, isSimulated: Bool) {
+  private func handleErrorAsync(_ error: NSError?, response: HTTPURLResponse?, isSimulated: Bool) {
     if let errorImage = globalOrInstanceErrorImage {
       handleSuccessAsync(errorImage, isSimulated: isSimulated)
     }
@@ -787,7 +787,7 @@ public final class Moa {
     onErrorAsync?(error, response)
     
     if let onError = onError {
-      dispatch_async(dispatch_get_main_queue()) {
+      DispatchQueue.main.async {
         onError(error, response)
       }
     }
@@ -811,8 +811,8 @@ import Foundation
 
 /// Downloads an image.
 protocol MoaImageDownloader {
-  func startDownload(url: String, onSuccess: (MoaImage)->(),
-    onError: (NSError?, NSHTTPURLResponse?)->())
+  func startDownload(_ url: String, onSuccess: (MoaImage)->(),
+    onError: (NSError?, HTTPURLResponse?)->())
   
   func cancel()
 }
@@ -886,7 +886,7 @@ public struct MoaSettingsCache {
   * .ReturnCacheDataDontLoad - Load the image from local cache only and do not attempt to load from the source.
 
   */
-  public var requestCachePolicy: NSURLRequestCachePolicy = .UseProtocolCachePolicy
+  public var requestCachePolicy: NSURLRequest.CachePolicy = .useProtocolCachePolicy
   
   /**
   
@@ -932,17 +932,17 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   
   var autorespondWithImage: MoaImage?
   
-  var autorespondWithError: (error: NSError?, response: NSHTTPURLResponse?)?
+  var autorespondWithError: (error: NSError?, response: HTTPURLResponse?)?
   
   var onSuccess: ((MoaImage)->())?
-  var onError: ((NSError, NSHTTPURLResponse?)->())?
+  var onError: ((NSError, HTTPURLResponse?)->())?
 
   init(url: String) {
     self.url = url
   }
   
-  func startDownload(url: String, onSuccess: (MoaImage)->(),
-    onError: (NSError?, NSHTTPURLResponse?)->()) {
+  func startDownload(_ url: String, onSuccess: (MoaImage)->(),
+    onError: (NSError?, HTTPURLResponse?)->()) {
       
     self.onSuccess = onSuccess
     self.onError = onError
@@ -967,7 +967,7 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   - parameter image: Image that is be passed to success handler of all ongoing requests.
   
   */
-  public func respondWithImage(image: MoaImage) {
+  public func respondWithImage(_ image: MoaImage) {
     onSuccess?(image)
   }
   
@@ -980,8 +980,8 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   - parameter response: Optional response that is passed to the error handler ongoing request.
   
   */
-  public func respondWithError(error: NSError? = nil, response: NSHTTPURLResponse? = nil) {
-    onError?(error ?? MoaError.SimulatedError.nsError, response)
+  public func respondWithError(_ error: NSError? = nil, response: HTTPURLResponse? = nil) {
+    onError?(error ?? MoaError.simulatedError.nsError, response)
   }
 }
 
@@ -1042,7 +1042,7 @@ public final class MoaSimulator {
   - returns: Simulator object. It is usually used in unit test to verify which request have been sent and simulating server response by calling its respondWithImage and respondWithError methods.
   
   */
-  public static func simulate(urlPart: String) -> MoaSimulator {
+  public static func simulate(_ urlPart: String) -> MoaSimulator {
     let simulator = MoaSimulator(urlPart: urlPart)
     simulators.append(simulator)
     return simulator
@@ -1059,7 +1059,7 @@ public final class MoaSimulator {
   - returns: Simulator object. It is usually used in unit test to verify which request have been sent.  One does not need to call its `respondWithImage` method because it will be called automatically for all matching requests.
   
   */
-  public static func autorespondWithImage(urlPart: String, image: MoaImage) -> MoaSimulator {
+  public static func autorespondWithImage(_ urlPart: String, image: MoaImage) -> MoaSimulator {
     let simulator = simulate(urlPart)
     simulator.autorespondWithImage = image
     return simulator
@@ -1078,8 +1078,8 @@ public final class MoaSimulator {
   - returns: Simulator object. It is usually used in unit test to verify which request have been sent.  One does not need to call its `respondWithError` method because it will be called automatically for all matching requests.
   
   */
-  public static func autorespondWithError(urlPart: String, error: NSError? = nil,
-    response: NSHTTPURLResponse? = nil) -> MoaSimulator {
+  public static func autorespondWithError(_ urlPart: String, error: NSError? = nil,
+    response: HTTPURLResponse? = nil) -> MoaSimulator {
       
     let simulator = simulate(urlPart)
     simulator.autorespondWithError = (error, response)
@@ -1091,13 +1091,13 @@ public final class MoaSimulator {
     simulators = []
   }
   
-  static func simulatorsMatchingUrl(url: String) -> [MoaSimulator] {
+  static func simulatorsMatchingUrl(_ url: String) -> [MoaSimulator] {
     return simulators.filter { simulator in
       MoaString.contains(url, substring: simulator.urlPart)
     }
   }
   
-  static func createDownloader(url: String) -> MoaSimulatedImageDownloader? {
+  static func createDownloader(_ url: String) -> MoaSimulatedImageDownloader? {
     let matchingSimulators = simulatorsMatchingUrl(url)
     
     if !matchingSimulators.isEmpty {
@@ -1128,7 +1128,7 @@ public final class MoaSimulator {
   /// The image that will be used to respond to all future download requests
   var autorespondWithImage: MoaImage?
   
-  var autorespondWithError: (error: NSError?, response: NSHTTPURLResponse?)?
+  var autorespondWithError: (error: NSError?, response: HTTPURLResponse?)?
   
   /// Array of registered image downloaders.
   public var downloaders = [MoaSimulatedImageDownloader]()
@@ -1144,7 +1144,7 @@ public final class MoaSimulator {
   - parameter image: Image that is be passed to success handler of all ongoing requests.
   
   */
-  public func respondWithImage(image: MoaImage) {
+  public func respondWithImage(_ image: MoaImage) {
     for downloader in downloaders {
       downloader.respondWithImage(image)
     }
@@ -1159,7 +1159,7 @@ public final class MoaSimulator {
   - parameter response: Optional response that is passed to the error handler of all ongoing requests.
   
   */
-  public func respondWithError(error: NSError? = nil, response: NSHTTPURLResponse? = nil) {
+  public func respondWithError(_ error: NSError? = nil, response: HTTPURLResponse? = nil) {
     for downloader in downloaders {
       downloader.respondWithError(error, response: response)
     }
@@ -1180,16 +1180,16 @@ import Foundation
 //
 
 struct MoaString {
-  static func contains(text: String, substring: String,
+  static func contains(_ text: String, substring: String,
     ignoreCase: Bool = false,
     ignoreDiacritic: Bool = false) -> Bool {
             
-    var options = NSStringCompareOptions()
+    var options = NSString.CompareOptions()
     
-    if ignoreCase { options.insert(NSStringCompareOptions.CaseInsensitiveSearch) }
-    if ignoreDiacritic { options.insert(NSStringCompareOptions.DiacriticInsensitiveSearch) }
+    if ignoreCase { _ = options.insert(NSString.CompareOptions.caseInsensitiveSearch) }
+    if ignoreDiacritic { _ = options.insert(NSString.CompareOptions.diacriticInsensitiveSearch) }
     
-    return text.rangeOfString(substring, options: options) != nil
+    return text.range(of: substring, options: options) != nil
   }
 }
 
@@ -1204,20 +1204,20 @@ import Foundation
 
 struct MoaTime {
   /// Converts date to format used in logs in UTC time zone.
-  static func logTime(date: NSDate) -> String {
-    let dateFormatter = NSDateFormatter()
-    let timeZone =  NSTimeZone(name: "UTC")
+  static func logTime(_ date: Date) -> String {
+    let dateFormatter = DateFormatter()
+    let timeZone =  TimeZone(name: "UTC")
     dateFormatter.timeZone = timeZone
-    let enUSPosixLocale = NSLocale(localeIdentifier: "en_US_POSIX")
+    let enUSPosixLocale = Locale(localeIdentifier: "en_US_POSIX")
     dateFormatter.locale = enUSPosixLocale
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
     
-    return dateFormatter.stringFromDate(date)
+    return dateFormatter.string(from: date)
   }
   
   /// Returns current time in format used in logs in UTC time zone.
   static var nowLogTime: String {
-    return logTime(NSDate())
+    return logTime(Date())
   }
 }
 

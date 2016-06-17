@@ -5,14 +5,14 @@ Types of log messages.
 */
 public enum MoaLogType: Int{
   /// Request is sent
-  case RequestSent
+  case requestSent
   
   /// Request is cancelled
-  case RequestCancelled
+  case requestCancelled
   
   /// Successful response is received
-  case ResponseSuccess
+  case responseSuccess
   
   /// Response error is received
-  case ResponseError
+  case responseError
 }

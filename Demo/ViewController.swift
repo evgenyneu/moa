@@ -24,33 +24,33 @@ class ViewController: UIViewController {
   }
   
   override func preferredStatusBarStyle() -> UIStatusBarStyle {
-    return UIStatusBarStyle.LightContent
+    return UIStatusBarStyle.lightContent
   }
   
   private func setupCollectionViewLayout() {
     flowLayout.minimumInteritemSpacing = 0
     flowLayout.minimumLineSpacing = 0
-    changeItemSize(UIScreen.mainScreen().bounds.width)
+    changeItemSize(UIScreen.main().bounds.width)
     collectionView.setCollectionViewLayout(flowLayout, animated: false)
   }
   
-  private func changeItemSize(screenWidth: CGFloat) {
+  private func changeItemSize(_ screenWidth: CGFloat) {
     let itemsInRow = Int(screenWidth / 150)
     let itemSideSize = screenWidth / CGFloat(itemsInRow)
     flowLayout.itemSize = CGSize(width: itemSideSize, height: itemSideSize)
   }
   
-  override func viewWillTransitionToSize(size: CGSize,
-    withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+  override func viewWillTransition(to size: CGSize,
+    with coordinator: UIViewControllerTransitionCoordinator) {
   
-    super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    super.viewWillTransition(to: size, with: coordinator)
       
     changeItemSize(size.width)
   }
   
-  @IBAction func onJosephSmitTapped(sender: AnyObject) {
-    if let url = NSURL(string: "http://en.wikipedia.org/wiki/Joseph_Smit") {
-      UIApplication.sharedApplication().openURL(url)
+  @IBAction func onJosephSmitTapped(_ sender: AnyObject) {
+    if let url = URL(string: "http://en.wikipedia.org/wiki/Joseph_Smit") {
+      UIApplication.shared().openURL(url)
     }
   }
 }

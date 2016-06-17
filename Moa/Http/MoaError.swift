@@ -1,46 +1,46 @@
 import Foundation
 
-enum MoaError: ErrorType {
+enum MoaError: ErrorProtocol {
   /// Incorrect URL is supplied. Error code: 0.
-  case InvalidUrlString
+  case invalidUrlString
   
   /// Response HTTP status code is not 200. Error code: 1.
-  case HttpStatusCodeIsNot200
+  case httpStatusCodeIsNot200
   
   /// Response is missing Content-Type http header. Error code: 2.
-  case MissingResponseContentTypeHttpHeader
+  case missingResponseContentTypeHttpHeader
   
   /// Response Content-Type http header is not an image type. Error code: 3.
-  case NotAnImageContentTypeInResponseHttpHeader
+  case notAnImageContentTypeInResponseHttpHeader
   
   /// Failed to convert response data to UIImage. Error code: 4.
-  case FailedToReadImageData
+  case failedToReadImageData
   
   /// Simulated error used in unit tests. Error code: 5.
-  case SimulatedError
+  case simulatedError
   
   var localizedDescription: String {
     let comment = "Moa image downloader error"
   
     switch self {
-    case .InvalidUrlString:
+    case .invalidUrlString:
       return NSLocalizedString("Invalid URL.", comment: comment)
     
-    case .HttpStatusCodeIsNot200:
+    case .httpStatusCodeIsNot200:
       return NSLocalizedString("Response HTTP status code is not 200.", comment: comment)
       
-    case .MissingResponseContentTypeHttpHeader:
+    case .missingResponseContentTypeHttpHeader:
       return NSLocalizedString("Response HTTP header is missing content type.", comment: comment)
       
-    case .NotAnImageContentTypeInResponseHttpHeader:
+    case .notAnImageContentTypeInResponseHttpHeader:
       return NSLocalizedString("Response content type is not an image type. Content type needs to be  'image/jpeg', 'image/pjpeg', 'image/png' or 'image/gif'",
         comment: comment)
       
-    case .FailedToReadImageData:
+    case .failedToReadImageData:
       return NSLocalizedString("Could not convert response data to an image format.",
         comment: comment)
       
-    case .SimulatedError:
+    case .simulatedError:
       return NSLocalizedString("Test error.", comment: comment)
     }
   }

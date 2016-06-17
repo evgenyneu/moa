@@ -148,7 +148,7 @@ public final class Moa {
       }
   
   */
-  public var onError: ((NSError?, NSHTTPURLResponse?)->())?
+  public var onError: ((NSError?, HTTPURLResponse?)->())?
   
   /**
 
@@ -160,7 +160,7 @@ public final class Moa {
       }
 
   */
-  public var onErrorAsync: ((NSError?, NSHTTPURLResponse?)->())?
+  public var onErrorAsync: ((NSError?, HTTPURLResponse?)->())?
   
   
   /**
@@ -177,7 +177,7 @@ public final class Moa {
   */
   public static var errorImage: MoaImage?
 
-  private func startDownload(url: String) {
+  private func startDownload(_ url: String) {
     cancel()
     
     let simulatedDownloader = MoaSimulator.createDownloader(url)
@@ -202,7 +202,7 @@ public final class Moa {
   - parameter isSimulated: True if the image was supplied by moa simulator rather than real network.
 
   */
-  private func handleSuccessAsync(image: MoaImage, isSimulated: Bool) {
+  private func handleSuccessAsync(_ image: MoaImage, isSimulated: Bool) {
     var imageForView: MoaImage? = image
 
     if let onSuccessAsync = onSuccessAsync {
@@ -213,7 +213,7 @@ public final class Moa {
       // Assign image in the same queue for simulated download to make unit testing simpler with synchronous code
       handleSuccessMainQueue(imageForView)
     } else {
-      dispatch_async(dispatch_get_main_queue()) { [weak self] in
+      DispatchQueue.main.async { [weak self] in
         self?.handleSuccessMainQueue(imageForView)
       }
     }
@@ -226,7 +226,7 @@ public final class Moa {
   - parameter image: Image received by the downloader.
   
   */
-  private func handleSuccessMainQueue(image: MoaImage?) {
+  private func handleSuccessMainQueue(_ image: MoaImage?) {
     var imageForView: MoaImage? = image
     
     if let onSuccess = onSuccess, image = image {
@@ -245,7 +245,7 @@ public final class Moa {
   - parameter isSimulated: True if the image was supplied by moa simulator rather than real network.
   
   */
-  private func handleErrorAsync(error: NSError?, response: NSHTTPURLResponse?, isSimulated: Bool) {
+  private func handleErrorAsync(_ error: NSError?, response: HTTPURLResponse?, isSimulated: Bool) {
     if let errorImage = globalOrInstanceErrorImage {
       handleSuccessAsync(errorImage, isSimulated: isSimulated)
     }
@@ -253,7 +253,7 @@ public final class Moa {
     onErrorAsync?(error, response)
     
     if let onError = onError {
-      dispatch_async(dispatch_get_main_queue()) {
+      DispatchQueue.main.async {
         onError(error, response)
       }
     }

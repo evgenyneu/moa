@@ -22,7 +22,7 @@ public struct MoaSettingsCache {
   * .ReturnCacheDataDontLoad - Load the image from local cache only and do not attempt to load from the source.
 
   */
-  public var requestCachePolicy: NSURLRequestCachePolicy = .UseProtocolCachePolicy
+  public var requestCachePolicy: NSURLRequest.CachePolicy = .useProtocolCachePolicy
   
   /**
   

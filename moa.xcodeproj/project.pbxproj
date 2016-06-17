@@ -822,18 +822,24 @@
 				TargetAttributes = {
 					7E075EDE1CFEC63B00771077 = {
 						CreatedOnToolsVersion = 7.3.1;
+						ProvisioningStyle = Manual;
 					};
 					7E193EE41B1152D40093CD81 = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 					7E79A3C51B24009100104A33 = {
 						CreatedOnToolsVersion = 6.4;
 					};
 					7EA8EF6E1B072B4300C951C4 = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 					7EA8EF791B072B4300C951C4 = {
 						CreatedOnToolsVersion = 6.4;
+						ProvisioningStyle = Manual;
 					};
 					C417C50C1B18929B00ED71BB = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -1205,6 +1211,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.evgenii.moa$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1216,6 +1223,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.evgenii.moa$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1360,6 +1368,7 @@
 				PRODUCT_NAME = moa;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1378,6 +1387,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.evgenii.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = moa;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

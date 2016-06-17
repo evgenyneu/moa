@@ -48,7 +48,7 @@ public final class MoaSimulator {
   - returns: Simulator object. It is usually used in unit test to verify which request have been sent and simulating server response by calling its respondWithImage and respondWithError methods.
   
   */
-  public static func simulate(urlPart: String) -> MoaSimulator {
+  public static func simulate(_ urlPart: String) -> MoaSimulator {
     let simulator = MoaSimulator(urlPart: urlPart)
     simulators.append(simulator)
     return simulator
@@ -65,7 +65,7 @@ public final class MoaSimulator {
   - returns: Simulator object. It is usually used in unit test to verify which request have been sent.  One does not need to call its `respondWithImage` method because it will be called automatically for all matching requests.
   
   */
-  public static func autorespondWithImage(urlPart: String, image: MoaImage) -> MoaSimulator {
+  public static func autorespondWithImage(_ urlPart: String, image: MoaImage) -> MoaSimulator {
     let simulator = simulate(urlPart)
     simulator.autorespondWithImage = image
     return simulator
@@ -84,8 +84,8 @@ public final class MoaSimulator {
   - returns: Simulator object. It is usually used in unit test to verify which request have been sent.  One does not need to call its `respondWithError` method because it will be called automatically for all matching requests.
   
   */
-  public static func autorespondWithError(urlPart: String, error: NSError? = nil,
-    response: NSHTTPURLResponse? = nil) -> MoaSimulator {
+  public static func autorespondWithError(_ urlPart: String, error: NSError? = nil,
+    response: HTTPURLResponse? = nil) -> MoaSimulator {
       
     let simulator = simulate(urlPart)
     simulator.autorespondWithError = (error, response)
@@ -97,13 +97,13 @@ public final class MoaSimulator {
     simulators = []
   }
   
-  static func simulatorsMatchingUrl(url: String) -> [MoaSimulator] {
+  static func simulatorsMatchingUrl(_ url: String) -> [MoaSimulator] {
     return simulators.filter { simulator in
       MoaString.contains(url, substring: simulator.urlPart)
     }
   }
   
-  static func createDownloader(url: String) -> MoaSimulatedImageDownloader? {
+  static func createDownloader(_ url: String) -> MoaSimulatedImageDownloader? {
     let matchingSimulators = simulatorsMatchingUrl(url)
     
     if !matchingSimulators.isEmpty {
@@ -134,7 +134,7 @@ public final class MoaSimulator {
   /// The image that will be used to respond to all future download requests
   var autorespondWithImage: MoaImage?
   
-  var autorespondWithError: (error: NSError?, response: NSHTTPURLResponse?)?
+  var autorespondWithError: (error: NSError?, response: HTTPURLResponse?)?
   
   /// Array of registered image downloaders.
   public var downloaders = [MoaSimulatedImageDownloader]()
@@ -150,7 +150,7 @@ public final class MoaSimulator {
   - parameter image: Image that is be passed to success handler of all ongoing requests.
   
   */
-  public func respondWithImage(image: MoaImage) {
+  public func respondWithImage(_ image: MoaImage) {
     for downloader in downloaders {
       downloader.respondWithImage(image)
     }
@@ -165,7 +165,7 @@ public final class MoaSimulator {
   - parameter response: Optional response that is passed to the error handler of all ongoing requests.
   
   */
-  public func respondWithError(error: NSError? = nil, response: NSHTTPURLResponse? = nil) {
+  public func respondWithError(_ error: NSError? = nil, response: HTTPURLResponse? = nil) {
     for downloader in downloaders {
       downloader.respondWithError(error, response: response)
     }

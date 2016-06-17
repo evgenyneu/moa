@@ -7,9 +7,9 @@ Helper functions for downloading an image and processing the response.
 
 */
 struct MoaHttpImage {
-  static func createDataTask(url: String,
+  static func createDataTask(_ url: String,
     onSuccess: (MoaImage)->(),
-    onError: (NSError?, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
+    onError: (NSError?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
     
     return MoaHttp.createDataTask(url,
       onSuccess: { data, response in
@@ -19,28 +19,28 @@ struct MoaHttpImage {
     )
   }
   
-  static func handleSuccess(data: NSData?,
-    response: NSHTTPURLResponse,
+  static func handleSuccess(_ data: Data?,
+    response: HTTPURLResponse,
     onSuccess: (MoaImage)->(),
-    onError: (NSError, NSHTTPURLResponse?)->()) {
+    onError: (NSError, HTTPURLResponse?)->()) {
       
     // Show error if response code is not 200
     if response.statusCode != 200 {
-      onError(MoaError.HttpStatusCodeIsNot200.nsError, response)
+      onError(MoaError.httpStatusCodeIsNot200.nsError, response)
       return
     }
     
     // Ensure response has the valid MIME type
-    if let mimeType = response.MIMEType {
+    if let mimeType = response.mimeType {
       if !validMimeType(mimeType) {
         // Not an image Content-Type http header
-        let error = MoaError.NotAnImageContentTypeInResponseHttpHeader.nsError
+        let error = MoaError.notAnImageContentTypeInResponseHttpHeader.nsError
         onError(error, response)
         return
       }
     } else {
       // Missing Content-Type http header
-      let error = MoaError.MissingResponseContentTypeHttpHeader.nsError
+      let error = MoaError.missingResponseContentTypeHttpHeader.nsError
       onError(error, response)
       return
     }
@@ -49,12 +49,12 @@ struct MoaHttpImage {
       onSuccess(image)
     } else {
       // Failed to convert response data to UIImage
-      let error = MoaError.FailedToReadImageData.nsError
+      let error = MoaError.failedToReadImageData.nsError
       onError(error, response)
     }
   }
   
-  private static func validMimeType(mimeType: String) -> Bool {
+  private static func validMimeType(_ mimeType: String) -> Bool {
     let validMimeTypes = ["image/jpeg", "image/jpg", "image/pjpeg", "image/png", "image/gif"]
     return validMimeTypes.contains(mimeType)
   }

@@ -2,9 +2,9 @@ import Foundation
 
 /// Contains functions for managing NSURLSession.
 public struct MoaHttpSession {
-  private static var currentSession: NSURLSession?
+  private static var currentSession: URLSession?
   
-  static var session: NSURLSession? {
+  static var session: URLSession? {
     get {
       if currentSession == nil {
         currentSession = createNewSession()
@@ -18,12 +18,12 @@ public struct MoaHttpSession {
     }
   }
   
-  private static func createNewSession() -> NSURLSession {
-    let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+  private static func createNewSession() -> URLSession {
+    let configuration = URLSessionConfiguration.default()
     
     configuration.timeoutIntervalForRequest = Moa.settings.requestTimeoutSeconds
     configuration.timeoutIntervalForResource = Moa.settings.requestTimeoutSeconds
-    configuration.HTTPMaximumConnectionsPerHost = Moa.settings.maximumSimultaneousDownloads
+    configuration.httpMaximumConnectionsPerHost = Moa.settings.maximumSimultaneousDownloads
     configuration.requestCachePolicy = Moa.settings.cache.requestCachePolicy
     
     #if os(iOS) || os(tvOS)
@@ -34,36 +34,36 @@ public struct MoaHttpSession {
       let cachePath = osxCachePath(Moa.settings.cache.diskPath)
     #endif
     
-    let cache = NSURLCache(
+    let cache = URLCache(
       memoryCapacity: Moa.settings.cache.memoryCapacityBytes,
       diskCapacity: Moa.settings.cache.diskCapacityBytes,
       diskPath: cachePath)
     
-    configuration.URLCache = cache
+    configuration.urlCache = cache
     
-    return NSURLSession(configuration: configuration)
+    return URLSession(configuration: configuration)
   }
   
   // Returns the cache path for OSX.
-  private static func osxCachePath(dirName: String) -> String {
+  private static func osxCachePath(_ dirName: String) -> String {
     var basePath = NSTemporaryDirectory()
-    let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.ApplicationSupportDirectory,
-      NSSearchPathDomainMask.UserDomainMask, true)
+    let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.applicationSupportDirectory,
+      FileManager.SearchPathDomainMask.userDomainMask, true)
     
     if paths.count > 0 {
       basePath = paths[0]
     }
     
-    return (basePath as NSString).stringByAppendingPathComponent(dirName)
+    return (basePath as NSString).appendingPathComponent(dirName)
   }
   
-  static func cacheSettingsChanged(oldSettings: MoaSettingsCache) {
+  static func cacheSettingsChanged(_ oldSettings: MoaSettingsCache) {
     if oldSettings != Moa.settings.cache {
       session = nil
     }
   }
   
-  static func settingsChanged(oldSettings: MoaSettings) {
+  static func settingsChanged(_ oldSettings: MoaSettings) {
     if oldSettings != Moa.settings  {
       session = nil
     }
