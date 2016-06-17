@@ -1,4 +1,4 @@
-# Moa, an image downloader written in Swift for iOS, tvOS and OS X
+# Moa, an image downloader written in Swift for iOS, tvOS and macOS
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)][carthage]
 [![CocoaPods Version](https://img.shields.io/cocoapods/v/moa.svg?style=flat)][cocoadocs]
@@ -7,8 +7,7 @@
 [cocoadocs]: http://cocoadocs.org/docsets/moa
 [carthage]: https://github.com/Carthage/Carthage
 
-Moa is an image download library written in Swift for iOS, tvOS and OS X.
-It allows to download and show an image in an image view by setting its `moa.url` property.
+Moa is an image download library written in Swift. It allows to download and show an image in an image view by setting its `moa.url` property.
 
 ```Swift
     imageView.moa.url = "https://site.com/image.jpg"
@@ -31,26 +30,26 @@ It allows to download and show an image in an image view by setting its `moa.url
 
 There are three ways you can add Moa to your Xcode project.
 
-**Add source (iOS 7+)**
+#### Add source (iOS 7+)
 
 Simply add [MoaDistrib.swift](https://github.com/evgenyneu/moa/blob/master/Distrib/MoaDistrib.swift) file into your Xcode project.
 
-**Setup with Carthage (iOS 8+)**
+#### Setup with Carthage (iOS 8+)
 
-Alternatively, add `github "evgenyneu/moa" ~> 3.0` to your Cartfile and run `carthage update`.
+Alternatively, add `github "evgenyneu/moa" ~> 4.0` to your Cartfile and run `carthage update`.
 
-**Setup with CocoaPods (iOS 8+)**
+#### Setup with CocoaPods (iOS 8+)
 
 If you are using CocoaPods add this text to your Podfile and run `pod install`.
 
     use_frameworks!
     target 'Your target name'
-    pod 'moa', '~> 3.0'
+    pod 'moa', '~> 4.0'
 
+#### Legacy Swift versions
 
-#### Setup in Xcode 6
+Setup a [previous version](https://github.com/evgenyneu/moa/wiki/Legacy-Swift-versions) of the library if you use an older version of Swift.
 
-Moa is written in Swift 2 for Xcode 7. See [Swift 1.2 setup instuctions](https://github.com/evgenyneu/moa/wiki/Setup-with-Xcode-6-and-Swift-1.2) for Xcode 6 projects.
 
 ## Usage
 
@@ -230,7 +229,7 @@ Here is the list of other image download libraries for Swift.
 
 * Demo app includes other drawings by Joseph Smit. Source: [Wikimedia Commons](http://commons.wikimedia.org/w/index.php?title=Category:Joseph_Smit&fileuntil=FuligulaNationiSmit.jpg#mw-category-media).
 
-* OS X support is added by [phimage](https://github.com/phimage).
+* macOS support is added by [phimage](https://github.com/phimage).
 
 
 ## License
