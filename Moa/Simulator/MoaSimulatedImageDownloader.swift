@@ -15,17 +15,17 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   
   var autorespondWithImage: MoaImage?
   
-  var autorespondWithError: (error: NSError?, response: NSHTTPURLResponse?)?
+  var autorespondWithError: (error: NSError?, response: HTTPURLResponse?)?
   
   var onSuccess: ((MoaImage)->())?
-  var onError: ((NSError, NSHTTPURLResponse?)->())?
+  var onError: ((NSError, HTTPURLResponse?)->())?
 
   init(url: String) {
     self.url = url
   }
   
-  func startDownload(url: String, onSuccess: (MoaImage)->(),
-    onError: (NSError?, NSHTTPURLResponse?)->()) {
+  func startDownload(_ url: String, onSuccess: (MoaImage)->(),
+    onError: (NSError?, HTTPURLResponse?)->()) {
       
     self.onSuccess = onSuccess
     self.onError = onError
@@ -50,7 +50,7 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   - parameter image: Image that is be passed to success handler of all ongoing requests.
   
   */
-  public func respondWithImage(image: MoaImage) {
+  public func respondWithImage(_ image: MoaImage) {
     onSuccess?(image)
   }
   
@@ -63,7 +63,7 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   - parameter response: Optional response that is passed to the error handler ongoing request.
   
   */
-  public func respondWithError(error: NSError? = nil, response: NSHTTPURLResponse? = nil) {
-    onError?(error ?? MoaError.SimulatedError.nsError, response)
+  public func respondWithError(_ error: NSError? = nil, response: HTTPURLResponse? = nil) {
+    onError?(error ?? MoaError.simulatedError.nsError, response)
   }
 }

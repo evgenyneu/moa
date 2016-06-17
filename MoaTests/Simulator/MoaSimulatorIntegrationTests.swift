@@ -17,7 +17,7 @@ class MoaSimulatorIntegrationTests: XCTestCase {
     let moa = Moa()
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: NSHTTPURLResponse?
+    var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccessAsync = { image in
       imageResponse = image
@@ -49,7 +49,7 @@ class MoaSimulatorIntegrationTests: XCTestCase {
     let moa = Moa()
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: NSHTTPURLResponse?
+    var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccessAsync = { image in
       imageResponse = image
@@ -79,7 +79,7 @@ class MoaSimulatorIntegrationTests: XCTestCase {
     let moa = Moa()
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: NSHTTPURLResponse?
+    var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccessAsync = { image in
       imageResponse = image
@@ -114,8 +114,8 @@ class MoaSimulatorIntegrationTests: XCTestCase {
     XCTAssertEqual("http://site.com/35px.jpg", simulator.downloaders[0].url)
     
     // Simulate server response with the given image
-    let bundle = NSBundle(forClass: self.dynamicType)
-    let image =  UIImage(named: "35px.jpg", inBundle: bundle, compatibleWithTraitCollection: nil)!
+    let bundle = Bundle(for: self.dynamicType)
+    let image =  UIImage(named: "35px.jpg", in: bundle, compatibleWith: nil)!
     simulator.respondWithImage(image)
 
     // Check the image has arrived
@@ -124,8 +124,8 @@ class MoaSimulatorIntegrationTests: XCTestCase {
   
   func testAutorespondWithImageDownloadToImageView() {
     // Create simulator to catch downloads of the given image
-    let bundle = NSBundle(forClass: self.dynamicType)
-    let image =  UIImage(named: "35px.jpg", inBundle: bundle, compatibleWithTraitCollection: nil)!
+    let bundle = Bundle(for: self.dynamicType)
+    let image =  UIImage(named: "35px.jpg", in: bundle, compatibleWith: nil)!
     let simulator = MoaSimulator.autorespondWithImage("35px.jpg", image: image)
     
     // Download the image

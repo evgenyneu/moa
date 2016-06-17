@@ -245,7 +245,7 @@
 		7E75410D1B0D3DB700AC0FC7 /* MoaCancelDownloadTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaCancelDownloadTests.swift; sourceTree = "<group>"; };
 		7E75410E1B0D3DB700AC0FC7 /* MoaDownloadTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaDownloadTests.swift; sourceTree = "<group>"; };
 		7E75410F1B0D3DB700AC0FC7 /* MoaWithImageViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoaWithImageViewTests.swift; sourceTree = "<group>"; };
-		7E79A3C61B24009100104A33 /* Demo OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo OSX.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E79A3C61B24009100104A33 /* Demo macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E79A3C91B24009100104A33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E79A3CA1B24009100104A33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E79A3CC1B24009100104A33 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -543,7 +543,7 @@
 				7EA8EF7A1B072B4300C951C4 /* moaTests.xctest */,
 				7E193EE51B1152D40093CD81 /* Demo.app */,
 				C417C50D1B18929B00ED71BB /* moa.framework */,
-				7E79A3C61B24009100104A33 /* Demo OSX.app */,
+				7E79A3C61B24009100104A33 /* Demo macOS.app */,
 				7E075EDF1CFEC63B00771077 /* moa.framework */,
 			);
 			name = Products;
@@ -735,9 +735,9 @@
 			productReference = 7E193EE51B1152D40093CD81 /* Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7E79A3C51B24009100104A33 /* Demo OSX */ = {
+		7E79A3C51B24009100104A33 /* Demo macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7E79A3E31B24009100104A33 /* Build configuration list for PBXNativeTarget "Demo OSX" */;
+			buildConfigurationList = 7E79A3E31B24009100104A33 /* Build configuration list for PBXNativeTarget "Demo macOS" */;
 			buildPhases = (
 				7E79A3C21B24009100104A33 /* Sources */,
 				7E79A3C31B24009100104A33 /* Frameworks */,
@@ -749,9 +749,9 @@
 			dependencies = (
 				7E2DF85C1B24015700CBA715 /* PBXTargetDependency */,
 			);
-			name = "Demo OSX";
+			name = "Demo macOS";
 			productName = "Demo OSX";
-			productReference = 7E79A3C61B24009100104A33 /* Demo OSX.app */;
+			productReference = 7E79A3C61B24009100104A33 /* Demo macOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7EA8EF6E1B072B4300C951C4 /* moa */ = {
@@ -792,9 +792,9 @@
 			productReference = 7EA8EF7A1B072B4300C951C4 /* moaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		C417C50C1B18929B00ED71BB /* moa-Mac */ = {
+		C417C50C1B18929B00ED71BB /* moa-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C417C5241B18929B00ED71BB /* Build configuration list for PBXNativeTarget "moa-Mac" */;
+			buildConfigurationList = C417C5241B18929B00ED71BB /* Build configuration list for PBXNativeTarget "moa-macOS" */;
 			buildPhases = (
 				C417C5081B18929B00ED71BB /* Sources */,
 				C417C5091B18929B00ED71BB /* Frameworks */,
@@ -805,7 +805,7 @@
 			);
 			dependencies = (
 			);
-			name = "moa-Mac";
+			name = "moa-macOS";
 			productName = moaosx;
 			productReference = C417C50D1B18929B00ED71BB /* moa.framework */;
 			productType = "com.apple.product-type.framework";
@@ -817,23 +817,30 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Evgenii Neumerzhitckii";
 				TargetAttributes = {
 					7E075EDE1CFEC63B00771077 = {
 						CreatedOnToolsVersion = 7.3.1;
+						ProvisioningStyle = Manual;
 					};
 					7E193EE41B1152D40093CD81 = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 					7E79A3C51B24009100104A33 = {
 						CreatedOnToolsVersion = 6.4;
 					};
 					7EA8EF6E1B072B4300C951C4 = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 					7EA8EF791B072B4300C951C4 = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 					C417C50C1B18929B00ED71BB = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -858,9 +865,9 @@
 			targets = (
 				7EA8EF6E1B072B4300C951C4 /* moa */,
 				7EA8EF791B072B4300C951C4 /* moaTests */,
-				C417C50C1B18929B00ED71BB /* moa-Mac */,
+				C417C50C1B18929B00ED71BB /* moa-macOS */,
 				7E193EE41B1152D40093CD81 /* Demo */,
-				7E79A3C51B24009100104A33 /* Demo OSX */,
+				7E79A3C51B24009100104A33 /* Demo macOS */,
 				C417C52D1B18962D00ED71BB /* concatenate_swift_files */,
 				7E075EDE1CFEC63B00771077 /* moa-tvOS */,
 			);
@@ -1109,7 +1116,7 @@
 /* Begin PBXTargetDependency section */
 		7E2DF85C1B24015700CBA715 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C417C50C1B18929B00ED71BB /* moa-Mac */;
+			target = C417C50C1B18929B00ED71BB /* moa-macOS */;
 			targetProxy = 7E2DF85B1B24015700CBA715 /* PBXContainerItemProxy */;
 		};
 		7EA8EF7D1B072B4300C951C4 /* PBXTargetDependency */ = {
@@ -1188,6 +1195,7 @@
 				PRODUCT_NAME = moa;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1205,6 +1213,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.evgenii.moa$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1216,6 +1225,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.evgenii.moa$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1251,6 +1262,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.marketplacer.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -1360,6 +1372,7 @@
 				PRODUCT_NAME = moa;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1378,6 +1391,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.evgenii.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = moa;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1396,6 +1411,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.evgenii.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = moaTests;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1410,6 +1426,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.evgenii.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = moaTests;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1455,6 +1473,7 @@
 				PRODUCT_NAME = moa;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -1509,7 +1528,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7E79A3E31B24009100104A33 /* Build configuration list for PBXNativeTarget "Demo OSX" */ = {
+		7E79A3E31B24009100104A33 /* Build configuration list for PBXNativeTarget "Demo macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7E79A3DF1B24009100104A33 /* Debug */,
@@ -1545,7 +1564,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C417C5241B18929B00ED71BB /* Build configuration list for PBXNativeTarget "moa-Mac" */ = {
+		C417C5241B18929B00ED71BB /* Build configuration list for PBXNativeTarget "moa-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C417C5201B18929B00ED71BB /* Debug */,

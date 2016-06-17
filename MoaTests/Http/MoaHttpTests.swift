@@ -13,11 +13,11 @@ class MoaHttpTests: XCTestCase {
     
     var responseString: NSString?
     var errorFromCallback: NSError?
-    var httpUrlResponseFromCallback: NSHTTPURLResponse?
+    var httpUrlResponseFromCallback: HTTPURLResponse?
     
     let dataDask = MoaHttp.createDataTask("http://server.net/path",
       onSuccess: { data, response in
-        responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+        responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
       },
       onError: { error, response in
         errorFromCallback = error
@@ -36,7 +36,7 @@ class MoaHttpTests: XCTestCase {
   
   func testLoad_errorNotConnectedToInternet() {
     // Code: -1009
-    let notConnectedErrorCode = Int(CFNetworkErrors.CFURLErrorNotConnectedToInternet.rawValue)
+    let notConnectedErrorCode = Int(CFNetworkErrors.cfurlErrorNotConnectedToInternet.rawValue)
 
     let notConnectedError = NSError(domain: NSURLErrorDomain,
       code: notConnectedErrorCode, userInfo: nil)
@@ -45,7 +45,7 @@ class MoaHttpTests: XCTestCase {
     
     var successCalled = false
     var errorFromCallback: NSError?
-    var httpUrlResponseFromCallback: NSHTTPURLResponse?
+    var httpUrlResponseFromCallback: HTTPURLResponse?
     
     let dataDask = MoaHttp.createDataTask("http://server.net/path",
       onSuccess: { data, response in
@@ -70,7 +70,7 @@ class MoaHttpTests: XCTestCase {
   func testLoad_errorIncorrectUrl() {
     var successCalled = false
     var errorFromCallback: NSError?
-    var httpUrlResponseFromCallback: NSHTTPURLResponse?
+    var httpUrlResponseFromCallback: HTTPURLResponse?
     
     let dataDask = MoaHttp.createDataTask("http://server.net/🐞",
       onSuccess: { data, response in
@@ -86,7 +86,7 @@ class MoaHttpTests: XCTestCase {
     
     moa_eventually(errorFromCallback != nil) {
       XCTAssertFalse(successCalled)
-      XCTAssertEqual(MoaError.InvalidUrlString._code, errorFromCallback!.code)
+      XCTAssertEqual(MoaError.invalidUrlString._code, errorFromCallback!.code)
       XCTAssertEqual(0, errorFromCallback!.code)
       XCTAssertEqual("MoaError", errorFromCallback!.domain)
       XCTAssert(httpUrlResponseFromCallback == nil)

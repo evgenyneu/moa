@@ -5,15 +5,15 @@ import Foundation
 //
 
 struct MoaString {
-  static func contains(text: String, substring: String,
+  static func contains(_ text: String, substring: String,
     ignoreCase: Bool = false,
     ignoreDiacritic: Bool = false) -> Bool {
             
-    var options = NSStringCompareOptions()
+    var options = NSString.CompareOptions()
     
-    if ignoreCase { options.insert(NSStringCompareOptions.CaseInsensitiveSearch) }
-    if ignoreDiacritic { options.insert(NSStringCompareOptions.DiacriticInsensitiveSearch) }
+    if ignoreCase { _ = options.insert(NSString.CompareOptions.caseInsensitiveSearch) }
+    if ignoreDiacritic { _ = options.insert(NSString.CompareOptions.diacriticInsensitiveSearch) }
     
-    return text.rangeOfString(substring, options: options) != nil
+    return text.range(of: substring, options: options) != nil
   }
 }

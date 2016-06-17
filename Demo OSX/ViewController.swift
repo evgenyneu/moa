@@ -32,7 +32,7 @@ class ViewController: NSViewController {
     }
   }
 
-  @IBAction func onLoadButtonTapped(sender: AnyObject) {
+  @IBAction func didTapLoadButton(_ sender: AnyObject) {
     imageView.moa.url = randomImageUrl.url
   }
 }

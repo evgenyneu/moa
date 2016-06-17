@@ -21,7 +21,7 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: NSHTTPURLResponse?
+    var httpUrlResponse: HTTPURLResponse?
     
     downloader.startDownload("http://site.com/image1.jpg",
       onSuccess: { image in
@@ -46,7 +46,7 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: NSHTTPURLResponse?
+    var httpUrlResponse: HTTPURLResponse?
     
     downloader.startDownload("http://site.com/image1.jpg",
       onSuccess: { image in
@@ -60,7 +60,7 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     downloader.respondWithError()
     
     XCTAssert(imageResponse == nil)
-    XCTAssertEqual(MoaError.SimulatedError._code, errorResponse!.code)
+    XCTAssertEqual(MoaError.simulatedError._code, errorResponse!.code)
     XCTAssertEqual(5, errorResponse!.code)
     XCTAssert(httpUrlResponse == nil)
   }
@@ -84,7 +84,7 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: NSHTTPURLResponse?
+    var httpUrlResponse: HTTPURLResponse?
     
     downloader.startDownload("http://site.com/image1.jpg",
       onSuccess: { image in
@@ -108,7 +108,7 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: NSHTTPURLResponse?
+    var httpUrlResponse: HTTPURLResponse?
     
     downloader.startDownload("http://site.com/image1.jpg",
       onSuccess: { image in
@@ -120,7 +120,7 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     })
     
     XCTAssert(imageResponse == nil)
-    XCTAssertEqual(MoaError.SimulatedError._code, errorResponse!.code)
+    XCTAssertEqual(MoaError.simulatedError._code, errorResponse!.code)
     XCTAssertEqual(5, errorResponse!.code)
     XCTAssert(httpUrlResponse == nil)
   }

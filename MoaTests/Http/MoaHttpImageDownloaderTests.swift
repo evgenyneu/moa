@@ -18,7 +18,7 @@ class MoaImageDownloaderTests: XCTestCase {
     
     var imageFromCallback: UIImage?
     var errorFromCallback: NSError?
-    var httpUrlResponseFromCallback: NSHTTPURLResponse?
+    var httpUrlResponseFromCallback: HTTPURLResponse?
     
     let downloader = MoaHttpImageDownloader(logger: testLogger)
     downloader.startDownload("http://evgenii.com/moa/35px.jpg",
@@ -44,7 +44,7 @@ class MoaImageDownloaderTests: XCTestCase {
     
     var imageFromCallback: UIImage?
     var errorFromCallback: NSError?
-    var httpUrlResponseFromCallback: NSHTTPURLResponse?
+    var httpUrlResponseFromCallback: HTTPURLResponse?
     
     let downloader = MoaHttpImageDownloader(logger: testLogger)
     downloader.startDownload("http://evgenii.com/moa/35px.jpg",
@@ -59,7 +59,7 @@ class MoaImageDownloaderTests: XCTestCase {
     
     moa_eventually(errorFromCallback != nil) {
       XCTAssert(imageFromCallback == nil)
-      XCTAssertEqual(MoaError.HttpStatusCodeIsNot200._code, errorFromCallback!.code)
+      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorFromCallback!.code)
       XCTAssertEqual(1, errorFromCallback!.code)
       XCTAssertEqual("MoaError", errorFromCallback!.domain)
       XCTAssertEqual(404, httpUrlResponseFromCallback!.statusCode)
@@ -72,7 +72,7 @@ class MoaImageDownloaderTests: XCTestCase {
     
     var imageFromCallback: UIImage?
     var errorFromCallback: NSError?
-    var httpUrlResponseFromCallback: NSHTTPURLResponse?
+    var httpUrlResponseFromCallback: HTTPURLResponse?
     
     let downloader = MoaHttpImageDownloader(logger: testLogger)
     downloader.startDownload("http://evgenii.com/moa/35px.jpg",
@@ -100,7 +100,7 @@ class MoaImageDownloaderTests: XCTestCase {
     
     var imageFromCallback: UIImage?
     var errorFromCallback: NSError?
-    var httpUrlResponseFromCallback: NSHTTPURLResponse?
+    var httpUrlResponseFromCallback: HTTPURLResponse?
     
     let downloader = MoaHttpImageDownloader(logger: testLogger)
     downloader.startDownload("http://evgenii.com/moa/35px.jpg",
@@ -117,7 +117,7 @@ class MoaImageDownloaderTests: XCTestCase {
     
     moa_eventually(0.3) {
       XCTAssert(downloader.cancelled)
-      XCTAssertEqual(NSURLSessionTaskState.Completed, downloader.task!.state)
+      XCTAssertEqual(URLSessionTask.State.completed, downloader.task!.state)
       XCTAssert(imageFromCallback == nil)
       XCTAssert(errorFromCallback == nil)
       XCTAssert(httpUrlResponseFromCallback == nil)
@@ -129,8 +129,8 @@ class MoaImageDownloaderTests: XCTestCase {
     
     var imageFromCallback: UIImage?
     var errorFromCallback: NSError?
-    var httpUrlResponseFromCallback: NSHTTPURLResponse?
-    var task: NSURLSessionDataTask?
+    var httpUrlResponseFromCallback: HTTPURLResponse?
+    var task: URLSessionDataTask?
   
     let closure:()->() = {
       let downloader = MoaHttpImageDownloader(logger: self.testLogger)
@@ -150,7 +150,7 @@ class MoaImageDownloaderTests: XCTestCase {
     closure() // downloader instance will be deallocated in the closure
     
     moa_eventually(0.3) {
-      XCTAssertEqual(NSURLSessionTaskState.Completed, task!.state)
+      XCTAssertEqual(URLSessionTask.State.completed, task!.state)
       XCTAssert(imageFromCallback == nil)
       XCTAssert(errorFromCallback == nil)
       XCTAssert(httpUrlResponseFromCallback == nil)

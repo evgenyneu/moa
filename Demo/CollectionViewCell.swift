@@ -15,7 +15,7 @@ class CollectionViewCell: UICollectionViewCell {
   func prepareForDisplay() {
     backgroundColor = MoaColor.random
     
-    if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+    if let appDelegate = UIApplication.shared().delegate as? AppDelegate {
       imageView.image = nil // clear previous image
       let url = appDelegate.randomImageUrl.url
       imageView.moa.url = url      
