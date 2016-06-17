@@ -2,7 +2,7 @@ import UIKit
 
 class MoaTest {
   static func nsDataFromFile(name: String) -> NSData {
-    let url = NSBundle(forClass: self).URLForResource(name, withExtension: nil)!
+    let url = Bundle(forClass: self).urlForResource(name, withExtension: nil)!
     return NSData(contentsOfURL: url)!
   }
   

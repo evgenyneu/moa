@@ -15,7 +15,7 @@ class MoaDownloadTests: XCTestCase {
     let moa = Moa()
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: NSHTTPURLResponse?
+    var httpUrlResponse: HTTPURLResponse?
 
     moa.onSuccessAsync = { image in
       imageResponse = image
@@ -60,7 +60,7 @@ class MoaDownloadTests: XCTestCase {
     let moa = Moa()
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: NSHTTPURLResponse?
+    var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccessAsync = { image in
       imageResponse = image
@@ -85,7 +85,7 @@ class MoaDownloadTests: XCTestCase {
   
   func testLoadImage_noInternetConnectionError() {
     // Code: -1009
-    let notConnectedErrorCode = Int(CFNetworkErrors.CFURLErrorNotConnectedToInternet.rawValue)
+    let notConnectedErrorCode = Int(CFNetworkErrors.cfurlErrorNotConnectedToInternet.rawValue)
     
     let notConnectedError = NSError(domain: NSURLErrorDomain,
       code: notConnectedErrorCode, userInfo: nil)
@@ -95,7 +95,7 @@ class MoaDownloadTests: XCTestCase {
     let moa = Moa()
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: NSHTTPURLResponse?
+    var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccessAsync = { image in
       imageResponse = image
@@ -125,7 +125,7 @@ class MoaDownloadTests: XCTestCase {
     let moa = Moa()
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: NSHTTPURLResponse?
+    var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccessAsync = { image in
       imageResponse = image
@@ -156,7 +156,7 @@ class MoaDownloadTests: XCTestCase {
     let moa = Moa()
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: NSHTTPURLResponse?
+    var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccessAsync = { image in
       imageResponse = image
@@ -229,7 +229,7 @@ class MoaDownloadTests: XCTestCase {
     let moa = Moa()
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: NSHTTPURLResponse?
+    var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccess = { image in
       imageResponse = image
@@ -263,7 +263,7 @@ class MoaDownloadTests: XCTestCase {
     var imageResponseAsync: UIImage?
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: NSHTTPURLResponse?
+    var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccessAsync = { image in
       imageResponseAsync = image
@@ -303,7 +303,7 @@ class MoaDownloadTests: XCTestCase {
     var imageResponseAsync: UIImage?
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: NSHTTPURLResponse?
+    var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccessAsync = { image in
       imageResponseAsync = image
@@ -341,7 +341,7 @@ class MoaDownloadTests: XCTestCase {
     var imageResponseAsync: UIImage?
     var imageResponse: UIImage?
     var errorResponse: NSError?
-    var httpUrlResponse: NSHTTPURLResponse?
+    var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccessAsync = { image in
       imageResponseAsync = image
