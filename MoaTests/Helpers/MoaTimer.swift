@@ -27,16 +27,16 @@ import UIKit
 
 final class MoaTimer: NSObject {
   private let repeats: Bool
-  private var timer: NSTimer?
+  private var timer: Timer?
   private var callback: ((MoaTimer)->())?
   
-  private init(interval: NSTimeInterval, repeats: Bool = false, callback: (MoaTimer)->()) {
+  private init(interval: TimeInterval, repeats: Bool = false, callback: (MoaTimer)->()) {
     self.repeats = repeats
     
     super.init()
     
     self.callback = callback
-    timer = NSTimer.scheduledTimerWithTimeInterval(interval, target: self,
+    timer = Timer.scheduledTimerWithTimeInterval(interval, target: self,
       selector: #selector(MoaTimer.timerFired(_:)), userInfo: nil, repeats: repeats)
   }
   
@@ -49,12 +49,12 @@ final class MoaTimer: NSObject {
     timer = nil
   }
   
-  func timerFired(timer: NSTimer) {
+  func timerFired(timer: Timer) {
     self.callback?(self)
     if !repeats { cancel() }
   }
   
-  class func runAfter(interval: NSTimeInterval, repeats: Bool = false,
+  class func runAfter(interval: TimeInterval, repeats: Bool = false,
     callback: (MoaTimer)->()) -> MoaTimer {
       
     return MoaTimer(interval: interval, repeats: repeats, callback: callback)

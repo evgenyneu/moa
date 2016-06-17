@@ -8,13 +8,13 @@ class MoaSettingsCacheTests: XCTestCase {
     var one = MoaSettingsCache()
     one.memoryCapacityBytes = 10
     one.diskCapacityBytes = 10
-    one.requestCachePolicy = .UseProtocolCachePolicy
+    one.requestCachePolicy = .useProtocolCachePolicy
     one.diskPath = "test path"
     
     var two = MoaSettingsCache()
     two.memoryCapacityBytes = 10
     two.diskCapacityBytes = 10
-    two.requestCachePolicy = .UseProtocolCachePolicy
+    two.requestCachePolicy = .useProtocolCachePolicy
     two.diskPath = "test path"
     
     XCTAssert(one == two)
@@ -25,13 +25,13 @@ class MoaSettingsCacheTests: XCTestCase {
     var one = MoaSettingsCache()
     one.memoryCapacityBytes = 10
     one.diskCapacityBytes = 10
-    one.requestCachePolicy = .UseProtocolCachePolicy
+    one.requestCachePolicy = .useProtocolCachePolicy
     one.diskPath = "test path"
     
     var two = MoaSettingsCache()
     two.memoryCapacityBytes = 20
     two.diskCapacityBytes = 10
-    two.requestCachePolicy = .UseProtocolCachePolicy
+    two.requestCachePolicy = .useProtocolCachePolicy
     two.diskPath = "test path"
     
     XCTAssertFalse(one == two)
@@ -42,13 +42,13 @@ class MoaSettingsCacheTests: XCTestCase {
     var one = MoaSettingsCache()
     one.memoryCapacityBytes = 10
     one.diskCapacityBytes = 10
-    one.requestCachePolicy = .UseProtocolCachePolicy
+    one.requestCachePolicy = .useProtocolCachePolicy
     one.diskPath = "test path"
     
     var two = MoaSettingsCache()
     two.memoryCapacityBytes = 10
     two.diskCapacityBytes = 20
-    two.requestCachePolicy = .UseProtocolCachePolicy
+    two.requestCachePolicy = .useProtocolCachePolicy
     two.diskPath = "test path"
     
     XCTAssertFalse(one == two)
@@ -59,13 +59,13 @@ class MoaSettingsCacheTests: XCTestCase {
     var one = MoaSettingsCache()
     one.memoryCapacityBytes = 10
     one.diskCapacityBytes = 10
-    one.requestCachePolicy = .UseProtocolCachePolicy
+    one.requestCachePolicy = .useProtocolCachePolicy
     one.diskPath = "test path"
     
     var two = MoaSettingsCache()
     two.memoryCapacityBytes = 10
     two.diskCapacityBytes = 10
-    two.requestCachePolicy = .ReturnCacheDataElseLoad
+    two.requestCachePolicy = .returnCacheDataElseLoad
     two.diskPath = "test path"
     
     XCTAssertFalse(one == two)
@@ -76,13 +76,13 @@ class MoaSettingsCacheTests: XCTestCase {
     var one = MoaSettingsCache()
     one.memoryCapacityBytes = 10
     one.diskCapacityBytes = 10
-    one.requestCachePolicy = .UseProtocolCachePolicy
+    one.requestCachePolicy = .useProtocolCachePolicy
     one.diskPath = "test path"
     
     var two = MoaSettingsCache()
     two.memoryCapacityBytes = 10
     two.diskCapacityBytes = 10
-    two.requestCachePolicy = .UseProtocolCachePolicy
+    two.requestCachePolicy = .useProtocolCachePolicy
     two.diskPath = "different path"
     
     XCTAssertFalse(one == two)

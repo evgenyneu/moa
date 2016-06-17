@@ -23,12 +23,12 @@ class MoaHttpSessionTests: XCTestCase {
   
   func testUseMoaCacheSettingsForDiskCapacity() {
     Moa.settings.cache.diskCapacityBytes = 123_456
-    XCTAssertEqual(123_456, MoaHttpSession.session!.configuration.URLCache!.diskCapacity)
+    XCTAssertEqual(123_456, MoaHttpSession.session!.configuration.urlCache!.diskCapacity)
   }
   
   func testUseMoaCacheSettingsForMemoryCapacity() {
     Moa.settings.cache.memoryCapacityBytes = 928_312
-    XCTAssertEqual(928_312, MoaHttpSession.session!.configuration.URLCache!.memoryCapacity)
+    XCTAssertEqual(928_312, MoaHttpSession.session!.configuration.urlCache!.memoryCapacity)
   }
   
   // Clear session

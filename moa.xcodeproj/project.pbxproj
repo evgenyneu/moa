@@ -839,6 +839,7 @@
 					};
 					7EA8EF791B072B4300C951C4 = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
 					};
 					C417C50C1B18929B00ED71BB = {
@@ -1406,6 +1407,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.evgenii.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = moaTests;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1420,6 +1422,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.evgenii.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = moaTests;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
