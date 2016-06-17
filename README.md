@@ -46,7 +46,7 @@ If you are using CocoaPods add this text to your Podfile and run `pod install`.
     target 'Your target name'
     pod 'moa', '~> 4.0'
 
-## Legacy Swift versions
+### Legacy Swift versions
 
 Setup a [previous version](https://github.com/evgenyneu/moa/wiki/Legacy-Swift-versions) of the library if you use an older version of Swift.
 
