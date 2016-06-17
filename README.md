@@ -99,7 +99,7 @@ Here is how to show a placeholder image in the image view. The placeholder will 
 
 ```Swift
 imageView.image = placeholderImage
-imageView.moa.url = "https://site.com/image.jpg" 
+imageView.moa.url = "https://site.com/image.jpg"
 ```
 
 ## Advanced features
@@ -167,10 +167,10 @@ Use the `Moa.settings.cache` to change caching settings. For more information pl
 
 ```Swift
 // By default images are cached according to their response HTTP headers.
-Moa.settings.cache.requestCachePolicy = .UseProtocolCachePolicy
+Moa.settings.cache.requestCachePolicy = .useProtocolCachePolicy
 
 // Always cache images locally regardless of their response HTTP headers
-Moa.settings.cache.requestCachePolicy = .ReturnCacheDataElseLoad
+Moa.settings.cache.requestCachePolicy = .returnCacheDataElseLoad
 ```
 
 ## Settings
