@@ -1042,6 +1042,7 @@ public final class MoaSimulator {
   - returns: Simulator object. It is usually used in unit test to verify which request have been sent and simulating server response by calling its respondWithImage and respondWithError methods.
   
   */
+  @discardableResult
   public static func simulate(_ urlPart: String) -> MoaSimulator {
     let simulator = MoaSimulator(urlPart: urlPart)
     simulators.append(simulator)
