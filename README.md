@@ -10,7 +10,7 @@
 Moa is an image download library written in Swift. It allows to download and show an image in an image view by setting its `moa.url` property.
 
 ```Swift
-    imageView.moa.url = "https://site.com/image.jpg"
+    imageView.moa.url = "https://bit.ly/moa_image"
 ```
 
 * Images are downloaded asynchronously.
@@ -60,7 +60,7 @@ Setup a [previous version](https://github.com/evgenyneu/moa/wiki/Legacy-Swift-ve
 1. Set `moa.url` property of the image view to start asynchronous image download. The image will be automatically displayed when download is finished.
 
 ```Swift
-imageView.moa.url = "https://site.com/image.jpg"
+imageView.moa.url = "https://bit.ly/moa_image"
 ```
 
 ## Loading images from insecure HTTP hosts
@@ -83,7 +83,7 @@ You can supply an error image that will be used if an error occurs during image 
 
 ```Swift
 imageView.moa.errorImage = UIImage(named: "ImageNotFound.jpg")
-imageView.moa.url = "http://site.com/image.jpg"
+imageView.moa.url = "https://bit.ly/moa_image"
 ```
 
 Alternatively, one can supply a global error image that will be used for all failed image downloads.
@@ -98,7 +98,7 @@ Here is how to show a placeholder image in the image view. The placeholder will 
 
 ```Swift
 imageView.image = placeholderImage
-imageView.moa.url = "https://site.com/image.jpg"
+imageView.moa.url = "https://bit.ly/moa_image"
 ```
 
 ## Advanced features
@@ -113,7 +113,7 @@ imageView.moa.onSuccess = { image in
   return image
 }
 
-imageView.moa.url = "http://site.com/image.jpg"
+imageView.moa.url = "https://bit.ly/moa_image"
 ```
 
 * The closure will be called after download finishes and before the image is assigned to the image view.
@@ -130,7 +130,7 @@ imageView.moa.onError = { error, response in
   // Handle error
 }
 
-imageView.moa.url = "http://site.com/image.jpg"
+imageView.moa.url = "https://bit.ly/moa_image"
 ```
 
 * The closure is called in the *main queue* if image download fails. Use `onErrorAsync` property instead if you need to do time consuming operations.
@@ -147,7 +147,7 @@ moa.onSuccess = { image in
   // image is loaded
   return image
 }
-moa.url = "http://site.com/image.jpg"
+moa.url = "https://bit.ly/moa_image"
 ```
 
 ### Clearing HTTP session
