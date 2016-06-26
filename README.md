@@ -187,7 +187,7 @@ Moa.settings.requestTimeoutSeconds = 20
 
 ## Logging
 
-You can use the moa logger to see how/when the images are loaded or debug a network problem. One can use a pre-made `MoaConsoleLogger` function to see the log messages in the Xcode console or write a custom logger. See [logging manual](https://github.com/evgenyneu/moa/wiki/Logging-with-Moa) for more information.
+You can use the moa logger to see how/when the images are loaded or debug a network problem. One can use a pre-made `MoaConsoleLogger` function to see the log messages in the Xcode console or write a custom logger. See the [logging manual](https://github.com/evgenyneu/moa/wiki/Logging-with-Moa) for more information.
 
 ```Swift
 // Log to console
