@@ -19,7 +19,7 @@ Moa is an image download library written in Swift. It allows to download and sho
 * Can be used without an image view.
 * Provides closure properties for image manipulation and error handling.
 * Includes unit testing mode for faking network responses.
-* Provides logging for debugging network problems.
+* Contains logging capabilities for debugging network problems.
 
 <img src='https://raw.githubusercontent.com/evgenyneu/moa/master/Graphics/Hunting_Moa.jpg' alt='Moa hunting' width='400'>
 
