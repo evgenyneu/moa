@@ -187,11 +187,17 @@ Moa.settings.requestTimeoutSeconds = 20
 
 ## Logging
 
-Assign a closure to `Moa.logger` and it will be called during image requests, responses, errors and when requests are cancelled. You can also use a pre-made `MoaConsoleLogger` function to see the log messages in the Xcode console. See [logging manual](https://github.com/evgenyneu/moa/wiki/Logging-with-Moa) for more information.
-
+You can use the moa logger if you want to see how/when the images are loaded to debug a network problem, as shown in the following example. You can use a pre-made `MoaConsoleLogger` function to see the log messages in the Xcode console or write your own logger. See [logging manual](https://github.com/evgenyneu/moa/wiki/Logging-with-Moa) for more information.
 
 ```Swift
+// Log to console
 Moa.logger = MoaConsoleLogger
+
+// Load an image
+imageView.moa.url = "https://bit.ly/moa_image"
+
+// Attempt to load a missing image
+imageView.moa.url = "https://bit.ly/moa_image_missing.jpg"
 ```
 
 
