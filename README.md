@@ -200,6 +200,10 @@ imageView.moa.url = "https://bit.ly/moa_image"
 imageView.moa.url = "https://bit.ly/moa_image_missing.jpg"
 ```
 
+<img src='https://raw.githubusercontent.com/evgenyneu/moa/master/Graphics/screenshots/logging_to_console_moa_swift_2.png' alt='Logging to console with moa' width='541'>
+
+
+
 
 ## Unit testing
 
