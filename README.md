@@ -43,9 +43,9 @@ Alternatively, add `github "evgenyneu/moa" ~> 5.0` to your Cartfile and run `car
 
 If you are using CocoaPods add this text to your Podfile and run `pod install`.
 
-    use_frameworks!
-    target 'Your target name'
-    pod 'moa', '~> 5.0'
+**Note** The CocoaPods setup for Xcode 8 Beta 2 versions is not yet available, please use [previous versions](https://github.com/evgenyneu/moa/wiki/Legacy-Swift-versions) instead.
+
+
 
 ### Legacy Swift versions
 
