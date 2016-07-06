@@ -11,8 +11,8 @@ struct MoaString {
             
     var options = NSString.CompareOptions()
     
-    if ignoreCase { _ = options.insert(NSString.CompareOptions.caseInsensitiveSearch) }
-    if ignoreDiacritic { _ = options.insert(NSString.CompareOptions.diacriticInsensitiveSearch) }
+    if ignoreCase { _ = options.insert(NSString.CompareOptions.caseInsensitive) }
+    if ignoreDiacritic { _ = options.insert(NSString.CompareOptions.diacriticInsensitive) }
     
     return text.range(of: substring, options: options) != nil
   }
