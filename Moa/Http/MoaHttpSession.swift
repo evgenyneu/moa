@@ -19,7 +19,7 @@ public struct MoaHttpSession {
   }
   
   private static func createNewSession() -> URLSession {
-    let configuration = URLSessionConfiguration.default()
+    let configuration = URLSessionConfiguration.default
     
     configuration.timeoutIntervalForRequest = Moa.settings.requestTimeoutSeconds
     configuration.timeoutIntervalForResource = Moa.settings.requestTimeoutSeconds
