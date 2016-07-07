@@ -27,7 +27,7 @@ Moa is an image download library written in Swift. It allows to download and sho
 
 *'Hunting Moa' drawing by Joseph Smit (1836-1929). File source: [Wikimedia Commons](http://commons.wikimedia.org/wiki/File:Hunting_Moa.jpg).*
 
-## Setup (Swift 3.0)
+## Setup (Swift 3.0 / Xcode 8 Beta 2)
 
 There are three ways you can add Moa to your Xcode project.
 
