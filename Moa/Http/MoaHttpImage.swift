@@ -45,7 +45,7 @@ struct MoaHttpImage {
       return
     }
       
-    if let data = data, image = MoaImage(data: data) {
+    if let data = data, let image = MoaImage(data: data) {
       onSuccess(image)
     } else {
       // Failed to convert response data to UIImage

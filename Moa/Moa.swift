@@ -229,7 +229,7 @@ public final class Moa {
   private func handleSuccessMainQueue(_ image: MoaImage?) {
     var imageForView: MoaImage? = image
     
-    if let onSuccess = onSuccess, image = image {
+    if let onSuccess = onSuccess, let image = image {
       imageForView = onSuccess(image)
     }
     
