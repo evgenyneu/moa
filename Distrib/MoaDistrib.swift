@@ -172,7 +172,7 @@ struct MoaHttpImage {
       return
     }
       
-    if let data = data, image = MoaImage(data: data) {
+    if let data = data, let image = MoaImage(data: data) {
       onSuccess(image)
     } else {
       // Failed to convert response data to UIImage
@@ -232,7 +232,7 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
       onError: { [weak self] error, response in
         self?.canLogCancel = false
         
-        if let currentSelf = self where !currentSelf.cancelled {
+        if let currentSelf = self , !currentSelf.cancelled {
           // Do not report error if task was manually cancelled
           self?.logger?(.responseError, url, response?.statusCode, error)
           onError(error, response)
@@ -763,7 +763,7 @@ public final class Moa {
   private func handleSuccessMainQueue(_ image: MoaImage?) {
     var imageForView: MoaImage? = image
     
-    if let onSuccess = onSuccess, image = image {
+    if let onSuccess = onSuccess, let image = image {
       imageForView = onSuccess(image)
     }
     

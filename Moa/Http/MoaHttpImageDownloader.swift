@@ -36,7 +36,7 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
       onError: { [weak self] error, response in
         self?.canLogCancel = false
         
-        if let currentSelf = self where !currentSelf.cancelled {
+        if let currentSelf = self , !currentSelf.cancelled {
           // Do not report error if task was manually cancelled
           self?.logger?(.responseError, url, response?.statusCode, error)
           onError(error, response)
