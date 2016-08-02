@@ -23,14 +23,12 @@ class ViewController: UIViewController {
     setupCollectionViewLayout()
   }
   
-  override func preferredStatusBarStyle() -> UIStatusBarStyle {
-    return UIStatusBarStyle.lightContent
-  }
+  override var preferredStatusBarStyle: UIStatusBarStyle { return UIStatusBarStyle.lightContent; }
   
   private func setupCollectionViewLayout() {
     flowLayout.minimumInteritemSpacing = 0
     flowLayout.minimumLineSpacing = 0
-    changeItemSize(UIScreen.main().bounds.width)
+    changeItemSize(UIScreen.main.bounds.width)
     collectionView.setCollectionViewLayout(flowLayout, animated: false)
   }
   
@@ -50,7 +48,7 @@ class ViewController: UIViewController {
   
   @IBAction func onJosephSmitTapped(_ sender: AnyObject) {
     if let url = URL(string: "http://en.wikipedia.org/wiki/Joseph_Smit") {
-      UIApplication.shared().openURL(url)
+      UIApplication.shared.openURL(url)
     }
   }
 }
