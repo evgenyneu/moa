@@ -23,7 +23,7 @@ class StubHttp {
   
   class func requestUrlIncludes(_ urlPart:String) -> ((URLRequest)->Bool) {
     return { req in
-      MoaString.contains(req.url!.absoluteString!, substring: urlPart)
+      MoaString.contains(req.url!.absoluteString, substring: urlPart)
     }
   }
   
@@ -32,7 +32,7 @@ class StubHttp {
     statusCode: Int = 200,
     responseTime: TimeInterval = 0) -> ((URLRequest)->OHHTTPStubsResponse) {
       
-    let filePath = Bundle(for: self).pathForResource(filename, ofType: nil)!
+    let filePath = Bundle(for: self).path(forResource: filename, ofType: nil)!
     
     return { _ in
       var response = OHHTTPStubsResponse(fileAtPath: filePath,

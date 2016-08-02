@@ -1,6 +1,6 @@
 import Foundation
 
-enum MoaError: ErrorProtocol {
+enum MoaError: Error {
   /// Incorrect URL is supplied. Error code: 0.
   case invalidUrlString
   

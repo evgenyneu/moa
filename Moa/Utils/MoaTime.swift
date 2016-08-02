@@ -4,9 +4,9 @@ struct MoaTime {
   /// Converts date to format used in logs in UTC time zone.
   static func logTime(_ date: Date) -> String {
     let dateFormatter = DateFormatter()
-    let timeZone =  TimeZone(name: "UTC")
+    let timeZone = TimeZone(identifier: "UTC")
     dateFormatter.timeZone = timeZone
-    let enUSPosixLocale = Locale(localeIdentifier: "en_US_POSIX")
+    let enUSPosixLocale = Locale(identifier: "en_US_POSIX")
     dateFormatter.locale = enUSPosixLocale
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
     
