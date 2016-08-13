@@ -46,7 +46,7 @@ If you are using CocoaPods add this text to your Podfile and run `pod install`.
 ```
 use_frameworks!
 target 'Your target name'
-pod 'moa', git: "https://github.com/evgenyneu/moa.git", branch: "master"
+pod 'moa', git: "https://github.com/evgenyneu/moa.git", tag: "7.0.0"
 ```
 
 
