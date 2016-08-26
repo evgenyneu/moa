@@ -148,7 +148,7 @@ public final class Moa {
       }
   
   */
-  public var onError: ((NSError?, HTTPURLResponse?)->())?
+  public var onError: ((Error?, HTTPURLResponse?)->())?
   
   /**
 
@@ -160,7 +160,7 @@ public final class Moa {
       }
 
   */
-  public var onErrorAsync: ((NSError?, HTTPURLResponse?)->())?
+  public var onErrorAsync: ((Error?, HTTPURLResponse?)->())?
   
   
   /**
@@ -245,7 +245,7 @@ public final class Moa {
   - parameter isSimulated: True if the image was supplied by moa simulator rather than real network.
   
   */
-  private func handleErrorAsync(_ error: NSError?, response: HTTPURLResponse?, isSimulated: Bool) {
+  private func handleErrorAsync(_ error: Error?, response: HTTPURLResponse?, isSimulated: Bool) {
     if let errorImage = globalOrInstanceErrorImage {
       handleSuccessAsync(errorImage, isSimulated: isSimulated)
     }

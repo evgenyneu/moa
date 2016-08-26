@@ -61,7 +61,7 @@ enum MoaError: Error {
   }
   
   var code: Int {
-    return (self as NSError).code
+    return (self as Error)._code
   }
   
   var nsError: NSError {
@@ -88,11 +88,11 @@ Shortcut function for creating NSURLSessionDataTask.
 */
 struct MoaHttp {
   static func createDataTask(_ url: String,
-    onSuccess: (Data?, HTTPURLResponse)->(),
-    onError: (NSError?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
+    onSuccess: @escaping (Data?, HTTPURLResponse)->(),
+    onError: @escaping (Error?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
       
-    if let nsUrl = URL(string: url) {
-      return createDataTask(nsUrl, onSuccess: onSuccess, onError: onError)
+    if let urlObject = URL(string: url) {
+      return createDataTask(urlObject: urlObject, onSuccess: onSuccess, onError: onError)
     }
     
     // Error converting string to NSURL
@@ -100,11 +100,11 @@ struct MoaHttp {
     return nil
   }
   
-  private static func createDataTask(_ nsUrl: URL,
-    onSuccess: (Data?, HTTPURLResponse)->(),
-    onError: (NSError?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
+  private static func createDataTask(urlObject: URL,
+    onSuccess: @escaping (Data?, HTTPURLResponse)->(),
+    onError: @escaping (Error?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
       
-    return MoaHttpSession.session?.dataTask(with: nsUrl) { (data, response, error) in
+    return MoaHttpSession.session?.dataTask(with: urlObject) { (data, response, error) in
       if let httpResponse = response as? HTTPURLResponse {
         if error == nil {
           onSuccess(data, httpResponse)
@@ -135,8 +135,8 @@ Helper functions for downloading an image and processing the response.
 */
 struct MoaHttpImage {
   static func createDataTask(_ url: String,
-    onSuccess: (MoaImage)->(),
-    onError: (NSError?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
+    onSuccess: @escaping (MoaImage)->(),
+    onError: @escaping (Error?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
     
     return MoaHttp.createDataTask(url,
       onSuccess: { data, response in
@@ -149,7 +149,7 @@ struct MoaHttpImage {
   static func handleSuccess(_ data: Data?,
     response: HTTPURLResponse,
     onSuccess: (MoaImage)->(),
-    onError: (NSError, HTTPURLResponse?)->()) {
+    onError: (Error, HTTPURLResponse?)->()) {
       
     // Show error if response code is not 200
     if response.statusCode != 200 {
@@ -215,8 +215,8 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
     cancel()
   }
   
-  func startDownload(_ url: String, onSuccess: (MoaImage)->(),
-    onError: (NSError?, HTTPURLResponse?)->()) {
+  func startDownload(_ url: String, onSuccess: @escaping (MoaImage)->(),
+    onError: @escaping (Error?, HTTPURLResponse?)->()) {
       
     logger?(.requestSent, url, nil, nil)
     
@@ -410,7 +410,7 @@ Usage:
     Moa.logger = MoaConsoleLogger
 
 */
-public func MoaConsoleLogger(_ type: MoaLogType, url: String, statusCode: Int?, error: NSError?) {
+public func MoaConsoleLogger(_ type: MoaLogType, url: String, statusCode: Int?, error: Error?) {
   let text = MoaLoggerText(type, url: url, statusCode: statusCode, error: error)
   print(text)
 }
@@ -433,10 +433,10 @@ Parameters:
 1. Type of the log.
 2. URL of the request.
 3. Http status code, if applicable.
-4. NSError object, if applicable. Read its localizedDescription property to get a human readable error description.
+4. Error object, if applicable. Read its localizedDescription property to get a human readable error description.
 
 */
-public typealias MoaLoggerCallback = (MoaLogType, String, Int?, NSError?)->()
+public typealias MoaLoggerCallback = (MoaLogType, String, Int?, Error?)->()
 
 
 // ----------------------------
@@ -465,7 +465,7 @@ For logging into Xcode console you can use MoaConsoleLogger function.
 
 */
 public func MoaLoggerText(_ type: MoaLogType, url: String, statusCode: Int?,
-  error: NSError?) -> String {
+  error: Error?) -> String {
   
   let time = MoaTime.nowLogTime
   var text = "[moa] \(time) "
@@ -682,7 +682,7 @@ public final class Moa {
       }
   
   */
-  public var onError: ((NSError?, HTTPURLResponse?)->())?
+  public var onError: ((Error?, HTTPURLResponse?)->())?
   
   /**
 
@@ -694,7 +694,7 @@ public final class Moa {
       }
 
   */
-  public var onErrorAsync: ((NSError?, HTTPURLResponse?)->())?
+  public var onErrorAsync: ((Error?, HTTPURLResponse?)->())?
   
   
   /**
@@ -779,7 +779,7 @@ public final class Moa {
   - parameter isSimulated: True if the image was supplied by moa simulator rather than real network.
   
   */
-  private func handleErrorAsync(_ error: NSError?, response: HTTPURLResponse?, isSimulated: Bool) {
+  private func handleErrorAsync(_ error: Error?, response: HTTPURLResponse?, isSimulated: Bool) {
     if let errorImage = globalOrInstanceErrorImage {
       handleSuccessAsync(errorImage, isSimulated: isSimulated)
     }
@@ -811,8 +811,8 @@ import Foundation
 
 /// Downloads an image.
 protocol MoaImageDownloader {
-  func startDownload(_ url: String, onSuccess: (MoaImage)->(),
-    onError: (NSError?, HTTPURLResponse?)->())
+  func startDownload(_ url: String, onSuccess: @escaping (MoaImage)->(),
+    onError: @escaping (Error?, HTTPURLResponse?)->())
   
   func cancel()
 }
@@ -932,17 +932,17 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   
   var autorespondWithImage: MoaImage?
   
-  var autorespondWithError: (error: NSError?, response: HTTPURLResponse?)?
+  var autorespondWithError: (error: Error?, response: HTTPURLResponse?)?
   
   var onSuccess: ((MoaImage)->())?
-  var onError: ((NSError, HTTPURLResponse?)->())?
+  var onError: ((Error, HTTPURLResponse?)->())?
 
   init(url: String) {
     self.url = url
   }
   
-  func startDownload(_ url: String, onSuccess: (MoaImage)->(),
-    onError: (NSError?, HTTPURLResponse?)->()) {
+  func startDownload(_ url: String, onSuccess: @escaping  (MoaImage)->(),
+    onError: @escaping (Error?, HTTPURLResponse?)->()) {
       
     self.onSuccess = onSuccess
     self.onError = onError
@@ -980,7 +980,7 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   - parameter response: Optional response that is passed to the error handler ongoing request.
   
   */
-  public func respondWithError(_ error: NSError? = nil, response: HTTPURLResponse? = nil) {
+  public func respondWithError(_ error: Error? = nil, response: HTTPURLResponse? = nil) {
     onError?(error ?? MoaError.simulatedError.nsError, response)
   }
 }
@@ -1081,7 +1081,7 @@ public final class MoaSimulator {
   
   */
   @discardableResult
-  public static func autorespondWithError(_ urlPart: String, error: NSError? = nil,
+  public static func autorespondWithError(_ urlPart: String, error: Error? = nil,
     response: HTTPURLResponse? = nil) -> MoaSimulator {
       
     let simulator = simulate(urlPart)
@@ -1131,7 +1131,7 @@ public final class MoaSimulator {
   /// The image that will be used to respond to all future download requests
   var autorespondWithImage: MoaImage?
   
-  var autorespondWithError: (error: NSError?, response: HTTPURLResponse?)?
+  var autorespondWithError: (error: Error?, response: HTTPURLResponse?)?
   
   /// Array of registered image downloaders.
   public var downloaders = [MoaSimulatedImageDownloader]()
@@ -1162,7 +1162,7 @@ public final class MoaSimulator {
   - parameter response: Optional response that is passed to the error handler of all ongoing requests.
   
   */
-  public func respondWithError(_ error: NSError? = nil, response: HTTPURLResponse? = nil) {
+  public func respondWithError(_ error: Error? = nil, response: HTTPURLResponse? = nil) {
     for downloader in downloaders {
       downloader.respondWithError(error, response: response)
     }

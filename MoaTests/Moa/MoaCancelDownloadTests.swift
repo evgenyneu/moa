@@ -15,7 +15,7 @@ class MoaCancelDownloadTests: XCTestCase {
     
     let moa = Moa()
     var imageResponse: UIImage?
-    var errorResponse: NSError?
+    var errorResponse: Error?
     var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccessAsync = { image in
@@ -50,7 +50,7 @@ class MoaCancelDownloadTests: XCTestCase {
     
     let moa = Moa()
     var imageResponse: UIImage?
-    var errorResponse: NSError?
+    var errorResponse: Error?
     var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccessAsync = { image in
@@ -87,7 +87,7 @@ class MoaCancelDownloadTests: XCTestCase {
     
     let moa = Moa()
     var imageResponse: UIImage?
-    var errorResponse: NSError?
+    var errorResponse: Error?
     var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccessAsync = { image in

@@ -14,7 +14,7 @@ class MoaDownloadTests: XCTestCase {
 
     let moa = Moa()
     var imageResponse: UIImage?
-    var errorResponse: NSError?
+    var errorResponse: Error?
     var httpUrlResponse: HTTPURLResponse?
 
     moa.onSuccessAsync = { image in
@@ -59,7 +59,7 @@ class MoaDownloadTests: XCTestCase {
     
     let moa = Moa()
     var imageResponse: UIImage?
-    var errorResponse: NSError?
+    var errorResponse: Error?
     var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccessAsync = { image in
@@ -76,9 +76,9 @@ class MoaDownloadTests: XCTestCase {
     
     moa_eventually(errorResponse != nil) {
       XCTAssert(imageResponse == nil)
-      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorResponse!.code)
-      XCTAssertEqual(1, errorResponse!.code)
-      XCTAssertEqual("MoaError", errorResponse!.domain)
+      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorResponse!._code)
+      XCTAssertEqual(1, errorResponse!._code)
+      XCTAssertEqual("MoaError", errorResponse!._domain)
       XCTAssertEqual(404, httpUrlResponse!.statusCode)
     }
   }
@@ -94,7 +94,7 @@ class MoaDownloadTests: XCTestCase {
     
     let moa = Moa()
     var imageResponse: UIImage?
-    var errorResponse: NSError?
+    var errorResponse: Error?
     var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccessAsync = { image in
@@ -112,19 +112,19 @@ class MoaDownloadTests: XCTestCase {
     moa_eventually(errorResponse != nil) {
       XCTAssert(imageResponse == nil)
       
-      XCTAssertEqual(-1009, errorResponse!.code)
-      XCTAssertEqual("NSURLErrorDomain", errorResponse!.domain)
+      XCTAssertEqual(-1009, errorResponse!._code)
+      XCTAssertEqual("NSURLErrorDomain", errorResponse!._domain)
       XCTAssert(httpUrlResponse == nil)
     }
   }
 
   func testLoadImage_errorWhenResponseIsNotAnImageType() {
     StubHttp.withImage("96px.png", forUrlPart: "96px.png",
-      responseHeaders: ["Content-Type": "text/html"])
+      responseHeaders: ["Content-Type" as NSObject: "text/html" as AnyObject])
     
     let moa = Moa()
     var imageResponse: UIImage?
-    var errorResponse: NSError?
+    var errorResponse: Error?
     var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccessAsync = { image in
@@ -143,9 +143,9 @@ class MoaDownloadTests: XCTestCase {
       XCTAssert(imageResponse == nil)
 
       XCTAssertEqual(MoaError.notAnImageContentTypeInResponseHttpHeader._code,
-        errorResponse!.code)
+        errorResponse!._code)
   
-      XCTAssertEqual("MoaError", errorResponse!.domain)
+      XCTAssertEqual("MoaError", errorResponse!._domain)
       XCTAssertEqual(200, httpUrlResponse!.statusCode)
     }
   }
@@ -155,7 +155,7 @@ class MoaDownloadTests: XCTestCase {
     
     let moa = Moa()
     var imageResponse: UIImage?
-    var errorResponse: NSError?
+    var errorResponse: Error?
     var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccessAsync = { image in
@@ -172,9 +172,9 @@ class MoaDownloadTests: XCTestCase {
     
     moa_eventually {
       XCTAssert(imageResponse == nil)
-      XCTAssertEqual(MoaError.failedToReadImageData._code, errorResponse!.code)
-      XCTAssertEqual(4, errorResponse!.code)
-      XCTAssertEqual("MoaError", errorResponse!.domain)
+      XCTAssertEqual(MoaError.failedToReadImageData._code, errorResponse!._code)
+      XCTAssertEqual(4, errorResponse!._code)
+      XCTAssertEqual("MoaError", errorResponse!._domain)
       XCTAssertEqual(200, httpUrlResponse!.statusCode)
     }
   }
@@ -228,7 +228,7 @@ class MoaDownloadTests: XCTestCase {
     
     let moa = Moa()
     var imageResponse: UIImage?
-    var errorResponse: NSError?
+    var errorResponse: Error?
     var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccess = { image in
@@ -245,9 +245,9 @@ class MoaDownloadTests: XCTestCase {
     
     moa_eventually(errorResponse != nil) {
       XCTAssert(imageResponse == nil)
-      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorResponse!.code)
-      XCTAssertEqual(1, errorResponse!.code)
-      XCTAssertEqual("MoaError", errorResponse!.domain)
+      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorResponse!._code)
+      XCTAssertEqual(1, errorResponse!._code)
+      XCTAssertEqual("MoaError", errorResponse!._domain)
       XCTAssertEqual(404, httpUrlResponse!.statusCode)
     }
   }
@@ -262,7 +262,7 @@ class MoaDownloadTests: XCTestCase {
     
     var imageResponseAsync: UIImage?
     var imageResponse: UIImage?
-    var errorResponse: NSError?
+    var errorResponse: Error?
     var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccessAsync = { image in
@@ -285,9 +285,9 @@ class MoaDownloadTests: XCTestCase {
     moa_eventually(imageResponse != nil && errorResponse != nil) {
       XCTAssertEqual(67, imageResponseAsync!.size.width)
       XCTAssertEqual(67, imageResponse!.size.width)
-      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorResponse!.code)
-      XCTAssertEqual(1, errorResponse!.code)
-      XCTAssertEqual("MoaError", errorResponse!.domain)
+      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorResponse!._code)
+      XCTAssertEqual(1, errorResponse!._code)
+      XCTAssertEqual("MoaError", errorResponse!._domain)
       XCTAssertEqual(404, httpUrlResponse!.statusCode)
     }
   }
@@ -302,7 +302,7 @@ class MoaDownloadTests: XCTestCase {
     
     var imageResponseAsync: UIImage?
     var imageResponse: UIImage?
-    var errorResponse: NSError?
+    var errorResponse: Error?
     var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccessAsync = { image in
@@ -325,9 +325,9 @@ class MoaDownloadTests: XCTestCase {
     moa_eventually(imageResponse != nil && errorResponse != nil) {
       XCTAssertEqual(67, imageResponseAsync!.size.width)
       XCTAssertEqual(67, imageResponse!.size.width)
-      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorResponse!.code)
-      XCTAssertEqual(1, errorResponse!.code)
-      XCTAssertEqual("MoaError", errorResponse!.domain)
+      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorResponse!._code)
+      XCTAssertEqual(1, errorResponse!._code)
+      XCTAssertEqual("MoaError", errorResponse!._domain)
       XCTAssertEqual(404, httpUrlResponse!.statusCode)
     }
   }
@@ -340,7 +340,7 @@ class MoaDownloadTests: XCTestCase {
     moa.errorImage = TestBundle.image("35px.jpg")
     var imageResponseAsync: UIImage?
     var imageResponse: UIImage?
-    var errorResponse: NSError?
+    var errorResponse: Error?
     var httpUrlResponse: HTTPURLResponse?
     
     moa.onSuccessAsync = { image in
@@ -363,9 +363,9 @@ class MoaDownloadTests: XCTestCase {
     moa_eventually(imageResponse != nil && errorResponse != nil) {
       XCTAssertEqual(35, imageResponseAsync!.size.width)
       XCTAssertEqual(35, imageResponse!.size.width)
-      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorResponse!.code)
-      XCTAssertEqual(1, errorResponse!.code)
-      XCTAssertEqual("MoaError", errorResponse!.domain)
+      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorResponse!._code)
+      XCTAssertEqual(1, errorResponse!._code)
+      XCTAssertEqual("MoaError", errorResponse!._domain)
       XCTAssertEqual(404, httpUrlResponse!.statusCode)
     }
   }

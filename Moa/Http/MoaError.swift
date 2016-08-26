@@ -46,7 +46,7 @@ enum MoaError: Error {
   }
   
   var code: Int {
-    return (self as NSError).code
+    return (self as Error)._code
   }
   
   var nsError: NSError {

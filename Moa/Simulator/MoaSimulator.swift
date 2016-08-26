@@ -87,7 +87,7 @@ public final class MoaSimulator {
   
   */
   @discardableResult
-  public static func autorespondWithError(_ urlPart: String, error: NSError? = nil,
+  public static func autorespondWithError(_ urlPart: String, error: Error? = nil,
     response: HTTPURLResponse? = nil) -> MoaSimulator {
       
     let simulator = simulate(urlPart)
@@ -137,7 +137,7 @@ public final class MoaSimulator {
   /// The image that will be used to respond to all future download requests
   var autorespondWithImage: MoaImage?
   
-  var autorespondWithError: (error: NSError?, response: HTTPURLResponse?)?
+  var autorespondWithError: (error: Error?, response: HTTPURLResponse?)?
   
   /// Array of registered image downloaders.
   public var downloaders = [MoaSimulatedImageDownloader]()
@@ -168,7 +168,7 @@ public final class MoaSimulator {
   - parameter response: Optional response that is passed to the error handler of all ongoing requests.
   
   */
-  public func respondWithError(_ error: NSError? = nil, response: HTTPURLResponse? = nil) {
+  public func respondWithError(_ error: Error? = nil, response: HTTPURLResponse? = nil) {
     for downloader in downloaders {
       downloader.respondWithError(error, response: response)
     }

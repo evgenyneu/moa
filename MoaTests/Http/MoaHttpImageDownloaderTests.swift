@@ -11,13 +11,13 @@ class MoaImageDownloaderTests: XCTestCase {
   
   // MARK: - startDownload
   
-  func testLogger(type: MoaLogType, message: String, statusCode: Int?, error: NSError?) { }
+  func testLogger(type: MoaLogType, message: String, statusCode: Int?, error: Error?) { }
   
   func testStartDownload_success() {
     StubHttp.with35pxJpgImage()
     
     var imageFromCallback: UIImage?
-    var errorFromCallback: NSError?
+    var errorFromCallback: Error?
     var httpUrlResponseFromCallback: HTTPURLResponse?
     
     let downloader = MoaHttpImageDownloader(logger: testLogger)
@@ -43,7 +43,7 @@ class MoaImageDownloaderTests: XCTestCase {
     StubHttp.withText("error", forUrlPart: "35px.jpg", statusCode: 404)
     
     var imageFromCallback: UIImage?
-    var errorFromCallback: NSError?
+    var errorFromCallback: Error?
     var httpUrlResponseFromCallback: HTTPURLResponse?
     
     let downloader = MoaHttpImageDownloader(logger: testLogger)
@@ -59,9 +59,9 @@ class MoaImageDownloaderTests: XCTestCase {
     
     moa_eventually(errorFromCallback != nil) {
       XCTAssert(imageFromCallback == nil)
-      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorFromCallback!.code)
-      XCTAssertEqual(1, errorFromCallback!.code)
-      XCTAssertEqual("MoaError", errorFromCallback!.domain)
+      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorFromCallback!._code)
+      XCTAssertEqual(1, errorFromCallback!._code)
+      XCTAssertEqual("MoaError", errorFromCallback!._domain)
       XCTAssertEqual(404, httpUrlResponseFromCallback!.statusCode)
     }
   }
@@ -71,7 +71,7 @@ class MoaImageDownloaderTests: XCTestCase {
     StubHttp.withImage("96px.png", forUrlPart: "35px.jpg", statusCode: 200, responseTime: 0.2)
     
     var imageFromCallback: UIImage?
-    var errorFromCallback: NSError?
+    var errorFromCallback: Error?
     var httpUrlResponseFromCallback: HTTPURLResponse?
     
     let downloader = MoaHttpImageDownloader(logger: testLogger)
@@ -87,8 +87,8 @@ class MoaImageDownloaderTests: XCTestCase {
     
     moa_eventually(0.3) {
       XCTAssert(imageFromCallback == nil)
-      XCTAssertEqual(-1001, errorFromCallback!.code)
-      XCTAssertEqual("NSURLErrorDomain", errorFromCallback!.domain)
+      XCTAssertEqual(-1001, errorFromCallback!._code)
+      XCTAssertEqual("NSURLErrorDomain", errorFromCallback!._domain)
       XCTAssert(httpUrlResponseFromCallback == nil)
     }
   }
@@ -99,7 +99,7 @@ class MoaImageDownloaderTests: XCTestCase {
     StubHttp.withImage("96px.png", forUrlPart: "35px.jpg", statusCode: 200, responseTime: 0.1)
     
     var imageFromCallback: UIImage?
-    var errorFromCallback: NSError?
+    var errorFromCallback: Error?
     var httpUrlResponseFromCallback: HTTPURLResponse?
     
     let downloader = MoaHttpImageDownloader(logger: testLogger)
@@ -128,7 +128,7 @@ class MoaImageDownloaderTests: XCTestCase {
     StubHttp.withImage("35px.jpg", forUrlPart: "35px.jpg", statusCode: 200, responseTime: 0.1)
     
     var imageFromCallback: UIImage?
-    var errorFromCallback: NSError?
+    var errorFromCallback: Error?
     var httpUrlResponseFromCallback: HTTPURLResponse?
     var task: URLSessionDataTask?
   
