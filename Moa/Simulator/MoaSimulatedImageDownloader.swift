@@ -64,6 +64,6 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   
   */
   public func respondWithError(_ error: Error? = nil, response: HTTPURLResponse? = nil) {
-    onError?(error ?? MoaError.simulatedError.nsError, response)
+    onError?(error ?? MoaError.simulatedError, response)
   }
 }

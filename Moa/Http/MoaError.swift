@@ -1,6 +1,6 @@
 import Foundation
 
-enum MoaError: Error {
+public enum MoaError: Error {
   /// Incorrect URL is supplied. Error code: 0.
   case invalidUrlString
   
@@ -47,12 +47,5 @@ enum MoaError: Error {
   
   var code: Int {
     return (self as Error)._code
-  }
-  
-  var nsError: NSError {
-    return NSError(
-      domain: "MoaError",
-      code: code,
-      userInfo: [NSLocalizedDescriptionKey: localizedDescription])
   }
 }

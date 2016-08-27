@@ -15,7 +15,7 @@
 
 import Foundation
 
-enum MoaError: Error {
+public enum MoaError: Error {
   /// Incorrect URL is supplied. Error code: 0.
   case invalidUrlString
   
@@ -63,13 +63,6 @@ enum MoaError: Error {
   var code: Int {
     return (self as Error)._code
   }
-  
-  var nsError: NSError {
-    return NSError(
-      domain: "MoaError",
-      code: code,
-      userInfo: [NSLocalizedDescriptionKey: localizedDescription])
-  }
 }
 
 
@@ -96,7 +89,7 @@ struct MoaHttp {
     }
     
     // Error converting string to NSURL
-    onError(MoaError.invalidUrlString.nsError, nil)
+    onError(MoaError.invalidUrlString, nil)
     return nil
   }
   
@@ -153,7 +146,7 @@ struct MoaHttpImage {
       
     // Show error if response code is not 200
     if response.statusCode != 200 {
-      onError(MoaError.httpStatusCodeIsNot200.nsError, response)
+      onError(MoaError.httpStatusCodeIsNot200, response)
       return
     }
     
@@ -161,13 +154,13 @@ struct MoaHttpImage {
     if let mimeType = response.mimeType {
       if !validMimeType(mimeType) {
         // Not an image Content-Type http header
-        let error = MoaError.notAnImageContentTypeInResponseHttpHeader.nsError
+        let error = MoaError.notAnImageContentTypeInResponseHttpHeader
         onError(error, response)
         return
       }
     } else {
       // Missing Content-Type http header
-      let error = MoaError.missingResponseContentTypeHttpHeader.nsError
+      let error = MoaError.missingResponseContentTypeHttpHeader
       onError(error, response)
       return
     }
@@ -176,7 +169,7 @@ struct MoaHttpImage {
       onSuccess(image)
     } else {
       // Failed to convert response data to UIImage
-      let error = MoaError.failedToReadImageData.nsError
+      let error = MoaError.failedToReadImageData
       onError(error, response)
     }
   }
@@ -486,7 +479,11 @@ public func MoaLoggerText(_ type: MoaLogType, url: String, statusCode: Int?,
     }
     
     if let error = error {
-      suffix = error.localizedDescription
+      if let moaError = error as? MoaError {
+        suffix = moaError.localizedDescription
+      } else {
+        suffix = error.localizedDescription
+      }
     }
   }
   
@@ -981,7 +978,7 @@ public final class MoaSimulatedImageDownloader: MoaImageDownloader {
   
   */
   public func respondWithError(_ error: Error? = nil, response: HTTPURLResponse? = nil) {
-    onError?(error ?? MoaError.simulatedError.nsError, response)
+    onError?(error ?? MoaError.simulatedError, response)
   }
 }
 

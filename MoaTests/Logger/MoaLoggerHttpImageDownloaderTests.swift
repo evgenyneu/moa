@@ -79,9 +79,12 @@ class MoaLoggerHttpImageDownloaderTests: XCTestCase {
       XCTAssertEqual(MoaLogType.responseError, self.logTypes[1])
       XCTAssertEqual("http://evgenii.com/moa/35px.jpg", self.logUrls[1])
       XCTAssertEqual(404, self.logStatusCodes[1])
-      XCTAssertEqual("Response HTTP status code is not 200.", self.logErrors[1]?.localizedDescription)
-      XCTAssertEqual("MoaError", self.logErrors[1]?._domain)
-      XCTAssertEqual(1, self.logErrors[1]?._code)
+      
+      let moaError = self.logErrors[1] as! MoaError
+      XCTAssertEqual("Response HTTP status code is not 200.", moaError.localizedDescription)
+      
+      XCTAssertEqual("moaTests.MoaError", self.logErrors[1]?._domain)
+      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, self.logErrors[1]?._code)
     }
   }
   

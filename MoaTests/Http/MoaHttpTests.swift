@@ -88,7 +88,7 @@ class MoaHttpTests: XCTestCase {
       XCTAssertFalse(successCalled)
       XCTAssertEqual(MoaError.invalidUrlString._code, errorFromCallback!._code)
       XCTAssertEqual(0, errorFromCallback!._code)
-      XCTAssertEqual("MoaError", errorFromCallback!._domain)
+      XCTAssertEqual("moaTests.MoaError", errorFromCallback!._domain)
       XCTAssert(httpUrlResponseFromCallback == nil)
     }
   }  

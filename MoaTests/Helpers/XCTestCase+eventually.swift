@@ -2,7 +2,7 @@ import XCTest
 
 extension XCTestCase {
   func moa_eventually(
-    _ condition: @autoclosure(escaping)() -> Bool,
+    _ condition: @autoclosure @escaping() -> Bool,
     timeout: TimeInterval = 1,
     callback: ()->()) {
     
