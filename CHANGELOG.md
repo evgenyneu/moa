@@ -1,5 +1,9 @@
 # Moa version history
 
+## 8.0.0 (2016-08-27)
+
+* Upgraded to Xcode 8 beta 6 version of Swift.
+
 ## 7.0.0 (2016-08-02)
 
 * Upgraded to Xcode 8 beta 4 version of Swift.
