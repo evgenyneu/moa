@@ -138,7 +138,7 @@ imageView.moa.url = "https://bit.ly/moa_image"
 ```
 
 * The closure is called in the *main queue* if image download fails. Use `onErrorAsync` property instead if you need to do time consuming operations.
-* Use `error.localizedDescription` to get a human-readable error description.
+* Use `(error as? MoaError)?.localizedDescription` to get a human-readable error description.
 
 
 ### Download an image without an image view
