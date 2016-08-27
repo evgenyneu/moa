@@ -7,23 +7,23 @@ Shortcut function for creating NSURLSessionDataTask.
 */
 struct MoaHttp {
   static func createDataTask(_ url: String,
-    onSuccess: (Data?, HTTPURLResponse)->(),
-    onError: (NSError?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
+    onSuccess: @escaping (Data?, HTTPURLResponse)->(),
+    onError: @escaping (Error?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
       
-    if let nsUrl = URL(string: url) {
-      return createDataTask(nsUrl, onSuccess: onSuccess, onError: onError)
+    if let urlObject = URL(string: url) {
+      return createDataTask(urlObject: urlObject, onSuccess: onSuccess, onError: onError)
     }
     
     // Error converting string to NSURL
-    onError(MoaError.invalidUrlString.nsError, nil)
+    onError(MoaError.invalidUrlString, nil)
     return nil
   }
   
-  private static func createDataTask(_ nsUrl: URL,
-    onSuccess: (Data?, HTTPURLResponse)->(),
-    onError: (NSError?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
+  private static func createDataTask(urlObject: URL,
+    onSuccess: @escaping (Data?, HTTPURLResponse)->(),
+    onError: @escaping (Error?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
       
-    return MoaHttpSession.session?.dataTask(with: nsUrl) { (data, response, error) in
+    return MoaHttpSession.session?.dataTask(with: urlObject) { (data, response, error) in
       if let httpResponse = response as? HTTPURLResponse {
         if error == nil {
           onSuccess(data, httpResponse)

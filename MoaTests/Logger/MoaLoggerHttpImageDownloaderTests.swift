@@ -13,9 +13,9 @@ class MoaLoggerHttpImageDownloaderTests: XCTestCase {
   var logTypes = [MoaLogType]()
   var logUrls = [String]()
   var logStatusCodes = [Int?]()
-  var logErrors = [NSError?]()
+  var logErrors = [Error?]()
   
-  func testLogger(type: MoaLogType, url: String, statusCode: Int?, error: NSError?) {
+  func testLogger(type: MoaLogType, url: String, statusCode: Int?, error: Error?) {
     logTypes.append(type)
     logUrls.append(url)
     logStatusCodes.append(statusCode)
@@ -61,7 +61,7 @@ class MoaLoggerHttpImageDownloaderTests: XCTestCase {
   func testLogger_startDownloadError() {
     StubHttp.withText("error", forUrlPart: "35px.jpg", statusCode: 404)
     
-    var errorFromCallback: NSError?
+    var errorFromCallback: Error?
     
     let downloader = MoaHttpImageDownloader(logger: testLogger)
     downloader.startDownload("http://evgenii.com/moa/35px.jpg",
@@ -79,9 +79,12 @@ class MoaLoggerHttpImageDownloaderTests: XCTestCase {
       XCTAssertEqual(MoaLogType.responseError, self.logTypes[1])
       XCTAssertEqual("http://evgenii.com/moa/35px.jpg", self.logUrls[1])
       XCTAssertEqual(404, self.logStatusCodes[1])
-      XCTAssertEqual("Response HTTP status code is not 200.", self.logErrors[1]?.localizedDescription)
-      XCTAssertEqual("MoaError", self.logErrors[1]?.domain)
-      XCTAssertEqual(1, self.logErrors[1]?.code)
+      
+      let moaError = self.logErrors[1] as! MoaError
+      XCTAssertEqual("Response HTTP status code is not 200.", moaError.localizedDescription)
+      
+      XCTAssertEqual("moaTests.MoaError", self.logErrors[1]?._domain)
+      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, self.logErrors[1]?._code)
     }
   }
   
@@ -146,7 +149,7 @@ class MoaLoggerHttpImageDownloaderTests: XCTestCase {
   func testLogger_doNotLogCancelAfterError() {
     StubHttp.withText("error", forUrlPart: "35px.jpg", statusCode: 404)
     
-    var errorFromCallback: NSError?
+    var errorFromCallback: Error?
     
     let downloader = MoaHttpImageDownloader(logger: testLogger)
     downloader.startDownload("http://evgenii.com/moa/35px.jpg",

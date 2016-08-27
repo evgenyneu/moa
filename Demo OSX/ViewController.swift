@@ -26,12 +26,6 @@ class ViewController: NSViewController {
     Moa.logger = MoaConsoleLogger
   }
 
-  override var representedObject: AnyObject? {
-    didSet {
-    // Update the view, if already loaded.
-    }
-  }
-
   @IBAction func didTapLoadButton(_ sender: AnyObject) {
     imageView.moa.url = randomImageUrl.url
   }

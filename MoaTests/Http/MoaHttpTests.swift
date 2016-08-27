@@ -12,7 +12,7 @@ class MoaHttpTests: XCTestCase {
     StubHttp.withText("Hello world!", forUrlPart: "server.net")
     
     var responseString: NSString?
-    var errorFromCallback: NSError?
+    var errorFromCallback: Error?
     var httpUrlResponseFromCallback: HTTPURLResponse?
     
     let dataDask = MoaHttp.createDataTask("http://server.net/path",
@@ -44,7 +44,7 @@ class MoaHttpTests: XCTestCase {
     StubHttp.withError(notConnectedError, forUrlPart: "server.net")
     
     var successCalled = false
-    var errorFromCallback: NSError?
+    var errorFromCallback: Error?
     var httpUrlResponseFromCallback: HTTPURLResponse?
     
     let dataDask = MoaHttp.createDataTask("http://server.net/path",
@@ -61,15 +61,15 @@ class MoaHttpTests: XCTestCase {
     
     moa_eventually(errorFromCallback != nil) {
       XCTAssertFalse(successCalled)
-      XCTAssertEqual(-1009, errorFromCallback!.code)
-      XCTAssertEqual("NSURLErrorDomain", errorFromCallback!.domain)
+      XCTAssertEqual(-1009, errorFromCallback!._code)
+      XCTAssertEqual("NSURLErrorDomain", errorFromCallback!._domain)
       XCTAssert(httpUrlResponseFromCallback == nil)
     }
   }
   
   func testLoad_errorIncorrectUrl() {
     var successCalled = false
-    var errorFromCallback: NSError?
+    var errorFromCallback: Error?
     var httpUrlResponseFromCallback: HTTPURLResponse?
     
     let dataDask = MoaHttp.createDataTask("http://server.net/🐞",
@@ -86,9 +86,9 @@ class MoaHttpTests: XCTestCase {
     
     moa_eventually(errorFromCallback != nil) {
       XCTAssertFalse(successCalled)
-      XCTAssertEqual(MoaError.invalidUrlString._code, errorFromCallback!.code)
-      XCTAssertEqual(0, errorFromCallback!.code)
-      XCTAssertEqual("MoaError", errorFromCallback!.domain)
+      XCTAssertEqual(MoaError.invalidUrlString._code, errorFromCallback!._code)
+      XCTAssertEqual(0, errorFromCallback!._code)
+      XCTAssertEqual("moaTests.MoaError", errorFromCallback!._domain)
       XCTAssert(httpUrlResponseFromCallback == nil)
     }
   }  

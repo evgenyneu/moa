@@ -20,7 +20,7 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     let downloader = MoaSimulatedImageDownloader(url: "http://site.com/image1.jpg")
     
     var imageResponse: UIImage?
-    var errorResponse: NSError?
+    var errorResponse: Error?
     var httpUrlResponse: HTTPURLResponse?
     
     downloader.startDownload("http://site.com/image1.jpg",
@@ -45,7 +45,7 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     let downloader = MoaSimulatedImageDownloader(url: "http://site.com/image1.jpg")
     
     var imageResponse: UIImage?
-    var errorResponse: NSError?
+    var errorResponse: Error?
     var httpUrlResponse: HTTPURLResponse?
     
     downloader.startDownload("http://site.com/image1.jpg",
@@ -60,8 +60,8 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     downloader.respondWithError()
     
     XCTAssert(imageResponse == nil)
-    XCTAssertEqual(MoaError.simulatedError._code, errorResponse!.code)
-    XCTAssertEqual(5, errorResponse!.code)
+    XCTAssertEqual(MoaError.simulatedError._code, errorResponse!._code)
+    XCTAssertEqual(5, errorResponse!._code)
     XCTAssert(httpUrlResponse == nil)
   }
   
@@ -83,7 +83,7 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     downloader.autorespondWithImage = image
     
     var imageResponse: UIImage?
-    var errorResponse: NSError?
+    var errorResponse: Error?
     var httpUrlResponse: HTTPURLResponse?
     
     downloader.startDownload("http://site.com/image1.jpg",
@@ -107,7 +107,7 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     downloader.autorespondWithError = (nil, nil)
     
     var imageResponse: UIImage?
-    var errorResponse: NSError?
+    var errorResponse: Error?
     var httpUrlResponse: HTTPURLResponse?
     
     downloader.startDownload("http://site.com/image1.jpg",
@@ -120,8 +120,8 @@ class MoaSimulatedImageDownloaderTests: XCTestCase {
     })
     
     XCTAssert(imageResponse == nil)
-    XCTAssertEqual(MoaError.simulatedError._code, errorResponse!.code)
-    XCTAssertEqual(5, errorResponse!.code)
+    XCTAssertEqual(MoaError.simulatedError._code, errorResponse!._code)
+    XCTAssertEqual(5, errorResponse!._code)
     XCTAssert(httpUrlResponse == nil)
   }
 }

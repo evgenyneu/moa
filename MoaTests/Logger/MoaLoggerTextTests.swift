@@ -18,7 +18,7 @@ class MoaLoggerTextTests: XCTestCase {
   
   func testRequestError() {
     let result = MoaLoggerText(.responseError, url: "http://mysite.edu/image.jpg",
-      statusCode: 500, error: MoaError.missingResponseContentTypeHttpHeader.nsError)
+      statusCode: 500, error: MoaError.missingResponseContentTypeHttpHeader)
     
     XCTAssert(MoaString.contains(result, substring: "Error 500 http://mysite.edu/image.jpg Response HTTP header is missing content type."))
   }

@@ -8,8 +8,8 @@ Helper functions for downloading an image and processing the response.
 */
 struct MoaHttpImage {
   static func createDataTask(_ url: String,
-    onSuccess: (MoaImage)->(),
-    onError: (NSError?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
+    onSuccess: @escaping (MoaImage)->(),
+    onError: @escaping (Error?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
     
     return MoaHttp.createDataTask(url,
       onSuccess: { data, response in
@@ -22,11 +22,11 @@ struct MoaHttpImage {
   static func handleSuccess(_ data: Data?,
     response: HTTPURLResponse,
     onSuccess: (MoaImage)->(),
-    onError: (NSError, HTTPURLResponse?)->()) {
+    onError: (Error, HTTPURLResponse?)->()) {
       
     // Show error if response code is not 200
     if response.statusCode != 200 {
-      onError(MoaError.httpStatusCodeIsNot200.nsError, response)
+      onError(MoaError.httpStatusCodeIsNot200, response)
       return
     }
     
@@ -34,13 +34,13 @@ struct MoaHttpImage {
     if let mimeType = response.mimeType {
       if !validMimeType(mimeType) {
         // Not an image Content-Type http header
-        let error = MoaError.notAnImageContentTypeInResponseHttpHeader.nsError
+        let error = MoaError.notAnImageContentTypeInResponseHttpHeader
         onError(error, response)
         return
       }
     } else {
       // Missing Content-Type http header
-      let error = MoaError.missingResponseContentTypeHttpHeader.nsError
+      let error = MoaError.missingResponseContentTypeHttpHeader
       onError(error, response)
       return
     }
@@ -49,7 +49,7 @@ struct MoaHttpImage {
       onSuccess(image)
     } else {
       // Failed to convert response data to UIImage
-      let error = MoaError.failedToReadImageData.nsError
+      let error = MoaError.failedToReadImageData
       onError(error, response)
     }
   }

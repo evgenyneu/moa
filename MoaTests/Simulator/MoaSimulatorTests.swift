@@ -116,7 +116,7 @@ class MoaSimulatorTests: XCTestCase {
     simulator.downloaders.append(downloader)
     
     var imageResponse: UIImage?
-    var errorResponse: NSError?
+    var errorResponse: Error?
     var httpUrlResponse: HTTPURLResponse?
     
     downloader.startDownload("http://site.com/image1.jpg",
@@ -143,7 +143,7 @@ class MoaSimulatorTests: XCTestCase {
     simulator.downloaders.append(downloader)
     
     var imageResponse: UIImage?
-    var errorResponse: NSError?
+    var errorResponse: Error?
     var httpUrlResponse: HTTPURLResponse?
     
     downloader.startDownload("http://site.com/image1.jpg",
@@ -163,7 +163,7 @@ class MoaSimulatorTests: XCTestCase {
     simulator.respondWithError(error, response: response)
     
     XCTAssert(imageResponse == nil)
-    XCTAssertEqual(543_534, errorResponse!.code)
+    XCTAssertEqual(543_534, errorResponse!._code)
     XCTAssertEqual(422, httpUrlResponse!.statusCode)
   }
   
@@ -177,7 +177,7 @@ class MoaSimulatorTests: XCTestCase {
     let downloader = MoaSimulator.createDownloader("http://site.com/image1.jpg")!
     
     var imageResponse: UIImage?
-    var errorResponse: NSError?
+    var errorResponse: Error?
     var httpUrlResponse: HTTPURLResponse?
     
     downloader.startDownload("http://site.com/image1.jpg",
@@ -207,7 +207,7 @@ class MoaSimulatorTests: XCTestCase {
     let downloader = MoaSimulator.createDownloader("http://site.com/image1.jpg")!
     
     var imageResponse: UIImage?
-    var errorResponse: NSError?
+    var errorResponse: Error?
     var httpUrlResponse: HTTPURLResponse?
     
     downloader.startDownload("http://site.com/image1.jpg",
@@ -220,7 +220,7 @@ class MoaSimulatorTests: XCTestCase {
     })
     
     XCTAssert(imageResponse == nil)
-    XCTAssertEqual(543_534, errorResponse!.code)
+    XCTAssertEqual(543_534, errorResponse!._code)
     XCTAssertEqual(422, httpUrlResponse!.statusCode)
   }
 }

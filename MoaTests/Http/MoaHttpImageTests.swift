@@ -14,7 +14,7 @@ class MoaHttpImageTests: XCTestCase {
     StubHttp.with35pxJpgImage()
     
     var imageFromCallback: UIImage?
-    var errorFromCallback: NSError?
+    var errorFromCallback: Error?
     var httpUrlResponseFromCallback: HTTPURLResponse?
     
     let task  = MoaHttpImage.createDataTask("http://evgenii.com/moa/35px.jpg",
@@ -40,7 +40,7 @@ class MoaHttpImageTests: XCTestCase {
     StubHttp.withText("error", forUrlPart: "35px.jpg", statusCode: 404)
     
     var imageFromCallback: UIImage?
-    var errorFromCallback: NSError?
+    var errorFromCallback: Error?
     var httpUrlResponseFromCallback: HTTPURLResponse?
     
     let task  = MoaHttpImage.createDataTask("http://evgenii.com/moa/35px.jpg",
@@ -57,9 +57,9 @@ class MoaHttpImageTests: XCTestCase {
     
     moa_eventually(httpUrlResponseFromCallback != nil) {
       XCTAssert(imageFromCallback == nil)
-      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorFromCallback!.code)
-      XCTAssertEqual(1, errorFromCallback!.code)
-      XCTAssertEqual("MoaError", errorFromCallback!.domain)
+      XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorFromCallback!._code)
+      XCTAssertEqual(1, errorFromCallback!._code)
+      XCTAssertEqual("moaTests.MoaError", errorFromCallback!._domain)
       XCTAssertEqual(404, httpUrlResponseFromCallback!.statusCode)
     }
   }
@@ -74,7 +74,7 @@ class MoaHttpImageTests: XCTestCase {
     StubHttp.withError(notConnectedError, forUrlPart: "evgenii.com")
     
     var imageFromCallback: UIImage?
-    var errorFromCallback: NSError?
+    var errorFromCallback: Error?
     var httpUrlResponseFromCallback: HTTPURLResponse?
     
     let task  = MoaHttpImage.createDataTask("http://evgenii.com/moa/35px.jpg",
@@ -91,8 +91,8 @@ class MoaHttpImageTests: XCTestCase {
     
     moa_eventually(errorFromCallback != nil) {
       XCTAssert(imageFromCallback == nil)
-      XCTAssertEqual(-1009, errorFromCallback!.code)
-      XCTAssertEqual("NSURLErrorDomain", errorFromCallback!.domain)
+      XCTAssertEqual(-1009, errorFromCallback!._code)
+      XCTAssertEqual("NSURLErrorDomain", errorFromCallback!._domain)
       XCTAssert(httpUrlResponseFromCallback == nil)
     }
   }
@@ -105,7 +105,7 @@ class MoaHttpImageTests: XCTestCase {
       httpVersion: nil, headerFields: ["Content-Type": "image/jpeg"])!
     
     var imageFromCallback: UIImage?
-    var errorFromCallback: NSError?
+    var errorFromCallback: Error?
     var httpUrlResponseFromCallback: HTTPURLResponse?
     
     MoaHttpImage.handleSuccess(data, response: response,
@@ -129,7 +129,7 @@ class MoaHttpImageTests: XCTestCase {
       httpVersion: nil, headerFields: ["Content-Type": "image/jpeg"])!
     
     var imageFromCallback: UIImage?
-    var errorFromCallback: NSError?
+    var errorFromCallback: Error?
     var httpUrlResponseFromCallback: HTTPURLResponse?
     
     MoaHttpImage.handleSuccess(data, response: response,
@@ -143,9 +143,9 @@ class MoaHttpImageTests: XCTestCase {
     )
     
     XCTAssert(imageFromCallback == nil)
-    XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorFromCallback!.code)
-    XCTAssertEqual(1, errorFromCallback!.code)
-    XCTAssertEqual("MoaError", errorFromCallback!.domain)
+    XCTAssertEqual(MoaError.httpStatusCodeIsNot200._code, errorFromCallback!._code)
+    XCTAssertEqual(1, errorFromCallback!._code)
+    XCTAssertEqual("moaTests.MoaError", errorFromCallback!._domain)
     XCTAssertEqual(500, httpUrlResponseFromCallback!.statusCode)
   }
   
@@ -155,7 +155,7 @@ class MoaHttpImageTests: XCTestCase {
       httpVersion: nil, headerFields: nil)!
     
     var imageFromCallback: UIImage?
-    var errorFromCallback: NSError?
+    var errorFromCallback: Error?
     var httpUrlResponseFromCallback: HTTPURLResponse?
     
     MoaHttpImage.handleSuccess(data, response: response,
@@ -171,9 +171,9 @@ class MoaHttpImageTests: XCTestCase {
     XCTAssert(imageFromCallback == nil)
     
     XCTAssertEqual(MoaError.missingResponseContentTypeHttpHeader._code,
-      errorFromCallback!.code)
+      errorFromCallback!._code)
     
-    XCTAssertEqual("MoaError", errorFromCallback!.domain)
+    XCTAssertEqual("moaTests.MoaError", errorFromCallback!._domain)
     XCTAssertEqual(200, httpUrlResponseFromCallback!.statusCode)
   }
   
@@ -183,7 +183,7 @@ class MoaHttpImageTests: XCTestCase {
       httpVersion: nil, headerFields: ["Content-Type": "text/html"])!
     
     var imageFromCallback: UIImage?
-    var errorFromCallback: NSError?
+    var errorFromCallback: Error?
     var httpUrlResponseFromCallback: HTTPURLResponse?
     
     MoaHttpImage.handleSuccess(data, response: response,
@@ -199,9 +199,9 @@ class MoaHttpImageTests: XCTestCase {
     XCTAssert(imageFromCallback == nil)
     
     XCTAssertEqual(MoaError.notAnImageContentTypeInResponseHttpHeader._code,
-      errorFromCallback!.code)
+      errorFromCallback!._code)
     
-    XCTAssertEqual("MoaError", errorFromCallback!.domain)
+    XCTAssertEqual("moaTests.MoaError", errorFromCallback!._domain)
     XCTAssertEqual(200, httpUrlResponseFromCallback!.statusCode)
   }
   
@@ -211,7 +211,7 @@ class MoaHttpImageTests: XCTestCase {
       httpVersion: nil, headerFields: ["Content-Type": "image/jpeg"])!
     
     var imageFromCallback: UIImage?
-    var errorFromCallback: NSError?
+    var errorFromCallback: Error?
     var httpUrlResponseFromCallback: HTTPURLResponse?
     
     MoaHttpImage.handleSuccess(data, response: response,
@@ -227,9 +227,9 @@ class MoaHttpImageTests: XCTestCase {
     XCTAssert(imageFromCallback == nil)
     
     XCTAssertEqual(MoaError.failedToReadImageData._code,
-      errorFromCallback!.code)
+      errorFromCallback!._code)
     
-    XCTAssertEqual("MoaError", errorFromCallback!.domain)
+    XCTAssertEqual("moaTests.MoaError", errorFromCallback!._domain)
     XCTAssertEqual(200, httpUrlResponseFromCallback!.statusCode)
   }
 }

@@ -1,6 +1,11 @@
 import Foundation
 
-enum MoaError: Error {
+/**
+ 
+ Errors reported by the moa downloader
+ 
+*/
+public enum MoaError: Error {
   /// Incorrect URL is supplied. Error code: 0.
   case invalidUrlString
   
@@ -19,6 +24,7 @@ enum MoaError: Error {
   /// Simulated error used in unit tests. Error code: 5.
   case simulatedError
   
+  /// A human-friendly error description.
   var localizedDescription: String {
     let comment = "Moa image downloader error"
   
@@ -46,13 +52,6 @@ enum MoaError: Error {
   }
   
   var code: Int {
-    return (self as NSError).code
-  }
-  
-  var nsError: NSError {
-    return NSError(
-      domain: "MoaError",
-      code: code,
-      userInfo: [NSLocalizedDescriptionKey: localizedDescription])
+    return (self as Error)._code
   }
 }

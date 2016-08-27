@@ -12,9 +12,9 @@ class MoaLoggerTests: XCTestCase {
   var logTypes = [MoaLogType]()
   var logUrls = [String]()
   var logStatusCodes = [Int?]()
-  var logErrors = [NSError?]()
+  var logErrors = [Error?]()
   
-  func testLogger(type: MoaLogType, url: String, statusCode: Int?, error: NSError?) {
+  func testLogger(type: MoaLogType, url: String, statusCode: Int?, error: Error?) {
     logTypes.append(type)
     logUrls.append(url)
     logStatusCodes.append(statusCode)
@@ -69,7 +69,7 @@ class MoaLoggerTests: XCTestCase {
     StubHttp.withError(notConnectedError, forUrlPart: "96px.png")
     
     let moa = Moa()
-    var errorResponse: NSError?
+    var errorResponse: Error?
     
     moa.onSuccessAsync = { image in return nil }
     
