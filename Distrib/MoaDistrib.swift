@@ -897,7 +897,7 @@ public struct MoaSettingsCache {
   in which to store the on-disk cache.
   
   */
-  var diskPath = "moaImageDownloader"
+  public var diskPath = "moaImageDownloader"
 }
 
 func ==(lhs: MoaSettingsCache, rhs: MoaSettingsCache) -> Bool {
