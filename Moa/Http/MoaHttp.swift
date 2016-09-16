@@ -2,7 +2,7 @@ import Foundation
 
 /**
 
-Shortcut function for creating NSURLSessionDataTask.
+Shortcut function for creating URLSessionDataTask.
 
 */
 struct MoaHttp {

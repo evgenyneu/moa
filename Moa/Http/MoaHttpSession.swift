@@ -1,6 +1,6 @@
 import Foundation
 
-/// Contains functions for managing NSURLSession.
+/// Contains functions for managing URLSession.
 public struct MoaHttpSession {
   private static var currentSession: URLSession?
   

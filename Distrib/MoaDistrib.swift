@@ -82,7 +82,7 @@ import Foundation
 
 /**
 
-Shortcut function for creating NSURLSessionDataTask.
+Shortcut function for creating URLSessionDataTask.
 
 */
 struct MoaHttp {
@@ -264,7 +264,7 @@ final class MoaHttpImageDownloader: MoaImageDownloader {
 
 import Foundation
 
-/// Contains functions for managing NSURLSession.
+/// Contains functions for managing URLSession.
 public struct MoaHttpSession {
   private static var currentSession: URLSession?
   
@@ -548,7 +548,7 @@ public enum MoaLogType: Int{
 /**
 Downloads an image by url.
 
-Setting `moa.url` property of an image view instance starts asynchronous image download using NSURLSession class.
+Setting `moa.url` property of an image view instance starts asynchronous image download using URLSession class.
 When download is completed the image is automatically shown in the image view.
 
     // iOS

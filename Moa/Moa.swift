@@ -11,7 +11,7 @@
 /**
 Downloads an image by url.
 
-Setting `moa.url` property of an image view instance starts asynchronous image download using NSURLSession class.
+Setting `moa.url` property of an image view instance starts asynchronous image download using URLSession class.
 When download is completed the image is automatically shown in the image view.
 
     // iOS
