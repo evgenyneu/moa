@@ -173,6 +173,9 @@ Moa.settings.cache.requestCachePolicy = .useProtocolCachePolicy
 
 // Always cache images locally regardless of their response HTTP headers
 Moa.settings.cache.requestCachePolicy = .returnCacheDataElseLoad
+
+// Change the name of the cache directory.  Useful for sharing cache with the rest of the app.
+Moa.settings.cache.diskPath = "MyAppSharedCache"
 ```
 
 ## Settings
