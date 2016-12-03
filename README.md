@@ -10,7 +10,7 @@
 Moa is an image download library written in Swift. It allows to download and show an image in an image view by setting its `moa.url` property.
 
 ```Swift
-    imageView.moa.url = "https://bit.ly/moa_image"
+imageView.moa.url = "https://bit.ly/moa_image"
 ```
 
 * Images are downloaded asynchronously.
