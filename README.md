@@ -25,7 +25,9 @@ imageView.moa.url = "https://bit.ly/moa_image"
 
 *'Hunting Moa' drawing by Joseph Smit (1836-1929). File source: [Wikimedia Commons](http://commons.wikimedia.org/wiki/File:Hunting_Moa.jpg).*
 
-## Setup (Swift 3.0 / Xcode 8)
+
+
+## Setup
 
 There are three ways you can add Moa to your Xcode project.
 
@@ -46,6 +48,15 @@ use_frameworks!
 target 'Your target name'
 pod 'moa', '~> 8.0'
 ```
+
+#### Swift 4.0 / Xcode 9.0 beta version
+
+*Branch:* swift-4.0
+
+* *File:* [MoaDistrib.swift](https://github.com/evgenyneu/moa/blob/swift-4.0/Distrib/MoaDistrib.swift)
+* *Carthage:* `github "evgenyneu/moa" "swift-4.0"`
+* *CocoaPods:* `pod 'moa', git: 'https://github.com/evgenyneu/moa.git', branch: 'swift-4.0'`
+
 
 
 ### Legacy Swift versions
