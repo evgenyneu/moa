@@ -49,7 +49,7 @@ final class MoaTimer: NSObject {
     timer = nil
   }
   
-  func timerFired(timer: Timer) {
+  @objc func timerFired(timer: Timer) {
     self.callback?(self)
     if !repeats { cancel() }
   }
