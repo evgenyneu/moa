@@ -1,5 +1,9 @@
 # Moa version history
 
+## 9.0.0 (2017-09-23)
+
+* Update to Swift 4.0.
+
 ## 8.0.2 (2016-09-17)
 
 * Made public the `Moa.settings.cache.diskPath` setting to allow sharing image cache with the rest of the app.

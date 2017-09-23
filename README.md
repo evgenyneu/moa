@@ -37,7 +37,7 @@ Simply add [MoaDistrib.swift](https://github.com/evgenyneu/moa/blob/master/Distr
 
 #### Setup with Carthage (iOS 8+)
 
-Alternatively, add `github "evgenyneu/moa" ~> 8.0` to your Cartfile and run `carthage update`.
+Alternatively, add `github "evgenyneu/moa" ~> 9.0` to your Cartfile and run `carthage update`.
 
 #### Setup with CocoaPods (iOS 8+)
 
@@ -46,17 +46,8 @@ If you are using CocoaPods add this text to your Podfile and run `pod install`.
 ```
 use_frameworks!
 target 'Your target name'
-pod 'moa', '~> 8.0'
+pod 'moa', '~> 9.0'
 ```
-
-#### Swift 4.0 / Xcode 9.0 beta version
-
-*Branch:* swift-4.0
-
-* *File:* [MoaDistrib.swift](https://github.com/evgenyneu/moa/blob/swift-4.0/Distrib/MoaDistrib.swift)
-* *Carthage:* `github "evgenyneu/moa" "swift-4.0"`
-* *CocoaPods:* `pod 'moa', git: 'https://github.com/evgenyneu/moa.git', branch: 'swift-4.0'`
-
 
 
 ### Legacy Swift versions
