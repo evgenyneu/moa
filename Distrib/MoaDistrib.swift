@@ -350,7 +350,7 @@ public struct MoaHttpSession {
 import Foundation
 
 private var xoAssociationKey: UInt8 = 0
-
+private var xo1AssociationKey: UInt8 = 1
 /**
 
 Image view extension for downloading images.
@@ -374,6 +374,25 @@ public extension MoaImageView {
       imageView.moa.url = "http://site.com/image.jpg"
   
   */
+  
+  public var activityIndicator: UIActivityIndicatorView {
+    get {
+      if let value = objc_getAssociatedObject(self, &xo1AssociationKey) as? UIActivityIndicatorView {
+        return value
+      } else {
+        let activity = UIActivityIndicatorView.init(frame: CGRect.init(x: 0, y: 0, width: 30, height: 30));
+        activity.tintColor = UIColor.lightGray
+        activity.center = self.center;
+        objc_setAssociatedObject(self, &xo1AssociationKey, activity, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+        return activity
+      }
+    }
+    
+    set {
+      objc_setAssociatedObject(self, &xoAssociationKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+    }
+  }
+  
   public var moa: Moa {
     get {
       if let value = objc_getAssociatedObject(self, &xoAssociationKey) as? Moa {
@@ -596,6 +615,10 @@ public final class Moa {
 
   init(imageView: MoaImageView) {
     self.imageView = imageView
+    self.imageView?.image = nil;
+    self.imageView?.activityIndicator.frame = CGRect.init(x: 0, y: 0, width: (self.imageView?.frame.size.width)!, height: (self.imageView?.frame.size.height)!);
+    self.imageView?.addSubview((self.imageView?.activityIndicator)!);
+    self.imageView?.activityIndicator.startAnimating();
   }
 
   /**
@@ -771,7 +794,8 @@ public final class Moa {
     }
     
     imageView?.image = imageForView
-  }
+    imageView?.activityIndicator.stopAnimating();
+    imageView?.activityIndicator.removeFromSuperview();  }
   
   /**
   
@@ -792,6 +816,8 @@ public final class Moa {
     if let onError = onError {
       DispatchQueue.main.async {
         onError(error, response)
+        self.imageView?.activityIndicator.stopAnimating();
+        self.imageView?.activityIndicator.removeFromSuperview();
       }
     }
   }

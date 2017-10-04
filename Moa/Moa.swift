@@ -59,6 +59,10 @@ public final class Moa {
 
   init(imageView: MoaImageView) {
     self.imageView = imageView
+    self.imageView?.image = nil;
+    self.imageView?.activityIndicator.frame = CGRect.init(x: 0, y: 0, width: (self.imageView?.frame.size.width)!, height: (self.imageView?.frame.size.height)!);
+    self.imageView?.addSubview((self.imageView?.activityIndicator)!);
+    self.imageView?.activityIndicator.startAnimating();
   }
 
   /**
@@ -234,7 +238,8 @@ public final class Moa {
     }
     
     imageView?.image = imageForView
-  }
+    imageView?.activityIndicator.stopAnimating();
+    imageView?.activityIndicator.removeFromSuperview();  }
   
   /**
   
@@ -255,6 +260,8 @@ public final class Moa {
     if let onError = onError {
       DispatchQueue.main.async {
         onError(error, response)
+        self.imageView?.activityIndicator.stopAnimating();
+        self.imageView?.activityIndicator.removeFromSuperview();
       }
     }
   }
