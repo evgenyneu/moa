@@ -9,528 +9,6 @@
 
 // ----------------------------
 //
-// MoaError.swift
-//
-// ----------------------------
-
-import Foundation
-
-/**
- 
- Errors reported by the moa downloader
- 
-*/
-public enum MoaError: Error {
-  /// Incorrect URL is supplied. Error code: 0.
-  case invalidUrlString
-  
-  /// Response HTTP status code is not 200. Error code: 1.
-  case httpStatusCodeIsNot200
-  
-  /// Response is missing Content-Type http header. Error code: 2.
-  case missingResponseContentTypeHttpHeader
-  
-  /// Response Content-Type http header is not an image type. Error code: 3.
-  case notAnImageContentTypeInResponseHttpHeader
-  
-  /// Failed to convert response data to UIImage. Error code: 4.
-  case failedToReadImageData
-  
-  /// Simulated error used in unit tests. Error code: 5.
-  case simulatedError
-  
-  /// A human-friendly error description.
-  var localizedDescription: String {
-    let comment = "Moa image downloader error"
-  
-    switch self {
-    case .invalidUrlString:
-      return NSLocalizedString("Invalid URL.", comment: comment)
-    
-    case .httpStatusCodeIsNot200:
-      return NSLocalizedString("Response HTTP status code is not 200.", comment: comment)
-      
-    case .missingResponseContentTypeHttpHeader:
-      return NSLocalizedString("Response HTTP header is missing content type.", comment: comment)
-      
-    case .notAnImageContentTypeInResponseHttpHeader:
-      return NSLocalizedString("Response content type is not an image type. Content type needs to be  'image/jpeg', 'image/pjpeg', 'image/png' or 'image/gif'",
-        comment: comment)
-      
-    case .failedToReadImageData:
-      return NSLocalizedString("Could not convert response data to an image format.",
-        comment: comment)
-      
-    case .simulatedError:
-      return NSLocalizedString("Test error.", comment: comment)
-    }
-  }
-  
-  var code: Int {
-    return (self as Error)._code
-  }
-}
-
-
-// ----------------------------
-//
-// MoaHttp.swift
-//
-// ----------------------------
-
-import Foundation
-
-/**
-
-Shortcut function for creating URLSessionDataTask.
-
-*/
-struct MoaHttp {
-  static func createDataTask(_ url: String,
-    onSuccess: @escaping (Data?, HTTPURLResponse)->(),
-    onError: @escaping (Error?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
-      
-    if let urlObject = URL(string: url) {
-      return createDataTask(urlObject: urlObject, onSuccess: onSuccess, onError: onError)
-    }
-    
-    // Error converting string to NSURL
-    onError(MoaError.invalidUrlString, nil)
-    return nil
-  }
-  
-  private static func createDataTask(urlObject: URL,
-    onSuccess: @escaping (Data?, HTTPURLResponse)->(),
-    onError: @escaping (Error?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
-      
-    return MoaHttpSession.session?.dataTask(with: urlObject) { (data, response, error) in
-      if let httpResponse = response as? HTTPURLResponse {
-        if error == nil {
-          onSuccess(data, httpResponse)
-        } else {
-          onError(error, httpResponse)
-        }
-      } else {
-        onError(error, nil)
-      }
-    }
-  }
-}
-
-
-// ----------------------------
-//
-// MoaHttpImage.swift
-//
-// ----------------------------
-
-
-import Foundation
-
-/**
-
-Helper functions for downloading an image and processing the response.
-
-*/
-struct MoaHttpImage {
-  static func createDataTask(_ url: String,
-    onSuccess: @escaping (MoaImage)->(),
-    onError: @escaping (Error?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
-    
-    return MoaHttp.createDataTask(url,
-      onSuccess: { data, response in
-        self.handleSuccess(data, response: response, onSuccess: onSuccess, onError: onError)
-      },
-      onError: onError
-    )
-  }
-  
-  static func handleSuccess(_ data: Data?,
-    response: HTTPURLResponse,
-    onSuccess: (MoaImage)->(),
-    onError: (Error, HTTPURLResponse?)->()) {
-      
-    // Show error if response code is not 200
-    if response.statusCode != 200 {
-      onError(MoaError.httpStatusCodeIsNot200, response)
-      return
-    }
-    
-    // Ensure response has the valid MIME type
-    if let mimeType = response.mimeType {
-      if !validMimeType(mimeType) {
-        // Not an image Content-Type http header
-        let error = MoaError.notAnImageContentTypeInResponseHttpHeader
-        onError(error, response)
-        return
-      }
-    } else {
-      // Missing Content-Type http header
-      let error = MoaError.missingResponseContentTypeHttpHeader
-      onError(error, response)
-      return
-    }
-      
-    if let data = data, let image = MoaImage(data: data) {
-      onSuccess(image)
-    } else {
-      // Failed to convert response data to UIImage
-      let error = MoaError.failedToReadImageData
-      onError(error, response)
-    }
-  }
-  
-  private static func validMimeType(_ mimeType: String) -> Bool {
-    let validMimeTypes = ["image/jpeg", "image/jpg", "image/pjpeg", "image/png", "image/gif"]
-    return validMimeTypes.contains(mimeType)
-  }
-}
-
-
-// ----------------------------
-//
-// MoaHttpImageDownloader.swift
-//
-// ----------------------------
-
-import Foundation
-
-final class MoaHttpImageDownloader: MoaImageDownloader {
-  var task: URLSessionDataTask?
-  var cancelled = false
-  
-  // When false - the cancel request will not be logged. It is used in order to avoid
-  // loggin cancel requests after success or error has been received.
-  var canLogCancel = true
-  
-  var logger: MoaLoggerCallback?
-  
-  
-  init(logger: MoaLoggerCallback?) {
-    self.logger = logger
-  }
-  
-  deinit {
-    cancel()
-  }
-  
-  func startDownload(_ url: String, onSuccess: @escaping (MoaImage)->(),
-    onError: @escaping (Error?, HTTPURLResponse?)->()) {
-      
-    logger?(.requestSent, url, nil, nil)
-    
-    cancelled = false
-    canLogCancel = true
-  
-    task = MoaHttpImage.createDataTask(url,
-      onSuccess: { [weak self] image in
-        self?.canLogCancel = false
-        self?.logger?(.responseSuccess, url, 200, nil)
-        onSuccess(image)
-      },
-      onError: { [weak self] error, response in
-        self?.canLogCancel = false
-        
-        if let currentSelf = self , !currentSelf.cancelled {
-          // Do not report error if task was manually cancelled
-          self?.logger?(.responseError, url, response?.statusCode, error)
-          onError(error, response)
-        }
-      }
-    )
-      
-    task?.resume()
-  }
-  
-  func cancel() {
-    if cancelled { return }
-    cancelled = true
-    
-    task?.cancel()
-    
-    if canLogCancel {
-      let url = task?.originalRequest?.url?.absoluteString ?? ""
-      logger?(.requestCancelled, url, nil, nil)
-    }
-  }
-}
-
-
-// ----------------------------
-//
-// MoaHttpSession.swift
-//
-// ----------------------------
-
-import Foundation
-
-/// Contains functions for managing URLSession.
-public struct MoaHttpSession {
-  private static var currentSession: URLSession?
-  
-  static var session: URLSession? {
-    get {
-      if currentSession == nil {
-        currentSession = createNewSession()
-      }
-    
-      return currentSession
-    }
-    
-    set {
-      currentSession = newValue
-    }
-  }
-  
-  private static func createNewSession() -> URLSession {
-    let configuration = URLSessionConfiguration.default
-    
-    configuration.timeoutIntervalForRequest = Moa.settings.requestTimeoutSeconds
-    configuration.timeoutIntervalForResource = Moa.settings.requestTimeoutSeconds
-    configuration.httpMaximumConnectionsPerHost = Moa.settings.maximumSimultaneousDownloads
-    configuration.requestCachePolicy = Moa.settings.cache.requestCachePolicy
-    
-    #if os(iOS) || os(tvOS)
-      // Cache path is a directory name in iOS
-      let cachePath = Moa.settings.cache.diskPath
-    #elseif os(OSX)
-      // Cache path is a disk path in OSX
-      let cachePath = osxCachePath(Moa.settings.cache.diskPath)
-    #endif
-    
-    let cache = URLCache(
-      memoryCapacity: Moa.settings.cache.memoryCapacityBytes,
-      diskCapacity: Moa.settings.cache.diskCapacityBytes,
-      diskPath: cachePath)
-    
-    configuration.urlCache = cache
-    
-    return URLSession(configuration: configuration)
-  }
-  
-  // Returns the cache path for OSX.
-  private static func osxCachePath(_ dirName: String) -> String {
-    var basePath = NSTemporaryDirectory()
-    let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.applicationSupportDirectory,
-      FileManager.SearchPathDomainMask.userDomainMask, true)
-    
-    if paths.count > 0 {
-      basePath = paths[0]
-    }
-    
-    return (basePath as NSString).appendingPathComponent(dirName)
-  }
-  
-  static func cacheSettingsChanged(_ oldSettings: MoaSettingsCache) {
-    if oldSettings != Moa.settings.cache {
-      session = nil
-    }
-  }
-  
-  static func settingsChanged(_ oldSettings: MoaSettings) {
-    if oldSettings != Moa.settings  {
-      session = nil
-    }
-  }
-  
-  /// Calls `finishTasksAndInvalidate` on the current session. A new session will be created for future downloads.
-  public static func clearSession() {
-    currentSession?.finishTasksAndInvalidate()
-    currentSession = nil
-  }
-}
-
-
-// ----------------------------
-//
-// ImageView+moa.swift
-//
-// ----------------------------
-
-import Foundation
-
-private var xoAssociationKey: UInt8 = 0
-
-/**
-
-Image view extension for downloading images.
-
-    let imageView = UIImageView()
-    imageView.moa.url = "http://site.com/image.jpg"
-
-*/
-public extension MoaImageView {
-  /**
-  
-  Image download extension.
-  Assign its `url` property to download and show the image in the image view.
-  
-      // iOS
-      let imageView = UIImageView()
-      imageView.moa.url = "http://site.com/image.jpg"
-  
-      // OS X
-      let imageView = NSImageView()
-      imageView.moa.url = "http://site.com/image.jpg"
-  
-  */
-  public var moa: Moa {
-    get {
-      if let value = objc_getAssociatedObject(self, &xoAssociationKey) as? Moa {
-        return value
-      } else {
-        let moa = Moa(imageView: self)
-        objc_setAssociatedObject(self, &xoAssociationKey, moa, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
-        return moa
-      }
-    }
-    
-    set {
-      objc_setAssociatedObject(self, &xoAssociationKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
-    }
-  }
-}
-
-
-// ----------------------------
-//
-// MoaConsoleLogger.swift
-//
-// ----------------------------
-
-import Foundation
-
-/**
-
-Logs image download requests, responses and errors to Xcode console for debugging.
-
-Usage:
-
-    Moa.logger = MoaConsoleLogger
-
-*/
-public func MoaConsoleLogger(_ type: MoaLogType, url: String, statusCode: Int?, error: Error?) {
-  let text = MoaLoggerText(type, url: url, statusCode: statusCode, error: error)
-  print(text)
-}
-
-
-// ----------------------------
-//
-// MoaLoggerCallback.swift
-//
-// ----------------------------
-
-import Foundation
-
-/**
-
-A logger closure.
-
-Parameters:
-
-1. Type of the log.
-2. URL of the request.
-3. Http status code, if applicable.
-4. Error object, if applicable. Read its localizedDescription property to get a human readable error description.
-
-*/
-public typealias MoaLoggerCallback = (MoaLogType, String, Int?, Error?)->()
-
-
-// ----------------------------
-//
-// MoaLoggerText.swift
-//
-// ----------------------------
-
-import Foundation
-
-/**
-
-A helper function that creates a human readable text from log arguments.
-
-Usage:
-
-    Moa.logger = { type, url, statusCode, error in
-
-      let text = MoaLoggerText(type: type, url: url, statusCode: statusCode, error: error)
-      // Log log text to your destination
-    }
-
-For logging into Xcode console you can use MoaConsoleLogger function.
-
-    Moa.logger = MoaConsoleLogger
-
-*/
-public func MoaLoggerText(_ type: MoaLogType, url: String, statusCode: Int?,
-  error: Error?) -> String {
-  
-  let time = MoaTime.nowLogTime
-  var text = "[moa] \(time) "
-  var suffix = ""
-  
-  switch type {
-  case .requestSent:
-    text += "GET "
-  case .requestCancelled:
-    text += "Cancelled "
-  case .responseSuccess:
-    text += "Received "
-  case .responseError:
-    text += "Error "
-    
-    if let statusCode = statusCode {
-      text += "\(statusCode) "
-    }
-    
-    if let error = error {
-      if let moaError = error as? MoaError {
-        suffix = moaError.localizedDescription
-      } else {
-        suffix = error.localizedDescription
-      }
-    }
-  }
-  
-  text += url
-  
-  if suffix != "" {
-    text += " \(suffix)"
-  }
-  
-  return text
-}
-
-
-// ----------------------------
-//
-// MoaLogType.swift
-//
-// ----------------------------
-
-/**
-
-Types of log messages.
-
-*/
-public enum MoaLogType: Int{
-  /// Request is sent
-  case requestSent
-  
-  /// Request is cancelled
-  case requestCancelled
-  
-  /// Successful response is received
-  case responseSuccess
-  
-  /// Response error is received
-  case responseError
-}
-
-
-// ----------------------------
-//
 // Moa.swift
 //
 // ----------------------------
@@ -806,18 +284,138 @@ public final class Moa {
 
 // ----------------------------
 //
-// MoaImageDownloader.swift
+// MoaLogType.swift
+//
+// ----------------------------
+
+/**
+
+Types of log messages.
+
+*/
+public enum MoaLogType: Int{
+  /// Request is sent
+  case requestSent
+  
+  /// Request is cancelled
+  case requestCancelled
+  
+  /// Successful response is received
+  case responseSuccess
+  
+  /// Response error is received
+  case responseError
+}
+
+
+// ----------------------------
+//
+// MoaLoggerCallback.swift
 //
 // ----------------------------
 
 import Foundation
 
-/// Downloads an image.
-protocol MoaImageDownloader {
-  func startDownload(_ url: String, onSuccess: @escaping (MoaImage)->(),
-    onError: @escaping (Error?, HTTPURLResponse?)->())
+/**
+
+A logger closure.
+
+Parameters:
+
+1. Type of the log.
+2. URL of the request.
+3. Http status code, if applicable.
+4. Error object, if applicable. Read its localizedDescription property to get a human readable error description.
+
+*/
+public typealias MoaLoggerCallback = (MoaLogType, String, Int?, Error?)->()
+
+
+// ----------------------------
+//
+// MoaLoggerText.swift
+//
+// ----------------------------
+
+import Foundation
+
+/**
+
+A helper function that creates a human readable text from log arguments.
+
+Usage:
+
+    Moa.logger = { type, url, statusCode, error in
+
+      let text = MoaLoggerText(type: type, url: url, statusCode: statusCode, error: error)
+      // Log log text to your destination
+    }
+
+For logging into Xcode console you can use MoaConsoleLogger function.
+
+    Moa.logger = MoaConsoleLogger
+
+*/
+public func MoaLoggerText(_ type: MoaLogType, url: String, statusCode: Int?,
+  error: Error?) -> String {
   
-  func cancel()
+  let time = MoaTime.nowLogTime
+  var text = "[moa] \(time) "
+  var suffix = ""
+  
+  switch type {
+  case .requestSent:
+    text += "GET "
+  case .requestCancelled:
+    text += "Cancelled "
+  case .responseSuccess:
+    text += "Received "
+  case .responseError:
+    text += "Error "
+    
+    if let statusCode = statusCode {
+      text += "\(statusCode) "
+    }
+    
+    if let error = error {
+      if let moaError = error as? MoaError {
+        suffix = moaError.localizedDescription
+      } else {
+        suffix = error.localizedDescription
+      }
+    }
+  }
+  
+  text += url
+  
+  if suffix != "" {
+    text += " \(suffix)"
+  }
+  
+  return text
+}
+
+
+// ----------------------------
+//
+// MoaConsoleLogger.swift
+//
+// ----------------------------
+
+import Foundation
+
+/**
+
+Logs image download requests, responses and errors to Xcode console for debugging.
+
+Usage:
+
+    Moa.logger = MoaConsoleLogger
+
+*/
+public func MoaConsoleLogger(_ type: MoaLogType, url: String, statusCode: Int?, error: Error?) {
+  let text = MoaLoggerText(type, url: url, statusCode: statusCode, error: error)
+  print(text)
 }
 
 
@@ -861,54 +459,124 @@ func !=(lhs: MoaSettings, rhs: MoaSettings) -> Bool {
 
 // ----------------------------
 //
-// MoaSettingsCache.swift
+// MoaImageDownloader.swift
 //
 // ----------------------------
 
 import Foundation
 
+/// Downloads an image.
+protocol MoaImageDownloader {
+  func startDownload(_ url: String, onSuccess: @escaping (MoaImage)->(),
+    onError: @escaping (Error?, HTTPURLResponse?)->())
+  
+  func cancel()
+}
+
+
+// ----------------------------
+//
+// MoaTime.swift
+//
+// ----------------------------
+
+import Foundation
+
+struct MoaTime {
+  /// Converts date to format used in logs in UTC time zone.
+  static func logTime(_ date: Date) -> String {
+    let dateFormatter = DateFormatter()
+    let timeZone = TimeZone(identifier: "UTC")
+    dateFormatter.timeZone = timeZone
+    let enUSPosixLocale = Locale(identifier: "en_US_POSIX")
+    dateFormatter.locale = enUSPosixLocale
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+    
+    return dateFormatter.string(from: date)
+  }
+  
+  /// Returns current time in format used in logs in UTC time zone.
+  static var nowLogTime: String {
+    return logTime(Date())
+  }
+}
+
+
+// ----------------------------
+//
+// MoaString.swift
+//
+// ----------------------------
+
+import Foundation
+
+//
+// Helpers for working with strings
+//
+
+struct MoaString {
+  static func contains(_ text: String, substring: String,
+    ignoreCase: Bool = false,
+    ignoreDiacritic: Bool = false) -> Bool {
+            
+    var options = NSString.CompareOptions()
+    
+    if ignoreCase { _ = options.insert(NSString.CompareOptions.caseInsensitive) }
+    if ignoreDiacritic { _ = options.insert(NSString.CompareOptions.diacriticInsensitive) }
+    
+    return text.range(of: substring, options: options) != nil
+  }
+}
+
+
+// ----------------------------
+//
+// ImageView+moa.swift
+//
+// ----------------------------
+
+import Foundation
+
+private var xoAssociationKey: UInt8 = 0
+
 /**
 
-Specify settings for caching of downloaded images.
+Image view extension for downloading images.
+
+    let imageView = UIImageView()
+    imageView.moa.url = "http://site.com/image.jpg"
 
 */
-public struct MoaSettingsCache {
-  /// The memory capacity of the cache, in bytes. Default value is 20 MB.
-  public var memoryCapacityBytes: Int = 20 * 1024 * 1024
-  
-  /// The disk capacity of the cache, in bytes. Default value is 100 MB.
-  public var diskCapacityBytes: Int = 100 * 1024 * 1024
-  
-  /**
-
-  The caching policy for the image downloads. The default value is .useProtocolCachePolicy.
-  
-  * .useProtocolCachePolicy - Images are cached according to the the response HTTP headers, such as age and expiration date. This is the default cache policy.
-  * .reloadIgnoringLocalCacheData - Do not cache images locally. Always downloads the image from the source.
-  * .returnCacheDataElseLoad - Loads the image from local cache regardless of age and expiration date. If there is no existing image in the cache, the image is loaded from the source.
-  * .returnCacheDataDontLoad - Load the image from local cache only and do not attempt to load from the source.
-
-  */
-  public var requestCachePolicy: NSURLRequest.CachePolicy = .useProtocolCachePolicy
-  
+public extension MoaImageView {
   /**
   
-  The name of a subdirectory of the application’s default cache directory
-  in which to store the on-disk cache.
+  Image download extension.
+  Assign its `url` property to download and show the image in the image view.
+  
+      // iOS
+      let imageView = UIImageView()
+      imageView.moa.url = "http://site.com/image.jpg"
+  
+      // OS X
+      let imageView = NSImageView()
+      imageView.moa.url = "http://site.com/image.jpg"
   
   */
-  public var diskPath = "moaImageDownloader"
-}
-
-func ==(lhs: MoaSettingsCache, rhs: MoaSettingsCache) -> Bool {
-  return lhs.memoryCapacityBytes == rhs.memoryCapacityBytes
-    && lhs.diskCapacityBytes == rhs.diskCapacityBytes
-    && lhs.requestCachePolicy == rhs.requestCachePolicy
-    && lhs.diskPath == rhs.diskPath
-}
-
-func !=(lhs: MoaSettingsCache, rhs: MoaSettingsCache) -> Bool {
-  return !(lhs == rhs)
+  public var moa: Moa {
+    get {
+      if let value = objc_getAssociatedObject(self, &xoAssociationKey) as? Moa {
+        return value
+      } else {
+        let moa = Moa(imageView: self)
+        objc_setAssociatedObject(self, &xoAssociationKey, moa, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+        return moa
+      }
+    }
+    
+    set {
+      objc_setAssociatedObject(self, &xoAssociationKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+    }
+  }
 }
 
 
@@ -1175,56 +843,388 @@ public final class MoaSimulator {
 
 // ----------------------------
 //
-// MoaString.swift
+// MoaError.swift
 //
 // ----------------------------
 
 import Foundation
 
-//
-// Helpers for working with strings
-//
-
-struct MoaString {
-  static func contains(_ text: String, substring: String,
-    ignoreCase: Bool = false,
-    ignoreDiacritic: Bool = false) -> Bool {
-            
-    var options = NSString.CompareOptions()
+/**
+ 
+ Errors reported by the moa downloader
+ 
+*/
+public enum MoaError: Error {
+  /// Incorrect URL is supplied. Error code: 0.
+  case invalidUrlString
+  
+  /// Response HTTP status code is not 200. Error code: 1.
+  case httpStatusCodeIsNot200
+  
+  /// Response is missing Content-Type http header. Error code: 2.
+  case missingResponseContentTypeHttpHeader
+  
+  /// Response Content-Type http header is not an image type. Error code: 3.
+  case notAnImageContentTypeInResponseHttpHeader
+  
+  /// Failed to convert response data to UIImage. Error code: 4.
+  case failedToReadImageData
+  
+  /// Simulated error used in unit tests. Error code: 5.
+  case simulatedError
+  
+  /// A human-friendly error description.
+  var localizedDescription: String {
+    let comment = "Moa image downloader error"
+  
+    switch self {
+    case .invalidUrlString:
+      return NSLocalizedString("Invalid URL.", comment: comment)
     
-    if ignoreCase { _ = options.insert(NSString.CompareOptions.caseInsensitive) }
-    if ignoreDiacritic { _ = options.insert(NSString.CompareOptions.diacriticInsensitive) }
-    
-    return text.range(of: substring, options: options) != nil
+    case .httpStatusCodeIsNot200:
+      return NSLocalizedString("Response HTTP status code is not 200.", comment: comment)
+      
+    case .missingResponseContentTypeHttpHeader:
+      return NSLocalizedString("Response HTTP header is missing content type.", comment: comment)
+      
+    case .notAnImageContentTypeInResponseHttpHeader:
+      return NSLocalizedString("Response content type is not an image type. Content type needs to be  'image/jpeg', 'image/pjpeg', 'image/png' or 'image/gif'",
+        comment: comment)
+      
+    case .failedToReadImageData:
+      return NSLocalizedString("Could not convert response data to an image format.",
+        comment: comment)
+      
+    case .simulatedError:
+      return NSLocalizedString("Test error.", comment: comment)
+    }
+  }
+  
+  var code: Int {
+    return (self as Error)._code
   }
 }
 
 
 // ----------------------------
 //
-// MoaTime.swift
+// MoaHttpImage.swift
+//
+// ----------------------------
+
+
+import Foundation
+
+/**
+
+Helper functions for downloading an image and processing the response.
+
+*/
+struct MoaHttpImage {
+  static func createDataTask(_ url: String,
+    onSuccess: @escaping (MoaImage)->(),
+    onError: @escaping (Error?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
+    
+    return MoaHttp.createDataTask(url,
+      onSuccess: { data, response in
+        self.handleSuccess(data, response: response, onSuccess: onSuccess, onError: onError)
+      },
+      onError: onError
+    )
+  }
+  
+  static func handleSuccess(_ data: Data?,
+    response: HTTPURLResponse,
+    onSuccess: (MoaImage)->(),
+    onError: (Error, HTTPURLResponse?)->()) {
+      
+    // Show error if response code is not 200
+    if response.statusCode != 200 {
+      onError(MoaError.httpStatusCodeIsNot200, response)
+      return
+    }
+    
+    // Ensure response has the valid MIME type
+    if let mimeType = response.mimeType {
+      if !validMimeType(mimeType) {
+        // Not an image Content-Type http header
+        let error = MoaError.notAnImageContentTypeInResponseHttpHeader
+        onError(error, response)
+        return
+      }
+    } else {
+      // Missing Content-Type http header
+      let error = MoaError.missingResponseContentTypeHttpHeader
+      onError(error, response)
+      return
+    }
+      
+    if let data = data, let image = MoaImage(data: data) {
+      onSuccess(image)
+    } else {
+      // Failed to convert response data to UIImage
+      let error = MoaError.failedToReadImageData
+      onError(error, response)
+    }
+  }
+  
+  private static func validMimeType(_ mimeType: String) -> Bool {
+    let validMimeTypes = ["image/jpeg", "image/jpg", "image/pjpeg", "image/png", "image/gif"]
+    return validMimeTypes.contains(mimeType)
+  }
+}
+
+
+// ----------------------------
+//
+// MoaHttpSession.swift
 //
 // ----------------------------
 
 import Foundation
 
-struct MoaTime {
-  /// Converts date to format used in logs in UTC time zone.
-  static func logTime(_ date: Date) -> String {
-    let dateFormatter = DateFormatter()
-    let timeZone = TimeZone(identifier: "UTC")
-    dateFormatter.timeZone = timeZone
-    let enUSPosixLocale = Locale(identifier: "en_US_POSIX")
-    dateFormatter.locale = enUSPosixLocale
-    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+/// Contains functions for managing URLSession.
+public struct MoaHttpSession {
+  private static var currentSession: URLSession?
+  
+  static var session: URLSession? {
+    get {
+      if currentSession == nil {
+        currentSession = createNewSession()
+      }
     
-    return dateFormatter.string(from: date)
+      return currentSession
+    }
+    
+    set {
+      currentSession = newValue
+    }
   }
   
-  /// Returns current time in format used in logs in UTC time zone.
-  static var nowLogTime: String {
-    return logTime(Date())
+  private static func createNewSession() -> URLSession {
+    let configuration = URLSessionConfiguration.default
+    
+    configuration.timeoutIntervalForRequest = Moa.settings.requestTimeoutSeconds
+    configuration.timeoutIntervalForResource = Moa.settings.requestTimeoutSeconds
+    configuration.httpMaximumConnectionsPerHost = Moa.settings.maximumSimultaneousDownloads
+    configuration.requestCachePolicy = Moa.settings.cache.requestCachePolicy
+    
+    #if os(iOS) || os(tvOS)
+      // Cache path is a directory name in iOS
+      let cachePath = Moa.settings.cache.diskPath
+    #elseif os(OSX)
+      // Cache path is a disk path in OSX
+      let cachePath = osxCachePath(Moa.settings.cache.diskPath)
+    #endif
+    
+    let cache = URLCache(
+      memoryCapacity: Moa.settings.cache.memoryCapacityBytes,
+      diskCapacity: Moa.settings.cache.diskCapacityBytes,
+      diskPath: cachePath)
+    
+    configuration.urlCache = cache
+    
+    return URLSession(configuration: configuration)
   }
+  
+  // Returns the cache path for OSX.
+  private static func osxCachePath(_ dirName: String) -> String {
+    var basePath = NSTemporaryDirectory()
+    let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.applicationSupportDirectory,
+      FileManager.SearchPathDomainMask.userDomainMask, true)
+    
+    if paths.count > 0 {
+      basePath = paths[0]
+    }
+    
+    return (basePath as NSString).appendingPathComponent(dirName)
+  }
+  
+  static func cacheSettingsChanged(_ oldSettings: MoaSettingsCache) {
+    if oldSettings != Moa.settings.cache {
+      session = nil
+    }
+  }
+  
+  static func settingsChanged(_ oldSettings: MoaSettings) {
+    if oldSettings != Moa.settings  {
+      session = nil
+    }
+  }
+  
+  /// Calls `finishTasksAndInvalidate` on the current session. A new session will be created for future downloads.
+  public static func clearSession() {
+    currentSession?.finishTasksAndInvalidate()
+    currentSession = nil
+  }
+}
+
+
+// ----------------------------
+//
+// MoaHttp.swift
+//
+// ----------------------------
+
+import Foundation
+
+/**
+
+Shortcut function for creating URLSessionDataTask.
+
+*/
+struct MoaHttp {
+  static func createDataTask(_ url: String,
+    onSuccess: @escaping (Data?, HTTPURLResponse)->(),
+    onError: @escaping (Error?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
+      
+    if let urlObject = URL(string: url) {
+      return createDataTask(urlObject: urlObject, onSuccess: onSuccess, onError: onError)
+    }
+    
+    // Error converting string to NSURL
+    onError(MoaError.invalidUrlString, nil)
+    return nil
+  }
+  
+  private static func createDataTask(urlObject: URL,
+    onSuccess: @escaping (Data?, HTTPURLResponse)->(),
+    onError: @escaping (Error?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
+      
+    return MoaHttpSession.session?.dataTask(with: urlObject) { (data, response, error) in
+      if let httpResponse = response as? HTTPURLResponse {
+        if error == nil {
+          onSuccess(data, httpResponse)
+        } else {
+          onError(error, httpResponse)
+        }
+      } else {
+        onError(error, nil)
+      }
+    }
+  }
+}
+
+
+// ----------------------------
+//
+// MoaHttpImageDownloader.swift
+//
+// ----------------------------
+
+import Foundation
+
+final class MoaHttpImageDownloader: MoaImageDownloader {
+  var task: URLSessionDataTask?
+  var cancelled = false
+  
+  // When false - the cancel request will not be logged. It is used in order to avoid
+  // loggin cancel requests after success or error has been received.
+  var canLogCancel = true
+  
+  var logger: MoaLoggerCallback?
+  
+  
+  init(logger: MoaLoggerCallback?) {
+    self.logger = logger
+  }
+  
+  deinit {
+    cancel()
+  }
+  
+  func startDownload(_ url: String, onSuccess: @escaping (MoaImage)->(),
+    onError: @escaping (Error?, HTTPURLResponse?)->()) {
+      
+    logger?(.requestSent, url, nil, nil)
+    
+    cancelled = false
+    canLogCancel = true
+  
+    task = MoaHttpImage.createDataTask(url,
+      onSuccess: { [weak self] image in
+        self?.canLogCancel = false
+        self?.logger?(.responseSuccess, url, 200, nil)
+        onSuccess(image)
+      },
+      onError: { [weak self] error, response in
+        self?.canLogCancel = false
+        
+        if let currentSelf = self , !currentSelf.cancelled {
+          // Do not report error if task was manually cancelled
+          self?.logger?(.responseError, url, response?.statusCode, error)
+          onError(error, response)
+        }
+      }
+    )
+      
+    task?.resume()
+  }
+  
+  func cancel() {
+    if cancelled { return }
+    cancelled = true
+    
+    task?.cancel()
+    
+    if canLogCancel {
+      let url = task?.originalRequest?.url?.absoluteString ?? ""
+      logger?(.requestCancelled, url, nil, nil)
+    }
+  }
+}
+
+
+// ----------------------------
+//
+// MoaSettingsCache.swift
+//
+// ----------------------------
+
+import Foundation
+
+/**
+
+Specify settings for caching of downloaded images.
+
+*/
+public struct MoaSettingsCache {
+  /// The memory capacity of the cache, in bytes. Default value is 20 MB.
+  public var memoryCapacityBytes: Int = 20 * 1024 * 1024
+  
+  /// The disk capacity of the cache, in bytes. Default value is 100 MB.
+  public var diskCapacityBytes: Int = 100 * 1024 * 1024
+  
+  /**
+
+  The caching policy for the image downloads. The default value is .useProtocolCachePolicy.
+  
+  * .useProtocolCachePolicy - Images are cached according to the the response HTTP headers, such as age and expiration date. This is the default cache policy.
+  * .reloadIgnoringLocalCacheData - Do not cache images locally. Always downloads the image from the source.
+  * .returnCacheDataElseLoad - Loads the image from local cache regardless of age and expiration date. If there is no existing image in the cache, the image is loaded from the source.
+  * .returnCacheDataDontLoad - Load the image from local cache only and do not attempt to load from the source.
+
+  */
+  public var requestCachePolicy: NSURLRequest.CachePolicy = .useProtocolCachePolicy
+  
+  /**
+  
+  The name of a subdirectory of the application’s default cache directory
+  in which to store the on-disk cache.
+  
+  */
+  public var diskPath = "moaImageDownloader"
+}
+
+func ==(lhs: MoaSettingsCache, rhs: MoaSettingsCache) -> Bool {
+  return lhs.memoryCapacityBytes == rhs.memoryCapacityBytes
+    && lhs.diskCapacityBytes == rhs.diskCapacityBytes
+    && lhs.requestCachePolicy == rhs.requestCachePolicy
+    && lhs.diskPath == rhs.diskPath
+}
+
+func !=(lhs: MoaSettingsCache, rhs: MoaSettingsCache) -> Bool {
+  return !(lhs == rhs)
 }
 
 
