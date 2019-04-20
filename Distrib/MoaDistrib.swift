@@ -562,7 +562,7 @@ public extension MoaImageView {
       imageView.moa.url = "http://site.com/image.jpg"
   
   */
-  public var moa: Moa {
+  var moa: Moa {
     get {
       if let value = objc_getAssociatedObject(self, &xoAssociationKey) as? Moa {
         return value

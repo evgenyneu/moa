@@ -1,5 +1,10 @@
 # Moa version history
 
+## 11.0.0 (2019-04-20)
+
+* Update to Swift 5.0.
+
+
 ## 10.0.0 (2018-09-19)
 
 * Update to Swift 4.2.
