@@ -49,6 +49,10 @@ target 'Your target name'
 pod 'moa', '~> 11.0'
 ```
 
+#### Setup with Swift Package Manager
+
+* In Xcode 11+ select &File > Packages > Add Package Dependency...*.
+* Enter this project's URL: https://github.com/evgenyneu/moa.git
 
 ### Legacy Swift versions
 
@@ -259,4 +263,3 @@ If you notice any issue, got stuck or just want to chat feel free to create an i
 ## •ᴥ•
 
 This project is dedicated to [the moa](https://en.wikipedia.org/wiki/Moa), species of flightless birds that lived in New Zealand and became extinct in 15th century.
-
