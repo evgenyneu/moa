@@ -52,7 +52,7 @@ pod 'moa', '~> 11.0'
 
 #### Setup with Swift Package Manager
 
-* In Xcode 11+ select &File > Packages > Add Package Dependency...*.
+* In Xcode 11+ select *File > Packages > Add Package Dependency...*.
 * Enter this project's URL: https://github.com/evgenyneu/moa.git
 
 
