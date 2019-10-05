@@ -2,6 +2,7 @@
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![CocoaPods Version](https://img.shields.io/cocoapods/v/moa.svg?style=flat)](http://cocoadocs.org/docsets/moa)
+[![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
 [![License](https://img.shields.io/cocoapods/l/moa.svg?style=flat)](http://cocoadocs.org/docsets/moa)
 [![Platform](https://img.shields.io/cocoapods/p/moa.svg?style=flat)](http://cocoadocs.org/docsets/moa)
 
@@ -53,6 +54,7 @@ pod 'moa', '~> 11.0'
 
 * In Xcode 11+ select &File > Packages > Add Package Dependency...*.
 * Enter this project's URL: https://github.com/evgenyneu/moa.git
+
 
 ### Legacy Swift versions
 
