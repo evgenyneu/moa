@@ -63,7 +63,7 @@ Setup a [previous version](https://github.com/evgenyneu/moa/wiki/Legacy-Swift-ve
 
 ## Usage
 
-1. Add `import moa` to your source code if you used Carthage or CocoaPods setup methods.
+1. Add `import moa` to your source code (unless you used the file setup method).
 
 1. Drag an Image View to your view in the storyboard. Create an outlet property for this image view in your view controller. Alternatively, instead of using the storyboard you can create a `UIImageView` object in code.
 
