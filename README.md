@@ -30,7 +30,7 @@ imageView.moa.url = "https://bit.ly/moa_image"
 
 ## Setup
 
-There are three ways you can add Moa to your Xcode project.
+There are multiple ways you can add Moa to your Xcode project.
 
 #### Add source (iOS 7+)
 
