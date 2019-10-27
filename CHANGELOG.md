@@ -1,5 +1,11 @@
 # Moa version history
 
+
+## 12.0.0 (2019-10-27)
+
+* Added "application/octet-stream" to the list of allowed MIME types for server responses to make images load in iOS 13 (see [iOS 13 Release Notes](https://developer.apple.com/documentation/ios_ipados_release_notes/ios_13_release_notes)).
+
+
 ## 11.0.0 (2019-04-20)
 
 * Update to Swift 5.0.

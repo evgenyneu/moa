@@ -55,7 +55,7 @@ struct MoaHttpImage {
   }
   
   private static func validMimeType(_ mimeType: String) -> Bool {
-    let validMimeTypes = ["image/jpeg", "image/jpg", "image/pjpeg", "image/png", "image/gif"]
+    let validMimeTypes = ["image/jpeg", "image/jpg", "image/pjpeg", "image/png", "image/gif", "application/octet-stream"]
     return validMimeTypes.contains(mimeType)
   }
 }
