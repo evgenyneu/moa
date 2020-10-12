@@ -50,6 +50,11 @@ The class can be instantiated and used without an image view:
 public final class Moa {
   private var imageDownloader: MoaImageDownloader?
   private weak var imageView: MoaImageView?
+  /// Image download did start at this time.
+  private var imageDownloadStart: Date?
+
+  /// If the request finishes before this time, changes are not animated (e.g. by fading).
+  private static let animateChangeLimit: TimeInterval = 0.1
 
   /// Image download settings.
   public static var settings = MoaSettings() {
@@ -117,6 +122,7 @@ public final class Moa {
   public func cancel() {
     imageDownloader?.cancel()
     imageDownloader = nil
+    imageDownloadStart = nil
   }
   
   /**
@@ -192,19 +198,30 @@ public final class Moa {
   */
   public static var errorImage: MoaImage?
 
+  #if os(iOS) || os(tvOS)
+  /// Set a value greater than zero to make Moa fade in the image over the given time after downloading it from the network.
+  public var imageFadeDuration: TimeInterval?
+
+  /// Set a value greater than zero to make Moa fade in images over the given time after downloading them from the network.
+  public static var imageFadeDuration: TimeInterval? = 0.2
+  #endif
+
   private func startDownload(_ url: String) {
     cancel()
     
     let simulatedDownloader = MoaSimulator.createDownloader(url)
     imageDownloader = simulatedDownloader ?? MoaHttpImageDownloader(logger: Moa.logger)
     let simulated = simulatedDownloader != nil
-    
+
+    imageDownloadStart = Date()
+
     imageDownloader?.startDownload(url,
       onSuccess: { [weak self] image in
         self?.handleSuccessAsync(image, isSimulated: simulated)
       },
       onError: { [weak self] error, response in
         self?.handleErrorAsync(error, response: response, isSimulated: simulated)
+        self?.imageDownloadStart = nil
       }
     )
   }
@@ -247,9 +264,47 @@ public final class Moa {
     if let onSuccess = onSuccess, let image = image {
       imageForView = onSuccess(image)
     }
-    
+
+    #if os(iOS) || os(tvOS)
+    if
+      let imageView = self.imageView,
+      imageView.image != imageForView,
+      let imageFadeDuration = self.shouldFadeWithDuration()
+    {
+      UIView.transition(
+        with: imageView,
+        duration: imageFadeDuration,
+        options: .transitionCrossDissolve,
+        animations: { imageView.image = imageForView }
+      )
+    } else {
+      imageView?.image = imageForView
+    }
+    #else
     imageView?.image = imageForView
+    #endif
+
+    self.imageDownloadStart = nil
   }
+
+  #if os(iOS) || os(tvOS)
+  /// A fade duration that is greater than zero. Only provided when the download time surpasses animateChangeLimit.
+  private func shouldFadeWithDuration() -> TimeInterval? {
+
+    let downloadTime: TimeInterval = imageDownloadStart.map { Date().timeIntervalSince($0) } ?? .zero
+    guard downloadTime > Moa.animateChangeLimit else {
+      return nil
+    }
+
+    if let duration = self.imageFadeDuration, duration > 0 {
+      return duration
+    }
+    if let duration = Moa.imageFadeDuration, duration > 0 {
+      return duration
+    }
+    return nil
+  }
+  #endif
   
   /**
   
