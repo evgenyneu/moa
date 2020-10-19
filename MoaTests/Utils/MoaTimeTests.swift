@@ -4,7 +4,8 @@ import XCTest
 
 class MoaTimeTests: XCTestCase {
   func testLogTimeDate() {
-    let calendar = Calendar.current
+    var calendar = Calendar.current
+    calendar.timeZone = TimeZone(secondsFromGMT: 0)!
     let components = NSDateComponents()
     components.year = 2027
     components.month = 11
@@ -17,6 +18,6 @@ class MoaTimeTests: XCTestCase {
     
     let result = MoaTime.logTime(date)
     
-    XCTAssertEqual("2027-11-21 02:51:41.000", result)
+    XCTAssertEqual("2027-11-21 13:51:41.000", result)
   }
 }
