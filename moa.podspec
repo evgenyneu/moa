@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name        = "moa"
-  s.version     = "12.0.0"
+  s.version     = "12.1.0"
   s.license     = { :type => "MIT" }
-  s.homepage    = "https://github.com/evgenyneu/moa"
+  s.homepage    = "https://github.com/r-dent/moa"
   s.summary     = "An image download extension for image view written in Swift."
   s.description  = <<-DESC
                    Moa is an image download library written in Swift for iOS, tvOS and macOS.
@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
                    * Includes unit testing mode for faking network responses.
                    DESC
   s.authors     = { "Evgenii Neumerzhitckii" => "sausageskin@gmail.com" }
-  s.source      = { :git => "https://github.com/evgenyneu/moa.git", :tag => s.version }
-  s.screenshots  = "https://raw.githubusercontent.com/evgenyneu/moa/master/Graphics/Hunting_Moa.jpg"
+  s.source      = { :git => "https://github.com/r-dent/moa.git", :tag => s.version }
+  s.screenshots  = "https://raw.githubusercontent.com/r-dent/moa/master/Graphics/Hunting_Moa.jpg"
   s.source_files = "Moa/**/*.swift"
   s.ios.deployment_target = "8.0"
   s.osx.deployment_target = "10.9"

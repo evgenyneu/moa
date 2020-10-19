@@ -203,7 +203,7 @@ public final class Moa {
   public var imageFadeDuration: TimeInterval?
 
   /// Set a value greater than zero to make Moa fade in images over the given time after downloading them from the network.
-  public static var imageFadeDuration: TimeInterval? = 0.2
+  public static var imageFadeDuration: TimeInterval?
   #endif
 
   private func startDownload(_ url: String) {
